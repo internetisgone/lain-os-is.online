@@ -1,0 +1,76 @@
+body 
+{
+	background-color: black;
+}
+
+p
+{
+	color: whitesmoke;
+}
+
+#entry-page
+{
+	position: fixed;
+/*	width: 100vw;
+	height: 100vh;*/
+	display: flex;
+	justify-content: center; 
+	align-items: center;
+	transition: opacity 0.9s ease-out;
+	z-index: 7;
+	top: 0;
+/*	left: 0;*/
+}
+
+#main-container
+{
+	position: relative;
+	display: flex;
+	justify-content: center; 
+	align-items: center;
+}
+
+#player-container
+{
+
+}
+
+#play-pause-btn
+{
+	width: 120px;
+}
+
+#prev-btn
+{
+
+}
+
+#next-btn
+{
+
+}
+
+#progress-bar-container
+{
+	width: 210px;
+	height: 13px;
+	background-color: whitesmoke;
+}
+
+#progress-bar-fill
+{
+	width: 0;
+	height: 13px;
+	background-color: violet;
+}
+
+
+
+
+
+
+
+
+
+
+

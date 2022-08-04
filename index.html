@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>the end</title>
+</head>
+<body>
+	<!-- todo hide main container b4 entry page loads in -->
+	<div id="entry-page"> 
+		<img src="img/lain_extended_small.png" style="width: 100%; left: 50%; top: 50%;">
+		<p style="color: black; position: fixed; top: 50%; left: 50%;">enter</p>
+	</div>
+
+	<div id="main-container">
+		<div id="player-container">
+			<p>the internet has gone i will carry u</p><br>
+			<div id="playback-controls">
+				<button id="prev-btn" onclick="prevTrack()">prev</button>
+				<button id="play-pause-btn" onclick="playOrPause()">play</button>
+				<button id="next-btn" onclick="nextTrack()">next</button>
+			</div>
+
+			<input type="range" name="volume" min="0" max="100" value="77" id="volume-slider" onchange="setVolume()">
+
+			<br>
+
+			<div id ="progress-bar-container">
+				<div id="progress-bar-fill"></div>
+			</div>
+
+			<audio preload="auto" id="cur-track"></audio>
+
+			<br><br>
+
+			<label for="biquad"><p>choose a biquad filter:</p></label>
+			<select name="biquad" id="switch-biquad" size="9">
+				<option value="0" selected="selected">none</option>
+				<option value="1">lowpass</option>
+				<option value="2">highpass</option>
+				<option value="3">bandpass</option>
+				<option value="4">lowshelf</option>
+				<option value="5">highshelf</option>
+				<option value="6">peaking</option>
+				<option value="7">notch</option>
+				<option value="8">allpass</option>
+			</select>
+
+
+		</div>
+
+
+	</div>
+	<script type="text/javascript" src="main.js"></script>
+</body>
+</html>
