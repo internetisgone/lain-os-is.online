@@ -18,10 +18,14 @@ let volumeSlider = document.getElementById("volume-slider")
 let progressBar = document.getElementById("progress-bar-container")
 let progressFill = document.getElementById("progress-bar-fill")
 let entryPage = document.getElementById("entry-page")
+
 let biquadSelectionEl = document.getElementById("switch-biquad")
-let reverbToggle = document.getElementById("reverb-toggle")
 let frequencySlider = document.getElementById("frequency-slider")
 let frequencyEl = document.getElementById("cur-frequency")
+
+let reverbToggle = document.getElementById("reverb-toggle")
+let reverbDurationSlider = document.getElementById("reverb-duration")
+let reverbDecaySlider = document.getElementById("reverb-decay")
 
 let curIndex = 0
 let curTrack = document.getElementById("cur-track")
@@ -38,25 +42,24 @@ entryPage.addEventListener('transitionend', function() {entryPage.parentNode.rem
 /////// audio filter ///////
 const audioContext = new AudioContext();
 const biquadFilter = new BiquadFilterNode(audioContext, {frequency:1000})
-let impulse = impulseResponse(0.7, 0.4)
+// biquadFilter.frequency.setValueAtTime(700, audioContext.currentTime);
+let impulse = impulseResponse(reverbDurationSlider.value, reverbDecaySlider.value)
 const convolver = new ConvolverNode(audioContext, {buffer:impulse})
+let hasReverb = false
 
 let source = audioContext.createMediaElementSource(curTrack);
 
 let biquadIndex = 0
 let biquadTypes = ["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch", "allpass"]
 
-
 source.connect(audioContext.destination)
-// convolver.connect(audioContext.destination)
-//source.connect(biquadFilter).connect(audioContext.destination)
 
 biquadSelectionEl.addEventListener("change", function(){switchBiquad(biquadSelectionEl.value);}) 
 
 function impulseResponse(duration, decay)
 {
 	var length = audioContext.sampleRate * duration
-  var impulse = audioContext.createBuffer(2, length,audioContext.sampleRate)
+  var impulse = audioContext.createBuffer(2, length, audioContext.sampleRate)
   var IR0 = impulse.getChannelData(0)
   var IR1 = impulse.getChannelData(1)
   for (var i = 0; i < length; i++) 
@@ -70,20 +73,33 @@ function impulseResponse(duration, decay)
 
 function switchBiquad(index)
 {
-	if(index > 0)
+	if(index > 0) //turn on biquad
 	{
-		biquadFilter.disconnect()
 		biquadFilter.type = biquadTypes[index - 1]
-		// biquadFilter.frequency.setValueAtTime(700, audioContext.currentTime);
 		biquadFilter.gain.setValueAtTime(25, audioContext.currentTime);
-
-		source.connect(biquadFilter).connect(audioContext.destination)
+		if (hasReverb)
+		{
+			convolver.disconnect()
+			source.connect(convolver).connect(biquadFilter).connect(audioContext.destination)
+		}
+		else 
+		{	
+			source.connect(biquadFilter).connect(audioContext.destination)
+		}
+		
 		console.log("milady " + index + ", biquad type = " + biquadTypes[index - 1] + "frequency  = " + biquadFilter.frequency)
 	}
-	else 
+	else //turn off biquad 
 	{
 		biquadFilter.disconnect()
-		source.connect(audioContext.destination)
+		if (hasReverb)
+		{
+			source.connect(convolver).connect(audioContext.destination)
+		}
+		else 
+		{
+			source.connect(audioContext.destination)
+		}
 		console.log("milady " + index + ", biquad type = none") 
 	}
 }
@@ -94,13 +110,27 @@ function setFrequency(frequency)
 	frequencyEl.textContent = "frequency: " + frequencySlider.value
 }
 
-// function createReverb()
-// {
-// 	convolver.disconnect()
-// 	impulse = impulseResponse(1, 1)
-// 	convolver = new ConvolverNode(audioContext, {buffer:impulse})
-// 	convolver.connect(audioContext.destination)
-// }
+function setReverb()
+{
+	impulse = impulseResponse(reverbDurationSlider.value, reverbDecaySlider.value)
+	convolver.buffer = impulse
+}
+
+function toggleReverb()
+{
+	if (hasReverb)
+	{
+		convolver.disconnect()
+		reverbToggle.textContent = "turn on reverb "
+		hasReverb = false
+	}
+	else 
+	{
+		source.connect(convolver).connect(audioContext.destination)
+		reverbToggle.textContent = "turn off reverb"
+		hasReverb = true
+	}
+}
 
 /////// end of audio filter ///////
 
