@@ -13,13 +13,15 @@ let trackList = [
   },
 ];
  
-let play_pause_btn = document.getElementById("play-pause-btn")
-let volume_slider = document.getElementById("volume-slider")
-let progress_bar = document.getElementById("progress-bar-container")
-let progress_fill = document.getElementById("progress-bar-fill")
-let cur_filter_el = document.getElementById("current-filter")
-let entry_page = document.getElementById("entry-page")
+let playPauseBtn = document.getElementById("play-pause-btn")
+let volumeSlider = document.getElementById("volume-slider")
+let progressBar = document.getElementById("progress-bar-container")
+let progressFill = document.getElementById("progress-bar-fill")
+let entryPage = document.getElementById("entry-page")
 let biquadSelectionEl = document.getElementById("switch-biquad")
+let reverbToggle = document.getElementById("reverb-toggle")
+let frequencySlider = document.getElementById("frequency-slider")
+let frequencyEl = document.getElementById("cur-frequency")
 
 let curIndex = 0
 let curTrack = document.getElementById("cur-track")
@@ -27,16 +29,16 @@ let isPlaying = false
 let progressTimer = null
 
 loadTrack();
-progress_bar.addEventListener("click", setProgress);
+progressBar.addEventListener("click", setProgress);
 
-entry_page.addEventListener("click", function(){entry_page.style.opacity = "0"})
-entry_page.addEventListener('transitionend', function() {entry_page.parentNode.removeChild(entry_page)})
+entryPage.addEventListener("click", function(){entryPage.style.opacity = "0"})
+entryPage.addEventListener('transitionend', function() {entryPage.parentNode.removeChild(entryPage)})
 
 
 /////// audio filter ///////
 const audioContext = new AudioContext();
-const biquadFilter = audioContext.createBiquadFilter();
-let impulse =impulseResponse(0.7, 0.4)
+const biquadFilter = new BiquadFilterNode(audioContext, {frequency:1000})
+let impulse = impulseResponse(0.7, 0.4)
 const convolver = new ConvolverNode(audioContext, {buffer:impulse})
 
 let source = audioContext.createMediaElementSource(curTrack);
@@ -44,9 +46,8 @@ let source = audioContext.createMediaElementSource(curTrack);
 let biquadIndex = 0
 let biquadTypes = ["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch", "allpass"]
 
-//temppp
+
 source.connect(audioContext.destination)
-// source.connect(convolver)
 // convolver.connect(audioContext.destination)
 //source.connect(biquadFilter).connect(audioContext.destination)
 
@@ -72,13 +73,12 @@ function switchBiquad(index)
 	if(index > 0)
 	{
 		biquadFilter.disconnect()
-
 		biquadFilter.type = biquadTypes[index - 1]
-		biquadFilter.frequency.setValueAtTime(700, audioContext.currentTime);
+		// biquadFilter.frequency.setValueAtTime(700, audioContext.currentTime);
 		biquadFilter.gain.setValueAtTime(25, audioContext.currentTime);
 
 		source.connect(biquadFilter).connect(audioContext.destination)
-		console.log("milady " + index + ", biquad type = " + biquadTypes[index - 1])
+		console.log("milady " + index + ", biquad type = " + biquadTypes[index - 1] + "frequency  = " + biquadFilter.frequency)
 	}
 	else 
 	{
@@ -88,13 +88,18 @@ function switchBiquad(index)
 	}
 }
 
-// function toggleReverb(isOn)
+function setFrequency(frequency) 
+{
+	biquadFilter.frequency.value = frequencySlider.value
+	frequencyEl.textContent = "frequency: " + frequencySlider.value
+}
+
+// function createReverb()
 // {
 // 	convolver.disconnect()
-// 	if(isOn) 
-// 	{
-// 		convolver.connect(audioContext.destination)
-// 	}
+// 	impulse = impulseResponse(1, 1)
+// 	convolver = new ConvolverNode(audioContext, {buffer:impulse})
+// 	convolver.connect(audioContext.destination)
 // }
 
 /////// end of audio filter ///////
@@ -107,19 +112,17 @@ function loadTrack()
 	{
 		clearInterval(progressTimer)
 	}
-	canPlayThru = false
 	curTrack.src = trackList[curIndex].path;
 	curTrack.load();
 	progressTimer = setInterval(updateProgress, 1000);
 	curTrack.addEventListener("ended", nextTrack)
-	//curTrack.addEventListener("canplaythrough", setCanPlayThru);
 }
 
 function playTrack()
 {
 	curTrack.play();
 	isPlaying = true;
-	play_pause_btn.textContent = "pause";
+	playPauseBtn.textContent = "pause";
 }
 
 //playback controls
@@ -133,7 +136,7 @@ function playOrPause()
 	{
 		curTrack.pause();
 		isPlaying = false;
-		play_pause_btn.textContent = "play";
+		playPauseBtn.textContent = "play";
 	}
 	else { playTrack() }
 }
@@ -156,24 +159,24 @@ function nextTrack()
 
 function setVolume()
 {
-	curTrack.volume = volume_slider.value / volume_slider.max
+	curTrack.volume = volumeSlider.value / volumeSlider.max
 }
 
 //progress bar
 function updateProgress()
 {
-	//if (isPlaying) 
 	let progress = curTrack.currentTime / curTrack.duration;
-	progress_fill.style.width = progress * progress_bar.offsetWidth;
-	//console.log("updated progress. currentTime = " + curTrack.currentTime)
+	//todo cant set width 
+	progressFill.style.maxWidth = progress * progressBar.offsetWidth;
+	console.log("updated progress, progress = " + progress + ", width = " + progressFill.style.maxWidth)
 }
 
 function setProgress(el)
 {
-	let jumpTo = curTrack.duration * (el.offsetX / progress_bar.offsetWidth);
+	let jumpTo = curTrack.duration * (el.offsetX / progressBar.offsetWidth);
 	curTrack.currentTime = jumpTo;
 	updateProgress()
-	//console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + progress_bar.offsetWidth + ", jumpTo = " + jumpTo)
+	console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + progressBar.offsetWidth + ", jumpTo = " + jumpTo)
 }
 
 /////// end of music player ///////

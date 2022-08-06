@@ -8,18 +8,20 @@ p
 	color: whitesmoke;
 }
 
+label
+{
+	color: whitesmoke;
+}
+
 #entry-page
 {
 	position: fixed;
-/*	width: 100vw;
-	height: 100vh;*/
 	display: flex;
 	justify-content: center; 
 	align-items: center;
 	transition: opacity 0.9s ease-out;
 	z-index: 7;
 	top: 0;
-/*	left: 0;*/
 }
 
 #main-container
@@ -52,14 +54,14 @@ p
 
 #progress-bar-container
 {
-	width: 210px;
+	width: 200px;
 	height: 13px;
 	background-color: whitesmoke;
 }
 
 #progress-bar-fill
 {
-	width: 0;
+	width: 0px;
 	height: 13px;
 	background-color: violet;
 }
