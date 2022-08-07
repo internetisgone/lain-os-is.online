@@ -2,27 +2,23 @@ let trackList = [
   {
   	artist: "boa",
 		name: "duvet",
-		//image: "path"
 		path: "/mp3/boa_duvet.mp3"
   },
    {
   	artist: "dj stingray",
 		name: "hypoalgesia",
-		//image: "path"
 		path: "/mp3/hypoalgesia_compressed.mp3"
   },
   {
   	artist: "exxy4",
 		name: "TWICE 트와이스 TT 3XXY EDIT",
-		//image: "path"
 		path: "/mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3"
   },
-  //  {
-  // 	artist: "casper mcfadden",
-		// name: ".dancecore",
-		// //image: "path"
-		// path: "/mp3/dancecore_compressed.mp3"
-  // },
+   {
+  	artist: "casper mcfadden",
+		name: ".dancecore",
+		path: "/mp3/dancecore_compressed.mp3"
+  },
 ];
  
 let playPauseBtn = document.getElementById("play-pause-btn")
@@ -104,8 +100,8 @@ function switchBiquad(index)
 		{	
 			source.connect(biquadFilter).connect(audioContext.destination)
 		}
-		
-		// set frequencyEl.textContent.style.color grey
+		frequencyEl.style.color = "whitesmoke";
+		gainEl.style.color = "whitesmoke";
 		console.log("milady " + biquadIndex + ", biquad type = " + biquadTypes[biquadIndex - 1] + "frequency  = " + biquadFilter.frequency)
 	}
 	else //turn off biquad 
@@ -119,7 +115,8 @@ function switchBiquad(index)
 		{
 			source.connect(audioContext.destination)
 		}
-
+		frequencyEl.style.color = "grey";
+		gainEl.style.color = "grey";
 		console.log("milady " + biquadIndex + ", biquad type = none") 
 	}
 }
@@ -150,6 +147,8 @@ function toggleReverb()
 	{
 		convolver.disconnect()
 		reverbToggle.textContent = "turn on reverb "
+		reverbDurationText.style.color = "grey"
+		reverbDecayText.style.color = "grey"
 		hasReverb = false
 	}
 	else 
@@ -163,6 +162,8 @@ function toggleReverb()
 			source.connect(convolver).connect(audioContext.destination)
 		}
 		reverbToggle.textContent = "turn off reverb"
+		reverbDurationText.style.color = "whitesmoke"
+		reverbDecayText.style.color = "whitesmoke"
 		hasReverb = true
 	}
 }
@@ -231,7 +232,6 @@ function setVolume()
 function updateProgress()
 {
 	let progress = curTrack.currentTime / curTrack.duration;
-	//todo cant set width 
 	progressFill.style.width = progress * progressBar.offsetWidth + "px";
 	console.log("updated progress, progress = " + progress + ", width = " + progressFill.style.width)
 }

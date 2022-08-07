@@ -88,7 +88,7 @@ hr
 #progress-bar-container
 {
 	width: 250px;
-	height: 13px;
+	height: 10px;
 	background-color: whitesmoke;
 }
 
@@ -96,7 +96,7 @@ hr
 {
 	max-width: 250px;
 	width: 0px;
-	height: 13px;
+	height: 10px;
 	background-color: violet;
 }
 
