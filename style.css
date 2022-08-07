@@ -1,3 +1,14 @@
+@font-face 
+{
+	font-family: "LoveLetter";
+	src: url("/fonts/LoveLetter.TTF") format("truetype");
+}
+
+body, p, label, button, option
+{
+	font-family: "LoveLetter", "Courier New", monospace;
+}
+
 body 
 {
 	background-color: black;
@@ -13,15 +24,37 @@ label
 	color: whitesmoke;
 }
 
+hr 
+{
+   display: block;
+   position: relative;
+   padding: 0;
+   margin: 8px auto;
+   height: 0;
+   width: 100%;
+   max-height: 0;
+   font-size: 1px;
+   line-height: 0;
+   clear: both;
+   border: none;
+   border-top: 1px solid whitesmoke;
+   border-bottom: 1px solid whitesmoke;
+}
+
+
 #entry-page
 {
+	width: 100vw;
+	height: 100vh;
 	position: fixed;
 	display: flex;
 	justify-content: center; 
 	align-items: center;
-	transition: opacity 0.9s ease-out;
+	transition: opacity 0.7s ease-out;
 	z-index: 7;
 	top: 0;
+	left: 0;
+	background-color: whitesmoke;
 }
 
 #main-container
@@ -54,13 +87,14 @@ label
 
 #progress-bar-container
 {
-	width: 200px;
+	width: 250px;
 	height: 13px;
 	background-color: whitesmoke;
 }
 
 #progress-bar-fill
 {
+	max-width: 250px;
 	width: 0px;
 	height: 13px;
 	background-color: violet;

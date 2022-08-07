@@ -1,0 +1,48 @@
+Last login: Sat Aug  6 18:55:06 on ttys000
+lain@navi ~ % cd desktop/gpt3
+lain@navi gpt3 % export OPENAI_API_KEY=""
+lain@navi gpt3 % openai tools fine_tunes.prepare_data -f training_data.csv 
+Analyzing...
+
+- Based on your file extension, your file is formatted as a CSV file
+- Your file contains 73 prompt-completion pairs. In general, we recommend having at least a few hundred examples. We've found that performance tends to linearly increase for every doubling of the number of examples
+- The completion should start with a whitespace character (` `). This tends to produce better results due to the tokenization we use. See https://beta.openai.com/docs/guides/fine-tuning/preparing-your-dataset for more details
+
+Based on the analysis we will perform the following actions:
+- [Necessary] Your format `CSV` will be converted to `JSONL`
+- [Recommended] Add a whitespace character to the beginning of the completion [Y/n]: y
+
+
+Your data will be written to a new JSONL file. Proceed [Y/n]: y
+
+Wrote modified file to `training_data.jsonl`
+Feel free to take a look!
+
+Now use that file when fine-tuning:
+> openai api fine_tunes.create -t "training_data.jsonl"
+
+
+Once your model starts training, it'll approximately take 3.45 minutes to train a `curie` model, and less for `ada` and `babbage`. Queue will approximately take half an hour per job ahead of you.
+lain@navi gpt3 % openai api fine_tunes.create -t "training_data.jsonl" -m davinci --suffix "lets-all-love-lain" 
+Upload progress: 100%|██████████████████████████| 33.3k/33.3k [00:00<00:00, 5.93Mit/s]
+Uploaded file from training_data.jsonl: file-W1VeBhnWiS9KIW8cnQBfM9vS
+Created fine-tune: ft-INPwUgywuCSbC3udPkVhtgYy
+Streaming events until fine-tuning is complete...
+
+(Ctrl-C will interrupt the stream, but not cancel the fine-tune)
+[2022-08-07 16:33:23] Created fine-tune: ft-INPwUgywuCSbC3udPkVhtgYy
+[2022-08-07 16:33:28] Fine-tune costs $0.77
+[2022-08-07 16:33:29] Fine-tune enqueued. Queue number: 0
+[2022-08-07 16:33:30] Fine-tune started
+[2022-08-07 16:36:29] Completed epoch 1/4
+[2022-08-07 16:36:53] Completed epoch 2/4
+[2022-08-07 16:37:17] Completed epoch 3/4
+[2022-08-07 16:37:41] Completed epoch 4/4
+[2022-08-07 16:39:17] Uploaded model: davinci:ft-personal:lets-all-love-lain-2022-08-07-08-39-17
+[2022-08-07 16:39:18] Uploaded result file: file-2jx4O8VBa44bqacIyFkD4dnj
+[2022-08-07 16:39:19] Fine-tune succeeded
+
+Job complete! Status: succeeded 
+Try out your fine-tuned model:
+
+openai api completions.create -m davinci:ft-personal:lets-all-love-lain-2022-08-07-08-39-17 -p <YOUR_PROMPT>

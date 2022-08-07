@@ -5,12 +5,24 @@ let trackList = [
 		//image: "path"
 		path: "/mp3/boa_duvet.mp3"
   },
+   {
+  	artist: "dj stingray",
+		name: "hypoalgesia",
+		//image: "path"
+		path: "/mp3/hypoalgesia_compressed.mp3"
+  },
   {
   	artist: "exxy4",
 		name: "TWICE 트와이스 TT 3XXY EDIT",
 		//image: "path"
 		path: "/mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3"
   },
+  //  {
+  // 	artist: "casper mcfadden",
+		// name: ".dancecore",
+		// //image: "path"
+		// path: "/mp3/dancecore_compressed.mp3"
+  // },
 ];
  
 let playPauseBtn = document.getElementById("play-pause-btn")
@@ -22,10 +34,15 @@ let entryPage = document.getElementById("entry-page")
 let biquadSelectionEl = document.getElementById("switch-biquad")
 let frequencySlider = document.getElementById("frequency-slider")
 let frequencyEl = document.getElementById("cur-frequency")
+let gainSlider = document.getElementById("gain-slider")
+let gainEl = document.getElementById("cur-gain")
 
 let reverbToggle = document.getElementById("reverb-toggle")
 let reverbDurationSlider = document.getElementById("reverb-duration")
 let reverbDecaySlider = document.getElementById("reverb-decay")
+
+let reverbDurationText = document.getElementById("reverb-duration-text")
+let reverbDecayText = document.getElementById("reverb-decay-text")
 
 let curIndex = 0
 let curTrack = document.getElementById("cur-track")
@@ -73,9 +90,10 @@ function impulseResponse(duration, decay)
 
 function switchBiquad(index)
 {
-	if(index > 0) //turn on biquad
+	biquadIndex = index
+	if(biquadIndex > 0) //turn on biquad
 	{
-		biquadFilter.type = biquadTypes[index - 1]
+		biquadFilter.type = biquadTypes[biquadIndex - 1]
 		biquadFilter.gain.setValueAtTime(25, audioContext.currentTime);
 		if (hasReverb)
 		{
@@ -87,7 +105,8 @@ function switchBiquad(index)
 			source.connect(biquadFilter).connect(audioContext.destination)
 		}
 		
-		console.log("milady " + index + ", biquad type = " + biquadTypes[index - 1] + "frequency  = " + biquadFilter.frequency)
+		// set frequencyEl.textContent.style.color grey
+		console.log("milady " + biquadIndex + ", biquad type = " + biquadTypes[biquadIndex - 1] + "frequency  = " + biquadFilter.frequency)
 	}
 	else //turn off biquad 
 	{
@@ -100,18 +119,27 @@ function switchBiquad(index)
 		{
 			source.connect(audioContext.destination)
 		}
-		console.log("milady " + index + ", biquad type = none") 
+
+		console.log("milady " + biquadIndex + ", biquad type = none") 
 	}
 }
 
-function setFrequency(frequency) 
+function setFrequency() 
 {
 	biquadFilter.frequency.value = frequencySlider.value
 	frequencyEl.textContent = "frequency: " + frequencySlider.value
 }
 
+function setGain()
+{
+	biquadFilter.gain.value = gainSlider.value
+	gainEl.textContent = "gain: " + gainSlider.value
+}
+
 function setReverb()
 {
+	reverbDurationText.textContent = "duration :" + reverbDurationSlider.value
+	reverbDecayText.textContent = "decay: " + reverbDecaySlider.value
 	impulse = impulseResponse(reverbDurationSlider.value, reverbDecaySlider.value)
 	convolver.buffer = impulse
 }
@@ -126,7 +154,14 @@ function toggleReverb()
 	}
 	else 
 	{
-		source.connect(convolver).connect(audioContext.destination)
+		if (biquadIndex > 0) 
+		{
+			source.connect(convolver).connect(biquadFilter).connect(audioContext.destination)
+		}
+		else 
+		{
+			source.connect(convolver).connect(audioContext.destination)
+		}
 		reverbToggle.textContent = "turn off reverb"
 		hasReverb = true
 	}
@@ -197,8 +232,8 @@ function updateProgress()
 {
 	let progress = curTrack.currentTime / curTrack.duration;
 	//todo cant set width 
-	progressFill.style.maxWidth = progress * progressBar.offsetWidth;
-	console.log("updated progress, progress = " + progress + ", width = " + progressFill.style.maxWidth)
+	progressFill.style.width = progress * progressBar.offsetWidth + "px";
+	console.log("updated progress, progress = " + progress + ", width = " + progressFill.style.width)
 }
 
 function setProgress(el)
