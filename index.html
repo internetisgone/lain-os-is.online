@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<title>club cyberia</title>
 </head>
-<body>
+<body onload="onPageLoaded()">
 	<div id="entry-page"> 
 		<!-- <img src="img/frame.png" style="left: 50%; top: 50%; height: 100vh;"> -->
 		<img src="img/lain_pfp.png" style="left: 50%; top: 50%;">
@@ -14,6 +14,14 @@
 	</div>
 
 	<div id="main-container">
+
+		<div class="mini-window" id="test-music-player">
+			<div class="mini-window-draggable" id="test-music-player-drag"></div>
+			<div class="mini-window-close" id="test-close"></div>
+		</div>
+
+		<div id="mini-window-dock"></div>
+
 		<div id="player-container">
 			<p>the internet has gone i will carry u</p><br>
 			<div id="playback-controls">
@@ -31,7 +39,7 @@
 			<div id ="progress-bar-container">
 				<div id="progress-bar-fill"></div>
 			</div>
-			<br>
+			<p id="cur-track-name"></p>
 
 			<audio preload="auto" id="cur-track"></audio>
 

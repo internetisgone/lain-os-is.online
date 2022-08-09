@@ -1,3 +1,4 @@
+//test tracksssssssssss
 let trackList = [
   {
   	artist: "boa",
@@ -20,11 +21,68 @@ let trackList = [
 		path: "/mp3/dancecore_compressed.mp3"
   },
 ];
- 
+
+// demooooooooooooooo
+// let trackList = [
+//   {
+//   	name: "afalfl - just some kick noyze",
+// 		path: "/demo-mp3/afalfl - just some kick noyze.mp3"
+//   },
+//   {
+//   	name: "Fetus - Footprints (premix)",
+// 		path: "/demo-mp3/Fetus - Footprints (premix).mp3"
+//   },
+//   {
+//   	name: "GRASPS X NERDIE - I AM HURTING (PREMASTER)",
+// 		path: "/demo-mp3/GRASPS X NERDIE - I AM HURTING (PREMASTER).mp3"
+//   },
+//   {
+//   	name: "Imryll - Family Portrait (Imryll Reimagined)",
+// 		path: "/demo-mp3/Imryll - Family Portrait (Imryll Reimagined).mp3"
+//   },
+//   {
+//   	name: "Jennifer Walton - At Last, Lain Is Free",
+// 		path: "/demo-mp3/Jennifer Walton - At Last, Lain Is Free.mp3"
+//   },
+//   {
+//   	name: "Kagami Smile -  Acts of Betrayal",
+// 		path: "/demo-mp3/Kagami Smile -  Acts of Betrayal.mp3"
+//   },
+//   {
+//   	name: "Sour Gout - Transmigration(-60db_unmastered)",
+// 		path: "/demo-mp3/Sour Gout - Transmigration(-60db_unmastered).mp3"
+//   },
+//   {
+//   	name: "thegn ft. vrain - phantoma_-_track04.wav (unmastered)",
+// 		path: "/demo-mp3/thegn ft. vrain - phantoma_-_track04.wav (unmastered).mp3"
+//   },
+//   {
+//   	name: "Wa_ste - cyberia texture 5a x professed intention and real intention",
+// 		path: "/demo-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention.mp3"
+//   },
+//   {
+//   	name: "xo - DuvetBoa8-absurd3b",
+// 		path: "/demo-mp3/xo - DuvetBoa8-absurd3b.mp3"
+//   },
+//   {
+//   	name: "Yraki - Lights Down - PREMASTER24bit",
+// 		path: "/demo-mp3/Yraki - Lights Down - PREMASTER24bit.mp3"
+//   },
+//   {
+//   	name: "Yumea Horiike - lain - 2022_05_18 23",
+// 		path: "/demo-mp3/Yumea Horiike - lain - 2022_05_18 23.mp3"
+//   },
+//   {
+//   	name: "Yuting Wu - Help me to Breathe",
+// 		path: "/demo-mp3/Yuting Wu - Help me to Breathe.mp3"
+//   },
+// ]; 
+
 let playPauseBtn = document.getElementById("play-pause-btn")
 let volumeSlider = document.getElementById("volume-slider")
 let progressBar = document.getElementById("progress-bar-container")
 let progressFill = document.getElementById("progress-bar-fill")
+let curTrackText = document.getElementById("cur-track-name")
 let entryPage = document.getElementById("entry-page")
 
 let biquadSelectionEl = document.getElementById("switch-biquad")
@@ -50,6 +108,69 @@ progressBar.addEventListener("click", setProgress);
 
 entryPage.addEventListener("click", function(){entryPage.style.opacity = "0"})
 entryPage.addEventListener('transitionend', function() {entryPage.parentNode.removeChild(entryPage)})
+
+
+//todo
+function onPageLoaded()
+{
+	//or window.addEventListener('DOMContentLoaded'??? wahts the diff 
+	console.log("booting complete")
+	//hide entry page loading element
+	//show entry page login
+}
+
+
+/////// mini windows ///////
+
+let miniWindow = document.getElementById("test-music-player")
+let draggable = document.getElementById("test-music-player-drag")
+let closeBtn = document.getElementById("test-close")
+
+closeBtn.addEventListener("click", function(){miniWindow.style.display = "none"})
+draggable.addEventListener("mousedown", dragStart)
+draggable.addEventListener("mousemove", doDrag)
+draggable.addEventListener("mouseup", dragEnd)
+
+let startX, startY, endX, endY;
+let dragOffsetX = 0, dragOffsetY = 0;
+let moving = false
+
+//todo add offset
+function dragStart(e)
+{
+	startX = e.clientX - dragOffsetX;
+	startY = e.clientY - dragOffsetY;
+	moving = true
+}
+
+function doDrag(e)
+{
+	if (moving) 
+	{
+		e.preventDefault()
+		endX = e.clientX - startX
+		endY = e.clientY - startY
+
+		
+		//(draggable.offsetLeft - startX)
+
+		draggable.parentElement.style.left = endX + "px";
+		draggable.parentElement.style.top = endY + "px";
+		console.log("moving " + draggable.parentElement)
+	}	
+}
+
+function dragEnd()
+{
+	startX = endX
+	startY = endY
+	dragOffsetX = endX
+	dragOffsetY = endY
+	moving = false
+}
+
+/////// mini windows ///////
+
 
 
 /////// audio filter ///////
@@ -90,7 +211,7 @@ function switchBiquad(index)
 	if(biquadIndex > 0) //turn on biquad
 	{
 		biquadFilter.type = biquadTypes[biquadIndex - 1]
-		biquadFilter.gain.setValueAtTime(25, audioContext.currentTime);
+		biquadFilter.gain.setValueAtTime(gainSlider.value, audioContext.currentTime);
 		if (hasReverb)
 		{
 			convolver.disconnect()
@@ -180,6 +301,8 @@ function loadTrack()
 	}
 	curTrack.src = trackList[curIndex].path;
 	curTrack.load();
+	curTrackText.textContent = trackList[curIndex].name;
+	console.log("loaded track" + trackList[curIndex].name)
 	progressTimer = setInterval(updateProgress, 1000);
 	curTrack.addEventListener("ended", nextTrack)
 }

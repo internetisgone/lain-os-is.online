@@ -26,11 +26,11 @@ Once your model starts training, it'll approximately take 3.45 minutes to train 
 lain@navi gpt3 % openai api fine_tunes.create -t "training_data.jsonl" -m davinci --suffix "lets-all-love-lain" 
 Upload progress: 100%|██████████████████████████| 33.3k/33.3k [00:00<00:00, 5.93Mit/s]
 Uploaded file from training_data.jsonl: file-W1VeBhnWiS9KIW8cnQBfM9vS
-Created fine-tune: ft-INPwUgywuCSbC3udPkVhtgYy
+Created fine-tune: ft-INPwUgywuCSbC3udPkVhtgY
 Streaming events until fine-tuning is complete...
 
 (Ctrl-C will interrupt the stream, but not cancel the fine-tune)
-[2022-08-07 16:33:23] Created fine-tune: ft-INPwUgywuCSbC3udPkVhtgYy
+[2022-08-07 16:33:23] Created fine-tune: ft-INPwUgywuCSbC3udPkVhtgY
 [2022-08-07 16:33:28] Fine-tune costs $0.77
 [2022-08-07 16:33:29] Fine-tune enqueued. Queue number: 0
 [2022-08-07 16:33:30] Fine-tune started
@@ -46,3 +46,33 @@ Job complete! Status: succeeded
 Try out your fine-tuned model:
 
 openai api completions.create -m davinci:ft-personal:lets-all-love-lain-2022-08-07-08-39-17 -p <YOUR_PROMPT>
+
+
+
+
+lain@navi ~ % cd desktop/lain
+lain@navi lain % python3 -m RangeHTTPServer 
+Serving HTTP on :: port 8000 (http://[::]:8000/) ...
+::1 - - [07/Aug/2022 20:28:52] "GET / HTTP/1.1" 200 -
+::1 - - [07/Aug/2022 20:28:52] "GET /style.css HTTP/1.1" 200 -
+::1 - - [07/Aug/2022 20:28:52] "GET /main.js HTTP/1.1" 200 -
+::1 - - [07/Aug/2022 20:28:52] "GET /img/lain_pfp.png HTTP/1.1" 200 -
+::1 - - [07/Aug/2022 20:28:52] "GET /fonts/LoveLetter.TTF HTTP/1.1" 200 -
+::1 - - [07/Aug/2022 20:28:52] "GET /mp3/boa_duvet.mp3 HTTP/1.1" 206 -
+::1 - - [07/Aug/2022 20:29:04] "GET /mp3/hypoalgesia_compressed.mp3 HTTP/1.1" 206 -
+::1 - - [07/Aug/2022 20:29:08] "GET /mp3/exxy4_TWICE%20%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20TT%203XXY%20EDIT.mp3 HTTP/1.1" 206 -
+::1 - - [07/Aug/2022 20:29:20] "GET /mp3/dancecore_compressed.mp3 HTTP/1.1" 206 -
+^Z
+zsh: suspended  python3 -m RangeHTTPServer
+lain@navi lain % surge
+
+   Running as lain@proton.me (Student)
+
+        project: /Users/lain/Desktop/lain/
+         domain: garbage-time-is-running-out.surge.sh
+         upload: [=====] 100% eta: 0.0s (11 files, 15041372 bytes)
+            CDN: [====================] 100%
+     encryption: *.surge.sh, surge.sh (284 days)
+             IP: 13.197.201.31
+
+   Success! - Published to garbage-time-is-running-out.surge.sh
