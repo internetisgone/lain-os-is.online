@@ -4,10 +4,17 @@
 	src: url("/fonts/LoveLetter.TTF") format("truetype");
 }
 
+@font-face
+{
+	font-family: "Input-Mono";
+	src: url("/fonts/Input-Regular_(InputSans-Regular).ttf");
+}
+
 body, p, label, button, option
 {
 	font-family: "LoveLetter", "Courier New", monospace;
-}
+/*	font-family: "Input-Mono", "Courier New", monospace;
+*/}
 
 body 
 {
@@ -136,7 +143,6 @@ inactive window 4, 3
 
 #player-container
 {
-	width: 27%;
 }
 
 #play-pause-btn

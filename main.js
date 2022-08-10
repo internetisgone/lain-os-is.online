@@ -82,7 +82,7 @@ let playPauseBtn = document.getElementById("play-pause-btn")
 let volumeSlider = document.getElementById("volume-slider")
 let progressBar = document.getElementById("progress-bar-container")
 let progressFill = document.getElementById("progress-bar-fill")
-let curTrackText = document.getElementById("cur-track-name")
+let curTrackText = document.getElementById("cur-track-info")
 let entryPage = document.getElementById("entry-page")
 
 let biquadSelectionEl = document.getElementById("switch-biquad")
@@ -125,48 +125,46 @@ function onPageLoaded()
 let miniWindow = document.getElementById("test-music-player")
 let draggable = document.getElementById("test-music-player-drag")
 let closeBtn = document.getElementById("test-close")
+let windowDock = document.getElementById("mini-window-dock")
 
 closeBtn.addEventListener("click", function(){miniWindow.style.display = "none"})
+//windowDock.addEventListener("click" function(){miniWindow.style.display = "block"})
+
 draggable.addEventListener("mousedown", dragStart)
 draggable.addEventListener("mousemove", doDrag)
 draggable.addEventListener("mouseup", dragEnd)
+draggable.addEventListener("mouseleave", dragEnd)
 
-let startX, startY, endX, endY;
-let dragOffsetX = 0, dragOffsetY = 0;
-let moving = false
+let cursorPos;
+let offset = [0,0];
+let isMoving = false;
 
-//todo add offset
 function dragStart(e)
 {
-	startX = e.clientX - dragOffsetX;
-	startY = e.clientY - dragOffsetY;
-	moving = true
+	isMoving = true
+	offset = [
+		miniWindow.offsetLeft - e.clientX,
+	  miniWindow.offsetTop - e.clientY
+  ]
 }
 
 function doDrag(e)
 {
-	if (moving) 
+	e.preventDefault()
+	if (isMoving)
 	{
-		e.preventDefault()
-		endX = e.clientX - startX
-		endY = e.clientY - startY
-
-		
-		//(draggable.offsetLeft - startX)
-
-		draggable.parentElement.style.left = endX + "px";
-		draggable.parentElement.style.top = endY + "px";
-		console.log("moving " + draggable.parentElement)
-	}	
+		cursorPos = {
+			x : e.clientX,
+			y : e.clientY
+		};
+		miniWindow.style.left = (cursorPos.x + offset[0]) + 'px';
+    miniWindow.style.top  = (cursorPos.y + offset[1]) + 'px';
+	}
 }
 
 function dragEnd()
 {
-	startX = endX
-	startY = endY
-	dragOffsetX = endX
-	dragOffsetY = endY
-	moving = false
+	isMoving = false
 }
 
 /////// mini windows ///////
@@ -300,12 +298,18 @@ function loadTrack()
 		clearInterval(progressTimer)
 	}
 	curTrack.src = trackList[curIndex].path;
+	curTrackText.textContent = "loading..."
 	curTrack.load();
-	curTrackText.textContent = trackList[curIndex].name;
-	console.log("loaded track" + trackList[curIndex].name)
 	progressTimer = setInterval(updateProgress, 1000);
 	curTrack.addEventListener("ended", nextTrack)
+	curTrack.onloadedmetadata = function() 
+	{
+		//todo format the duration
+		curTrackText.textContent = trackList[curIndex].name + " " + curTrack.duration;
+		console.log("loaded track " + trackList[curIndex].name + ", duration " + curTrack.duration)
+	}
 }
+
 
 function playTrack()
 {
@@ -356,7 +360,7 @@ function updateProgress()
 {
 	let progress = curTrack.currentTime / curTrack.duration;
 	progressFill.style.width = progress * progressBar.offsetWidth + "px";
-	console.log("updated progress, progress = " + progress + ", width = " + progressFill.style.width)
+	//console.log("updated progress, progress = " + progress + ", width = " + progressFill.style.width)
 }
 
 function setProgress(el)
