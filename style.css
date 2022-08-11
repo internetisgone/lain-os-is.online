@@ -64,7 +64,7 @@ inactive window 4, 3
 	justify-content: center; 
 	align-items: center;
 	transition: opacity 0.7s ease-out;
-	z-index: 10;
+	z-index: 10; 
 	top: 0;
 	left: 0;
 	bottom: 0;
@@ -74,7 +74,7 @@ inactive window 4, 3
 
 #main-container
 {
-	position: relative;
+	position: fixed;
 	display: flex;
 	justify-content: center; 
 	align-items: center;
@@ -93,9 +93,11 @@ inactive window 4, 3
 /*	display: flex;
 	justify-content: center; 
 	align-items: center;*/
-	background-image: url("img/music_player_test_frame.png");
+	top: 33%;
+	left: 50%;
+/*	background-image: url("img/music_player_test_frame.png");
 	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: 100%;*/
 	width: 300px;
 	height: 380px;
 
@@ -105,7 +107,7 @@ inactive window 4, 3
 
 .mini-window-draggable
 {
-	position: absolute;
+	position: relative;
 	top: 0px;
 	left: 0px;
 	right: 0px;
@@ -123,7 +125,7 @@ inactive window 4, 3
 	top: 0px;
 	right: 0px;
 	width: 10%;
-	height: 5%;
+	height: 6%;
 	z-index: 7;
 	background-color: black;
 	opacity: 0.7;
@@ -143,6 +145,9 @@ inactive window 4, 3
 
 #player-container
 {
+	/*tempppppppppppppppp*/
+	position: absolute;
+	display: none;
 }
 
 #play-pause-btn

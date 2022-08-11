@@ -98,7 +98,8 @@ let reverbDecaySlider = document.getElementById("reverb-decay")
 let reverbDurationText = document.getElementById("reverb-duration-text")
 let reverbDecayText = document.getElementById("reverb-decay-text")
 
-let curIndex = 0
+//load a random song
+let curIndex = Math.floor(Math.random() * trackList.length)
 let curTrack = document.getElementById("cur-track")
 let isPlaying = false
 let progressTimer = null
@@ -108,7 +109,6 @@ progressBar.addEventListener("click", setProgress);
 
 entryPage.addEventListener("click", function(){entryPage.style.opacity = "0"})
 entryPage.addEventListener('transitionend', function() {entryPage.parentNode.removeChild(entryPage)})
-
 
 //todo
 function onPageLoaded()
@@ -120,20 +120,34 @@ function onPageLoaded()
 }
 
 
-/////// mini windows ///////
+////////////// mini windows //////////////
 
+//for each mini window
 let miniWindow = document.getElementById("test-music-player")
 let draggable = document.getElementById("test-music-player-drag")
 let closeBtn = document.getElementById("test-close")
 let windowDock = document.getElementById("mini-window-dock")
 
 closeBtn.addEventListener("click", function(){miniWindow.style.display = "none"})
-//windowDock.addEventListener("click" function(){miniWindow.style.display = "block"})
+windowDock.addEventListener("click", function(){
+	if (miniWindow.style.display === "none")
+		miniWindow.style.display = "block";
+})
+
+//todo add touch events?
+
+// let draggables = document.getElementsByClassName("mini-window-draggable")
+
+// for (let i = 0; i < draggables.length - 1; i++)
+// {
+// 	console.log(draggables[i])
+// 	draggables[i].addEventListener("mousedown", dragStart)
+
+// }
 
 draggable.addEventListener("mousedown", dragStart)
-draggable.addEventListener("mousemove", doDrag)
-draggable.addEventListener("mouseup", dragEnd)
-draggable.addEventListener("mouseleave", dragEnd)
+document.addEventListener("mousemove", doDrag)
+document.addEventListener("mouseup", dragEnd)
 
 let cursorPos;
 let offset = [0,0];
@@ -143,9 +157,10 @@ function dragStart(e)
 {
 	isMoving = true
 	offset = [
-		miniWindow.offsetLeft - e.clientX,
-	  miniWindow.offsetTop - e.clientY
+		draggable.parentElement.offsetLeft - e.clientX,
+	  draggable.parentElement.offsetTop - e.clientY
   ]
+  //todo set z index of self n other windows
 }
 
 function doDrag(e)
@@ -157,21 +172,18 @@ function doDrag(e)
 			x : e.clientX,
 			y : e.clientY
 		};
-		miniWindow.style.left = (cursorPos.x + offset[0]) + 'px';
-    miniWindow.style.top  = (cursorPos.y + offset[1]) + 'px';
+		draggable.parentElement.style.left = (cursorPos.x + offset[0]) + 'px';
+    draggable.parentElement.style.top  = (cursorPos.y + offset[1]) + 'px';
 	}
 }
 
-function dragEnd()
-{
-	isMoving = false
-}
+function dragEnd() {isMoving = false}
 
-/////// mini windows ///////
+////////////// mini windows //////////////
 
 
 
-/////// audio filter ///////
+////////////// audio filter //////////////
 const audioContext = new AudioContext();
 const biquadFilter = new BiquadFilterNode(audioContext, {frequency:1000})
 // biquadFilter.frequency.setValueAtTime(700, audioContext.currentTime);
@@ -287,10 +299,10 @@ function toggleReverb()
 	}
 }
 
-/////// end of audio filter ///////
+////////////// end of audio filter //////////////
 
 
-/////// music player ///////
+////////////// music player //////////////
 function loadTrack()
 {
 	if (progressTimer != null) 
@@ -298,15 +310,24 @@ function loadTrack()
 		clearInterval(progressTimer)
 	}
 	curTrack.src = trackList[curIndex].path;
-	curTrackText.textContent = "loading..."
+	curTrackText.textContent = "loading metadata..."
 	curTrack.load();
 	progressTimer = setInterval(updateProgress, 1000);
+
 	curTrack.addEventListener("ended", nextTrack)
 	curTrack.onloadedmetadata = function() 
 	{
-		//todo format the duration
-		curTrackText.textContent = trackList[curIndex].name + " " + curTrack.duration;
-		console.log("loaded track " + trackList[curIndex].name + ", duration " + curTrack.duration)
+		let duration = Math.round(curTrack.duration)
+		let minutes = Math.floor(duration/60)
+		let seconds = duration % 60 
+		let minString = (minutes < 10)? ("0" + minutes) : ("" + minutes)
+		let secString = (seconds < 10)? ("0" + seconds) : ("" + seconds)
+
+		curTrackText.textContent = trackList[curIndex].name + " " + minString + ":" + secString;
+	}
+	curTrack.onloadeddata = function()
+	{
+		console.log("loaded track " + trackList[curIndex].name)
 	}
 }
 
@@ -371,4 +392,4 @@ function setProgress(el)
 	console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + progressBar.offsetWidth + ", jumpTo = " + jumpTo)
 }
 
-/////// end of music player ///////
+////////////// music player //////////////

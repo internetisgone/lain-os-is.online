@@ -47,6 +47,10 @@ Try out your fine-tuned model:
 
 openai api completions.create -m davinci:ft-personal:lets-all-love-lain-2022-08-07-08-39-17 -p <YOUR_PROMPT>
 
+
+-----------------------------------------
+
+
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣄⣀⠀⠀⠀ 
 ⠀⠀⠀⣠⠶⠾⠟⠃⠀⠀⠀⠀⠀⠀⠀⠈⠙⠳⣆⠀ 
 ⠀⣤⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⣶⣶⡌⠀ 
@@ -54,6 +58,33 @@ openai api completions.create -m davinci:ft-personal:lets-all-love-lain-2022-08-
 ⠀⣠⢾⣷⣾⣿⣿⣷⠀⠀⠀⠀⠀⠀⢠⢿⣿⡿⡎⠀ 
 ⠀⠃⢹⡘⢿⣿⡟⣹⠀⠀⠀⠀⠀⠀⠘⢤⣉⣑⠁⠀ 
 ⠀⠀⠀⠙⣦⣤⠔⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+
+︻╦╤─ ︻╦╤─ ︻╦╤─ ︻╦╤─ 
+
+  	))
+   -
+ ((
+   -
+    ))
+   -
+ ((
+   -
+    ))
+   -
+ ((
+   -
+    ))
+   -
+ ((
+   -
+    ))
+   -
+ ((
+   -
+    ))
+-----------------------------------------
+
 
 lain@navi ~ % cd desktop/lain
 lain@navi lain % python3 -m RangeHTTPServer 
