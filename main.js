@@ -83,7 +83,7 @@ let volumeSlider = document.getElementById("volume-slider")
 let progressBar = document.getElementById("progress-bar-container")
 let progressFill = document.getElementById("progress-bar-fill")
 let curTrackText = document.getElementById("cur-track-info")
-let entryPage = document.getElementById("entry-page")
+// let entryPage = document.getElementById("entry-page")
 
 let biquadSelectionEl = document.getElementById("switch-biquad")
 let frequencySlider = document.getElementById("frequency-slider")
@@ -107,8 +107,8 @@ let progressTimer = null
 loadTrack();
 progressBar.addEventListener("click", setProgress);
 
-entryPage.addEventListener("click", function(){entryPage.style.opacity = "0"})
-entryPage.addEventListener('transitionend', function() {entryPage.parentNode.removeChild(entryPage)})
+// entryPage.addEventListener("click", function(){entryPage.style.opacity = "0"})
+// entryPage.addEventListener('transitionend', function() {entryPage.parentNode.removeChild(entryPage)})
 
 //todo
 function onPageLoaded()
@@ -128,37 +128,45 @@ let draggable = document.getElementById("test-music-player-drag")
 let closeBtn = document.getElementById("test-close")
 let windowDock = document.getElementById("mini-window-dock")
 
-closeBtn.addEventListener("click", function(){miniWindow.style.display = "none"})
-windowDock.addEventListener("click", function(){
-	if (miniWindow.style.display === "none")
-		miniWindow.style.display = "block";
-})
+// closeBtn.addEventListener("click", function(){miniWindow.style.display = "none"})
+// windowDock.addEventListener("click", function(){
+// 	if (miniWindow.style.display === "none")
+// 		miniWindow.style.display = "block";
+// })
 
 //todo add touch events?
 
-// let draggables = document.getElementsByClassName("mini-window-draggable")
-
-// for (let i = 0; i < draggables.length - 1; i++)
-// {
-// 	console.log(draggables[i])
-// 	draggables[i].addEventListener("mousedown", dragStart)
-
-// }
-
-draggable.addEventListener("mousedown", dragStart)
-document.addEventListener("mousemove", doDrag)
-document.addEventListener("mouseup", dragEnd)
-
+let miniWindows = document.getElementsByClassName("mini-window")
+let movingWindow;
 let cursorPos;
 let offset = [0,0];
 let isMoving = false;
 
+for (let i = 0; i < miniWindows.length; i++)
+{
+	console.log("mini windows count " + miniWindows.length)
+	console.log(miniWindows.item(i))
+
+	let draggable = miniWindows.item(i).querySelector(".mini-window-draggable")
+	console.log(draggable)
+	//miniWindows[i].addEventListener("mousedown", dragStart)
+	draggable.onmousedown = dragStart
+
+}
+
+// draggable.addEventListener("mousedown", dragStart)
+document.addEventListener("mousemove", doDrag)
+document.addEventListener("mouseup", dragEnd)
+
 function dragStart(e)
 {
+	e.preventDefault()
 	isMoving = true
+	movingWindow = e.target.parentElement
+	// console.log(movingWindow)
 	offset = [
-		draggable.parentElement.offsetLeft - e.clientX,
-	  draggable.parentElement.offsetTop - e.clientY
+		movingWindow.offsetLeft - e.clientX,
+	  movingWindow.offsetTop - e.clientY
   ]
   //todo set z index of self n other windows
 }
@@ -172,12 +180,12 @@ function doDrag(e)
 			x : e.clientX,
 			y : e.clientY
 		};
-		draggable.parentElement.style.left = (cursorPos.x + offset[0]) + 'px';
-    draggable.parentElement.style.top  = (cursorPos.y + offset[1]) + 'px';
+		movingWindow.style.left = (cursorPos.x + offset[0]) + 'px';
+    movingWindow.style.top  = (cursorPos.y + offset[1]) + 'px';
 	}
 }
 
-function dragEnd() {isMoving = false}
+function dragEnd() {isMoving = false;}
 
 ////////////// mini windows //////////////
 

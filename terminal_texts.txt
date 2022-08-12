@@ -79,10 +79,6 @@ openai api completions.create -m davinci:ft-personal:lets-all-love-lain-2022-08-
  ((
    -
     ))
-   -
- ((
-   -
-    ))
 -----------------------------------------
 
 
