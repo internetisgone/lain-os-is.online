@@ -18,7 +18,7 @@ body, p, label, button, option
 
 body 
 {
-	background-image: url("img/extended background_simple.png");
+	background-image: url("img/extended_bg_s.png");
 	background-repeat: no-repeat;
 	background-size: 100%;
 	background-position: 0% 20%;
@@ -73,6 +73,12 @@ inactive window 4, 3
 	background-color: whitesmoke;
 }
 
+#entry-texts
+{
+	position: fixed; 
+	color: black; 
+}
+
 #main-container
 {
 	position: fixed;
@@ -96,9 +102,8 @@ inactive window 4, 3
 	align-items: center;*/
 	top: 33%;
 	left: 50%;
-	width: 300px;
-	height: 380px;
-
+/*	width: 300px;
+	height: 380px;*/
 	background-color: lightgray;
 	z-index: 5;
 }
@@ -117,6 +122,36 @@ inactive window 4, 3
 	opacity: 0.5;
 }
 
+#music-player
+{
+	background-image: url("img/player-mockup.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	width: 333px;
+	height: 560px;
+	top: 10%;
+	left: 44%;
+}
+
+#terminal
+{
+	position: absolute;
+	top: 20%;
+	left: 10%;
+	width: 420px;
+	height: 300px;
+}
+
+#terminal-txt-container
+{
+	position: absolute;
+	left: 4%;
+	top: 14%;
+	width: 92%;
+	height: 80%;
+	background-color: black;
+}
+
 .mini-window-close
 {
 	position: absolute;
@@ -132,40 +167,26 @@ inactive window 4, 3
 #mini-window-dock
 {
 	position: absolute;
-	left: 44%;
+	left: 23%;
 	bottom: 0;
-	width: 200px;
-	height: 49px;
+	width: 299px;
+	height: 66px;
+	background-color: black;
+	opacity: 0.5;
+}
+
+#side-bar
+{
+	position: absolute;
+	left: 0;
+	top: 10%;
+	width: 66px;
+	height: 480px;
 	background-color: whitesmoke;
 	opacity: 0.5;
 }
 
-#test-music-player
-{
-	background-image: url("img/music_player_test_frame.png");
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
-
-#terminal
-{
-	position: absolute;
-	top: 20%;
-	left: 10%;
-	width: 420;
-	height: 300;
-}
-#terminal-txt-container
-{
-	position: absolute;
-	left: 7.5%;
-	top: 14%;
-	width: 85%;
-	height: 80%;
-	background-color: black;
-}
-
-#player-container
+#old-player-container
 {
 	/*tempppppppppppppppp*/
 	position: absolute;

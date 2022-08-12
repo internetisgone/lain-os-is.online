@@ -7,17 +7,18 @@
 	<title>club cyberia</title>
 </head>
 <body onload="onPageLoaded()">
-<!-- 	<div id="entry-page"> 
-		<img src="img/lain_pfp.png" style="left: 50%; top: 50%;">
-		<p style="color: black; position: fixed; top: 50%; left: 50%;">enter</p>
-		<p style="position: absolute; bottom: 1%; color: black;">public domain operating system</p>
-	</div> -->
+	<div id="entry-page"> 
+		<!-- <img src="img/lain_pfp.png" style="left: 50%; top: 50%;"> -->
+		<img src="img/frame.png" style="left: 50%; top: 50%; height: 100vh;">
+		<p id="entry-texts">initialising...</p>
+		<p style="position: absolute; bottom: 1%; color: white; font-size: small;">public domain operating system</p>
+	</div>
 
 	<div id="main-container">
 
-		<div class="mini-window" id="test-music-player">
-			<div class="mini-window-draggable" id="test-music-player-drag"></div>
-			<div class="mini-window-close" id="test-close"></div>
+		<div class="mini-window" id="music-player">
+			<div class="mini-window-draggable" id="music-player-drag"></div>
+			<div class="mini-window-close"></div>
 			
 		</div>
 
@@ -38,10 +39,14 @@
 			</div>
 		</div>
 
-		<div id="mini-window-dock"></div>
+		<div id="side-bar"></div>
 
-		<div id="player-container">
-			<p>the internet has gone i will carry u</p><br>
+		<div id="mini-window-dock">
+			<p>(temp) click here to hide current view n show the old music player</p>
+		</div>
+
+		<div id="old-player-container">
+			<p id="cur-track-info" style="width: 333px;"></p>
 			<div id="playback-controls">
 				<button id="prev-btn" onclick="prevTrack()">prev</button>
 				<button id="play-pause-btn" onclick="playOrPause()">play</button>
@@ -57,8 +62,7 @@
 			<div id ="progress-bar-container">
 				<div id="progress-bar-fill"></div>
 			</div>
-			<p id="cur-track-info" style="width: 333px;"></p>
-
+			
 			<audio preload="auto" id="cur-track"></audio>
 
 			<hr>
@@ -95,8 +99,8 @@
 		</div>
 <!-- 		<script id="cid0020000321212656103" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 250px;height: 350px;">{"handle":"lain-os-test","arch":"js","styles":{"a":"6600cc","b":94,"c":"FFFFFF","d":"FFFFFF","f":94,"i":94,"k":"6600cc","l":"6600cc","m":"6600cc","n":"FFFFFF","o":94,"p":"10","q":"6600cc","r":94,"t":0,"usricon":0.92,"fwtickm":1}}</script>
  -->	
- <!-- tag		<script id="cid0020000321213936019" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 220px;height: 300px">{"handle":"lain-os-test","arch":"js","styles":{"a":"cc33cc","b":100,"c":"000000","d":"000000","k":"cc33cc","l":"cc33cc","m":"cc33cc","p":"10","q":"cc33cc","r":100,"pos":"br","cv":1,"cvfnt":"monospace, sans-serif","cvbg":"cc33cc","cvw":75,"cvh":30}}</script>
-		</div> -->
+		<script id="cid0020000321213936019" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 200px;height: 333px">{"handle":"lain-os-test","arch":"js","styles":{"a":"cc33cc","b":100,"c":"000000","d":"000000","k":"cc33cc","l":"cc33cc","m":"cc33cc","p":"10","q":"cc33cc","r":100,"pos":"br","cv":1,"cvfnt":"monospace, sans-serif","cvbg":"cc33cc","cvw":75,"cvh":30}}</script>
+		</div>
 	<script type="text/javascript" src="main.js"></script>
 
 </body>

@@ -1,102 +1,89 @@
 //test tracksssssssssss
-let trackList = [
-  {
-  	artist: "boa",
-		name: "duvet",
-		path: "/mp3/boa_duvet.mp3"
-  },
-   {
-  	artist: "dj stingray",
-		name: "hypoalgesia",
-		path: "/mp3/hypoalgesia_compressed.mp3"
-  },
-  {
-  	artist: "exxy4",
-		name: "TWICE 트와이스 TT 3XXY EDIT",
-		path: "/mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3"
-  },
-   {
-  	artist: "casper mcfadden",
-		name: ".dancecore",
-		path: "/mp3/dancecore_compressed.mp3"
-  },
-];
-
-// demooooooooooooooo
 // let trackList = [
 //   {
-//   	name: "afalfl - just some kick noyze",
-// 		path: "/demo-mp3/afalfl - just some kick noyze.mp3"
+//   	artist: "boa",
+// 		name: "duvet",
+// 		path: "/mp3/boa_duvet.mp3"
+//   },
+//    {
+//   	artist: "dj stingray",
+// 		name: "hypoalgesia",
+// 		path: "/mp3/hypoalgesia_compressed.mp3"
 //   },
 //   {
-//   	name: "Fetus - Footprints (premix)",
-// 		path: "/demo-mp3/Fetus - Footprints (premix).mp3"
+//   	artist: "exxy4",
+// 		name: "TWICE 트와이스 TT 3XXY EDIT",
+// 		path: "/mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3"
 //   },
-//   {
-//   	name: "GRASPS X NERDIE - I AM HURTING (PREMASTER)",
-// 		path: "/demo-mp3/GRASPS X NERDIE - I AM HURTING (PREMASTER).mp3"
+//    {
+//   	artist: "casper mcfadden",
+// 		name: ".dancecore",
+// 		path: "/mp3/dancecore_compressed.mp3"
 //   },
-//   {
-//   	name: "Imryll - Family Portrait (Imryll Reimagined)",
-// 		path: "/demo-mp3/Imryll - Family Portrait (Imryll Reimagined).mp3"
-//   },
-//   {
-//   	name: "Jennifer Walton - At Last, Lain Is Free",
-// 		path: "/demo-mp3/Jennifer Walton - At Last, Lain Is Free.mp3"
-//   },
-//   {
-//   	name: "Kagami Smile -  Acts of Betrayal",
-// 		path: "/demo-mp3/Kagami Smile -  Acts of Betrayal.mp3"
-//   },
-//   {
-//   	name: "Sour Gout - Transmigration(-60db_unmastered)",
-// 		path: "/demo-mp3/Sour Gout - Transmigration(-60db_unmastered).mp3"
-//   },
-//   {
-//   	name: "thegn ft. vrain - phantoma_-_track04.wav (unmastered)",
-// 		path: "/demo-mp3/thegn ft. vrain - phantoma_-_track04.wav (unmastered).mp3"
-//   },
-//   {
-//   	name: "Wa_ste - cyberia texture 5a x professed intention and real intention",
-// 		path: "/demo-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention.mp3"
-//   },
-//   {
-//   	name: "xo - DuvetBoa8-absurd3b",
-// 		path: "/demo-mp3/xo - DuvetBoa8-absurd3b.mp3"
-//   },
-//   {
-//   	name: "Yraki - Lights Down - PREMASTER24bit",
-// 		path: "/demo-mp3/Yraki - Lights Down - PREMASTER24bit.mp3"
-//   },
-//   {
-//   	name: "Yumea Horiike - lain - 2022_05_18 23",
-// 		path: "/demo-mp3/Yumea Horiike - lain - 2022_05_18 23.mp3"
-//   },
-//   {
-//   	name: "Yuting Wu - Help me to Breathe",
-// 		path: "/demo-mp3/Yuting Wu - Help me to Breathe.mp3"
-//   },
-// ]; 
+// ];
 
+// demooooooooooooooo
+let trackList = [
+  {
+  	name: "afalfl - just some kick noyze",
+		path: "/demo-mp3/afalfl - just some kick noyze.mp3"
+  },
+  {
+  	name: "Fetus - Footprints (premix)",
+		path: "/demo-mp3/Fetus - Footprints (premix).mp3"
+  },
+  {
+  	name: "GRASPS X NERDIE - I AM HURTING (PREMASTER)",
+		path: "/demo-mp3/GRASPS X NERDIE - I AM HURTING (PREMASTER).mp3"
+  },
+  {
+  	name: "Imryll - Family Portrait (Imryll Reimagined)",
+		path: "/demo-mp3/Imryll - Family Portrait (Imryll Reimagined).mp3"
+  },
+  {
+  	name: "Jennifer Walton - At Last, Lain Is Free",
+		path: "/demo-mp3/Jennifer Walton - At Last, Lain Is Free.mp3"
+  },
+  {
+  	name: "Kagami Smile -  Acts of Betrayal",
+		path: "/demo-mp3/Kagami Smile -  Acts of Betrayal.mp3"
+  },
+  {
+  	name: "Sour Gout - Transmigration(-60db_unmastered)",
+		path: "/demo-mp3/Sour Gout - Transmigration(-60db_unmastered).mp3"
+  },
+  {
+  	name: "thegn ft. vrain - phantoma_-_track04.wav (unmastered)",
+		path: "/demo-mp3/thegn ft. vrain - phantoma_-_track04.wav (unmastered).mp3"
+  },
+  {
+  	name: "Wa_ste - cyberia texture 5a x professed intention and real intention",
+		path: "/demo-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention.mp3"
+  },
+  {
+  	name: "xo - DuvetBoa8-absurd3b",
+		path: "/demo-mp3/xo - DuvetBoa8-absurd3b.mp3"
+  },
+  {
+  	name: "Yraki - Lights Down - PREMASTER24bit",
+		path: "/demo-mp3/Yraki - Lights Down - PREMASTER24bit.mp3"
+  },
+  {
+  	name: "Yumea Horiike - lain - 2022_05_18 23",
+		path: "/demo-mp3/Yumea Horiike - lain - 2022_05_18 23.mp3"
+  },
+  {
+  	name: "Yuting Wu - Help me to Breathe",
+		path: "/demo-mp3/Yuting Wu - Help me to Breathe.mp3"
+  },
+]; 
+
+let oldPlayerContainer = document.getElementById("old-player-container")
 let playPauseBtn = document.getElementById("play-pause-btn")
 let volumeSlider = document.getElementById("volume-slider")
 let progressBar = document.getElementById("progress-bar-container")
 let progressFill = document.getElementById("progress-bar-fill")
 let curTrackText = document.getElementById("cur-track-info")
-// let entryPage = document.getElementById("entry-page")
-
-let biquadSelectionEl = document.getElementById("switch-biquad")
-let frequencySlider = document.getElementById("frequency-slider")
-let frequencyEl = document.getElementById("cur-frequency")
-let gainSlider = document.getElementById("gain-slider")
-let gainEl = document.getElementById("cur-gain")
-
-let reverbToggle = document.getElementById("reverb-toggle")
-let reverbDurationSlider = document.getElementById("reverb-duration")
-let reverbDecaySlider = document.getElementById("reverb-decay")
-
-let reverbDurationText = document.getElementById("reverb-duration-text")
-let reverbDecayText = document.getElementById("reverb-decay-text")
 
 //load a random song
 let curIndex = Math.floor(Math.random() * trackList.length)
@@ -107,34 +94,24 @@ let progressTimer = null
 loadTrack();
 progressBar.addEventListener("click", setProgress);
 
-// entryPage.addEventListener("click", function(){entryPage.style.opacity = "0"})
-// entryPage.addEventListener('transitionend', function() {entryPage.parentNode.removeChild(entryPage)})
+let entryPage = document.getElementById("entry-page")
+let entryTextsEl = document.getElementById("entry-texts")
+
+entryPage.addEventListener("click", function(){entryPage.style.opacity = "0"})
+entryPage.addEventListener('transitionend', function() {
+	entryPage.parentNode.removeChild(entryPage)
+})
 
 //todo
 function onPageLoaded()
 {
 	//or window.addEventListener('DOMContentLoaded'??? wahts the diff 
 	console.log("booting complete")
-	//hide entry page loading element
-	//show entry page login
+	entryTextsEl.textContent = "log in"
 }
 
 
 ////////////// mini windows //////////////
-
-//for each mini window
-let miniWindow = document.getElementById("test-music-player")
-let draggable = document.getElementById("test-music-player-drag")
-let closeBtn = document.getElementById("test-close")
-let windowDock = document.getElementById("mini-window-dock")
-
-// closeBtn.addEventListener("click", function(){miniWindow.style.display = "none"})
-// windowDock.addEventListener("click", function(){
-// 	if (miniWindow.style.display === "none")
-// 		miniWindow.style.display = "block";
-// })
-
-//todo add touch events?
 
 let miniWindows = document.getElementsByClassName("mini-window")
 let movingWindow;
@@ -144,17 +121,64 @@ let isMoving = false;
 
 for (let i = 0; i < miniWindows.length; i++)
 {
-	console.log("mini windows count " + miniWindows.length)
-	console.log(miniWindows.item(i))
+	let miniWindow = miniWindows.item(i)
+	let closeBtn = miniWindow.querySelector(".mini-window-close")
+	closeBtn.addEventListener("click", function(){miniWindow.style.display = "none"})
 
-	let draggable = miniWindows.item(i).querySelector(".mini-window-draggable")
-	console.log(draggable)
-	//miniWindows[i].addEventListener("mousedown", dragStart)
+	let draggable = miniWindow.querySelector(".mini-window-draggable")
 	draggable.onmousedown = dragStart
+	//todo add touch events 
 
+	console.log("mini windows count " + miniWindows.length)
+	console.log("mini window = " + miniWindows.item(i))
+	console.log("draggable = " + draggable)
 }
 
-// draggable.addEventListener("mousedown", dragStart)
+//////temp
+let windowDock = document.getElementById("mini-window-dock")
+let sideBar = document.getElementById("side-bar")
+// let mainContaienr = document.getElementById("main-container")
+
+windowDock.addEventListener("click", function(){
+	windowDock.style.display = "none"
+	sideBar.style.display = "none"
+	oldPlayerContainer.style.display = "block"
+	for (let i = 0; i < 2; i++)
+	{
+		miniWindows.item(i).style.display = "none"
+		document.body.style.backgroundImage = "none"
+	}
+	// if (showingOldUI)
+	// {
+	// 	sideBar.style.display = "block"
+	// 	oldPlayerContainer.style.display = "none"
+	// 	for (let i = 0; i < 2; i++)
+	// 	{
+	// 		miniWindows.item(i).style.display = "block"
+	// 		document.body.style.backgroundImage = "block"
+	// 	}
+	// 	showingOldUI = false
+	// }
+	// else 
+	// {
+	// 	sideBar.style.display = "none"
+	// 	oldPlayerContainer.style.display = "block"
+	// 	for (let i = 0; i < 2; i++)
+	// 	{
+	// 		miniWindows.item(i).style.display = "none"
+	// 		document.body.style.backgroundImage = "none"
+	// 	}
+	// 	showingOldUI = true
+	// }
+})
+//////temp
+
+
+// windowDock.addEventListener("click", function(){
+// 	if (miniWindow.style.display === "none")
+// 		miniWindow.style.display = "block";
+// })
+
 document.addEventListener("mousemove", doDrag)
 document.addEventListener("mouseup", dragEnd)
 
@@ -192,6 +216,20 @@ function dragEnd() {isMoving = false;}
 
 
 ////////////// audio filter //////////////
+
+let biquadSelectionEl = document.getElementById("switch-biquad")
+let frequencySlider = document.getElementById("frequency-slider")
+let frequencyEl = document.getElementById("cur-frequency")
+let gainSlider = document.getElementById("gain-slider")
+let gainEl = document.getElementById("cur-gain")
+
+let reverbToggle = document.getElementById("reverb-toggle")
+let reverbDurationSlider = document.getElementById("reverb-duration")
+let reverbDecaySlider = document.getElementById("reverb-decay")
+
+let reverbDurationText = document.getElementById("reverb-duration-text")
+let reverbDecayText = document.getElementById("reverb-decay-text")
+
 const audioContext = new AudioContext();
 const biquadFilter = new BiquadFilterNode(audioContext, {frequency:1000})
 // biquadFilter.frequency.setValueAtTime(700, audioContext.currentTime);
