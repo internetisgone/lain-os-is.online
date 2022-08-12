@@ -1,82 +1,82 @@
 //test tracksssssssssss
-// let trackList = [
-//   {
-//   	artist: "boa",
-// 		name: "duvet",
-// 		path: "/mp3/boa_duvet.mp3"
-//   },
-//    {
-//   	artist: "dj stingray",
-// 		name: "hypoalgesia",
-// 		path: "/mp3/hypoalgesia_compressed.mp3"
-//   },
-//   {
-//   	artist: "exxy4",
-// 		name: "TWICE 트와이스 TT 3XXY EDIT",
-// 		path: "/mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3"
-//   },
-//    {
-//   	artist: "casper mcfadden",
-// 		name: ".dancecore",
-// 		path: "/mp3/dancecore_compressed.mp3"
-//   },
-// ];
-
-// demooooooooooooooo
 let trackList = [
   {
-  	name: "afalfl - just some kick noyze",
-		path: "/demo-mp3/afalfl - just some kick noyze.mp3"
+  	artist: "boa",
+		name: "duvet",
+		path: "/mp3/boa_duvet.mp3"
+  },
+   {
+  	artist: "dj stingray",
+		name: "hypoalgesia",
+		path: "/mp3/hypoalgesia_compressed.mp3"
   },
   {
-  	name: "Fetus - Footprints (premix)",
-		path: "/demo-mp3/Fetus - Footprints (premix).mp3"
+  	artist: "exxy4",
+		name: "TWICE 트와이스 TT 3XXY EDIT",
+		path: "/mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3"
   },
-  {
-  	name: "GRASPS X NERDIE - I AM HURTING (PREMASTER)",
-		path: "/demo-mp3/GRASPS X NERDIE - I AM HURTING (PREMASTER).mp3"
+   {
+  	artist: "casper mcfadden",
+		name: ".dancecore",
+		path: "/mp3/dancecore_compressed.mp3"
   },
-  {
-  	name: "Imryll - Family Portrait (Imryll Reimagined)",
-		path: "/demo-mp3/Imryll - Family Portrait (Imryll Reimagined).mp3"
-  },
-  {
-  	name: "Jennifer Walton - At Last, Lain Is Free",
-		path: "/demo-mp3/Jennifer Walton - At Last, Lain Is Free.mp3"
-  },
-  {
-  	name: "Kagami Smile -  Acts of Betrayal",
-		path: "/demo-mp3/Kagami Smile -  Acts of Betrayal.mp3"
-  },
-  {
-  	name: "Sour Gout - Transmigration(-60db_unmastered)",
-		path: "/demo-mp3/Sour Gout - Transmigration(-60db_unmastered).mp3"
-  },
-  {
-  	name: "thegn ft. vrain - phantoma_-_track04.wav (unmastered)",
-		path: "/demo-mp3/thegn ft. vrain - phantoma_-_track04.wav (unmastered).mp3"
-  },
-  {
-  	name: "Wa_ste - cyberia texture 5a x professed intention and real intention",
-		path: "/demo-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention.mp3"
-  },
-  {
-  	name: "xo - DuvetBoa8-absurd3b",
-		path: "/demo-mp3/xo - DuvetBoa8-absurd3b.mp3"
-  },
-  {
-  	name: "Yraki - Lights Down - PREMASTER24bit",
-		path: "/demo-mp3/Yraki - Lights Down - PREMASTER24bit.mp3"
-  },
-  {
-  	name: "Yumea Horiike - lain - 2022_05_18 23",
-		path: "/demo-mp3/Yumea Horiike - lain - 2022_05_18 23.mp3"
-  },
-  {
-  	name: "Yuting Wu - Help me to Breathe",
-		path: "/demo-mp3/Yuting Wu - Help me to Breathe.mp3"
-  },
-]; 
+];
+
+// demooooooooooooooo
+// let trackList = [
+//   {
+//   	name: "afalfl - just some kick noyze",
+// 		path: "/demo-mp3/afalfl - just some kick noyze.mp3"
+//   },
+//   {
+//   	name: "Fetus - Footprints (premix)",
+// 		path: "/demo-mp3/Fetus - Footprints (premix).mp3"
+//   },
+//   {
+//   	name: "GRASPS X NERDIE - I AM HURTING (PREMASTER)",
+// 		path: "/demo-mp3/GRASPS X NERDIE - I AM HURTING (PREMASTER).mp3"
+//   },
+//   {
+//   	name: "Imryll - Family Portrait (Imryll Reimagined)",
+// 		path: "/demo-mp3/Imryll - Family Portrait (Imryll Reimagined).mp3"
+//   },
+//   {
+//   	name: "Jennifer Walton - At Last, Lain Is Free",
+// 		path: "/demo-mp3/Jennifer Walton - At Last, Lain Is Free.mp3"
+//   },
+//   {
+//   	name: "Kagami Smile -  Acts of Betrayal",
+// 		path: "/demo-mp3/Kagami Smile -  Acts of Betrayal.mp3"
+//   },
+//   {
+//   	name: "Sour Gout - Transmigration(-60db_unmastered)",
+// 		path: "/demo-mp3/Sour Gout - Transmigration(-60db_unmastered).mp3"
+//   },
+//   {
+//   	name: "thegn ft. vrain - phantoma_-_track04.wav (unmastered)",
+// 		path: "/demo-mp3/thegn ft. vrain - phantoma_-_track04.wav (unmastered).mp3"
+//   },
+//   {
+//   	name: "Wa_ste - cyberia texture 5a x professed intention and real intention",
+// 		path: "/demo-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention.mp3"
+//   },
+//   {
+//   	name: "xo - DuvetBoa8-absurd3b",
+// 		path: "/demo-mp3/xo - DuvetBoa8-absurd3b.mp3"
+//   },
+//   {
+//   	name: "Yraki - Lights Down - PREMASTER24bit",
+// 		path: "/demo-mp3/Yraki - Lights Down - PREMASTER24bit.mp3"
+//   },
+//   {
+//   	name: "Yumea Horiike - lain - 2022_05_18 23",
+// 		path: "/demo-mp3/Yumea Horiike - lain - 2022_05_18 23.mp3"
+//   },
+//   {
+//   	name: "Yuting Wu - Help me to Breathe",
+// 		path: "/demo-mp3/Yuting Wu - Help me to Breathe.mp3"
+//   },
+// ]; 
 
 let oldPlayerContainer = document.getElementById("old-player-container")
 let playPauseBtn = document.getElementById("play-pause-btn")
@@ -139,37 +139,31 @@ let windowDock = document.getElementById("mini-window-dock")
 let sideBar = document.getElementById("side-bar")
 // let mainContaienr = document.getElementById("main-container")
 
+let showingOldUI = false
 windowDock.addEventListener("click", function(){
-	windowDock.style.display = "none"
-	sideBar.style.display = "none"
-	oldPlayerContainer.style.display = "block"
-	for (let i = 0; i < 2; i++)
+	if (showingOldUI)
 	{
-		miniWindows.item(i).style.display = "none"
-		document.body.style.backgroundImage = "none"
+		oldPlayerContainer.style.display = "none"
+		sideBar.style.display = "block"
+		document.body.style.backgroundImage = 'url("img/extended_bg_s.png")'
+		for (let i = 0; i < 2; i++)
+		{
+			miniWindows.item(i).style.display = "block"
+			document.body.style.backgroundImage = "block"
+		}
+		showingOldUI = false
 	}
-	// if (showingOldUI)
-	// {
-	// 	sideBar.style.display = "block"
-	// 	oldPlayerContainer.style.display = "none"
-	// 	for (let i = 0; i < 2; i++)
-	// 	{
-	// 		miniWindows.item(i).style.display = "block"
-	// 		document.body.style.backgroundImage = "block"
-	// 	}
-	// 	showingOldUI = false
-	// }
-	// else 
-	// {
-	// 	sideBar.style.display = "none"
-	// 	oldPlayerContainer.style.display = "block"
-	// 	for (let i = 0; i < 2; i++)
-	// 	{
-	// 		miniWindows.item(i).style.display = "none"
-	// 		document.body.style.backgroundImage = "none"
-	// 	}
-	// 	showingOldUI = true
-	// }
+	else 
+	{
+		sideBar.style.display = "none"
+		oldPlayerContainer.style.display = "block"
+		for (let i = 0; i < 2; i++)
+		{
+			miniWindows.item(i).style.display = "none"
+			document.body.style.backgroundImage = "none"
+		}
+		showingOldUI = true
+	}
 })
 //////temp
 
@@ -359,9 +353,10 @@ function loadTrack()
 	curTrackText.textContent = "loading metadata..."
 	curTrack.load();
 	progressTimer = setInterval(updateProgress, 1000);
+}
 
-	curTrack.addEventListener("ended", nextTrack)
-	curTrack.onloadedmetadata = function() 
+curTrack.addEventListener("ended", nextTrack)
+curTrack.onloadedmetadata = function() 
 	{
 		let duration = Math.round(curTrack.duration)
 		let minutes = Math.floor(duration/60)
@@ -375,7 +370,6 @@ function loadTrack()
 	{
 		console.log("loaded track " + trackList[curIndex].name)
 	}
-}
 
 
 function playTrack()

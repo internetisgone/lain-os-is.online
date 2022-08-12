@@ -167,11 +167,11 @@ inactive window 4, 3
 #mini-window-dock
 {
 	position: absolute;
-	left: 23%;
+	left: 0%;
 	bottom: 0;
 	width: 299px;
 	height: 66px;
-	background-color: black;
+	background-color: lightgray;
 	opacity: 0.5;
 }
 
