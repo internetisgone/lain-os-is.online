@@ -31,6 +31,11 @@ body
 		background-size: auto 100vh;
 		background-position: 50% 0%;
 	}
+/*	#entry-img
+	{
+		width: 80vw;
+		height: auto;
+	}*/
 }
 
 /*desktop*/
@@ -66,11 +71,11 @@ hr
 
 /*
 z-index: 
-entry page 		10
-window X 		7
-window header	6
-active window 	5
-inactive window 4, 3
+entry page 		111
+window close	9
+window drag 	8
+active window 	7
+inactive window 6, 5
 */
 
 #entry-page
@@ -82,7 +87,7 @@ inactive window 4, 3
 	justify-content: center; 
 	align-items: center;
 	transition: opacity 0.7s ease-out;
-	z-index: 10; 
+	z-index: 111; 
 	top: 0;
 	left: 0;
 	bottom: 0;
@@ -90,6 +95,12 @@ inactive window 4, 3
 	background-color: whitesmoke;
 }
 
+#entry-img
+{
+	 left: 50%; 
+	 top: 50%; 
+	 height: 55vh;
+}
 #entry-texts
 {
 	position: fixed; 
@@ -134,8 +145,8 @@ inactive window 4, 3
 	width: 100%;
 	height: 8%;
 	cursor: move;
-	z-index: 6;
-	background-color: violet;
+/*	z-index: 8;
+*/	background-color: violet;
 	opacity: 0.5;
 }
 
@@ -175,8 +186,8 @@ inactive window 4, 3
 	right: 0px;
 	width: 10%;
 	height: 6%;
-	z-index: 7;
-	background-color: black;
+/*	z-index: 9;
+*/	background-color: black;
 	opacity: 0.7;
 }
 
@@ -189,6 +200,7 @@ inactive window 4, 3
 	height: 66px;
 	background-color: lightgray;
 	opacity: 0.5;
+	cursor: pointer;
 }
 
 #side-bar
@@ -271,14 +283,3 @@ li:hover{background-color: white;}
 	height: 10px;
 	background-color: violet;
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -1,78 +1,78 @@
 //test tracksssssssssss
-let trackList = [
-  {
-		name: "boa - duvet",
-		path: "/mp3/boa_duvet.mp3"
-  },
-   {
-		name: "dj stingray - hypoalgesia",
-		path: "/mp3/hypoalgesia_compressed.mp3"
-  },
-  {
-		name: "exxy4 - TWICE 트와이스 TT 3XXY EDIT",
-		path: "/mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3"
-  },
-   {
-		name: "casper mcfadden - .dancecore",
-		path: "/mp3/dancecore_compressed.mp3"
-  },
-];
-
-// demooooooooooooooo
 // let trackList = [
 //   {
-//   	name: "afalfl - just some kick noyze",
-// 		path: "/demo-mp3/afalfl - just some kick noyze.mp3"
+// 		name: "boa - duvet",
+// 		path: "/mp3/boa_duvet.mp3"
+//   },
+//    {
+// 		name: "dj stingray - hypoalgesia",
+// 		path: "/mp3/hypoalgesia_compressed.mp3"
 //   },
 //   {
-//   	name: "Fetus - Footprints (premix)",
-// 		path: "/demo-mp3/Fetus - Footprints (premix).mp3"
+// 		name: "exxy4 - TWICE 트와이스 TT 3XXY EDIT",
+// 		path: "/mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3"
 //   },
-//   {
-//   	name: "GRASPS X NERDIE - I AM HURTING (PREMASTER)",
-// 		path: "/demo-mp3/GRASPS X NERDIE - I AM HURTING (PREMASTER).mp3"
+//    {
+// 		name: "casper mcfadden - .dancecore",
+// 		path: "/mp3/dancecore_compressed.mp3"
 //   },
-//   {
-//   	name: "Imryll - Family Portrait (Imryll Reimagined)",
-// 		path: "/demo-mp3/Imryll - Family Portrait (Imryll Reimagined).mp3"
-//   },
-//   {
-//   	name: "Jennifer Walton - At Last, Lain Is Free",
-// 		path: "/demo-mp3/Jennifer Walton - At Last, Lain Is Free.mp3"
-//   },
-//   {
-//   	name: "Kagami Smile -  Acts of Betrayal",
-// 		path: "/demo-mp3/Kagami Smile -  Acts of Betrayal.mp3"
-//   },
-//   {
-//   	name: "Sour Gout - Transmigration(-60db_unmastered)",
-// 		path: "/demo-mp3/Sour Gout - Transmigration(-60db_unmastered).mp3"
-//   },
-//   {
-//   	name: "thegn ft. vrain - phantoma_-_track04.wav (unmastered)",
-// 		path: "/demo-mp3/thegn ft. vrain - phantoma_-_track04.wav (unmastered).mp3"
-//   },
-//   {
-//   	name: "Wa_ste - cyberia texture 5a x professed intention and real intention",
-// 		path: "/demo-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention.mp3"
-//   },
-//   {
-//   	name: "xo - 200529-DuvetBoa8-absurd3bF",
-// 		path: "/demo-mp3/xo - 200529-DuvetBoa8-absurd3bF.mp3"
-//   },
-//   {
-//   	name: "Yraki - Lights Down - PREMASTER24bit",
-// 		path: "/demo-mp3/Yraki - Lights Down - PREMASTER24bit.mp3"
-//   },
-//   {
-//   	name: "Yumea Horiike - lain - 2022_05_18 23",
-// 		path: "/demo-mp3/Yumea Horiike - lain - 2022_05_18 23.mp3"
-//   },
-//   {
-//   	name: "Yuting Wu - Help me to Breathe",
-// 		path: "/demo-mp3/Yuting Wu - Help me to Breathe.mp3"
-//   },
-// ]; 
+// ];
+
+// demooooooooooooooo
+let trackList = [
+  {
+  	name: "afalfl - just some kick noyze",
+		path: "/demo-mp3/afalfl - just some kick noyze.mp3"
+  },
+  {
+  	name: "Fetus - Footprints (premix)",
+		path: "/demo-mp3/Fetus - Footprints (premix).mp3"
+  },
+  {
+  	name: "GRASPS X NERDIE - I AM HURTING (PREMASTER)",
+		path: "/demo-mp3/GRASPS X NERDIE - I AM HURTING (PREMASTER).mp3"
+  },
+  {
+  	name: "Imryll - Family Portrait (Imryll Reimagined)",
+		path: "/demo-mp3/Imryll - Family Portrait (Imryll Reimagined).mp3"
+  },
+  {
+  	name: "Jennifer Walton - At Last, Lain Is Free",
+		path: "/demo-mp3/Jennifer Walton - At Last, Lain Is Free.mp3"
+  },
+  {
+  	name: "Kagami Smile -  Acts of Betrayal",
+		path: "/demo-mp3/Kagami Smile -  Acts of Betrayal.mp3"
+  },
+  {
+  	name: "Sour Gout - Transmigration(-60db_unmastered)",
+		path: "/demo-mp3/Sour Gout - Transmigration(-60db_unmastered).mp3"
+  },
+  {
+  	name: "thegn ft. vrain - phantoma_-_track04.wav (unmastered)",
+		path: "/demo-mp3/thegn ft. vrain - phantoma_-_track04.wav (unmastered).mp3"
+  },
+  {
+  	name: "Wa_ste - cyberia texture 5a x professed intention and real intention",
+		path: "/demo-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention.mp3"
+  },
+  {
+  	name: "xo - 200529-DuvetBoa8-absurd3bF",
+		path: "/demo-mp3/xo - 200529-DuvetBoa8-absurd3bF.mp3"
+  },
+  {
+  	name: "Yraki - Lights Down - PREMASTER24bit",
+		path: "/demo-mp3/Yraki - Lights Down - PREMASTER24bit.mp3"
+  },
+  {
+  	name: "Yumea Horiike - lain - 2022_05_18 23",
+		path: "/demo-mp3/Yumea Horiike - lain - 2022_05_18 23.mp3"
+  },
+  {
+  	name: "Yuting Wu - Help me to Breathe",
+		path: "/demo-mp3/Yuting Wu - Help me to Breathe.mp3"
+  },
+]; 
 
 let playPauseBtn = document.getElementById("play-pause-btn")
 let volumeSlider = document.getElementById("volume-slider")
@@ -89,22 +89,22 @@ let progressTimer = null
 loadTrack();
 progressBar.addEventListener("click", setProgress);
 
-// let entryPage = document.getElementById("entry-page")
-// let entryTextsEl = document.getElementById("entry-texts")
+let entryPage = document.getElementById("entry-page")
+let entryTextsEl = document.getElementById("entry-texts")
 
-// entryPage.addEventListener("click", function(){
-// 	entryPage.style.opacity = "0"
-// 	if (audioContext.state === 'suspended') {audioContext.resume();}
-// })
-// entryPage.addEventListener('transitionend', function() {
-// 	entryPage.parentNode.removeChild(entryPage)
-// })
+entryPage.addEventListener("click", function(){
+	entryPage.style.opacity = "0"
+	if (audioContext.state === 'suspended') {audioContext.resume();}
+})
+entryPage.addEventListener('transitionend', function() {
+	entryPage.parentNode.removeChild(entryPage)
+})
 
 //todo
 function onPageLoaded()
 {
 	console.log("booting complete")
-	//entryTextsEl.textContent = "log in"
+	entryTextsEl.textContent = "log in"
 }
 //or document.addEventListener('DOMContentLoaded', function() {}? wahts the diff 
 
@@ -124,14 +124,85 @@ for (let i = 0; i < miniWindows.length; i++)
 
 	let draggable = miniWindow.querySelector(".mini-window-draggable")
 	draggable.onmousedown = dragStart
+	draggable.ontouchstart = dragStart
 	//todo add touch events 
 
 	console.log("mini windows count " + miniWindows.length)
-	console.log("mini window = " + miniWindows.item(i))
-	console.log("draggable = " + draggable)
 }
 
-//////tempppppppppppppppp
+function dragStart(e)
+{
+	e.preventDefault()
+	isMoving = true
+	movingWindow = e.target.parentElement
+	// console.log(movingWindow)
+	offset = [
+		movingWindow.offsetLeft - e.clientX,
+	  movingWindow.offsetTop - e.clientY
+  ]
+  if (e.touches != null)
+	{
+		console.log("touch event")
+		offset = [
+			movingWindow.offsetLeft - e.touches[0].clientX,
+		  movingWindow.offsetTop - e.touches[0].clientY
+	  ]
+	}
+	//set z-index
+  for (let i = 0; i < miniWindows.length; i++)
+  {
+  	if (miniWindows.item(i) == movingWindow)
+  		{movingWindow.style.zIndex = "7"}
+  	else
+  	{miniWindows.item(i).style.zIndex = "5"}
+  }
+
+  document.addEventListener("mousemove", doDrag)
+	document.addEventListener("mouseup", dragEnd)
+	document.addEventListener("touchmove", doDrag)
+	document.addEventListener("touchend", dragEnd)
+}
+
+function doDrag(e)
+{
+	e.preventDefault()
+	if (isMoving)
+	{
+		cursorPos = {
+			x : e.clientX,
+			y : e.clientY
+		};
+
+		if (e.touches != null)
+		{
+			cursorPos = {
+				x : e.touches[0].clientX,
+				y : e.touches[0].clientY
+			}
+		}
+		movingWindow.style.left = (cursorPos.x + offset[0]) + 'px';
+    movingWindow.style.top  = (cursorPos.y + offset[1]) + 'px';
+	}
+}
+
+function dragEnd() {
+	isMoving = false;
+
+	//need 2 remove event listeners otherwise sliders cannot be dragged
+	document.removeEventListener("mousemove", doDrag)
+	document.removeEventListener("mouseup", dragEnd)
+	document.removeEventListener("touchmove", doDrag)
+	document.removeEventListener("touchend", dragEnd)
+}
+
+// windowDock.addEventListener("click", function(){
+// 	if (miniWindow.style.display === "none")
+// 		miniWindow.style.display = "block";
+// })
+
+////////////// mini windows //////////////
+
+//////temppppp switch  view
 let windowDock = document.getElementById("mini-window-dock")
 let sideBar = document.getElementById("side-bar")
 let oldPlayerContainer = document.getElementById("old-player-container")
@@ -164,57 +235,7 @@ windowDock.addEventListener("click", function(){
 		showingOldUI = true
 	}
 })
-//////temp
-
-
-// windowDock.addEventListener("click", function(){
-// 	if (miniWindow.style.display === "none")
-// 		miniWindow.style.display = "block";
-// })
-
-document.addEventListener("mousemove", doDrag)
-document.addEventListener("mouseup", dragEnd)
-
-function dragStart(e)
-{
-	e.preventDefault()
-	isMoving = true
-	movingWindow = e.target.parentElement
-	// console.log(movingWindow)
-	offset = [
-		movingWindow.offsetLeft - e.clientX,
-	  movingWindow.offsetTop - e.clientY
-  ]
-  document.addEventListener("mousemove", doDrag)
-	document.addEventListener("mouseup", dragEnd)
-  //todo set z index of self n other windows
-}
-
-function doDrag(e)
-{
-	e.preventDefault()
-	if (isMoving)
-	{
-		cursorPos = {
-			x : e.clientX,
-			y : e.clientY
-		};
-		movingWindow.style.left = (cursorPos.x + offset[0]) + 'px';
-    movingWindow.style.top  = (cursorPos.y + offset[1]) + 'px';
-	}
-}
-
-function dragEnd() {
-	isMoving = false;
-
-	//need 2 remove event listeners otherwise sliders cannot be dragged
-	document.removeEventListener("mousemove", doDrag)
-	document.removeEventListener("mouseup", dragEnd)
-}
-
-////////////// mini windows //////////////
-
-
+//////tempppppppppppppppp
 
 ////////////// audio filter //////////////
 
