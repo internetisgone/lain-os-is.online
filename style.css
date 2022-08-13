@@ -20,11 +20,14 @@ body
 {
 	background-image: url("img/extended_bg_s.png");
 	background-repeat: no-repeat;
-	background-size: 100%;
-	background-position: 0% 20%;
+	background-size: 100%; /*cover?*/
+	background-position: 0% 25%;
 	background-color: black;
 }
 
+/*background-attachment: fixed;
+
+*/
 p, label
 {
 	color: whitesmoke;
@@ -127,15 +130,14 @@ inactive window 4, 3
 	background-image: url("img/player-mockup.png");
 	background-repeat: no-repeat;
 	background-size: 100%;
-	width: 333px;
-	height: 560px;
+	width: 420px;
+	height: 550px;
 	top: 10%;
 	left: 44%;
 }
 
 #terminal
 {
-	position: absolute;
 	top: 20%;
 	left: 10%;
 	width: 420px;
@@ -186,6 +188,34 @@ inactive window 4, 3
 	opacity: 0.5;
 }
 
+#playlist-container
+{
+	position: absolute;
+	display: none;
+	top: 0;
+	right: 0;
+	width: 444px;
+	height: 500px;
+	background-color: darkgray;
+	opacity: 0.9;
+	overflow: auto;
+}
+
+#playlist-content
+{
+	 list-style-type: decimal;
+}
+
+li
+{
+	padding: 7px;
+	cursor: pointer;
+	background-color: none;
+	transition: 0.07;
+}
+
+li:hover{background-color: white;}
+
 #old-player-container
 {
 	/*tempppppppppppppppp*/
@@ -196,6 +226,11 @@ inactive window 4, 3
 #play-pause-btn
 {
 	width: 120px;
+}
+
+.long-slider
+{
+	width: 300px;
 }
 
 #prev-btn

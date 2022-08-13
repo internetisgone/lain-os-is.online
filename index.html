@@ -8,10 +8,9 @@
 </head>
 <body onload="onPageLoaded()">
 	<div id="entry-page"> 
-		<!-- <img src="img/lain_pfp.png" style="left: 50%; top: 50%;"> -->
-		<img src="img/frame.png" style="left: 50%; top: 50%; height: 100vh;">
+		<img src="img/frame.png" style="left: 50%; top: 50%; height: 55%;">
 		<p id="entry-texts">initialising...</p>
-		<p style="position: absolute; bottom: 1%; color: white; font-size: small;">public domain operating system</p>
+		<p style="position: absolute; bottom: 1%; color: darkgray; font-size: small;">public domain operating system</p>
 	</div>
 
 	<div id="main-container">
@@ -42,11 +41,17 @@
 		<div id="side-bar"></div>
 
 		<div id="mini-window-dock">
-			<p style="color: black; text-align: center;"> (temp) click here switch view</p>
+			<p style="color: black; text-align: center;"> (temp) switch view</p>
 		</div>
 
+		<div id="playlist-container">
+			<ul id="playlist-content">
+			</ul>
+		</div>
 		<div id="old-player-container">
+			<audio preload="auto" id="cur-track"></audio>
 			<p id="cur-track-info" style="width: 333px;"></p>
+
 			<div id="playback-controls">
 				<button id="prev-btn" onclick="prevTrack()">prev</button>
 				<button id="play-pause-btn" onclick="playOrPause()">play</button>
@@ -63,8 +68,7 @@
 				<div id="progress-bar-fill"></div>
 			</div>
 			
-			<audio preload="auto" id="cur-track"></audio>
-
+			
 			<hr>
 			<p>choose a filter: </p>
 			<select id="switch-biquad" size="9">
@@ -80,10 +84,10 @@
 			</select>
 
 			<p id="cur-frequency" style="color: grey;">frequency: 1000</p>
-			<input type="range" min="20" max="15000" value="1000" id="frequency-slider" onchange="setFrequency()">
+			<input class="long-slider" type="range" min="20" max="15000" value="1000" id="frequency-slider" onchange="setFrequency()">
 
 			<p id="cur-gain" style="color: grey;">gain: 25</p>
-			<input type="range" min="-40" max="40" value="25" id="gain-slider" onchange="setGain()">
+			<input class="long-slider" type="range" min="-40" max="40" value="25" id="gain-slider" onchange="setGain()">
 
 			<br>
 			<hr>
@@ -92,13 +96,13 @@
 			<button id="reverb-toggle" onclick="toggleReverb()">turn on reverb</button>
 			<br>
 			<p id="reverb-duration-text" style="color: grey;">duration: 15</p>
-			<input type="range" min="0.1" max="40" value="15" id="reverb-duration" onchange="setReverb()">
+			<input class="long-slider" type="range" min="0.1" max="40" value="15" id="reverb-duration" step="0.2" onchange="setReverb()">
 			<p id="reverb-decay-text" style="color: grey;">decay: 15</p>
-			<input type="range" min="0.1" max="40" value="15" id="reverb-decay" onchange="setReverb()">
+			<input class="long-slider" type="range" min="0.1" max="40" value="15" id="reverb-decay" step="0.2" onchange="setReverb()">
 
 		</div>
-<!-- 		<script id="cid0020000321212656103" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 250px;height: 350px;">{"handle":"lain-os-test","arch":"js","styles":{"a":"6600cc","b":94,"c":"FFFFFF","d":"FFFFFF","f":94,"i":94,"k":"6600cc","l":"6600cc","m":"6600cc","n":"FFFFFF","o":94,"p":"10","q":"6600cc","r":94,"t":0,"usricon":0.92,"fwtickm":1}}</script>
- -->	
+<!-- 		<script id="cid0020000321212656103" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 250px;height: 350px;">{"handle":"lain-os-test","arch":"js","styles":{"a":"6600cc","b":94,"c":"FFFFFF","d":"FFFFFF","f":94,"i":94,"k":"6600cc","l":"6600cc","m":"6600cc","n":"FFFFFF","o":94,"p":"10","q":"6600cc","r":94,"t":0,"usricon":0.92,"fwtickm":1}}</script> -->
+	
 		<script id="cid0020000321213936019" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 200px;height: 333px">{"handle":"lain-os-test","arch":"js","styles":{"a":"cc33cc","b":100,"c":"000000","d":"000000","k":"cc33cc","l":"cc33cc","m":"cc33cc","p":"10","q":"cc33cc","r":100,"pos":"br","cv":1,"cvfnt":"monospace, sans-serif","cvbg":"cc33cc","cvw":75,"cvh":30}}</script>
 		</div>
 	<script type="text/javascript" src="main.js"></script>

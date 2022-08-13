@@ -1,23 +1,19 @@
 //test tracksssssssssss
 let trackList = [
   {
-  	artist: "boa",
-		name: "duvet",
+		name: "boa - duvet",
 		path: "/mp3/boa_duvet.mp3"
   },
    {
-  	artist: "dj stingray",
-		name: "hypoalgesia",
+		name: "dj stingray - hypoalgesia",
 		path: "/mp3/hypoalgesia_compressed.mp3"
   },
   {
-  	artist: "exxy4",
-		name: "TWICE 트와이스 TT 3XXY EDIT",
+		name: "exxy4 - TWICE 트와이스 TT 3XXY EDIT",
 		path: "/mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3"
   },
    {
-  	artist: "casper mcfadden",
-		name: ".dancecore",
+		name: "casper mcfadden - .dancecore",
 		path: "/mp3/dancecore_compressed.mp3"
   },
 ];
@@ -61,8 +57,8 @@ let trackList = [
 // 		path: "/demo-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention.mp3"
 //   },
 //   {
-//   	name: "xo - DuvetBoa8-absurd3b",
-// 		path: "/demo-mp3/xo - DuvetBoa8-absurd3b.mp3"
+//   	name: "xo - 200529-DuvetBoa8-absurd3bF",
+// 		path: "/demo-mp3/xo - 200529-DuvetBoa8-absurd3bF.mp3"
 //   },
 //   {
 //   	name: "Yraki - Lights Down - PREMASTER24bit",
@@ -78,7 +74,6 @@ let trackList = [
 //   },
 // ]; 
 
-let oldPlayerContainer = document.getElementById("old-player-container")
 let playPauseBtn = document.getElementById("play-pause-btn")
 let volumeSlider = document.getElementById("volume-slider")
 let progressBar = document.getElementById("progress-bar-container")
@@ -97,7 +92,10 @@ progressBar.addEventListener("click", setProgress);
 let entryPage = document.getElementById("entry-page")
 let entryTextsEl = document.getElementById("entry-texts")
 
-entryPage.addEventListener("click", function(){entryPage.style.opacity = "0"})
+entryPage.addEventListener("click", function(){
+	entryPage.style.opacity = "0"
+	if (audioContext.state === 'suspended') {audioContext.resume();}
+})
 entryPage.addEventListener('transitionend', function() {
 	entryPage.parentNode.removeChild(entryPage)
 })
@@ -105,11 +103,10 @@ entryPage.addEventListener('transitionend', function() {
 //todo
 function onPageLoaded()
 {
-	//or window.addEventListener('DOMContentLoaded'??? wahts the diff 
-	console.log("booting complete")
+	// console.log("booting complete")
 	entryTextsEl.textContent = "log in"
 }
-
+//or document.addEventListener('DOMContentLoaded', function() {}? wahts the diff 
 
 ////////////// mini windows //////////////
 
@@ -134,33 +131,35 @@ for (let i = 0; i < miniWindows.length; i++)
 	console.log("draggable = " + draggable)
 }
 
-//////temp
+//////tempppppppppppppppp
 let windowDock = document.getElementById("mini-window-dock")
 let sideBar = document.getElementById("side-bar")
-// let mainContaienr = document.getElementById("main-container")
+let oldPlayerContainer = document.getElementById("old-player-container")
+let playlistEl = document.getElementById("playlist-container")
 
 let showingOldUI = false
 windowDock.addEventListener("click", function(){
 	if (showingOldUI)
 	{
-		oldPlayerContainer.style.display = "none"
-		sideBar.style.display = "block"
 		document.body.style.backgroundImage = 'url("img/extended_bg_s.png")'
-		for (let i = 0; i < 2; i++)
+		oldPlayerContainer.style.display = "none"
+		playlistEl.style.display = "none"
+		sideBar.style.display = "block"
+		for (let i = 0; i < miniWindows.length; i++)
 		{
 			miniWindows.item(i).style.display = "block"
-			document.body.style.backgroundImage = "block"
 		}
 		showingOldUI = false
 	}
 	else 
 	{
-		sideBar.style.display = "none"
+		document.body.style.backgroundImage = "none"
 		oldPlayerContainer.style.display = "block"
-		for (let i = 0; i < 2; i++)
+		playlistEl.style.display = "block"
+		sideBar.style.display = "none"
+		for (let i = 0; i < miniWindows.length; i++)
 		{
 			miniWindows.item(i).style.display = "none"
-			document.body.style.backgroundImage = "none"
 		}
 		showingOldUI = true
 	}
@@ -186,6 +185,8 @@ function dragStart(e)
 		movingWindow.offsetLeft - e.clientX,
 	  movingWindow.offsetTop - e.clientY
   ]
+  document.addEventListener("mousemove", doDrag)
+	document.addEventListener("mouseup", dragEnd)
   //todo set z index of self n other windows
 }
 
@@ -203,7 +204,13 @@ function doDrag(e)
 	}
 }
 
-function dragEnd() {isMoving = false;}
+function dragEnd() {
+	isMoving = false;
+
+	//need 2 remove event listeners otherwise sliders cannot be dragged
+	document.removeEventListener("mousemove", doDrag)
+	document.removeEventListener("mouseup", dragEnd)
+}
 
 ////////////// mini windows //////////////
 
@@ -374,6 +381,12 @@ curTrack.onloadedmetadata = function()
 
 function playTrack()
 {
+	////temp. move this to entry page click event later 
+	// if (audioContext.state === 'suspended') {
+	// 	audioContext.resume();
+	// }
+	////temp
+
 	curTrack.play();
 	isPlaying = true;
 	playPauseBtn.textContent = "pause";
@@ -382,9 +395,9 @@ function playTrack()
 //playback controls
 function playOrPause()
 {
-	if (audioContext.state === 'suspended') {
-		audioContext.resume();
-	}
+	// if (audioContext.state === 'suspended') {
+	// 	audioContext.resume();
+	// }
 
 	if (isPlaying) 
 	{
@@ -431,5 +444,30 @@ function setProgress(el)
 	updateProgress()
 	console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + progressBar.offsetWidth + ", jumpTo = " + jumpTo)
 }
+
+fillPlaylist()
+function fillPlaylist()
+{
+	let playlist =  document.getElementById("playlist-content")
+	for (let i = 0; i < trackList.length; i++)
+	{
+		let li = document.createElement("li")
+		li.textContent = trackList[i].name 
+		playlist.appendChild(li)
+
+		li.addEventListener("click", function(){
+			curIndex = i 
+			loadTrack()
+			playTrack()
+			updateProgress()
+		})
+	}
+}
+
+// function togglePlaylist()
+// {
+// 	if (playlistEl.style.display = "none") {playlistEl.style.display = "block";}
+// 	else {playlistEl.style.display = "none";}
+// }
 
 ////////////// music player //////////////
