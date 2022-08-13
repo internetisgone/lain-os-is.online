@@ -6,9 +6,8 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<title>club cyberia</title>
 </head>
-<body>
-<!-- <body onload="onPageLoaded()">
-	<div id="entry-page"> 
+<body onload="onPageLoaded()">
+	<!-- <div id="entry-page"> 
 		<img src="img/frame.png" id="entry-img">
 		<p id="entry-texts">initialising...</p>
 		<p style="position: absolute; bottom: 1%; color: darkgray; font-size: small;">public domain operating system</p>
@@ -26,7 +25,7 @@
 			<div class="mini-window-draggable"></div>
 			<div class="mini-window-close"></div>
 			<div id="terminal-txt-container">
-				<pre id="terminal-display" style="color: whitesmoke;">
+				<pre style="color: whitesmoke;">
   
   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣄⣀⠀⠀⠀⠀ 
   ⠀⠀⠀⣠⠶⠾⠟⠃⠀⠀⠀⠀⠀⠀⠀⠈⠙⠳⣆⠀ 
@@ -36,9 +35,12 @@
   ⠀⠃⢹⡘⢿⣿⡟⣹⠀⠀⠀⠀⠀⠀⠘⢤⣉⣑⠁⠀ 
   ⠀⠀⠀⠙⣦⣤⠔⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 				</pre>
+				<p id="terminal-display" style="font-family: Input-Mono"></p>
+
 			</div>
+
 			<div id="terminal-input-container"> 
-				<input id="terminal-input">			
+				<input id="terminal-input" placeholder="lain@navi ~ % " maxlength="40">			
 			</div>
 		</div>
 
@@ -71,9 +73,14 @@
 			<br>
 			<br>
 
-			<div id ="progress-bar-container">
-				<div id="progress-bar-fill"></div>
+			<div style="display: flex;"> 
+				<span id="cur-time">00:00</span>
+				<div id ="progress-bar-container">
+					<div id="progress-bar-fill"></div>
+				</div>
+				<span id="total-time">00:00</span>
 			</div>
+			
 			
 			
 			<hr>

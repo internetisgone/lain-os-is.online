@@ -103,11 +103,11 @@ progressBar.addEventListener("click", setProgress);
 // 	entryPage.parentNode.removeChild(entryPage)
 // })
 
-// function onPageLoaded()
-// {
-// 	console.log("booting complete")
-// 	entryTextsEl.textContent = "log in"
-// }
+function onPageLoaded()
+{
+	console.log("booting complete")
+	//entryTextsEl.textContent = "log in"
+}
 //or document.addEventListener('DOMContentLoaded', function() {}? wahts the diff 
 
 ////////////// entry page //////////////
@@ -189,7 +189,8 @@ function doDrag(e)
 	}
 }
 
-function dragEnd() {
+function dragEnd() 
+{
 	isMoving = false;
 
 	//need 2 remove event listeners otherwise sliders cannot be dragged
@@ -204,32 +205,27 @@ function dragEnd() {
 // 		miniWindow.style.display = "block";
 // })
 
-// document.terminal.usrinput.addEventListener("keyup", function(){
-// 	console.log("remilio" + document.terminal.usrinput.value)
-// })
-
+let terminalTxtContainer = document.getElementById("terminal-txt-container")
+let terminalDisplay = document.getElementById("terminal-display") //pre
 let inputEl = document.getElementById("terminal-input")
-let terminalDisplay = document.getElementById("terminal-display")
 inputEl.onkeydown = checkInput
 
 function checkInput(e)
 {	
 	let letters = /^[A-Za-z]+$/;
-	//todo remove trailing whitespace
-	
-	console.log(e)
+	//console.log(e)
+	//todo take whitespace. remove trailing whitespace
 
 	if (e.key == "Enter")
 	{
 		if (inputEl.value.match(letters))	
 		{
-			console.log("remilio " + inputEl.value);
-			terminalDisplay.textContent += inputEl.value;
-			// document.terminal.submit();
+			terminalDisplay.innerHTML += "lain@navi ~ % " + inputEl.value + "</br>";
+			//auto scrolls to the bottom
+			terminalTxtContainer.scrollTop = terminalTxtContainer.scrollHeight
 		}
 		inputEl.value = "";
 	}
-	
 }
 
 ////////////// mini windows //////////////
@@ -408,6 +404,9 @@ function toggleReverb()
 
 
 ////////////// music player //////////////
+let curTimeEl = document.getElementById("cur-time")
+let totalTimeEl = document.getElementById("total-time")
+
 function loadTrack()
 {
 	if (progressTimer != null) 
@@ -424,13 +423,11 @@ curTrack.addEventListener("ended", nextTrack)
 curTrack.onloadedmetadata = function() 
 	{
 		console.log("loaded track metadata " + trackList[curIndex].name)
-		let duration = Math.round(curTrack.duration)
-		let minutes = Math.floor(duration/60)
-		let seconds = duration % 60 
-		let minString = (minutes < 10)? ("0" + minutes) : ("" + minutes)
-		let secString = (seconds < 10)? ("0" + seconds) : ("" + seconds)
+		// let duration = Math.round(curTrack.duration)
+		let timeStrings = parseTime(curTrack.duration)
 
-		curTrackText.textContent = trackList[curIndex].name + " " + minString + ":" + secString;
+		totalTimeEl.textContent = timeStrings.min + ":" + timeStrings.sec;
+		curTrackText.textContent = trackList[curIndex].name		
 	}
 
 curTrack.onloadeddata = function()
@@ -438,6 +435,18 @@ curTrack.onloadeddata = function()
 		console.log("loaded track data " + trackList[curIndex].name)
 	}
 
+function parseTime(duration)
+{
+	let minutes = Math.floor(duration/60)
+	let seconds = Math.round(duration % 60)
+	let minString = (minutes < 10)? ("0" + minutes) : ("" + minutes);
+	let secString = (seconds < 10)? ("0" + seconds) : ("" + seconds)
+
+	return { 
+     min: minString,
+     sec: secString
+   }; 
+}
 
 function playTrack()
 {
@@ -496,6 +505,10 @@ function updateProgress()
 {
 	let progress = curTrack.currentTime / curTrack.duration;
 	progressFill.style.width = progress * progressBar.offsetWidth + "px";
+
+	let timeStrings = parseTime(curTrack.currentTime)
+	curTimeEl.textContent = timeStrings.min + ":" + timeStrings.sec;
+
 	//console.log("updated progress, progress = " + progress + ", width = " + progressFill.style.width)
 }
 

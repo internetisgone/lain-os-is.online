@@ -173,7 +173,10 @@ inactive window 6, 5
 	width: 94%;
 	height: 83%;
 	background-color: black;
+	overflow-y: scroll;
 }
+/*hide scroll bar inside terminal but still scrollable*/
+#terminal-txt-container::-webkit-scrollbar {display: none;}
 
 #terminal-input-container
 {
@@ -183,13 +186,19 @@ inactive window 6, 5
 	left: 3%; right: 3%; bottom: 0;
 }
 
-pre {font-family: "Input-Mono";}
+pre, #terminal-display {font-family: "Input-Mono"; font-size: small;}
 
 #terminal-input
 {
-	font-family: "Input-Mono";
+	font-family: "Input-Mono"; font-size: small;
 	color: whitesmoke;
-	background-color: black; width: 98%;
+	background-color: black; width: 100%;
+	padding: 0px 0px;
+	border-width: 0px;
+}
+/*hide border when selected*/
+#terminal-input:focus {
+    outline: none !important;
 }
 
 .mini-window-close
@@ -264,16 +273,21 @@ li:hover{background-color: white;}
 
 .long-slider {width: 300px;}
 
+#cur-time, #total-time
+{
+	color: whitesmoke; margin: 5px; font-family:Input-Mono; font-size: small;
+}
 #progress-bar-container
 {
-	width: 250px;
+	width: 210px;
 	height: 10px;
+	margin: 5px;
 	background-color: whitesmoke;
 }
 
 #progress-bar-fill
 {
-	max-width: 250px;
+	max-width: 210px;
 	width: 0px;
 	height: 10px;
 	background-color: violet;
