@@ -1,78 +1,78 @@
 //test tracksssssssssss
-// let trackList = [
-//   {
-// 		name: "boa - duvet",
-// 		path: "/mp3/boa_duvet.mp3"
-//   },
-//    {
-// 		name: "dj stingray - hypoalgesia",
-// 		path: "/mp3/hypoalgesia_compressed.mp3"
-//   },
-//   {
-// 		name: "exxy4 - TWICE 트와이스 TT 3XXY EDIT",
-// 		path: "/mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3"
-//   },
-//    {
-// 		name: "casper mcfadden - .dancecore",
-// 		path: "/mp3/dancecore_compressed.mp3"
-//   },
-// ];
-
-// demooooooooooooooo
 let trackList = [
   {
-  	name: "afalfl - just some kick noyze",
-		path: "/demo-mp3/afalfl - just some kick noyze.mp3"
+		name: "boa - duvet",
+		path: "/mp3/boa_duvet.mp3"
+  },
+   {
+		name: "dj stingray - hypoalgesia",
+		path: "/mp3/hypoalgesia_compressed.mp3"
   },
   {
-  	name: "Fetus - Footprints (premix)",
-		path: "/demo-mp3/Fetus - Footprints (premix).mp3"
+		name: "exxy4 - TWICE 트와이스 TT 3XXY EDIT",
+		path: "/mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3"
   },
-  {
-  	name: "GRASPS X NERDIE - I AM HURTING (PREMASTER)",
-		path: "/demo-mp3/GRASPS X NERDIE - I AM HURTING (PREMASTER).mp3"
+   {
+		name: "casper mcfadden - .dancecore",
+		path: "/mp3/dancecore_compressed.mp3"
   },
-  {
-  	name: "Imryll - Family Portrait (Imryll Reimagined)",
-		path: "/demo-mp3/Imryll - Family Portrait (Imryll Reimagined).mp3"
-  },
-  {
-  	name: "Jennifer Walton - At Last, Lain Is Free",
-		path: "/demo-mp3/Jennifer Walton - At Last, Lain Is Free.mp3"
-  },
-  {
-  	name: "Kagami Smile -  Acts of Betrayal",
-		path: "/demo-mp3/Kagami Smile -  Acts of Betrayal.mp3"
-  },
-  {
-  	name: "Sour Gout - Transmigration(-60db_unmastered)",
-		path: "/demo-mp3/Sour Gout - Transmigration(-60db_unmastered).mp3"
-  },
-  {
-  	name: "thegn ft. vrain - phantoma_-_track04.wav (unmastered)",
-		path: "/demo-mp3/thegn ft. vrain - phantoma_-_track04.wav (unmastered).mp3"
-  },
-  {
-  	name: "Wa_ste - cyberia texture 5a x professed intention and real intention",
-		path: "/demo-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention.mp3"
-  },
-  {
-  	name: "xo - 200529-DuvetBoa8-absurd3bF",
-		path: "/demo-mp3/xo - 200529-DuvetBoa8-absurd3bF.mp3"
-  },
-  {
-  	name: "Yraki - Lights Down - PREMASTER24bit",
-		path: "/demo-mp3/Yraki - Lights Down - PREMASTER24bit.mp3"
-  },
-  {
-  	name: "Yumea Horiike - lain - 2022_05_18 23",
-		path: "/demo-mp3/Yumea Horiike - lain - 2022_05_18 23.mp3"
-  },
-  {
-  	name: "Yuting Wu - Help me to Breathe",
-		path: "/demo-mp3/Yuting Wu - Help me to Breathe.mp3"
-  },
-]; 
+];
+
+// demooooooooooooooo
+// let trackList = [
+//   {
+//   	name: "afalfl - just some kick noyze",
+// 		path: "/demo-mp3/afalfl - just some kick noyze.mp3"
+//   },
+//   {
+//   	name: "Fetus - Footprints (premix)",
+// 		path: "/demo-mp3/Fetus - Footprints (premix).mp3"
+//   },
+//   {
+//   	name: "GRASPS X NERDIE - I AM HURTING (PREMASTER)",
+// 		path: "/demo-mp3/GRASPS X NERDIE - I AM HURTING (PREMASTER).mp3"
+//   },
+//   {
+//   	name: "Imryll - Family Portrait (Imryll Reimagined)",
+// 		path: "/demo-mp3/Imryll - Family Portrait (Imryll Reimagined).mp3"
+//   },
+//   {
+//   	name: "Jennifer Walton - At Last, Lain Is Free",
+// 		path: "/demo-mp3/Jennifer Walton - At Last, Lain Is Free.mp3"
+//   },
+//   {
+//   	name: "Kagami Smile -  Acts of Betrayal",
+// 		path: "/demo-mp3/Kagami Smile -  Acts of Betrayal.mp3"
+//   },
+//   {
+//   	name: "Sour Gout - Transmigration(-60db_unmastered)",
+// 		path: "/demo-mp3/Sour Gout - Transmigration(-60db_unmastered).mp3"
+//   },
+//   {
+//   	name: "thegn ft. vrain - phantoma_-_track04.wav (unmastered)",
+// 		path: "/demo-mp3/thegn ft. vrain - phantoma_-_track04.wav (unmastered).mp3"
+//   },
+//   {
+//   	name: "Wa_ste - cyberia texture 5a x professed intention and real intention",
+// 		path: "/demo-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention.mp3"
+//   },
+//   {
+//   	name: "xo - 200529-DuvetBoa8-absurd3bF",
+// 		path: "/demo-mp3/xo - 200529-DuvetBoa8-absurd3bF.mp3"
+//   },
+//   {
+//   	name: "Yraki - Lights Down - PREMASTER24bit",
+// 		path: "/demo-mp3/Yraki - Lights Down - PREMASTER24bit.mp3"
+//   },
+//   {
+//   	name: "Yumea Horiike - lain - 2022_05_18 23",
+// 		path: "/demo-mp3/Yumea Horiike - lain - 2022_05_18 23.mp3"
+//   },
+//   {
+//   	name: "Yuting Wu - Help me to Breathe",
+// 		path: "/demo-mp3/Yuting Wu - Help me to Breathe.mp3"
+//   },
+// ]; 
 
 let playPauseBtn = document.getElementById("play-pause-btn")
 let volumeSlider = document.getElementById("volume-slider")
@@ -87,26 +87,31 @@ let isPlaying = false
 let progressTimer = null
 
 loadTrack();
+fillPlaylist();
 progressBar.addEventListener("click", setProgress);
 
-let entryPage = document.getElementById("entry-page")
-let entryTextsEl = document.getElementById("entry-texts")
+////////////// entry page //////////////
 
-entryPage.addEventListener("click", function(){
-	entryPage.style.opacity = "0"
-	if (audioContext.state === 'suspended') {audioContext.resume();}
-})
-entryPage.addEventListener('transitionend', function() {
-	entryPage.parentNode.removeChild(entryPage)
-})
+// let entryPage = document.getElementById("entry-page")
+// let entryTextsEl = document.getElementById("entry-texts")
 
-//todo
-function onPageLoaded()
-{
-	console.log("booting complete")
-	entryTextsEl.textContent = "log in"
-}
+// entryPage.addEventListener("click", function(){
+// 	entryPage.style.opacity = "0"
+// 	if (audioContext.state === 'suspended') {audioContext.resume();}
+// })
+// entryPage.addEventListener('transitionend', function() {
+// 	entryPage.parentNode.removeChild(entryPage)
+// })
+
+// function onPageLoaded()
+// {
+// 	console.log("booting complete")
+// 	entryTextsEl.textContent = "log in"
+// }
 //or document.addEventListener('DOMContentLoaded', function() {}? wahts the diff 
+
+////////////// entry page //////////////
+
 
 ////////////// mini windows //////////////
 
@@ -125,7 +130,6 @@ for (let i = 0; i < miniWindows.length; i++)
 	let draggable = miniWindow.querySelector(".mini-window-draggable")
 	draggable.onmousedown = dragStart
 	draggable.ontouchstart = dragStart
-	//todo add touch events 
 
 	console.log("mini windows count " + miniWindows.length)
 }
@@ -200,6 +204,34 @@ function dragEnd() {
 // 		miniWindow.style.display = "block";
 // })
 
+// document.terminal.usrinput.addEventListener("keyup", function(){
+// 	console.log("remilio" + document.terminal.usrinput.value)
+// })
+
+let inputEl = document.getElementById("terminal-input")
+let terminalDisplay = document.getElementById("terminal-display")
+inputEl.onkeydown = checkInput
+
+function checkInput(e)
+{	
+	let letters = /^[A-Za-z]+$/;
+	//todo remove trailing whitespace
+	
+	console.log(e)
+
+	if (e.key == "Enter")
+	{
+		if (inputEl.value.match(letters))	
+		{
+			console.log("remilio " + inputEl.value);
+			terminalDisplay.textContent += inputEl.value;
+			// document.terminal.submit();
+		}
+		inputEl.value = "";
+	}
+	
+}
+
 ////////////// mini windows //////////////
 
 //////temppppp switch  view
@@ -207,6 +239,7 @@ let windowDock = document.getElementById("mini-window-dock")
 let sideBar = document.getElementById("side-bar")
 let oldPlayerContainer = document.getElementById("old-player-container")
 let playlistEl = document.getElementById("playlist-container")
+let playlistToggle = document.getElementById("pl-toggle")
 
 let showingOldUI = false
 windowDock.addEventListener("click", function(){
@@ -215,7 +248,6 @@ windowDock.addEventListener("click", function(){
 		document.body.style.backgroundImage = 'url("img/extended_bg_s.png")'
 		oldPlayerContainer.style.display = "none"
 		playlistEl.style.display = "none"
-		sideBar.style.display = "block"
 		for (let i = 0; i < miniWindows.length; i++)
 		{
 			miniWindows.item(i).style.display = "block"
@@ -226,14 +258,19 @@ windowDock.addEventListener("click", function(){
 	{
 		document.body.style.backgroundImage = "none"
 		oldPlayerContainer.style.display = "block"
-		playlistEl.style.display = "block"
-		sideBar.style.display = "none"
+		//playlistEl.style.display = "block"
 		for (let i = 0; i < miniWindows.length; i++)
 		{
 			miniWindows.item(i).style.display = "none"
 		}
 		showingOldUI = true
 	}
+})
+
+playlistEl.style.display = "none"
+playlistToggle.addEventListener("click", function(){
+	if (playlistEl.style.display == "none") {playlistEl.style.display = "block";}
+	else {playlistEl.style.display = "none";}	
 })
 //////tempppppppppppppppp
 
@@ -386,6 +423,7 @@ function loadTrack()
 curTrack.addEventListener("ended", nextTrack)
 curTrack.onloadedmetadata = function() 
 	{
+		console.log("loaded track metadata " + trackList[curIndex].name)
 		let duration = Math.round(curTrack.duration)
 		let minutes = Math.floor(duration/60)
 		let seconds = duration % 60 
@@ -394,19 +432,20 @@ curTrack.onloadedmetadata = function()
 
 		curTrackText.textContent = trackList[curIndex].name + " " + minString + ":" + secString;
 	}
-	curTrack.onloadeddata = function()
+
+curTrack.onloadeddata = function()
 	{
-		console.log("loaded track " + trackList[curIndex].name)
+		console.log("loaded track data " + trackList[curIndex].name)
 	}
 
 
 function playTrack()
 {
 	////temp. move this to entry page click event later 
-	// if (audioContext.state === 'suspended') {
-	// 	audioContext.resume();
-	// }
-	////temp
+	if (audioContext.state === 'suspended') {
+		audioContext.resume();
+	}
+	//temp
 
 	curTrack.play();
 	isPlaying = true;
@@ -416,9 +455,11 @@ function playTrack()
 //playback controls
 function playOrPause()
 {
-	// if (audioContext.state === 'suspended') {
-	// 	audioContext.resume();
-	// }
+	////temp. move this to entry page click event later 
+	if (audioContext.state === 'suspended') {
+		audioContext.resume();
+	}
+	//temp
 
 	if (isPlaying) 
 	{
@@ -466,7 +507,6 @@ function setProgress(el)
 	console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + progressBar.offsetWidth + ", jumpTo = " + jumpTo)
 }
 
-fillPlaylist()
 function fillPlaylist()
 {
 	let playlist =  document.getElementById("playlist-content")
@@ -484,11 +524,4 @@ function fillPlaylist()
 		})
 	}
 }
-
-// function togglePlaylist()
-// {
-// 	if (playlistEl.style.display = "none") {playlistEl.style.display = "block";}
-// 	else {playlistEl.style.display = "none";}
-// }
-
 ////////////// music player //////////////

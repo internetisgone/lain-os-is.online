@@ -24,33 +24,35 @@ body
 */	background-color: black;
 }
 
-/*mobile*/
-@media (min-aspect-ratio: 9/16) {
+/*for mobile / portrait display*/
+@media (min-aspect-ratio: 1/16) {
 	body
 	{
 		background-size: auto 100vh;
 		background-position: 50% 0%;
 	}
-/*	#entry-img
+	#entry-img
 	{
-		width: 80vw;
-		height: auto;
-	}*/
+		left: 50%; top: 50%;
+		width: 60vw; height: auto;
+	}
 }
 
-/*desktop*/
+/*for desktop / landscape display*/
 @media (min-aspect-ratio: 4/3) {
 	body
 	{
 		background-size: 100vw auto;
 		background-position: 0% 25%;
 	}
+	#entry-img
+	{
+		 left: 50%; top: 50%; 
+		 height: 55vh; width: auto;
+	}
 }
 
-p, label
-{
-	color: whitesmoke;
-}
+p, label {color: whitesmoke;}
 
 hr 
 {
@@ -95,12 +97,6 @@ inactive window 6, 5
 	background-color: whitesmoke;
 }
 
-#entry-img
-{
-	 left: 50%; 
-	 top: 50%; 
-	 height: 55vh;
-}
 #entry-texts
 {
 	position: fixed; 
@@ -172,11 +168,28 @@ inactive window 6, 5
 #terminal-txt-container
 {
 	position: absolute;
-	left: 4%;
-	top: 14%;
-	width: 92%;
-	height: 80%;
+	left: 3%;
+	top: 12%;
+	width: 94%;
+	height: 83%;
 	background-color: black;
+}
+
+#terminal-input-container
+{
+	position: absolute; 
+	width: 94%;
+	height: 10%; /*temp*/
+	left: 3%; right: 3%; bottom: 0;
+}
+
+pre {font-family: "Input-Mono";}
+
+#terminal-input
+{
+	font-family: "Input-Mono";
+	color: whitesmoke;
+	background-color: black; width: 98%;
 }
 
 .mini-window-close
@@ -184,8 +197,7 @@ inactive window 6, 5
 	position: absolute;
 	top: 0px;
 	right: 0px;
-	width: 10%;
-	height: 6%;
+	width: 27px; height: 27px;
 /*	z-index: 9;
 */	background-color: black;
 	opacity: 0.7;
@@ -203,7 +215,7 @@ inactive window 6, 5
 	cursor: pointer;
 }
 
-#side-bar
+/*#side-bar
 {
 	position: absolute;
 	left: 0;
@@ -212,12 +224,11 @@ inactive window 6, 5
 	height: 480px;
 	background-color: whitesmoke;
 	opacity: 0.5;
-}
+}*/
 
 #playlist-container
 {
 	position: absolute;
-	display: none;
 	top: 0;
 	right: 0;
 	width: 444px;
@@ -229,7 +240,7 @@ inactive window 6, 5
 
 #playlist-content
 {
-	 list-style-type: decimal;
+	list-style-type: decimal;
 }
 
 li
@@ -249,25 +260,9 @@ li:hover{background-color: white;}
 	display: none;
 }
 
-#play-pause-btn
-{
-	width: 120px;
-}
+#play-pause-btn {width: 120px;}
 
-.long-slider
-{
-	width: 300px;
-}
-
-#prev-btn
-{
-
-}
-
-#next-btn
-{
-
-}
+.long-slider {width: 300px;}
 
 #progress-bar-container
 {
