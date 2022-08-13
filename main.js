@@ -89,22 +89,22 @@ let progressTimer = null
 loadTrack();
 progressBar.addEventListener("click", setProgress);
 
-let entryPage = document.getElementById("entry-page")
-let entryTextsEl = document.getElementById("entry-texts")
+// let entryPage = document.getElementById("entry-page")
+// let entryTextsEl = document.getElementById("entry-texts")
 
-entryPage.addEventListener("click", function(){
-	entryPage.style.opacity = "0"
-	if (audioContext.state === 'suspended') {audioContext.resume();}
-})
-entryPage.addEventListener('transitionend', function() {
-	entryPage.parentNode.removeChild(entryPage)
-})
+// entryPage.addEventListener("click", function(){
+// 	entryPage.style.opacity = "0"
+// 	if (audioContext.state === 'suspended') {audioContext.resume();}
+// })
+// entryPage.addEventListener('transitionend', function() {
+// 	entryPage.parentNode.removeChild(entryPage)
+// })
 
 //todo
 function onPageLoaded()
 {
-	// console.log("booting complete")
-	entryTextsEl.textContent = "log in"
+	console.log("booting complete")
+	//entryTextsEl.textContent = "log in"
 }
 //or document.addEventListener('DOMContentLoaded', function() {}? wahts the diff 
 

@@ -20,14 +20,28 @@ body
 {
 	background-image: url("img/extended_bg_s.png");
 	background-repeat: no-repeat;
-	background-size: 100%; /*cover?*/
-	background-position: 0% 25%;
-	background-color: black;
+/*	background-size: 100%;
+*/	background-color: black;
 }
 
-/*background-attachment: fixed;
+/*mobile*/
+@media (min-aspect-ratio: 9/16) {
+	body
+	{
+		background-size: auto 100vh;
+		background-position: 50% 0%;
+	}
+}
 
-*/
+/*desktop*/
+@media (min-aspect-ratio: 4/3) {
+	body
+	{
+		background-size: 100vw auto;
+		background-position: 0% 25%;
+	}
+}
+
 p, label
 {
 	color: whitesmoke;
