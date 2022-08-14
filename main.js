@@ -209,7 +209,8 @@ let terminalTxtContainer = document.getElementById("terminal-txt-container")
 let terminalDisplay = document.getElementById("terminal-display") //pre
 let fakeCaret = document.getElementById("fake-caret")
 let inputEl = document.getElementById("terminal-input")
-let initialIndent = 111
+let initialIndent = 111 //need to get from element tbh
+console.log()
 let fontWidth = 8 
 let caretOffest
 inputEl.onkeydown = checkInput
@@ -218,10 +219,13 @@ function checkInput(e)
 {	
 	let letters = /^[a-zA-Z\d\s]*$/;
 	
-	caretOffest = (inputEl.value.length + 1) * fontWidth + initialIndent
+	let inputLength = (e.key == "Backspace")? (inputEl.value.length - 1) : (inputEl.value.length + 1);
+	caretOffest =  inputLength * fontWidth + initialIndent
+	fakeCaret.style.marginLeft = caretOffest + "px"
+
+	console.log(e)
 	console.log("input length " + inputEl.value.length + " caret offest" + caretOffest)
 
-	fakeCaret.style.marginLeft = caretOffest + "px"
 	if (e.key == "Enter")
 	{
 		//todo convert input to lower n remove trailing whitespace

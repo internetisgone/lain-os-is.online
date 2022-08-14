@@ -183,7 +183,6 @@ inactive window 6, 5
 	width: 94%;
 	left: 3%; right: 3%; bottom: 2%;
 	background-color: black;
-	z-index: ;
 }
 
 #terminal-display /*shows submitted texts*/
@@ -222,12 +221,12 @@ inactive window 6, 5
 	background-color: black; width: 100%;
 	padding: 0px;
 	border-width: 0px;
-	text-indent: 111px; /* 13px * prompt length + prompt left margin */
+	text-indent: 111px; /* prompt length + prompt left margin */
 	margin-top: 4px; /*so it aligns with the fake caret*/
 	caret-color: transparent;
 }
 
-/*hide border when selected*/
+/*hide input box border when selected*/
 #terminal-input:focus {
     outline: none !important;
 }
