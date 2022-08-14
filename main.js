@@ -105,7 +105,7 @@ progressBar.addEventListener("click", setProgress);
 
 function onPageLoaded()
 {
-	console.log("booting complete")
+	//console.log("booting complete")
 	//entryTextsEl.textContent = "log in"
 }
 //or document.addEventListener('DOMContentLoaded', function() {}? wahts the diff 
@@ -127,10 +127,14 @@ for (let i = 0; i < miniWindows.length; i++)
 	let closeBtn = miniWindow.querySelector(".mini-window-close")
 	closeBtn.addEventListener("click", function(){miniWindow.style.display = "none"})
 
+	//set drag 
 	let draggable = miniWindow.querySelector(".mini-window-draggable")
 	draggable.onmousedown = dragStart
 	draggable.ontouchstart = dragStart
 
+	// miniWindow.addEventListener("click", function(){
+	// 	miniWindow.style.zIndex = "7"
+	// })
 	console.log("mini windows count " + miniWindows.length)
 }
 
@@ -153,12 +157,13 @@ function dragStart(e)
 	  ]
 	}
 	//set z-index
+	// let inactiveZ = {0 : "5", 1 : "6"}
   for (let i = 0; i < miniWindows.length; i++)
   {
   	if (miniWindows.item(i) == movingWindow)
   		{movingWindow.style.zIndex = "7"}
   	else
-  	{miniWindows.item(i).style.zIndex = "5"}
+  	{miniWindows.item(i).style.zIndex = "5";}
   }
 
   document.addEventListener("mousemove", doDrag)
@@ -220,11 +225,12 @@ function checkInput(e)
 	let letters = /^[a-zA-Z\d\s]*$/;
 	
 	let inputLength = (e.key == "Backspace")? (inputEl.value.length - 1) : (inputEl.value.length + 1);
+	if(inputLength < 0) inputLength = 0;
 	caretOffest =  inputLength * fontWidth + initialIndent
 	fakeCaret.style.marginLeft = caretOffest + "px"
 
 	console.log(e)
-	console.log("input length " + inputEl.value.length + " caret offest" + caretOffest)
+	console.log("input length " + inputLength + " caret offest" + caretOffest)
 
 	if (e.key == "Enter")
 	{
@@ -264,6 +270,7 @@ windowDock.addEventListener("click", function(){
 		for (let i = 0; i < miniWindows.length; i++)
 		{
 			miniWindows.item(i).style.display = "block"
+			if(miniWindows.item(i).id == "chat-window") miniWindows.item(i).style.display = "flex"
 		}
 		showingOldUI = false
 	}

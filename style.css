@@ -121,9 +121,6 @@ inactive window 6, 5
 .mini-window
 {
 	position: absolute;
-/*	display: flex;
-	justify-content: center; 
-	align-items: center;*/
 	top: 33%;
 	left: 50%;
 /*	width: 300px;
@@ -135,15 +132,14 @@ inactive window 6, 5
 .mini-window-draggable
 {
 	position: relative;
-	top: 0px;
+/*	top: 0px;
 	left: 0px;
-	right: 0px;
+	right: 0px;*/
 	width: 100%;
-	height: 8%;
-	cursor: grab; /*or move?*/
-/*	z-index: 8;
-*/	background-color: violet;
-	opacity: 0.2;
+	height: 100%;
+	cursor: grab;
+/*	background-color: violet;
+	opacity: 0.2;*/
 }
 
 #music-player
@@ -153,15 +149,36 @@ inactive window 6, 5
 	background-size: 100%;
 	width: 420px;
 	height: 550px;
+	top: 17%;
+	left: 20%;
+	z-index: 7;
+}
+
+#chat-window
+{
+	display: flex;
+	justify-content: center; 
+	align-items: center;
+	align-items: center;
+	width: 300px; height: 400px;
+	top: 5%; right: 13%;
+	z-index: 5;
+}
+
+#chat-container
+{
+	position: absolute;
+	width: 250px;
+	height: 350px;
 	top: 10%;
-	left: 44%;
 }
 
 #terminal
 {
 	font-family: "Input-Mono", monospace; font-size: 13px; 
-	top: 20%; left: 10%;
+	top: 10%; left: 7%;
 	width: 420px; height: 300px;
+	z-index: 6;
 }
 
 #terminal-txt-container
@@ -253,6 +270,7 @@ inactive window 6, 5
 	opacity: 0.5;
 	cursor: pointer;
 }
+
 
 #playlist-container
 {
