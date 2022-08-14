@@ -7,14 +7,13 @@
 @font-face
 {
 	font-family: "Input-Mono";
-	src: url("/fonts/Input-Regular_(InputSans-Regular).ttf");
+	src: url("/fonts/Input-Regular_(InputMonoNarrow-Regular).ttf");
 }
 
-body, p, label, button, option
+p, label, button, option, ul
 {
 	font-family: "LoveLetter", "Courier New", monospace;
-/*	font-family: "Input-Mono", "Courier New", monospace;
-*/}
+}
 
 body 
 {
@@ -22,6 +21,7 @@ body
 	background-repeat: no-repeat;
 /*	background-size: 100%;
 */	background-color: black;
+	margin: 0px;
 }
 
 /*for mobile / portrait display*/
@@ -140,10 +140,10 @@ inactive window 6, 5
 	right: 0px;
 	width: 100%;
 	height: 8%;
-	cursor: move;
+	cursor: grab; /*or move?*/
 /*	z-index: 8;
 */	background-color: violet;
-	opacity: 0.5;
+	opacity: 0.2;
 }
 
 #music-player
@@ -159,19 +159,17 @@ inactive window 6, 5
 
 #terminal
 {
-	top: 20%;
-	left: 10%;
-	width: 420px;
-	height: 300px;
+	font-family: "Input-Mono", monospace; font-size: 13px; 
+	top: 20%; left: 10%;
+	width: 420px; height: 300px;
 }
 
 #terminal-txt-container
 {
+	font-family: "Input-Mono", monospace; font-size: 13px; 
 	position: absolute;
-	left: 3%;
-	top: 12%;
-	width: 94%;
-	height: 83%;
+	left: 3%; top: 12%; bottom: 3%;
+	width: 94%; height: 83%;
 	background-color: black;
 	overflow-y: scroll;
 }
@@ -180,22 +178,55 @@ inactive window 6, 5
 
 #terminal-input-container
 {
+	font-family: "Input-Mono", monospace; font-size: 13px; 
 	position: absolute; 
 	width: 94%;
-	height: 10%; /*temp*/
-	left: 3%; right: 3%; bottom: 0;
+	left: 3%; right: 3%; bottom: 2%;
+	background-color: black;
+	z-index: ;
 }
 
-pre, #terminal-display {font-family: "Input-Mono"; font-size: small;}
+#terminal-display /*shows submitted texts*/
+{
+	font-family: "Input-Mono", monospace; font-size: 13px; 
+	margin-bottom: 9px;
+}
+
+#terminal-prompt 
+{
+	font-family: "Input-Mono", monospace; font-size: 13px; 
+	position: absolute; color: whitesmoke; 
+	margin-top: 4px; /*so it aligns with the fake caret*/
+	/*margin-left: 4px;*/
+}
+
+#fake-caret 
+{
+	position: absolute;
+	margin-left: 111px; /* prompt length */
+	width: 11px;
+	animation: blink 1s step-end infinite;
+  	border-bottom: 2px solid whitesmoke;
+}
+
+@keyframes blink {
+	from,
+	to {border-color: transparent;}
+  	50% {border-color: whitesmoke;}
+}
 
 #terminal-input
 {
-	font-family: "Input-Mono"; font-size: small;
+	font-family: "Input-Mono", monospace; font-size: 13px; 
 	color: whitesmoke;
 	background-color: black; width: 100%;
-	padding: 0px 0px;
+	padding: 0px;
 	border-width: 0px;
+	text-indent: 111px; /* 13px * prompt length + prompt left margin */
+	margin-top: 4px; /*so it aligns with the fake caret*/
+	caret-color: transparent;
 }
+
 /*hide border when selected*/
 #terminal-input:focus {
     outline: none !important;
@@ -209,7 +240,7 @@ pre, #terminal-display {font-family: "Input-Mono"; font-size: small;}
 	width: 27px; height: 27px;
 /*	z-index: 9;
 */	background-color: black;
-	opacity: 0.7;
+	opacity: 0.3;
 }
 
 #mini-window-dock
@@ -223,17 +254,6 @@ pre, #terminal-display {font-family: "Input-Mono"; font-size: small;}
 	opacity: 0.5;
 	cursor: pointer;
 }
-
-/*#side-bar
-{
-	position: absolute;
-	left: 0;
-	top: 10%;
-	width: 66px;
-	height: 480px;
-	background-color: whitesmoke;
-	opacity: 0.5;
-}*/
 
 #playlist-container
 {

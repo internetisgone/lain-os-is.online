@@ -207,24 +207,37 @@ function dragEnd()
 
 let terminalTxtContainer = document.getElementById("terminal-txt-container")
 let terminalDisplay = document.getElementById("terminal-display") //pre
+let fakeCaret = document.getElementById("fake-caret")
 let inputEl = document.getElementById("terminal-input")
+let initialIndent = 111
+let fontWidth = 8 
+let caretOffest
 inputEl.onkeydown = checkInput
 
 function checkInput(e)
 {	
-	let letters = /^[A-Za-z]+$/;
-	//console.log(e)
-	//todo take whitespace. remove trailing whitespace
+	let letters = /^[a-zA-Z\d\s]*$/;
+	
+	caretOffest = (inputEl.value.length + 1) * fontWidth + initialIndent
+	console.log("input length " + inputEl.value.length + " caret offest" + caretOffest)
 
+	fakeCaret.style.marginLeft = caretOffest + "px"
 	if (e.key == "Enter")
 	{
+		//todo convert input to lower n remove trailing whitespace
 		if (inputEl.value.match(letters))	
 		{
-			terminalDisplay.innerHTML += "lain@navi ~ % " + inputEl.value + "</br>";
-			//auto scrolls to the bottom
-			terminalTxtContainer.scrollTop = terminalTxtContainer.scrollHeight
+			terminalDisplay.innerHTML += "lain@navi ~ % " + inputEl.value + "</br>";			
+		}
+		else 
+		{
+			terminalDisplay.innerHTML += "invalid input (´;ω;`) letters, numbers, and spaces only pls</br>";
 		}
 		inputEl.value = "";
+		fakeCaret.style.marginLeft = initialIndent + "px";
+		caretOffest = 0;
+		//auto scrolls to the bottom
+		terminalTxtContainer.scrollTop = terminalTxtContainer.scrollHeight; 
 	}
 }
 
