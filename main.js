@@ -123,6 +123,8 @@ let movingWindow;
 let cursorPos;
 let offset = [0,0];
 let isMoving = false;
+let maxZ = 10;
+
 
 for (let i = 0; i < miniWindows.length; i++)
 {
@@ -162,7 +164,6 @@ function dragStart(e)
 
 	//set z-index
 	let windowZindex = new Array()
-	let maxZ = 7
   for (let i = 0; i < miniWindows.length; i++)
   {
   	windowZindex[i] = miniWindows.item(i).style.zIndex
@@ -171,9 +172,10 @@ function dragStart(e)
   	if (miniWindows.item(i) == movingWindow)
   		{
   			movingWindow.style.zIndex = maxZ + "";
+  			maxZ++;
   		}
-  	else
-  	{miniWindows.item(i).style.zIndex = "5";}
+  	// else
+  	// {miniWindows.item(i).style.zIndex = "5";}
   }
 
   document.addEventListener("mousemove", doDrag)
