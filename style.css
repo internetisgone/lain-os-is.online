@@ -148,7 +148,7 @@ inactive window 6, 5
 	background-repeat: no-repeat;
 	background-size: 100%;
 	width: 420px;
-	height: 550px;
+	height: 522px;
 	top: 17%;
 	left: 20%;
 	z-index: 7;
@@ -167,6 +167,7 @@ inactive window 6, 5
 
 #chat-container
 {
+	font-family: "Input-Mono", monospace; font-size: 13px !important; 
 	position: absolute;
 	width: 250px;
 	height: 350px;
@@ -186,9 +187,10 @@ inactive window 6, 5
 	font-family: "Input-Mono", monospace; font-size: 13px; 
 	position: absolute;
 	left: 3%; top: 12%; bottom: 3%;
-	width: 94%; height: 83%;
+	width: 94%; height: 80%;
 	background-color: black;
 	overflow-y: scroll;
+	z-index: 7; /*in case it gets occluded by input are*/
 }
 /*hide scroll bar inside terminal but still scrollable*/
 #terminal-txt-container::-webkit-scrollbar {display: none;}
@@ -199,13 +201,22 @@ inactive window 6, 5
 	position: absolute; 
 	width: 94%;
 	left: 3%; right: 3%; bottom: 2%;
+	background-color: transparent; /*in case it gets occluded by input are*/
+}
+
+#input-bg /*fills in the transparent gap*/
+{
+	position: absolute; 
+	width: 94%; height: 21px;
+	left: 3%; right: 3%; bottom: 2%;
 	background-color: black;
 }
 
 #terminal-display /*shows submitted texts*/
 {
+	position: absolute; 
 	font-family: "Input-Mono", monospace; font-size: 13px; 
-	margin-bottom: 9px;
+	margin: 0px;	
 }
 
 #terminal-prompt 
@@ -259,8 +270,23 @@ inactive window 6, 5
 	opacity: 0.3;
 }
 
-#mini-window-dock
+#dock-container
 {
+	position: absolute;
+	display: flex;
+	justify-content: center; align-items: center;
+	bottom: 3%;
+	width: 100%; height: 55px;
+}
+
+.icon 
+{
+	 width: 55px; height: 55px; margin: 5px;
+}
+
+#temp-toggle
+{
+	display: none;
 	position: absolute;
 	left: 0%;
 	bottom: 0;
@@ -270,7 +296,6 @@ inactive window 6, 5
 	opacity: 0.5;
 	cursor: pointer;
 }
-
 
 #playlist-container
 {

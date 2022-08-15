@@ -1,78 +1,78 @@
 //test tracksssssssssss
-let trackList = [
-  {
-		name: "boa - duvet",
-		path: "/mp3/boa_duvet.mp3"
-  },
-   {
-		name: "dj stingray - hypoalgesia",
-		path: "/mp3/hypoalgesia_compressed.mp3"
-  },
-  {
-		name: "exxy4 - TWICE 트와이스 TT 3XXY EDIT",
-		path: "/mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3"
-  },
-   {
-		name: "casper mcfadden - .dancecore",
-		path: "/mp3/dancecore_compressed.mp3"
-  },
-];
-
-// demooooooooooooooo
 // let trackList = [
 //   {
-//   	name: "afalfl - just some kick noyze",
-// 		path: "/demo-mp3/afalfl - just some kick noyze.mp3"
+// 		name: "boa - duvet",
+// 		path: "/mp3/boa_duvet.mp3"
+//   },
+//    {
+// 		name: "dj stingray - hypoalgesia",
+// 		path: "/mp3/hypoalgesia_compressed.mp3"
 //   },
 //   {
-//   	name: "Fetus - Footprints (premix)",
-// 		path: "/demo-mp3/Fetus - Footprints (premix).mp3"
+// 		name: "exxy4 - TWICE 트와이스 TT 3XXY EDIT",
+// 		path: "/mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3"
 //   },
-//   {
-//   	name: "GRASPS X NERDIE - I AM HURTING (PREMASTER)",
-// 		path: "/demo-mp3/GRASPS X NERDIE - I AM HURTING (PREMASTER).mp3"
+//    {
+// 		name: "casper mcfadden - .dancecore",
+// 		path: "/mp3/dancecore_compressed.mp3"
 //   },
-//   {
-//   	name: "Imryll - Family Portrait (Imryll Reimagined)",
-// 		path: "/demo-mp3/Imryll - Family Portrait (Imryll Reimagined).mp3"
-//   },
-//   {
-//   	name: "Jennifer Walton - At Last, Lain Is Free",
-// 		path: "/demo-mp3/Jennifer Walton - At Last, Lain Is Free.mp3"
-//   },
-//   {
-//   	name: "Kagami Smile -  Acts of Betrayal",
-// 		path: "/demo-mp3/Kagami Smile -  Acts of Betrayal.mp3"
-//   },
-//   {
-//   	name: "Sour Gout - Transmigration(-60db_unmastered)",
-// 		path: "/demo-mp3/Sour Gout - Transmigration(-60db_unmastered).mp3"
-//   },
-//   {
-//   	name: "thegn ft. vrain - phantoma_-_track04.wav (unmastered)",
-// 		path: "/demo-mp3/thegn ft. vrain - phantoma_-_track04.wav (unmastered).mp3"
-//   },
-//   {
-//   	name: "Wa_ste - cyberia texture 5a x professed intention and real intention",
-// 		path: "/demo-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention.mp3"
-//   },
-//   {
-//   	name: "xo - 200529-DuvetBoa8-absurd3bF",
-// 		path: "/demo-mp3/xo - 200529-DuvetBoa8-absurd3bF.mp3"
-//   },
-//   {
-//   	name: "Yraki - Lights Down - PREMASTER24bit",
-// 		path: "/demo-mp3/Yraki - Lights Down - PREMASTER24bit.mp3"
-//   },
-//   {
-//   	name: "Yumea Horiike - lain - 2022_05_18 23",
-// 		path: "/demo-mp3/Yumea Horiike - lain - 2022_05_18 23.mp3"
-//   },
-//   {
-//   	name: "Yuting Wu - Help me to Breathe",
-// 		path: "/demo-mp3/Yuting Wu - Help me to Breathe.mp3"
-//   },
-// ]; 
+// ];
+
+// demooooooooooooooo
+let trackList = [
+  {
+  	name: "afalfl - just some kick noyze",
+		path: "/demo-mp3/afalfl - just some kick noyze.mp3"
+  },
+  {
+  	name: "Fetus - Footprints (premix)",
+		path: "/demo-mp3/Fetus - Footprints (premix).mp3"
+  },
+  {
+  	name: "GRASPS X NERDIE - I AM HURTING (PREMASTER)",
+		path: "/demo-mp3/GRASPS X NERDIE - I AM HURTING (PREMASTER).mp3"
+  },
+  {
+  	name: "Imryll - Family Portrait (Imryll Reimagined)",
+		path: "/demo-mp3/Imryll - Family Portrait (Imryll Reimagined).mp3"
+  },
+  {
+  	name: "Jennifer Walton - At Last, Lain Is Free",
+		path: "/demo-mp3/Jennifer Walton - At Last, Lain Is Free.mp3"
+  },
+  {
+  	name: "Kagami Smile -  Acts of Betrayal",
+		path: "/demo-mp3/Kagami Smile -  Acts of Betrayal.mp3"
+  },
+  {
+  	name: "Sour Gout - Transmigration(-60db_unmastered)",
+		path: "/demo-mp3/Sour Gout - Transmigration(-60db_unmastered).mp3"
+  },
+  {
+  	name: "thegn ft. vrain - phantoma_-_track04.wav (unmastered)",
+		path: "/demo-mp3/thegn ft. vrain - phantoma_-_track04.wav (unmastered).mp3"
+  },
+  {
+  	name: "Wa_ste - cyberia texture 5a x professed intention and real intention",
+		path: "/demo-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention.mp3"
+  },
+  {
+  	name: "xo - 200529-DuvetBoa8-absurd3bF",
+		path: "/demo-mp3/xo - 200529-DuvetBoa8-absurd3bF.mp3"
+  },
+  {
+  	name: "Yraki - Lights Down - PREMASTER24bit",
+		path: "/demo-mp3/Yraki - Lights Down - PREMASTER24bit.mp3"
+  },
+  {
+  	name: "Yumea Horiike - lain - 2022_05_18 23",
+		path: "/demo-mp3/Yumea Horiike - lain - 2022_05_18 23.mp3"
+  },
+  {
+  	name: "Yuting Wu - Help me to Breathe",
+		path: "/demo-mp3/Yuting Wu - Help me to Breathe.mp3"
+  },
+]; 
 
 let playPauseBtn = document.getElementById("play-pause-btn")
 let volumeSlider = document.getElementById("volume-slider")
@@ -107,6 +107,9 @@ function onPageLoaded()
 {
 	//console.log("booting complete")
 	//entryTextsEl.textContent = "log in"
+	// let chatIFrame = document.getElementsByTagName("iframe").item(0)
+	// chatIFrame.style.fontFamily = "'Input-Mono', monospace" //doesnt set the actual chat fonttt
+	// console.log(chatIFrame)
 }
 //or document.addEventListener('DOMContentLoaded', function() {}? wahts the diff 
 
@@ -135,7 +138,7 @@ for (let i = 0; i < miniWindows.length; i++)
 	// miniWindow.addEventListener("click", function(){
 	// 	miniWindow.style.zIndex = "7"
 	// })
-	console.log("mini windows count " + miniWindows.length)
+	console.log("mini windows " + miniWindows.item(i))
 }
 
 function dragStart(e)
@@ -156,12 +159,19 @@ function dragStart(e)
 		  movingWindow.offsetTop - e.touches[0].clientY
 	  ]
 	}
+
 	//set z-index
-	// let inactiveZ = {0 : "5", 1 : "6"}
+	let windowZindex = new Array()
+	let maxZ = 7
   for (let i = 0; i < miniWindows.length; i++)
   {
+  	windowZindex[i] = miniWindows.item(i).style.zIndex
+  	console.log("window at " + i + " z index = " + windowZindex[i])
+
   	if (miniWindows.item(i) == movingWindow)
-  		{movingWindow.style.zIndex = "7"}
+  		{
+  			movingWindow.style.zIndex = maxZ + "";
+  		}
   	else
   	{miniWindows.item(i).style.zIndex = "5";}
   }
@@ -215,7 +225,6 @@ let terminalDisplay = document.getElementById("terminal-display") //pre
 let fakeCaret = document.getElementById("fake-caret")
 let inputEl = document.getElementById("terminal-input")
 let initialIndent = 111 //need to get from element tbh
-console.log()
 let fontWidth = 8 
 let caretOffest
 inputEl.onkeydown = checkInput
@@ -254,14 +263,13 @@ function checkInput(e)
 ////////////// mini windows //////////////
 
 //////temppppp switch  view
-let windowDock = document.getElementById("mini-window-dock")
-let sideBar = document.getElementById("side-bar")
+let tempToggle = document.getElementById("temp-toggle")
 let oldPlayerContainer = document.getElementById("old-player-container")
 let playlistEl = document.getElementById("playlist-container")
 let playlistToggle = document.getElementById("pl-toggle")
 
 let showingOldUI = false
-windowDock.addEventListener("click", function(){
+tempToggle.addEventListener("click", function(){
 	if (showingOldUI)
 	{
 		document.body.style.backgroundImage = 'url("img/extended_bg_s.png")'
