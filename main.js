@@ -105,7 +105,6 @@ progressBar.addEventListener("click", setProgress);
 
 function onPageLoaded()
 {
-	//console.log("booting complete")
 	//entryTextsEl.textContent = "log in"
 	// let chatIFrame = document.getElementsByTagName("iframe").item(0)
 	// chatIFrame.style.fontFamily = "'Input-Mono', monospace" //doesnt set the actual chat fonttt
@@ -119,18 +118,33 @@ function onPageLoaded()
 ////////////// mini windows //////////////
 
 let miniWindows = document.getElementsByClassName("mini-window")
+let dockContainer = document.getElementById("dock-container")
+let icons = dockContainer.getElementsByClassName("icon")
 let movingWindow;
 let cursorPos;
 let offset = [0,0];
 let isMoving = false;
 let maxZ = 10;
 
+console.log("mini windows count " + miniWindows.length + " icon count " + icons.length)
 
 for (let i = 0; i < miniWindows.length; i++)
 {
 	let miniWindow = miniWindows.item(i)
+	let icon = icons.item(i)
 	let closeBtn = miniWindow.querySelector(".mini-window-close")
-	closeBtn.addEventListener("click", function(){miniWindow.style.display = "none"})
+	console.log("mini windows " + miniWindows.item(i).id)
+
+	//hide / show window n corresponding icon
+	closeBtn.addEventListener("click", function(){
+		miniWindow.style.display = "none"
+		icon.style.display = "block"
+	})
+	icon.addEventListener("click", function(){
+		if(miniWindow.id == "chat-window") miniWindow.style.display = "flex";
+		else miniWindow.style.display = "block";
+		icon.style.display = "none"
+	})
 
 	//set drag 
 	let draggable = miniWindow.querySelector(".mini-window-draggable")
@@ -140,7 +154,6 @@ for (let i = 0; i < miniWindows.length; i++)
 	// miniWindow.addEventListener("click", function(){
 	// 	miniWindow.style.zIndex = "7"
 	// })
-	console.log("mini windows " + miniWindows.item(i))
 }
 
 function dragStart(e)
@@ -163,19 +176,13 @@ function dragStart(e)
 	}
 
 	//set z-index
-	let windowZindex = new Array()
   for (let i = 0; i < miniWindows.length; i++)
   {
-  	windowZindex[i] = miniWindows.item(i).style.zIndex
-  	console.log("window at " + i + " z index = " + windowZindex[i])
-
   	if (miniWindows.item(i) == movingWindow)
   		{
   			movingWindow.style.zIndex = maxZ + "";
   			maxZ++;
   		}
-  	// else
-  	// {miniWindows.item(i).style.zIndex = "5";}
   }
 
   document.addEventListener("mousemove", doDrag)
@@ -222,6 +229,11 @@ function dragEnd()
 // 		miniWindow.style.display = "block";
 // })
 
+////////////// mini windows //////////////
+
+
+////////////// terminal //////////////
+
 let terminalTxtContainer = document.getElementById("terminal-txt-container")
 let terminalDisplay = document.getElementById("terminal-display") //pre
 let fakeCaret = document.getElementById("fake-caret")
@@ -262,7 +274,8 @@ function checkInput(e)
 	}
 }
 
-////////////// mini windows //////////////
+////////////// terminal //////////////
+
 
 //////temppppp switch  view
 let tempToggle = document.getElementById("temp-toggle")
@@ -277,6 +290,7 @@ tempToggle.addEventListener("click", function(){
 		document.body.style.backgroundImage = 'url("img/extended_bg_s.png")'
 		oldPlayerContainer.style.display = "none"
 		playlistEl.style.display = "none"
+		dockContainer.style.display = "block"
 		for (let i = 0; i < miniWindows.length; i++)
 		{
 			miniWindows.item(i).style.display = "block"
@@ -288,6 +302,7 @@ tempToggle.addEventListener("click", function(){
 	{
 		document.body.style.backgroundImage = "none"
 		oldPlayerContainer.style.display = "block"
+		dockContainer.style.display = "none"
 		//playlistEl.style.display = "block"
 		for (let i = 0; i < miniWindows.length; i++)
 		{
