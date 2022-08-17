@@ -87,7 +87,6 @@ let isPlaying = false
 let progressTimer = null
 
 loadTrack();
-fillPlaylist();
 progressBar.addEventListener("click", setProgress);
 
 ////////////// entry page //////////////
@@ -280,7 +279,7 @@ function checkInput(e)
 //////temppppp switch  view
 let tempToggle = document.getElementById("temp-toggle")
 let oldPlayerContainer = document.getElementById("old-player-container")
-let playlistEl = document.getElementById("playlist-container")
+let playlistEl = document.getElementById("old-playlist-container")
 let playlistToggle = document.getElementById("pl-toggle")
 
 let showingOldUI = false
@@ -569,9 +568,14 @@ function setProgress(el)
 	console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + progressBar.offsetWidth + ", jumpTo = " + jumpTo)
 }
 
-function fillPlaylist()
+let oldPlaylist = document.getElementById("old-playlist-content")
+let newPlaylist = document.getElementById("playlist-content")
+
+fillPlaylist(oldPlaylist);
+fillPlaylist(newPlaylist);
+
+function fillPlaylist(playlist)
 {
-	let playlist =  document.getElementById("playlist-content")
 	for (let i = 0; i < trackList.length; i++)
 	{
 		let li = document.createElement("li")

@@ -24,7 +24,7 @@ body
 	margin: 0px;
 }
 
-/*for mobile / portrait display*/
+/*bg lain pic and entry pic for mobile / portrait display*/
 @media (min-aspect-ratio: 1/16) {
 	body
 	{
@@ -38,7 +38,7 @@ body
 	}
 }
 
-/*for desktop / landscape display*/
+/*bg lain pic and entry pic for desktop / landscape display*/
 @media (min-aspect-ratio: 4/3) {
 	body
 	{
@@ -118,6 +118,7 @@ inactive window 6, 5
 	background-size: 100%;*/
 }
 
+/***************** mini windows /*****************/
 .mini-window
 {
 	position: absolute;
@@ -142,25 +143,14 @@ inactive window 6, 5
 	opacity: 0.2;*/
 }
 
-#music-player
-{
-	background-image: url("img/player-mockup.png");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	width: 420px;
-	height: 522px;
-	top: 17%;
-	left: 20%;
-	z-index: 7;
-}
-
+/******* chat *******/
 #chat-window
 {
 	display: flex;
 	justify-content: center; 
 	align-items: center;
 	align-items: center;
-	width: 300px; height: 400px;
+	width: 316px; height: 428px; /*todo make smaller size for mobile 640x480 x0.66*/
 	top: 5%; right: 13%;
 	z-index: 5;
 }
@@ -171,14 +161,16 @@ inactive window 6, 5
 	position: absolute;
 	width: 250px;
 	height: 350px;
-	top: 10%;
+	top: 10%; bottom: 4%;
 }
+/******* chat *******/
 
+/******* terminallllllll *******/
 #terminal
 {
 	font-family: "Input-Mono", monospace; font-size: 13px; 
 	top: 10%; left: 7%;
-	width: 420px; height: 300px;
+	width: 493px; height: 369px; /*todo make smaller size for mobile 640x480 x0.77*/
 	z-index: 6;
 }
 
@@ -186,7 +178,7 @@ inactive window 6, 5
 {
 	font-family: "Input-Mono", monospace; font-size: 13px; 
 	position: absolute;
-	left: 3%; top: 12%; bottom: 3%;
+	left: 3%; top: 11%; bottom: 5%;
 	width: 94%; height: 80%;
 	background-color: black;
 	overflow-y: scroll;
@@ -200,15 +192,15 @@ inactive window 6, 5
 	font-family: "Input-Mono", monospace; font-size: 13px; 
 	position: absolute; 
 	width: 94%;
-	left: 3%; right: 3%; bottom: 2%;
+	left: 3%; right: 3%; bottom: 4%;
 	background-color: transparent; /*in case it gets occluded by input are*/
 }
 
 #input-bg /*fills in the transparent gap*/
 {
 	position: absolute; 
-	width: 94%; height: 21px;
-	left: 3%; right: 3%; bottom: 2%;
+	width: 94%; height: 30px;
+	left: 3%; right: 3%; bottom: 3%;
 	background-color: black;
 }
 
@@ -258,6 +250,8 @@ inactive window 6, 5
 #terminal-input:focus {
     outline: none !important;
 }
+/******* terminallllllll *******/
+
 
 .mini-window-close
 {
@@ -287,6 +281,52 @@ inactive window 6, 5
 	cursor: pointer;
 }
 
+/******* music player *******/
+#music-player
+{
+	background-image: url("img/player-mockup.png");
+	background-repeat: no-repeat;
+	background-size: 100%; background-color: transparent;
+	width: 500px;
+	height: 620px;
+	top: 17%;
+	left: 20%;
+	z-index: 7;
+}
+
+#playlist-container
+{
+	position: absolute;
+	color: whitesmoke;
+	left: 17%; right: 11%; bottom: 15%; top: 56%;
+	width: auto; height: auto;
+	background-color: lightgray;
+	opacity: 0.8;
+	overflow-y: auto; overflow-x: hidden;
+}
+
+#playlist-content {list-style-type: decimal; color: black;}
+
+li
+{
+	font-size: 15px;
+	padding: 4px;
+	cursor: pointer;
+	background-color: none;
+	transition: 0.07;
+}
+
+li:hover{
+	background-color: lavender;
+	box-shadow: 3px 5px 7px black;
+}
+
+/******* music player *******/
+
+/***************** mini windows /*****************/
+
+/***************** old music player *****************/
+
 #temp-toggle
 {
 	position: absolute;
@@ -299,7 +339,7 @@ inactive window 6, 5
 	cursor: pointer ;
 }
 
-#playlist-container
+#old-playlist-container
 {
 	position: absolute;
 	top: 0;
@@ -311,20 +351,10 @@ inactive window 6, 5
 	overflow: auto;
 }
 
-#playlist-content
+#old-playlist-content
 {
 	list-style-type: decimal;
 }
-
-li
-{
-	padding: 7px;
-	cursor: pointer;
-	background-color: none;
-	transition: 0.07;
-}
-
-li:hover{background-color: white;}
 
 #old-player-container
 {
@@ -356,3 +386,4 @@ li:hover{background-color: white;}
 	height: 10px;
 	background-color: violet;
 }
+/***************** old music player *****************/
