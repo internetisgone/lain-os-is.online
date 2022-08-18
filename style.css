@@ -13,6 +13,7 @@
 p, label, button, option, ul
 {
 	font-family: "LoveLetter", "Courier New", monospace;
+	color: black;
 }
 
 body 
@@ -20,7 +21,7 @@ body
 	background-image: url("img/extended_bg_s.png");
 	background-repeat: no-repeat;
 /*	background-size: 100%;
-*/	background-color: black;
+*/	background-color: whitesmoke;
 	margin: 0px;
 }
 
@@ -52,8 +53,6 @@ body
 	}
 }
 
-p, label {color: whitesmoke;}
-
 hr 
 {
    display: block;
@@ -67,8 +66,8 @@ hr
    line-height: 0;
    clear: both;
    border: none;
-   border-top: 1px solid whitesmoke;
-   border-bottom: 1px solid whitesmoke;
+   border-top: 1px solid darkgray;
+   border-bottom: 1px solid darkgray;
 }
 
 /*
@@ -105,7 +104,7 @@ inactive window 6, 5
 
 #main-container
 {
-	position: fixed;
+	position: absolute; /*tempp so u can scroll inside the old player. use "fixed"*/
 	display: flex;
 	justify-content: center; 
 	align-items: center;
@@ -207,6 +206,7 @@ inactive window 6, 5
 #terminal-display /*shows submitted texts*/
 {
 	position: absolute; 
+	color: whitesmoke;
 	font-family: "Input-Mono", monospace; font-size: 13px; 
 	margin: 0px;	
 }
@@ -294,6 +294,60 @@ inactive window 6, 5
 	z-index: 7;
 }
 
+/*standard bg for testing: lightgray opacity 0.3/0.7*/
+
+#now-playing-container
+{
+	position: absolute;
+	left: 39%; right: 11%; top: 4.5%; bottom: 91%;
+	width: auto; height: auto;
+	overflow: hidden;
+	background-color: lightgray; 
+	opacity: 0.3;
+}
+
+#now-playing {
+	position: absolute;
+	color: black; 
+	width: auto; height: 100%;
+	margin: 0px; 
+	white-space:nowrap;
+	background-color: transparent;
+	animation: scrollText 5s linear infinite;
+}
+
+/*#now-playing::-webkit-scrollbar {display: none;}
+*/
+@keyframes scrollText
+{
+/*	from {transform: translateX(100%);}
+  	to {transform: translateX(-100%);}*/
+  	from {left: 100%;}
+  	to {left: -100%;}
+}
+
+#cur-time-container
+{
+	position: absolute;
+	left: 15%; right: 61%; top: 4.5%; bottom: 83%;
+	width: auto; height: auto;
+	background-color: lightgray;
+	opacity: 0.3;
+}
+
+.cur-time, #old-total-time
+{
+	color: whitesmoke; margin: 5px; font-family:Input-Mono; font-size: small;
+}
+
+#playback-controls
+{
+	position: absolute;
+	left: 23%; right: 23%; top: 23%; bottom: 73%;
+/*	background-color: lightgray;
+	opacity: 0.3;*/
+}
+
 #playlist-container
 {
 	position: absolute;
@@ -301,8 +355,8 @@ inactive window 6, 5
 	left: 17%; right: 11%; bottom: 15%; top: 56%;
 	width: auto; height: auto;
 	background-color: lightgray;
-	opacity: 0.8;
-	overflow-y: auto; overflow-x: hidden;
+	opacity: 0.7;
+	overflow-y: scroll; overflow-x: hidden;
 }
 
 #playlist-content {list-style-type: decimal; color: black;}
@@ -327,6 +381,14 @@ li:hover{
 
 /***************** old music player *****************/
 
+
+/*#volume-slider, .long-slider
+{
+	-webkit-appearance: none;
+	background: whitesmoke;
+	outline: none;
+}*/
+
 #temp-toggle
 {
 	position: absolute;
@@ -339,13 +401,23 @@ li:hover{
 	cursor: pointer ;
 }
 
+#biquad-prompt:hover #biquad-tips{opacity: 1;}
+
+#biquad-tips {
+	position: absolute; right: 120%;
+	margin: 7px; padding: 5px; width: 144px;
+	font-size: small; word-wrap:break-word;
+	background-color: darkgray; color: black; 
+	opacity: 0;
+}
+
 #old-playlist-container
 {
 	position: absolute;
 	top: 0;
 	right: 0;
 	width: 444px;
-	height: 500px;
+	height: 400px;
 	background-color: darkgray;
 	opacity: 0.9;
 	overflow: auto;
@@ -356,27 +428,18 @@ li:hover{
 	list-style-type: decimal;
 }
 
-#old-player-container
-{
-	/*tempppppppppppppppp*/
-	position: absolute;
-	display: none;
-}
+#old-player-container 
+{position: absolute; top: 0; display: none; color: black !important;}
 
-#play-pause-btn {width: 120px;}
+#old-play-pause-btn {width: 120px;}
 
 .long-slider {width: 300px;}
 
-#cur-time, #total-time
-{
-	color: whitesmoke; margin: 5px; font-family:Input-Mono; font-size: small;
-}
 #progress-bar-container
 {
+	margin: 8px; background-color: lightgray; 
 	width: 210px;
 	height: 10px;
-	margin: 5px;
-	background-color: whitesmoke;
 }
 
 #progress-bar-fill

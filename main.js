@@ -1,24 +1,3 @@
-//test tracksssssssssss
-// let trackList = [
-//   {
-// 		name: "boa - duvet",
-// 		path: "/mp3/boa_duvet.mp3"
-//   },
-//    {
-// 		name: "dj stingray - hypoalgesia",
-// 		path: "/mp3/hypoalgesia_compressed.mp3"
-//   },
-//   {
-// 		name: "exxy4 - TWICE 트와이스 TT 3XXY EDIT",
-// 		path: "/mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3"
-//   },
-//    {
-// 		name: "casper mcfadden - .dancecore",
-// 		path: "/mp3/dancecore_compressed.mp3"
-//   },
-// ];
-
-// demooooooooooooooo
 let trackList = [
   {
   	name: "afalfl - just some kick noyze",
@@ -74,7 +53,7 @@ let trackList = [
   },
 ]; 
 
-let playPauseBtn = document.getElementById("play-pause-btn")
+let playPauseBtn = document.getElementById("old-play-pause-btn")
 let volumeSlider = document.getElementById("volume-slider")
 let progressBar = document.getElementById("progress-bar-container")
 let progressFill = document.getElementById("progress-bar-fill")
@@ -85,9 +64,6 @@ let curIndex = Math.floor(Math.random() * trackList.length)
 let curTrack = document.getElementById("cur-track")
 let isPlaying = false
 let progressTimer = null
-
-loadTrack();
-progressBar.addEventListener("click", setProgress);
 
 ////////////// entry page //////////////
 
@@ -102,14 +78,14 @@ progressBar.addEventListener("click", setProgress);
 // 	entryPage.parentNode.removeChild(entryPage)
 // })
 
-function onPageLoaded()
-{
-	//entryTextsEl.textContent = "log in"
-	// let chatIFrame = document.getElementsByTagName("iframe").item(0)
-	// chatIFrame.style.fontFamily = "'Input-Mono', monospace" //doesnt set the actual chat fonttt
-	// console.log(chatIFrame)
-}
-//or document.addEventListener('DOMContentLoaded', function() {}? wahts the diff 
+// window.onload = onPageLoaded
+// function onPageLoaded()
+// {
+// 	entryTextsEl.textContent = "log in"
+// 	// let chatIFrame = document.getElementsByTagName("iframe").item(0)
+// 	// chatIFrame.style.fontFamily = "'Input-Mono', monospace" //doesnt set the actual chat fonttt
+// 	// console.log(chatIFrame)
+// }
 
 ////////////// entry page //////////////
 
@@ -325,13 +301,15 @@ let frequencySlider = document.getElementById("frequency-slider")
 let frequencyEl = document.getElementById("cur-frequency")
 let gainSlider = document.getElementById("gain-slider")
 let gainEl = document.getElementById("cur-gain")
+let qSlider = document.getElementById("q-slider")
+let qEl = document.getElementById("cur-q")
 
 let reverbToggle = document.getElementById("reverb-toggle")
 let reverbDurationSlider = document.getElementById("reverb-duration")
 let reverbDecaySlider = document.getElementById("reverb-decay")
 
-let reverbDurationText = document.getElementById("reverb-duration-text")
-let reverbDecayText = document.getElementById("reverb-decay-text")
+let reverbDurationText = document.getElementById("cur-reverb-duration")
+let reverbDecayText = document.getElementById("cur-reverb-decay")
 
 const audioContext = new AudioContext();
 const biquadFilter = new BiquadFilterNode(audioContext, {frequency:1000})
@@ -370,7 +348,9 @@ function switchBiquad(index)
 	if(biquadIndex > 0) //turn on biquad
 	{
 		biquadFilter.type = biquadTypes[biquadIndex - 1]
-		biquadFilter.gain.setValueAtTime(gainSlider.value, audioContext.currentTime);
+		biquadFilter.gain.setValueAtTime(gainSlider.value, audioContext.currentTime)
+		biquadFilter.frequency.setValueAtTime(frequencySlider.value, audioContext.currentTime)
+		biquadFilter.Q.setValueAtTime(qSlider.value, audioContext.currentTime)
 		if (hasReverb)
 		{
 			convolver.disconnect()
@@ -380,8 +360,9 @@ function switchBiquad(index)
 		{	
 			source.connect(biquadFilter).connect(audioContext.destination)
 		}
-		frequencyEl.style.color = "whitesmoke";
-		gainEl.style.color = "whitesmoke";
+		frequencyEl.style.color = "black";
+		gainEl.style.color = "black";
+		qEl.style.color = "black"
 		console.log("milady " + biquadIndex + ", biquad type = " + biquadTypes[biquadIndex - 1] + "frequency  = " + biquadFilter.frequency)
 	}
 	else //turn off biquad 
@@ -397,6 +378,7 @@ function switchBiquad(index)
 		}
 		frequencyEl.style.color = "grey";
 		gainEl.style.color = "grey";
+		qEl.style.color = "grey"
 		console.log("milady " + biquadIndex + ", biquad type = none") 
 	}
 }
@@ -410,7 +392,14 @@ function setFrequency()
 function setGain()
 {
 	biquadFilter.gain.value = gainSlider.value
+	//biquadFilter.gain.setValueAtTime(gainSlider.value, audioContext.currentTime);
 	gainEl.textContent = "gain: " + gainSlider.value
+}
+
+function setQ()
+{
+	biquadFilter.Q.value = qSlider.value
+	qEl.textContent = "Q factor: " + qSlider.value
 }
 
 function setReverb()
@@ -442,8 +431,8 @@ function toggleReverb()
 			source.connect(convolver).connect(audioContext.destination)
 		}
 		reverbToggle.textContent = "turn off reverb"
-		reverbDurationText.style.color = "whitesmoke"
-		reverbDecayText.style.color = "whitesmoke"
+		reverbDurationText.style.color = "black"
+		reverbDecayText.style.color = "black"
 		hasReverb = true
 	}
 }
@@ -452,8 +441,14 @@ function toggleReverb()
 
 
 ////////////// music player //////////////
+let oldCurTimeEl = document.getElementById("old-cur-time")
 let curTimeEl = document.getElementById("cur-time")
-let totalTimeEl = document.getElementById("total-time")
+let oldTotalTimeEl = document.getElementById("old-total-time")
+
+let nowPlayingText = document.getElementById("now-playing")
+
+loadTrack();
+progressBar.addEventListener("click", setProgress);
 
 function loadTrack()
 {
@@ -463,6 +458,8 @@ function loadTrack()
 	}
 	curTrack.src = trackList[curIndex].path;
 	curTrackText.textContent = "loading metadata..."
+	nowPlayingText.textContent = "loading metadata..."
+
 	curTrack.load();
 	progressTimer = setInterval(updateProgress, 1000);
 }
@@ -474,8 +471,11 @@ curTrack.onloadedmetadata = function()
 		// let duration = Math.round(curTrack.duration)
 		let timeStrings = parseTime(curTrack.duration)
 
-		totalTimeEl.textContent = timeStrings.min + ":" + timeStrings.sec;
-		curTrackText.textContent = trackList[curIndex].name		
+		oldTotalTimeEl.textContent = timeStrings.min + ":" + timeStrings.sec;
+		curTrackText.textContent = trackList[curIndex].name	
+
+		//new	
+		nowPlayingText.textContent = trackList[curIndex].name	+ " " + timeStrings.min + ":" + timeStrings.sec;
 	}
 
 curTrack.onloadeddata = function()
@@ -555,6 +555,7 @@ function updateProgress()
 	progressFill.style.width = progress * progressBar.offsetWidth + "px";
 
 	let timeStrings = parseTime(curTrack.currentTime)
+	oldCurTimeEl.textContent = timeStrings.min + ":" + timeStrings.sec;
 	curTimeEl.textContent = timeStrings.min + ":" + timeStrings.sec;
 
 	//console.log("updated progress, progress = " + progress + ", width = " + progressFill.style.width)

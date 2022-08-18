@@ -6,19 +6,32 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<title>club cyberia</title>
 </head>
-<body onload="onPageLoaded()">
+<body>
 <!-- 	<div id="entry-page"> 
 		<img src="img/frame.png" id="entry-img">
 		<p id="entry-texts">initialising...</p>
 		<p style="position: absolute; bottom: 1%; color: darkgray; font-size: small;">public domain operating system</p>
-	</div> -->
-
+	</div>
+ -->
 	<div id="main-container">
 
 		<div class="mini-window" id="music-player">
 			<div class="mini-window-draggable" id="music-player-drag"></div>
 			<div class="mini-window-close"></div>
 
+			<div id="now-playing-container">
+				<p id="now-playing"></p>
+			</div>
+
+			<div id="cur-time-container">
+				<span class="cur-time" id="cur-time" style="color: black; font-size: large; margin: 10%;">00:00</span>
+			</div>
+
+			<div id="playback-controls">
+				<button id="prev-btn" onclick="prevTrack()">prev</button>
+				<button id="play-pause-btn" onclick="playOrPause()">play/pause</button>
+				<button id="next-btn" onclick="nextTrack()">next</button>
+			</div>
 			<div id="playlist-container">
 				<ul id="playlist-content">
 				</ul>
@@ -88,10 +101,10 @@
 			<audio preload="auto" id="cur-track"></audio>
 			<p id="cur-track-info" style="width: 333px;"></p>
 
-			<div id="playback-controls">
-				<button id="prev-btn" onclick="prevTrack()">prev</button>
-				<button id="play-pause-btn" onclick="playOrPause()">play</button>
-				<button id="next-btn" onclick="nextTrack()">next</button>
+			<div>
+				<button onclick="prevTrack()">prev</button>
+				<button id="old-play-pause-btn" onclick="playOrPause()">play</button>
+				<button onclick="nextTrack()">next</button>
 				<button id="pl-toggle" >playlist</button>
 			</div>
 
@@ -102,17 +115,19 @@
 			<br>
 
 			<div style="display: flex;"> 
-				<span id="cur-time">00:00</span>
-				<div id ="progress-bar-container" style="margin: 8px;">
+				<span class="cur-time" id="old-cur-time" style="color: black;">00:00</span>
+				<div id ="progress-bar-container">
 					<div id="progress-bar-fill"></div>
 				</div>
-				<span id="total-time">00:00</span>
+				<span id="old-total-time" style="color: black;">00:00</span>
 			</div>
 			
 			
 			
 			<hr>
-			<p>choose a filter: </p>
+			<p id="biquad-prompt" style="width: 100%;">choose a filter:
+				<span id = biquad-tips>gain adjustment is available for lowshelf, highshelf, peaking. <br><br> q factor adjustment is available for lowpass, highpass, bandpass, peaking, notch, allpasss. <br><br> search "biquad filter MDN" for more info</span> 
+			</p>
 			<select id="switch-biquad" size="9">
 				<option value="0" selected="selected">none</option>
 				<option value="1">lowpass</option>
@@ -131,16 +146,19 @@
 			<p id="cur-gain" style="color: grey;">gain: 25</p>
 			<input class="long-slider" type="range" min="-40" max="40" value="25" id="gain-slider" onchange="setGain()">
 
+			<p id="cur-q" style="color: grey;">Q factor: 1</p>
+			<input class="long-slider" type="range" min="0.01" max="33" value="1" step="0.2" id="q-slider" onchange="setQ()">
+
 			<br>
 			<hr>
 			<br>
 
 			<button id="reverb-toggle" onclick="toggleReverb()">turn on reverb</button>
 			<br>
-			<p id="reverb-duration-text" style="color: grey;">duration: 15</p>
-			<input class="long-slider" type="range" min="0.1" max="40" value="15" id="reverb-duration" step="0.2" onchange="setReverb()">
-			<p id="reverb-decay-text" style="color: grey;">decay: 15</p>
-			<input class="long-slider" type="range" min="0.1" max="40" value="15" id="reverb-decay" step="0.2" onchange="setReverb()">
+			<p id="cur-reverb-duration" style="color: grey;">duration: 77</p>
+			<input class="long-slider" type="range" min="0.1" max="150" value="15" id="reverb-duration" step="0.2" onchange="setReverb()">
+			<p id="cur-reverb-decay" style="color: grey;">decay: 15</p>
+			<input class="long-slider" type="range" min="0.1" max="80" value="15" id="reverb-decay" step="0.2" onchange="setReverb()">
 
 		</div> <!-- end of old player container -->
 	</div> <!-- end of main container -->
