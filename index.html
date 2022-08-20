@@ -10,9 +10,9 @@
 <!-- 	<div id="entry-page"> 
 		<img src="img/frame.png" id="entry-img">
 		<p id="entry-texts">initialising...</p>
-		<p style="position: absolute; bottom: 1%; color: darkgray; font-size: small;">public domain operating system</p>
-	</div>
- -->
+		<p style="position: absolute; bottom: 2.3%; color: darkgray; font-size: small;">public domain operating system</p>
+	</div> -->
+
 	<div id="main-container">
 
 		<div class="mini-window" id="music-player">
@@ -20,7 +20,9 @@
 			<div class="mini-window-close"></div>
 
 			<div id="now-playing-container">
-				<p id="now-playing"></p>
+				<div id="now-playing">
+					<p id="now-playing-marquee"></p> 
+				</div>
 			</div>
 
 			<div id="cur-time-container">
@@ -155,7 +157,7 @@
 
 			<button id="reverb-toggle" onclick="toggleReverb()">turn on reverb</button>
 			<br>
-			<p id="cur-reverb-duration" style="color: grey;">duration: 77</p>
+			<p id="cur-reverb-duration" style="color: grey;">duration: 100</p>
 			<input class="long-slider" type="range" min="0.1" max="150" value="15" id="reverb-duration" step="0.2" onchange="setReverb()">
 			<p id="cur-reverb-decay" style="color: grey;">decay: 15</p>
 			<input class="long-slider" type="range" min="0.1" max="80" value="15" id="reverb-decay" step="0.2" onchange="setReverb()">

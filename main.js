@@ -53,18 +53,6 @@ let trackList = [
   },
 ]; 
 
-let playPauseBtn = document.getElementById("old-play-pause-btn")
-let volumeSlider = document.getElementById("volume-slider")
-let progressBar = document.getElementById("progress-bar-container")
-let progressFill = document.getElementById("progress-bar-fill")
-let curTrackText = document.getElementById("cur-track-info")
-
-//load a random song
-let curIndex = Math.floor(Math.random() * trackList.length)
-let curTrack = document.getElementById("cur-track")
-let isPlaying = false
-let progressTimer = null
-
 ////////////// entry page //////////////
 
 // let entryPage = document.getElementById("entry-page")
@@ -207,6 +195,183 @@ function dragEnd()
 ////////////// mini windows //////////////
 
 
+////////////// music player //////////////
+
+let playPauseBtn = document.getElementById("old-play-pause-btn")
+let volumeSlider = document.getElementById("volume-slider")
+let progressBar = document.getElementById("progress-bar-container")
+let progressFill = document.getElementById("progress-bar-fill")
+let curTrackText = document.getElementById("cur-track-info")
+
+//load a random song
+let curIndex = Math.floor(Math.random() * trackList.length)
+let curTrack = document.getElementById("cur-track")
+let isPlaying = false
+let progressTimer = null
+
+let nowPlayingText = document.getElementById("now-playing-marquee")
+let nowPlayingWidth
+
+////////////// music player //////////////
+
+
+
+////////////// old music player //////////////
+
+let oldCurTimeEl = document.getElementById("old-cur-time")
+let curTimeEl = document.getElementById("cur-time")
+let oldTotalTimeEl = document.getElementById("old-total-time")
+
+loadTrack();
+progressBar.addEventListener("click", setProgress);
+
+function loadTrack()
+{
+	if (progressTimer != null) 	{clearInterval(progressTimer)}
+	curTrack.src = trackList[curIndex].path;
+	curTrackText.textContent = "loading metadata..."
+	nowPlayingText.textContent = "loading metadata..."
+
+	curTrack.load();
+	progressTimer = setInterval(updateProgress, 1000);
+}
+
+curTrack.addEventListener("ended", nextTrack)
+curTrack.onloadedmetadata = function() 
+	{
+		console.log("loaded track metadata " + trackList[curIndex].name)
+		// let duration = Math.round(curTrack.duration)
+		let timeStrings = parseTime(curTrack.duration)
+
+		oldTotalTimeEl.textContent = timeStrings.min + ":" + timeStrings.sec;
+		curTrackText.textContent = trackList[curIndex].name	
+
+		//newwwww
+		nowPlayingText.textContent = trackList[curIndex].name	+ " " + timeStrings.min + ":" + timeStrings.sec;
+		nowPlayingWidth = nowPlayingText.offsetWidth
+		console.log("nowPlayingWidth = " + nowPlayingWidth)
+		//todo scroll nowplaying text 
+
+		//if width > 0 and isplaying
+		//do scroll animation
+	}
+
+function parseTime(duration)
+{
+	let minutes = Math.floor(duration/60)
+	let seconds = Math.round(duration % 60)
+	let minString = (minutes < 10)? ("0" + minutes) : ("" + minutes);
+	let secString = (seconds < 10)? ("0" + seconds) : ("" + seconds)
+
+	return { 
+     min: minString,
+     sec: secString
+   }; 
+}
+
+//playback controls
+function playTrack()
+{
+	////temp. move this to entry page click event later 
+	if (audioContext.state === 'suspended') {
+		audioContext.resume();
+	}
+	//temp
+
+	curTrack.play();
+	isPlaying = true;
+	playPauseBtn.textContent = "pause";
+}
+
+function pauseTrack() 
+{
+	if (isPlaying) 
+	{
+		curTrack.pause();
+		isPlaying = false;
+		playPauseBtn.textContent = "play";
+	}
+}
+
+function playOrPause()
+{
+	////temp. move this to entry page click event later 
+	if (audioContext.state === 'suspended') {
+		audioContext.resume();
+	}
+	//temp
+
+	if (isPlaying) pauseTrack();
+	else playTrack();
+}
+
+function prevTrack()
+{
+	curIndex > 0 ? curIndex -= 1 : curIndex = trackList.length - 1;
+	loadTrack();
+	playTrack();
+	updateProgress();
+}
+
+function nextTrack()
+{
+	curIndex < trackList.length - 1 ? curIndex += 1 : curIndex = 0;
+	loadTrack();
+	playTrack();
+	updateProgress();
+}
+
+function setVolume()
+{
+	curTrack.volume = volumeSlider.value / volumeSlider.max
+}
+
+//progress bar
+function updateProgress()
+{
+	let progress = curTrack.currentTime / curTrack.duration;
+	progressFill.style.width = progress * progressBar.offsetWidth + "px";
+
+	let timeStrings = parseTime(curTrack.currentTime)
+	oldCurTimeEl.textContent = timeStrings.min + ":" + timeStrings.sec;
+	curTimeEl.textContent = timeStrings.min + ":" + timeStrings.sec;
+
+	//console.log("updated progress, progress = " + progress + ", width = " + progressFill.style.width)
+}
+
+function setProgress(el)
+{
+	let jumpTo = curTrack.duration * (el.offsetX / progressBar.offsetWidth);
+	curTrack.currentTime = jumpTo;
+	updateProgress()
+	console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + progressBar.offsetWidth + ", jumpTo = " + jumpTo)
+}
+
+let oldPlaylist = document.getElementById("old-playlist-content")
+let newPlaylist = document.getElementById("playlist-content")
+
+fillPlaylist(oldPlaylist);
+fillPlaylist(newPlaylist);
+
+function fillPlaylist(playlist)
+{
+	for (let i = 0; i < trackList.length; i++)
+	{
+		let li = document.createElement("li")
+		li.textContent = trackList[i].name 
+		playlist.appendChild(li)
+
+		li.addEventListener("click", function(){
+			curIndex = i 
+			loadTrack()
+			playTrack()
+			updateProgress()
+		})
+	}
+}
+////////////// old music player //////////////
+
+
 ////////////// terminal //////////////
 
 let terminalTxtContainer = document.getElementById("terminal-txt-container")
@@ -214,11 +379,11 @@ let terminalDisplay = document.getElementById("terminal-display") //pre
 let fakeCaret = document.getElementById("fake-caret")
 let inputEl = document.getElementById("terminal-input")
 let initialIndent = 111 //need to get from element tbh
-let fontWidth = 8 
+let fontWidth = 8 //sunject to changee
 let caretOffest
-inputEl.onkeydown = checkInput
+inputEl.onkeydown = validateInput
 
-function checkInput(e)
+function validateInput(e)
 {	
 	let letters = /^[a-zA-Z\d\s]*$/;
 	
@@ -227,17 +392,17 @@ function checkInput(e)
 	caretOffest =  inputLength * fontWidth + initialIndent
 	fakeCaret.style.marginLeft = caretOffest + "px"
 
-	console.log(e)
-	console.log("input length " + inputLength + " caret offest" + caretOffest)
+	//console.log(e)
+	//console.log("input length " + inputLength + " caret offest" + caretOffest)
 
 	if (e.key == "Enter")
 	{
-		//todo convert input to lower n remove trailing whitespace
 		if (inputEl.value.match(letters))	
 		{
-			terminalDisplay.innerHTML += "lain@navi ~ % " + inputEl.value + "</br>";			
+			terminalDisplay.innerHTML += "lain@navi ~ % " + inputEl.value + "</br>";	
+			checkCommand(inputEl.value);
 		}
-		else 
+		else //invalid input
 		{
 			terminalDisplay.innerHTML += "invalid input (´;ω;`) letters, numbers, and spaces only pls</br>";
 		}
@@ -247,6 +412,24 @@ function checkInput(e)
 		//auto scrolls to the bottom
 		terminalTxtContainer.scrollTop = terminalTxtContainer.scrollHeight; 
 	}
+}
+
+function checkCommand(input) 
+{
+	switch (input.trim().toLowerCase()) 
+	{
+		case "play": playTrack(); break;
+		case "pause": pauseTrack(); break;
+		case "next": nextTrack(); break;
+		case "prev": prevTrack(); break;
+		case "random": 
+			curIndex = Math.floor(Math.random() * trackList.length);
+			loadTrack(); playTrack();
+			break;
+
+		default: terminalDisplay.innerHTML += "sowwy idk that word!</br>"
+	}
+
 }
 
 ////////////// terminal //////////////
@@ -363,7 +546,7 @@ function switchBiquad(index)
 		frequencyEl.style.color = "black";
 		gainEl.style.color = "black";
 		qEl.style.color = "black"
-		console.log("milady " + biquadIndex + ", biquad type = " + biquadTypes[biquadIndex - 1] + "frequency  = " + biquadFilter.frequency)
+		console.log(biquadIndex + ", biquad type = " + biquadTypes[biquadIndex - 1] + "frequency  = " + biquadFilter.frequency)
 	}
 	else //turn off biquad 
 	{
@@ -438,157 +621,3 @@ function toggleReverb()
 }
 
 ////////////// end of audio filter //////////////
-
-
-////////////// music player //////////////
-let oldCurTimeEl = document.getElementById("old-cur-time")
-let curTimeEl = document.getElementById("cur-time")
-let oldTotalTimeEl = document.getElementById("old-total-time")
-
-let nowPlayingText = document.getElementById("now-playing")
-
-loadTrack();
-progressBar.addEventListener("click", setProgress);
-
-function loadTrack()
-{
-	if (progressTimer != null) 
-	{
-		clearInterval(progressTimer)
-	}
-	curTrack.src = trackList[curIndex].path;
-	curTrackText.textContent = "loading metadata..."
-	nowPlayingText.textContent = "loading metadata..."
-
-	curTrack.load();
-	progressTimer = setInterval(updateProgress, 1000);
-}
-
-curTrack.addEventListener("ended", nextTrack)
-curTrack.onloadedmetadata = function() 
-	{
-		console.log("loaded track metadata " + trackList[curIndex].name)
-		// let duration = Math.round(curTrack.duration)
-		let timeStrings = parseTime(curTrack.duration)
-
-		oldTotalTimeEl.textContent = timeStrings.min + ":" + timeStrings.sec;
-		curTrackText.textContent = trackList[curIndex].name	
-
-		//new	
-		nowPlayingText.textContent = trackList[curIndex].name	+ " " + timeStrings.min + ":" + timeStrings.sec;
-	}
-
-curTrack.onloadeddata = function()
-	{
-		console.log("loaded track data " + trackList[curIndex].name)
-	}
-
-function parseTime(duration)
-{
-	let minutes = Math.floor(duration/60)
-	let seconds = Math.round(duration % 60)
-	let minString = (minutes < 10)? ("0" + minutes) : ("" + minutes);
-	let secString = (seconds < 10)? ("0" + seconds) : ("" + seconds)
-
-	return { 
-     min: minString,
-     sec: secString
-   }; 
-}
-
-function playTrack()
-{
-	////temp. move this to entry page click event later 
-	if (audioContext.state === 'suspended') {
-		audioContext.resume();
-	}
-	//temp
-
-	curTrack.play();
-	isPlaying = true;
-	playPauseBtn.textContent = "pause";
-}
-
-//playback controls
-function playOrPause()
-{
-	////temp. move this to entry page click event later 
-	if (audioContext.state === 'suspended') {
-		audioContext.resume();
-	}
-	//temp
-
-	if (isPlaying) 
-	{
-		curTrack.pause();
-		isPlaying = false;
-		playPauseBtn.textContent = "play";
-	}
-	else { playTrack() }
-}
-
-function prevTrack()
-{
-	curIndex > 0 ? curIndex -= 1 : curIndex = trackList.length - 1;
-	loadTrack();
-	playTrack();
-	updateProgress();
-}
-
-function nextTrack()
-{
-	curIndex < trackList.length - 1 ? curIndex += 1 : curIndex = 0;
-	loadTrack();
-	playTrack();
-	updateProgress();
-}
-
-function setVolume()
-{
-	curTrack.volume = volumeSlider.value / volumeSlider.max
-}
-
-//progress bar
-function updateProgress()
-{
-	let progress = curTrack.currentTime / curTrack.duration;
-	progressFill.style.width = progress * progressBar.offsetWidth + "px";
-
-	let timeStrings = parseTime(curTrack.currentTime)
-	oldCurTimeEl.textContent = timeStrings.min + ":" + timeStrings.sec;
-	curTimeEl.textContent = timeStrings.min + ":" + timeStrings.sec;
-
-	//console.log("updated progress, progress = " + progress + ", width = " + progressFill.style.width)
-}
-
-function setProgress(el)
-{
-	let jumpTo = curTrack.duration * (el.offsetX / progressBar.offsetWidth);
-	curTrack.currentTime = jumpTo;
-	updateProgress()
-	console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + progressBar.offsetWidth + ", jumpTo = " + jumpTo)
-}
-
-let oldPlaylist = document.getElementById("old-playlist-content")
-let newPlaylist = document.getElementById("playlist-content")
-
-fillPlaylist(oldPlaylist);
-fillPlaylist(newPlaylist);
-
-function fillPlaylist(playlist)
-{
-	for (let i = 0; i < trackList.length; i++)
-	{
-		let li = document.createElement("li")
-		li.textContent = trackList[i].name 
-		playlist.appendChild(li)
-
-		li.addEventListener("click", function(){
-			curIndex = i 
-			loadTrack()
-			playTrack()
-			updateProgress()
-		})
-	}
-}
-////////////// music player //////////////
