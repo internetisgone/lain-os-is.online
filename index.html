@@ -20,6 +20,7 @@
 			<div class="mini-window-close"></div>
 
 			<div id="now-playing-container">
+				<p id="now-playing-static"></p>
 				<div id="now-playing">
 					<p id="now-playing-marquee"></p> 
 				</div>
@@ -57,7 +58,9 @@
   ⠀⠃⢹⡘⢿⣿⡟⣹⠀⠀⠀⠀⠀⠀⠘⢤⣉⣑⠁⠀ 
   ⠀⠀⠀⠙⣦⣤⠔⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 				</pre>
-				<p id="terminal-display"></p>
+				<p id="terminal-display">
+					type 'help' and hit enter to see a list of avaibale commands :3<br>
+				</p>
 
 			</div>
 			<div id="input-bg"></div>
@@ -130,7 +133,7 @@
 			<p id="biquad-prompt" style="width: 100%;">choose a filter:
 				<span id = biquad-tips>gain adjustment is available for lowshelf, highshelf, peaking. <br><br> q factor adjustment is available for lowpass, highpass, bandpass, peaking, notch, allpasss. <br><br> search "biquad filter MDN" for more info</span> 
 			</p>
-			<select id="switch-biquad" size="9">
+			<select id="switch-biquad" size="1">
 				<option value="0" selected="selected">none</option>
 				<option value="1">lowpass</option>
 				<option value="2">highpass</option>

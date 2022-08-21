@@ -66,14 +66,11 @@ let trackList = [
 // 	entryPage.parentNode.removeChild(entryPage)
 // })
 
-// window.onload = onPageLoaded
-// function onPageLoaded()
-// {
-// 	entryTextsEl.textContent = "log in"
-// 	// let chatIFrame = document.getElementsByTagName("iframe").item(0)
-// 	// chatIFrame.style.fontFamily = "'Input-Mono', monospace" //doesnt set the actual chat fonttt
-// 	// console.log(chatIFrame)
-// }
+// window.onload = function() {entryTextsEl.textContent = "log in"}
+
+// let chatIFrame = document.getElementsByTagName("iframe").item(0)
+// chatIFrame.style.fontFamily = "'Input-Mono', monospace" //doesnt set the actual chat fonttt
+// console.log(chatIFrame)
 
 ////////////// entry page //////////////
 
@@ -107,6 +104,11 @@ for (let i = 0; i < miniWindows.length; i++)
 		if(miniWindow.id == "chat-window") miniWindow.style.display = "flex";
 		else miniWindow.style.display = "block";
 		icon.style.display = "none"
+	})
+
+	// click to bring to front
+	miniWindow.addEventListener("click", function(){
+		miniWindow.style.zIndex = maxZ; maxZ++;
 	})
 
 	//set drag 
@@ -209,11 +211,13 @@ let curTrack = document.getElementById("cur-track")
 let isPlaying = false
 let progressTimer = null
 
+let nowPlayingContainer = document.getElementById("now-playing-container")
+let nowPlayingWrapper = document.getElementById("now-playing")
 let nowPlayingText = document.getElementById("now-playing-marquee")
+let nowPlayingStatic = document.getElementById("now-playing-static")
 let nowPlayingWidth
 
 ////////////// music player //////////////
-
 
 
 ////////////// old music player //////////////
@@ -234,6 +238,7 @@ function loadTrack()
 
 	curTrack.load();
 	progressTimer = setInterval(updateProgress, 1000);
+	//setNowPlayingAnim(false)
 }
 
 curTrack.addEventListener("ended", nextTrack)
@@ -248,12 +253,27 @@ curTrack.onloadedmetadata = function()
 
 		//newwwww
 		nowPlayingText.textContent = trackList[curIndex].name	+ " " + timeStrings.min + ":" + timeStrings.sec;
-		nowPlayingWidth = nowPlayingText.offsetWidth
-		console.log("nowPlayingWidth = " + nowPlayingWidth)
-		//todo scroll nowplaying text 
+		nowPlayingWidth = nowPlayingWrapper.offsetWidth
+		
+		//todo
+		if (nowPlayingWidth < nowPlayingContainer.offsetWidth) 
+		{
+			setNowPlayingAnim(false); 
+			nowPlayingStatic.textContent = trackList[curIndex].name	+ " " + timeStrings.min + ":" + timeStrings.sec;
+		}
+		else 
+		{
+			setNowPlayingAnim(true) 
+			nowPlayingStatic.textContent = ""
+		}
 
-		//if width > 0 and isplaying
-		//do scroll animation
+		console.log("nowPlayingWidth = " + nowPlayingWidth + ", nowPlayingContainer width = " + nowPlayingContainer.offsetWidth)
+
+		// todo set cur track <li> state in newPlaylist
+
+		//terminal 
+		terminalDisplay.innerHTML += "now playing " + trackList[curIndex].name + "<br>"
+		terminalTxtContainer.scrollTop = terminalTxtContainer.scrollHeight; 
 	}
 
 function parseTime(duration)
@@ -281,6 +301,7 @@ function playTrack()
 	curTrack.play();
 	isPlaying = true;
 	playPauseBtn.textContent = "pause";
+	//setNowPlayingAnim(true)
 }
 
 function pauseTrack() 
@@ -290,6 +311,32 @@ function pauseTrack()
 		curTrack.pause();
 		isPlaying = false;
 		playPauseBtn.textContent = "play";
+
+		//setNowPlayingAnim(false)
+	}
+}
+
+function setNowPlayingAnim(playAnim)
+{
+	if (playAnim) 
+	{
+		nowPlayingWrapper.style.opacity = "1"
+		nowPlayingText.style.opacity = "1"
+		// nowPlayingWrapper.style.animationPlayState = "running"
+		// nowPlayingText.style.animationPlayState = "running"
+
+	}
+	else //pause the scrolling animation
+	{
+		nowPlayingWrapper.style.opacity = "0"
+		nowPlayingText.style.opacity = "0"
+
+		//when paused the animation still overrides element pos 
+		// nowPlayingWrapper.style.animationPlayState = "paused"
+		// nowPlayingText.style.animationPlayState = "paused"
+
+		// nowPlayingWrapper.style.left = "0"
+		// nowPlayingText.style.left = "100%"
 	}
 }
 
@@ -300,7 +347,6 @@ function playOrPause()
 		audioContext.resume();
 	}
 	//temp
-
 	if (isPlaying) pauseTrack();
 	else playTrack();
 }
@@ -321,10 +367,7 @@ function nextTrack()
 	updateProgress();
 }
 
-function setVolume()
-{
-	curTrack.volume = volumeSlider.value / volumeSlider.max
-}
+function setVolume(){curTrack.volume = volumeSlider.value / volumeSlider.max}
 
 //progress bar
 function updateProgress()
@@ -379,7 +422,7 @@ let terminalDisplay = document.getElementById("terminal-display") //pre
 let fakeCaret = document.getElementById("fake-caret")
 let inputEl = document.getElementById("terminal-input")
 let initialIndent = 111 //need to get from element tbh
-let fontWidth = 8 //sunject to changee
+let fontWidth = 8 //subject to changee
 let caretOffest
 inputEl.onkeydown = validateInput
 
@@ -414,6 +457,8 @@ function validateInput(e)
 	}
 }
 
+let helpText = "available commands: <br> play &emsp;&emsp; play the currently loaded song <br> pause <br> next <br> prev <br> random &nbsp;play a random song<br> help &emsp;&emsp; see the full list of available commands<br><br> try typing 'random' and hit enter<br>"
+
 function checkCommand(input) 
 {
 	switch (input.trim().toLowerCase()) 
@@ -427,7 +472,13 @@ function checkCommand(input)
 			loadTrack(); playTrack();
 			break;
 
-		default: terminalDisplay.innerHTML += "sowwy idk that word!</br>"
+		case "help": terminalDisplay.innerHTML += helpText; break;
+
+		//test//
+		case "toilet": gotoToilet(); break;
+		//test//
+
+		default: terminalDisplay.innerHTML += "idk that word!</br>"
 	}
 
 }
@@ -621,3 +672,15 @@ function toggleReverb()
 }
 
 ////////////// end of audio filter //////////////
+
+
+////////////// audio filter presets //////////////
+
+function gotoToilet()
+{
+	switchBiquad(4)
+	biquadFilter.gain.setValueAtTime(40, audioContext.currentTime)
+}
+
+////////////// audio filter presets //////////////
+

@@ -104,7 +104,7 @@ inactive window 6, 5
 
 #main-container
 {
-	position: absolute; /*tempp so u can scroll inside the old player. use "fixed"*/
+	position: fixed; 
 	display: flex;
 	justify-content: center; 
 	align-items: center;
@@ -287,6 +287,7 @@ inactive window 6, 5
 /******* music player *******/
 #music-player
 {
+	font-family: "LoveLetter"; font-size: small; color: black; 
 	background-color: transparent;
 	box-shadow: none;
 	background-image: url("img/player-mockup.png");
@@ -311,6 +312,8 @@ inactive window 6, 5
 	opacity: 0.3;
 }
 
+#now-playing-static {position: absolute; margin: 0;}
+
 #now-playing 
 {
 	position: absolute;
@@ -321,16 +324,15 @@ inactive window 6, 5
 #now-playing-marquee
 {
 	position: relative;
-	font-family: "LoveLetter" !important; color: black; 
 	width: auto; height: 100%; margin: 0;
 	margin-left: -100%; left: 0;
 	white-space: nowrap;
 	background-color: transparent;
 	animation: scrollText 7s linear infinite;
 }
-/*#now-playing::-webkit-scrollbar {display: none;}
-*/
 
+/*animate the two elements at same time 
+so that texts of variable lengths can be scrolled*/
 @keyframes scrollTextWrap
 {
 /*	from {margin-left: 100%;}
@@ -384,7 +386,6 @@ inactive window 6, 5
 
 li
 {
-	font-size: 15px;
 	padding: 4px;
 	cursor: pointer;
 	background-color: none;
