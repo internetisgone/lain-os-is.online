@@ -312,7 +312,7 @@ inactive window 6, 5
 	opacity: 0.3;
 }
 
-#now-playing-static {position: absolute; margin: 0;}
+#now-playing-static {position: absolute; margin: 0; z-index: 33;}
 
 #now-playing 
 {

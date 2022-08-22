@@ -217,6 +217,9 @@ let nowPlayingText = document.getElementById("now-playing-marquee")
 let nowPlayingStatic = document.getElementById("now-playing-static")
 let nowPlayingWidth
 
+let curTrackStateIcon = document.getElementById("cur-track-state") //play / pause icon
+
+
 ////////////// music player //////////////
 
 
@@ -233,41 +236,35 @@ function loadTrack()
 {
 	if (progressTimer != null) 	{clearInterval(progressTimer)}
 	curTrack.src = trackList[curIndex].path;
-	curTrackText.textContent = "loading metadata..."
-	nowPlayingText.textContent = "loading metadata..."
+	curTrackText.textContent = "loading metadata..." //deletee
+
+	setNowPlayingAnim(false)
+	nowPlayingStatic.textContent = "loading metadata..."
 
 	curTrack.load();
-	progressTimer = setInterval(updateProgress, 1000);
-	//setNowPlayingAnim(false)
+	progressTimer = setInterval(updateProgress, 1000);	
 }
 
 curTrack.addEventListener("ended", nextTrack)
 curTrack.onloadedmetadata = function() 
 	{
 		console.log("loaded track metadata " + trackList[curIndex].name)
-		// let duration = Math.round(curTrack.duration)
 		let timeStrings = parseTime(curTrack.duration)
 
 		oldTotalTimeEl.textContent = timeStrings.min + ":" + timeStrings.sec;
 		curTrackText.textContent = trackList[curIndex].name	
 
-		//newwwww
 		nowPlayingText.textContent = trackList[curIndex].name	+ " " + timeStrings.min + ":" + timeStrings.sec;
+		//only scroll if track name + length is longer than the container 
 		nowPlayingWidth = nowPlayingWrapper.offsetWidth
-		
-		//todo
 		if (nowPlayingWidth < nowPlayingContainer.offsetWidth) 
 		{
-			setNowPlayingAnim(false); 
+			setNowPlayingAnim(false); //set the animated divs' opacity to 0
 			nowPlayingStatic.textContent = trackList[curIndex].name	+ " " + timeStrings.min + ":" + timeStrings.sec;
 		}
-		else 
-		{
-			setNowPlayingAnim(true) 
-			nowPlayingStatic.textContent = ""
-		}
+		else {setNowPlayingAnim(true); nowPlayingStatic.textContent = "";}
 
-		console.log("nowPlayingWidth = " + nowPlayingWidth + ", nowPlayingContainer width = " + nowPlayingContainer.offsetWidth)
+		//console.log("nowPlayingWidth = " + nowPlayingWidth + ", nowPlayingContainer width = " + nowPlayingContainer.offsetWidth)
 
 		// todo set cur track <li> state in newPlaylist
 
@@ -281,7 +278,7 @@ function parseTime(duration)
 	let minutes = Math.floor(duration/60)
 	let seconds = Math.round(duration % 60)
 	let minString = (minutes < 10)? ("0" + minutes) : ("" + minutes);
-	let secString = (seconds < 10)? ("0" + seconds) : ("" + seconds)
+	let secString = (seconds < 10)? ("0" + seconds) : ("" + seconds);
 
 	return { 
      min: minString,
@@ -300,8 +297,9 @@ function playTrack()
 
 	curTrack.play();
 	isPlaying = true;
-	playPauseBtn.textContent = "pause";
-	//setNowPlayingAnim(true)
+	curTrackStateIcon.src = "img/test-play.png"
+	
+	playPauseBtn.textContent = "pause";//to be deleted
 }
 
 function pauseTrack() 
@@ -310,33 +308,23 @@ function pauseTrack()
 	{
 		curTrack.pause();
 		isPlaying = false;
-		playPauseBtn.textContent = "play";
+		curTrackStateIcon.src = "img/test-pause.png"
 
-		//setNowPlayingAnim(false)
+		playPauseBtn.textContent = "play";//to be deleted
 	}
 }
 
 function setNowPlayingAnim(playAnim)
 {
-	if (playAnim) 
+	if (playAnim) //show the scrolling divs
 	{
 		nowPlayingWrapper.style.opacity = "1"
 		nowPlayingText.style.opacity = "1"
-		// nowPlayingWrapper.style.animationPlayState = "running"
-		// nowPlayingText.style.animationPlayState = "running"
-
 	}
-	else //pause the scrolling animation
+	else //show the static element
 	{
 		nowPlayingWrapper.style.opacity = "0"
 		nowPlayingText.style.opacity = "0"
-
-		//when paused the animation still overrides element pos 
-		// nowPlayingWrapper.style.animationPlayState = "paused"
-		// nowPlayingText.style.animationPlayState = "paused"
-
-		// nowPlayingWrapper.style.left = "0"
-		// nowPlayingText.style.left = "100%"
 	}
 }
 
@@ -676,6 +664,17 @@ function toggleReverb()
 
 ////////////// audio filter presets //////////////
 
+//todo crossfade 
+function switchFilter(bqdIndex = 0, bqdFrequency = 1000, bqdGain = 25, bqdQ = 1, hasRvrb, rvrbbDuration, rvrbDecay)
+{
+	// switchBiquad(bqdIndex);
+	// biquadFilter.frequency.value = bqdFrequency;
+	// biquadFilter.gain.value = bqdGain;
+	// biquadFilter.Q.value = bqdQ;
+}
+
+
+//test 
 function gotoToilet()
 {
 	switchBiquad(4)
