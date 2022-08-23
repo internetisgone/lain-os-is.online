@@ -18,7 +18,7 @@ p, label, button, option, ul
 
 body 
 {
-	background-image: url("img/extended_bg_s.png");
+	background-image: url("img/bg1.png");
 	background-repeat: no-repeat;
 /*	background-size: 100%;
 */	background-color: whitesmoke;
@@ -37,6 +37,7 @@ body
 		left: 50%; top: 50%;
 		width: 60vw; height: auto;
 	}
+	#icons-container {width: 400px; height: 90px;}
 }
 
 /*bg lain pic and entry pic for desktop / landscape display*/
@@ -51,6 +52,7 @@ body
 		 left: 50%; top: 50%; 
 		 height: 55vh; width: auto;
 	}
+	#icons-container {width: 600px; height: 80px;}
 }
 
 hr 
@@ -270,18 +272,27 @@ inactive window 6, 5
 #dock-container
 {
 	position: absolute;
-/*	display: flex;
-*/	justify-content: center; align-items: center;
+	display: flex;
+	justify-content: center; align-items: center;
 	bottom: 9%;
 	width: 100%; height: 55px;
 }
 
+#icons-container /*adaptive size*/
+{
+	position: absolute;
+	display: flex;
+	align-items: center; justify-content: center;
+	top: 0;
+	background-image: url("img/test-dock50.png");
+	background-size: 100%; background-position: 0;
+}
 .icon 
 {
 	display: none;
-	position: absolute;
-	width: 55px; height: 55px; margin: 5px;
+	width: 60px; height: 60px; margin: 5px;
 	cursor: pointer;
+/*	opacity: 77%;*/
 }
 
 /******* music player *******/
@@ -305,23 +316,25 @@ inactive window 6, 5
 #now-playing-container
 {
 	position: absolute;
-	left: 39%; right: 11%; top: 6%; bottom: 89%;
+	left: 39%; right: 11%; top: 6%; bottom: 88%;
 	width: auto; height: auto;
 	overflow: hidden;
 	background-color: lightgray; 
 	opacity: 0.3;
 }
 
-#now-playing-static {position: absolute; margin: 0; z-index: 33;}
+#now-playing-static {position: absolute; margin: 0; margin-top: 3px; z-index: 33;}
 
 #now-playing 
 {
 	position: absolute;
-	width: auto; height: 100%; left: 0;
+	display: flex;
+	margin-top: 3px;
+	width: auto; height: 100%;
 	animation: scrollTextWrap 7s linear infinite;
 }
 
-#now-playing-marquee
+.now-playing-marquee
 {
 	position: relative;
 	width: auto; height: 100%; margin: 0;
@@ -338,7 +351,7 @@ so that texts of variable lengths can be scrolled*/
 /*	from {margin-left: 100%;}
     to {margin-left: 0%;}*/
     from {left: 100%;}
-    to {left: 0%;}
+    to {left: 0;}
 }
 @keyframes scrollText
 {
@@ -365,7 +378,7 @@ so that texts of variable lengths can be scrolled*/
 
 #playback-controls
 {
-	position: absolute;
+	position: absolute; display: flex;
 	left: 23%; right: 23%; top: 23%; bottom: 73%;
 /*	background-color: lightgray;
 	opacity: 0.3;*/
@@ -375,14 +388,14 @@ so that texts of variable lengths can be scrolled*/
 {
 	position: absolute;
 	color: whitesmoke;
-	left: 17%; right: 11%; bottom: 15%; top: 56%;
+	left: 19%; right: 13%; bottom: 15%; top: 57%;
 	width: auto; height: auto;
 	background-color: lightgray;
 	opacity: 0.7;
 	overflow-y: scroll; overflow-x: hidden;
 }
 
-#playlist-content {list-style-type: decimal; color: black;}
+#playlist-content {list-style-type: none; color: black; padding-left: 13px;}
 
 li
 {

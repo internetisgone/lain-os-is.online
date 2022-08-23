@@ -24,6 +24,10 @@ let trackList = [
 		path: "/demo-mp3/Kagami Smile -  Acts of Betrayal.mp3"
   },
   {
+  	name: "Nerve - I'm Gonna Diss You",
+  	path: "/demo-mp3/Nerve - I'm Gonna Diss You.mp3"
+  },
+  {
   	name: "Sour Gout - Transmigration(-60db_unmastered)",
 		path: "/demo-mp3/Sour Gout - Transmigration(-60db_unmastered).mp3"
   },
@@ -213,12 +217,34 @@ let progressTimer = null
 
 let nowPlayingContainer = document.getElementById("now-playing-container")
 let nowPlayingWrapper = document.getElementById("now-playing")
-let nowPlayingText = document.getElementById("now-playing-marquee")
+let nowPlayingText = document.getElementsByClassName("now-playing-marquee").item(0)
 let nowPlayingStatic = document.getElementById("now-playing-static")
 let nowPlayingWidth
 
 let curTrackStateIcon = document.getElementById("cur-track-state") //play / pause icon
+let curBitrate = document.getElementById("cur-track-bitrate")
 
+let playlistUl = document.getElementById("playlist-content")
+
+fillPlaylist(playlistUl);
+
+function fillPlaylist(playlist)
+{
+	for (let i = 0; i < trackList.length; i++)
+	{
+		let li = document.createElement("li")
+		li.className = "playlist-entry"
+		li.textContent = (i + 1) + ". " + trackList[i].name 
+		playlist.appendChild(li)
+
+		li.addEventListener("click", function(){
+			curIndex = i 
+			loadTrack()
+			playTrack()
+			updateProgress()
+		})
+	}
+}
 
 ////////////// music player //////////////
 
@@ -229,7 +255,13 @@ let oldCurTimeEl = document.getElementById("old-cur-time")
 let curTimeEl = document.getElementById("cur-time")
 let oldTotalTimeEl = document.getElementById("old-total-time")
 
+let wrapperClone
+
+//initial state//
 loadTrack();
+curTrackStateIcon.src = "img/test-stop.png";
+//initial state//
+
 progressBar.addEventListener("click", setProgress);
 
 function loadTrack()
@@ -243,6 +275,14 @@ function loadTrack()
 
 	curTrack.load();
 	progressTimer = setInterval(updateProgress, 1000);	
+
+	//hide dis on first track??
+	curBitrate.innerHTML = "192 Kbps 44.1k Hz&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;stereo"
+	
+	//todoooo
+	let curPlaylistEntry = playlistUl.getElementsByClassName("playlist-entry").item(curIndex)
+	console.log(curPlaylistEntry)
+	curPlaylistEntry.style.backgroundColor = "lavender;"
 }
 
 curTrack.addEventListener("ended", nextTrack)
@@ -262,11 +302,14 @@ curTrack.onloadedmetadata = function()
 			setNowPlayingAnim(false); //set the animated divs' opacity to 0
 			nowPlayingStatic.textContent = trackList[curIndex].name	+ " " + timeStrings.min + ":" + timeStrings.sec;
 		}
-		else {setNowPlayingAnim(true); nowPlayingStatic.textContent = "";}
+		else 
+		{
+			setNowPlayingAnim(true); 
+			nowPlayingStatic.textContent = "";		
+		}
 
 		//console.log("nowPlayingWidth = " + nowPlayingWidth + ", nowPlayingContainer width = " + nowPlayingContainer.offsetWidth)
 
-		// todo set cur track <li> state in newPlaylist
 
 		//terminal 
 		terminalDisplay.innerHTML += "now playing " + trackList[curIndex].name + "<br>"
@@ -316,10 +359,23 @@ function pauseTrack()
 
 function setNowPlayingAnim(playAnim)
 {
+	//if (wrapperClone)	wrapperClone = null;
+
 	if (playAnim) //show the scrolling divs
 	{
 		nowPlayingWrapper.style.opacity = "1"
 		nowPlayingText.style.opacity = "1"
+
+		//todoo continuous scrolling text
+		// wrapperClone = nowPlayingWrapper.cloneNode(true) //deep clone, clones its content 
+		// nowPlayingContainer.appendChild(wrapperClone) 
+		// wrapperClone.style.top = "0"
+
+		// wrapperClone.style.animationDelay = "3.5s"
+		// wrapperClone.getElementsByClassName("now-playing-marquee").item(0).style.animationDelay = "3.5s"
+
+		// nowPlayingWrapper.style.animationDelay = "1.33s"
+		// nowPlayingText.style.animationDelay = "1.33s"
 	}
 	else //show the static element
 	{
@@ -355,6 +411,17 @@ function nextTrack()
 	updateProgress();
 }
 
+function stopTrack() 
+{
+	curTrack.pause();
+	isPlaying = false;
+	curTrack.currentTime = 0; 
+	updateProgress();
+	curTrackStateIcon.src = "img/test-stop.png";
+
+	curBitrate.innerHTML = "";
+}
+
 function setVolume(){curTrack.volume = volumeSlider.value / volumeSlider.max}
 
 //progress bar
@@ -379,27 +446,7 @@ function setProgress(el)
 }
 
 let oldPlaylist = document.getElementById("old-playlist-content")
-let newPlaylist = document.getElementById("playlist-content")
-
 fillPlaylist(oldPlaylist);
-fillPlaylist(newPlaylist);
-
-function fillPlaylist(playlist)
-{
-	for (let i = 0; i < trackList.length; i++)
-	{
-		let li = document.createElement("li")
-		li.textContent = trackList[i].name 
-		playlist.appendChild(li)
-
-		li.addEventListener("click", function(){
-			curIndex = i 
-			loadTrack()
-			playTrack()
-			updateProgress()
-		})
-	}
-}
 ////////////// old music player //////////////
 
 

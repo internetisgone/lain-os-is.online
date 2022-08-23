@@ -10,7 +10,7 @@
 <!-- 	<div id="entry-page"> 
 		<img src="img/frame.png" id="entry-img">
 		<p id="entry-texts">initialising...</p>
-		<p style="position: absolute; bottom: 2.3%; color: darkgray; font-size: small;">public domain operating system</p>
+		<p style="position: absolute; bottom: 3.3%; color: darkgray; font-size: small;">public domain operating system</p>
 	</div> -->
 
 	<div id="main-container">
@@ -22,8 +22,9 @@
 			<div id="now-playing-container">
 				<p id="now-playing-static"></p>
 				<div id="now-playing">
-					<p id="now-playing-marquee"></p> 
+					<p class="now-playing-marquee"></p> 
 				</div>
+				<p id="cur-track-bitrate" style="position: absolute; margin: 0; margin-left: 6px; bottom: 0; font-size: 11px;"></p>
 			</div>
 
 			<div id="cur-time-container">
@@ -33,8 +34,11 @@
 
 			<div id="playback-controls">
 				<button id="prev-btn" onclick="prevTrack()">prev</button>
-				<button id="play-pause-btn" onclick="playOrPause()">play/pause</button>
+				<button id="play-pause-btn" onclick="playTrack()">play</button>
+				<button onclick="pauseTrack()" >pause</button>
+				<button onclick="stopTrack()">stop</button>
 				<button id="next-btn" onclick="nextTrack()">next</button>
+				<button style="margin-left: 13px;" >dl</button>
 			</div>
 			<div id="playlist-container">
 				<ul id="playlist-content">
@@ -85,15 +89,18 @@
 		</div>
 
 		<div id="dock-container">
-			<div class="icon" id="icon-music-player" style="left: 90px;">
-				<img src="img/test-icon.png" style="width: 100%;"></img>
+			<div id="icons-container">
+				<div class="icon" id="icon-music-player">
+				<img src="img/copland-icon.png" style="width: 100%;"></img>
+				</div>
+				<div class="icon" id="icon-terminal">
+					<img src="img/copland-icon.png" style="width: 100%;"></img>
+				</div>
+				<div class="icon" id="icon-chat">
+					<img src="img/test-icon-bw.png" style="width: 100%;"></img>
+				</div>
 			</div>
-			<div class="icon" id="icon-terminal" style="left: 170px;">
-				<img src="img/test-icon.png" style="width: 100%;"></img>
-			</div>
-			<div class="icon" id="icon-chat" style="left: 250px;">
-				<img src="img/test-icon.png" style="width: 100%;"></img>
-			</div>
+			
 		</div>
 
 
