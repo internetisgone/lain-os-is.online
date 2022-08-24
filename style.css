@@ -131,7 +131,7 @@ inactive window 6, 5
 	z-index: 5;
 
 	border-radius: 10px;
-	box-shadow:  -5px -5px 7px dimgray inset, 5px 5px 7px dimgray inset;
+	box-shadow:  -5px -5px 3px dimgray inset, 5px 5px 3px dimgray inset;
 }
 
 .mini-window-draggable
@@ -290,7 +290,7 @@ inactive window 6, 5
 .icon 
 {
 	display: none;
-	width: 60px; height: 60px; margin: 5px;
+	width: 55px; height: 55px; margin: 5px;
 	cursor: pointer;
 /*	opacity: 77%;*/
 }
@@ -379,7 +379,7 @@ so that texts of variable lengths can be scrolled*/
 #playback-controls
 {
 	position: absolute; display: flex;
-	left:13%; top: 23%; bottom: 73%;
+	left:7%; top: 23%; bottom: 73%;
 /*	background-color: lightgray;
 	opacity: 0.3;*/
 }
@@ -428,13 +428,26 @@ so that texts of variable lengths can be scrolled*/
 	position: absolute;
 	left: 0%;
 	bottom: 0;
-	width: 270px;
-	height: 66px;
+	width: 200px;
+	height: 50px;
+	font-family: LoveLetter; font-size: small; color: black; text-align: center;
 	background-color: lightgray;
-	opacity: 0.5;
-	cursor: pointer ;
+	opacity: 0.4;
+	cursor: pointer;
 }
 
+#temp-bg-audio-toggle
+{
+	position: absolute;
+	left: 0%;
+	bottom: 15%;
+	width: 200px;
+	height: 50px;
+	font-family: LoveLetter; font-size: small; color: black; text-align: center;
+	background-color: lightgray;
+	opacity: 0.4;
+	cursor: pointer;
+}
 #biquad-prompt:hover #biquad-tips{opacity: 1;}
 
 #biquad-tips {

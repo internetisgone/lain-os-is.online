@@ -59,18 +59,31 @@ let trackList = [
 
 ////////////// entry page //////////////
 
-// let entryPage = document.getElementById("entry-page")
-// let entryTextsEl = document.getElementById("entry-texts")
+let entryPage = document.getElementById("entry-page")
+let entryTextsEl = document.getElementById("entry-texts")
 
-// entryPage.addEventListener("click", function(){
-// 	entryPage.style.opacity = "0"
-// 	if (audioContext.state === 'suspended') {audioContext.resume();}
-// })
-// entryPage.addEventListener('transitionend', function() {
-// 	entryPage.parentNode.removeChild(entryPage)
-// })
+let bgAudio = document.getElementById("bg-track")
+let bgAudioToggle = document.getElementById("temp-bg-audio-toggle")
+let hasBgAudio = false
 
-// window.onload = function() {entryTextsEl.textContent = "log in"}
+bgAudioToggle.addEventListener("click", function(){
+	if (hasBgAudio) {bgAudio.pause(); hasBgAudio = false}
+	else {bgAudio.play(); hasBgAudio = true}
+})
+
+entryPage.addEventListener("click", function(){
+	entryPage.style.opacity = "0"
+	if (audioContext.state === 'suspended') {audioContext.resume();}
+	bgAudio.load();
+	bgAudio.addEventListener("canplaythrough", function(){bgAudio.play();})
+	hasBgAudio = true;
+	bgAudio.volume = 0.2;
+})
+entryPage.addEventListener('transitionend', function() {
+	entryPage.parentNode.removeChild(entryPage)
+})
+
+window.onload = function() {entryTextsEl.textContent = "log in"}
 
 // let chatIFrame = document.getElementsByTagName("iframe").item(0)
 // chatIFrame.style.fontFamily = "'Input-Mono', monospace" //doesnt set the actual chat fonttt
@@ -416,7 +429,7 @@ function nextTrack()
 {
 	if (isShuffle) curIndex = Math.floor(Math.random() * trackList.length);
 	else curIndex < trackList.length - 1 ? curIndex += 1 : curIndex = 0;
-	
+
 	loadTrack();
 	playTrack();
 	updateProgress();
@@ -574,10 +587,10 @@ let showingOldUI = false
 tempToggle.addEventListener("click", function(){
 	if (showingOldUI)
 	{
-		document.body.style.backgroundImage = 'url("img/extended_bg_s.png")'
+		document.body.style.backgroundImage = 'url("img/bg1.png")'
 		oldPlayerContainer.style.display = "none"
 		playlistEl.style.display = "none"
-		dockContainer.style.display = "block"
+		dockContainer.style.display = "flex"
 		for (let i = 0; i < miniWindows.length; i++)
 		{
 			miniWindows.item(i).style.display = "block"

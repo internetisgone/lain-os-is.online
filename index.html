@@ -16,6 +16,8 @@
 	<div id="main-container">
 
 		<div class="mini-window" id="music-player">
+			<audio preload="auto" id="cur-track"></audio>
+			<audio preload="auto" id="bg-track" loop src="/bg-mp3/server_room_188.mp3"></audio>
 			<div class="mini-window-draggable" id="music-player-drag"></div>
 			<div class="mini-window-close"></div>
 
@@ -87,9 +89,8 @@
 			</div>
 		</div>
 
-		<div id="temp-toggle">
-			<p style="color: black; text-align: center;"> (temp) switch view</p>
-		</div>
+		<div id="temp-toggle">(temp) switch view</div>
+		<div id="temp-bg-audio-toggle">(temp) toggle bg ambience</div>
 
 		<div id="dock-container">
 			<div id="icons-container">
@@ -114,7 +115,6 @@
 
 		<!-- temp div, will eventually delete -->
 		<div id="old-player-container">
-			<audio preload="auto" id="cur-track"></audio>
 			<p id="cur-track-info" style="width: 333px;"></p>
 
 			<div>
