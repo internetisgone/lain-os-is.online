@@ -281,8 +281,8 @@ inactive window 6, 5
 #icons-container /*adaptive size*/
 {
 	position: absolute;
-	display: flex;
-	align-items: center; justify-content: center;
+	display: flex; flex-direction: row;
+	align-items: left; justify-content: center;
 	top: 0;
 	background-image: url("img/test-dock50.png");
 	background-size: 100%; background-position: 0;
@@ -379,10 +379,11 @@ so that texts of variable lengths can be scrolled*/
 #playback-controls
 {
 	position: absolute; display: flex;
-	left: 23%; right: 23%; top: 23%; bottom: 73%;
+	left:13%; top: 23%; bottom: 73%;
 /*	background-color: lightgray;
 	opacity: 0.3;*/
 }
+#playback-controls button {width: 54px;}
 
 #playlist-container
 {
@@ -391,7 +392,7 @@ so that texts of variable lengths can be scrolled*/
 	left: 19%; right: 13%; bottom: 15%; top: 57%;
 	width: auto; height: auto;
 	background-color: lightgray;
-	opacity: 0.7;
+	opacity: 0.8;
 	overflow-y: scroll; overflow-x: hidden;
 }
 
@@ -405,7 +406,7 @@ so that texts of variable lengths can be scrolled*/
 
 .playlist-entry:hover{
 	background-color: lavender !important;
-	box-shadow: 2px 3px 5px black;
+	box-shadow: 3px 2px 2px black;
 }
 
 /******* music player *******/

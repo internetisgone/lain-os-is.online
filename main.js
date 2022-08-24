@@ -224,6 +224,11 @@ let nowPlayingWidth
 let curTrackStateIcon = document.getElementById("cur-track-state") //play / pause icon
 let curBitrate = document.getElementById("cur-track-bitrate")
 
+let shuffleBtn = document.getElementById("shuffle-btn")
+let isShuffle = false
+let loopBtn = document.getElementById("loop-btn")
+let isLoop = false
+
 let playlistUl = document.getElementById("playlist-content")
 
 fillPlaylist(playlistUl);
@@ -289,6 +294,7 @@ function loadTrack()
 }
 
 curTrack.addEventListener("ended", nextTrack)
+
 curTrack.onloadedmetadata = function() 
 	{
 		console.log("loaded track metadata " + trackList[curIndex].name)
@@ -408,7 +414,9 @@ function prevTrack()
 
 function nextTrack()
 {
-	curIndex < trackList.length - 1 ? curIndex += 1 : curIndex = 0;
+	if (isShuffle) curIndex = Math.floor(Math.random() * trackList.length);
+	else curIndex < trackList.length - 1 ? curIndex += 1 : curIndex = 0;
+	
 	loadTrack();
 	playTrack();
 	updateProgress();
@@ -423,6 +431,38 @@ function stopTrack()
 	curTrackStateIcon.src = "img/test-stop.png";
 
 	curBitrate.innerHTML = "";
+}
+
+function toggleShuffle()
+{
+	if (isShuffle == false) 
+	{
+		isShuffle = true; shuffleBtn.textContent = "shuffle on"
+	}
+	else 
+	{
+		isShuffle = false; shuffleBtn.textContent = "shuffle off"
+	}
+}
+
+function toggleLoop()
+{
+	if (isLoop == false)
+	{
+		isLoop = true
+		loopBtn.textContent = "loop on"
+		curTrack.removeEventListener("ended", nextTrack)
+		curTrack.addEventListener("ended", function() {
+			curTrack.currentTime = 0;
+			curTrack.play()
+		})
+	}
+	else
+	{
+		isLoop = false
+		loopBtn.textContent = "loop off"
+		curTrack.addEventListener("ended", nextTrack)
+	}
 }
 
 function setVolume(){curTrack.volume = volumeSlider.value / volumeSlider.max}
