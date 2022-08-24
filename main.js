@@ -256,6 +256,7 @@ let curTimeEl = document.getElementById("cur-time")
 let oldTotalTimeEl = document.getElementById("old-total-time")
 
 let wrapperClone
+let playlistEntries = playlistUl.getElementsByClassName("playlist-entry")
 
 //initial state//
 loadTrack();
@@ -279,10 +280,12 @@ function loadTrack()
 	//hide dis on first track??
 	curBitrate.innerHTML = "192 Kbps 44.1k Hz&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;stereo"
 	
-	//todoooo
-	let curPlaylistEntry = playlistUl.getElementsByClassName("playlist-entry").item(curIndex)
-	console.log(curPlaylistEntry)
-	curPlaylistEntry.style.backgroundColor = "lavender;"
+	//set playlist entry bg color 
+	for (let i = 0; i < trackList.length; i++)
+	{
+		if (i === curIndex) playlistEntries.item(i).style.backgroundColor = "white";
+		else playlistEntries.item(i).style.backgroundColor = "transparent";
+	}
 }
 
 curTrack.addEventListener("ended", nextTrack)

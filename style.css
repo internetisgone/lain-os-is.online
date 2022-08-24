@@ -397,17 +397,15 @@ so that texts of variable lengths can be scrolled*/
 
 #playlist-content {list-style-type: none; color: black; padding-left: 13px;}
 
-li
+.playlist-entry
 {
-	padding: 4px;
+	margin: 6px;
 	cursor: pointer;
-	background-color: none;
-	transition: 0.07;
 }
 
-li:hover{
-	background-color: lavender;
-	box-shadow: 3px 5px 7px black;
+.playlist-entry:hover{
+	background-color: lavender !important;
+	box-shadow: 2px 3px 5px black;
 }
 
 /******* music player *******/
