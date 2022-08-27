@@ -409,6 +409,26 @@ so that texts of variable lengths can be scrolled*/
 	box-shadow: 3px 2px 2px black;
 }
 
+#mini-display-container
+{
+	position: absolute;
+	left: 55%; right: 15%; bottom: 2%; top: 89%;
+	background-color: lightgray;
+	opacity: 0.5;
+}
+
+#mini-total-time
+{
+	position: absolute; top: 3px; left: 3px; margin: 0; 
+	font-family: Input-Mono, monospace; font-size: small; color: black;
+}
+
+#mini-cur-time
+{
+	position: absolute;
+	font-family: Input-Mono, monospace; font-size: small; color: black;
+	bottom: 2%; right: 3%;
+}
 /******* music player *******/
 
 /***************** mini windows /*****************/
@@ -472,7 +492,7 @@ so that texts of variable lengths can be scrolled*/
 
 #old-playlist-content
 {
-	list-style-type: decimal;
+	list-style-type: none;
 }
 
 #old-player-container 

@@ -24,6 +24,10 @@ let trackList = [
 		path: "/demo-mp3/Kagami Smile -  Acts of Betrayal.mp3"
   },
   {
+  	name: "lovefear - SEL compilation track final",
+  	path: "/demo-mp3/lovefear - SEL compilation track final.mp3"
+  },
+  {
   	name: "Nerve - I'm Gonna Diss You",
   	path: "/demo-mp3/Nerve - I'm Gonna Diss You.mp3"
   },
@@ -42,6 +46,10 @@ let trackList = [
   {
   	name: "xo - 200529-DuvetBoa8-absurd3bF",
 		path: "/demo-mp3/xo - 200529-DuvetBoa8-absurd3bF.mp3"
+  },
+  {
+  	name: "Yikii - Ancient Scanner",
+  	path: "/demo-mp3/Yikii - Ancient Scanner.mp3"
   },
   {
   	name: "Yraki - Lights Down - PREMASTER24bit",
@@ -71,26 +79,32 @@ bgAudioToggle.addEventListener("click", function(){
 	else {bgAudio.play(); hasBgAudio = true}
 })
 
-entryPage.addEventListener("click", function(){
+window.onload = function() {
+	entryTextsEl.textContent = "log in"
+
+	entryPage.addEventListener("click", function(){
 	entryPage.style.opacity = "0"
 	if (audioContext.state === 'suspended') {audioContext.resume();}
 	bgAudio.load();
 	bgAudio.addEventListener("canplaythrough", function(){bgAudio.play();})
 	hasBgAudio = true;
 	bgAudio.volume = 0.2;
+
+	//temppp
+	//setInterval(totalLengthTest, 5000);
 })
+
 entryPage.addEventListener('transitionend', function() {
 	entryPage.parentNode.removeChild(entryPage)
 })
 
-window.onload = function() {entryTextsEl.textContent = "log in"}
+}
 
 // let chatIFrame = document.getElementsByTagName("iframe").item(0)
 // chatIFrame.style.fontFamily = "'Input-Mono', monospace" //doesnt set the actual chat fonttt
 // console.log(chatIFrame)
 
 ////////////// entry page //////////////
-
 
 ////////////// mini windows //////////////
 
@@ -217,7 +231,7 @@ function dragEnd()
 ////////////// music player //////////////
 
 let playPauseBtn = document.getElementById("old-play-pause-btn")
-let volumeSlider = document.getElementById("volume-slider")
+let volumeSlider = document.getElementById("old-volume-slider")
 let progressBar = document.getElementById("progress-bar-container")
 let progressFill = document.getElementById("progress-bar-fill")
 let curTrackText = document.getElementById("cur-track-info")
@@ -242,6 +256,10 @@ let isShuffle = false
 let loopBtn = document.getElementById("loop-btn")
 let isLoop = false
 
+let miniTotalTime = document.getElementById("mini-total-time")
+let miniCurTime = document.getElementById("mini-cur-time")
+let totalTime = "69:09" //tempppp
+
 let playlistUl = document.getElementById("playlist-content")
 
 fillPlaylist(playlistUl);
@@ -263,7 +281,6 @@ function fillPlaylist(playlist)
 		})
 	}
 }
-
 ////////////// music player //////////////
 
 
@@ -314,6 +331,8 @@ curTrack.onloadedmetadata = function()
 		let timeStrings = parseTime(curTrack.duration)
 
 		oldTotalTimeEl.textContent = timeStrings.min + ":" + timeStrings.sec;
+
+		miniTotalTime.textContent = timeStrings.min + ":" + timeStrings.sec + " / " + totalTime
 		curTrackText.textContent = trackList[curIndex].name	
 
 		nowPlayingText.textContent = trackList[curIndex].name	+ " " + timeStrings.min + ":" + timeStrings.sec;
@@ -337,6 +356,32 @@ curTrack.onloadedmetadata = function()
 		terminalDisplay.innerHTML += "now playing " + trackList[curIndex].name + "<br>"
 		terminalTxtContainer.scrollTop = terminalTxtContainer.scrollHeight; 
 	}
+
+//test func. gets total length of album
+// let testIndex = 0;
+// let testTotalMin = 0;
+// let testTotalSec = 0;
+// function totalLengthTest()
+// {
+// 	if (testIndex < trackList.length)
+// 	{
+// 		curIndex = testIndex;
+// 		loadTrack();
+
+// 		curTrack.onloadedmetadata = function()
+// 		{
+// 			let minutes = Math.floor(curTrack.duration/60)
+// 			let seconds = Math.round(curTrack.duration % 60)
+
+// 			testTotalMin += minutes
+// 			testTotalSec += seconds
+// 			console.log("loaded track metadata at " + testIndex + ", length " + minutes + ":" + seconds)
+// 			testIndex++;
+// 		}
+// 	}
+// 	else console.log("total length " + testTotalMin + "min " + testTotalSec + "sec")
+// }
+//test func end
 
 function parseTime(duration)
 {
@@ -486,10 +531,12 @@ function updateProgress()
 	let progress = curTrack.currentTime / curTrack.duration;
 	progressFill.style.width = progress * progressBar.offsetWidth + "px";
 
+	//set time
 	let timeStrings = parseTime(curTrack.currentTime)
 	oldCurTimeEl.textContent = timeStrings.min + ":" + timeStrings.sec;
-	curTimeEl.textContent = timeStrings.min + ":" + timeStrings.sec;
 
+	curTimeEl.textContent = timeStrings.min + ":" + timeStrings.sec;
+	miniCurTime.textContent = timeStrings.min + ":" + timeStrings.sec;
 	//console.log("updated progress, progress = " + progress + ", width = " + progressFill.style.width)
 }
 
