@@ -91,18 +91,19 @@ let trackList = [
 // 		hasBgAudio = true;
 // 		bgAudio.volume = 0.2;
 
-// 		//temppp
+// 		//temppp 
 // 		//setInterval(totalLengthTest, 5000);
 // 	})
 
 // 	entryPage.addEventListener('transitionend', function() {
 // 		entryPage.parentNode.removeChild(entryPage)
 // 	})
-// }
 
-// let chatIFrame = document.getElementsByTagName("iframe").item(0)
-// chatIFrame.style.fontFamily = "'Input-Mono', monospace" //doesnt set the actual chat fonttt
-// console.log(chatIFrame)
+// 	// let chatIFrame = document.getElementsByTagName("iframe").item(0)
+// 	// console.log(chatIFrame)
+// 	// console.log(chatIFrame.contentWindow.document.body)
+// }//end of onload
+
 
 ////////////// entry page //////////////
 
@@ -635,7 +636,7 @@ let showingOldUI = false
 tempToggle.addEventListener("click", function(){
 	if (showingOldUI)
 	{
-		document.body.style.backgroundImage = 'url("img/bg1.png")'
+		document.body.style.backgroundImage = 'url("img/lain_extended_m.png")'
 		oldPlayerContainer.style.display = "none"
 		playlistEl.style.display = "none"
 		dockContainer.style.display = "flex"

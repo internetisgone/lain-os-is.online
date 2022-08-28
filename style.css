@@ -7,7 +7,7 @@
 @font-face
 {
 	font-family: "Input-Mono";
-	src: url("/fonts/Input-Regular_(InputMonoNarrow-Regular).ttf");
+	src: url("/fonts/Input-Regular_(InputMonoNarrow-Regular).ttf") format("truetype");
 }
 
 p, label, button, option, ul
@@ -18,7 +18,7 @@ p, label, button, option, ul
 
 body 
 {
-	background-image: url("img/bg1.png");
+	background-image: url("img/lain_extended_m.png");
 	background-repeat: no-repeat;
 /*	background-size: 100%;
 */	background-color: whitesmoke;
@@ -53,6 +53,24 @@ body
 		 height: 55vh; width: auto;
 	}
 	#icons-container {width: 600px; height: 80px;}
+}
+
+/* mobile mini window sizes (screens with width < 500px)*/
+@media screen and (max-width: 500px)
+{
+	#music-player{width: 370px;height: 459px;}
+	#terminal {width: 352px; height: 264px;} /*640x480 x0.55*/
+	#chat-window {width: 240px; height: 320px;} /*480x640 x0.5*/
+	#version-history-window {width: 320px; height: 240px;} /*640x480 x0.5*/
+}
+
+/* desktop n tablets mini window sizes (screens with width > 500px)*/
+@media screen and (min-width: 500px)
+{
+	#music-player {width: 500px;height: 620px;}
+	#terminal {width: 493px; height: 369px;}	/*640x480 x0.77*/
+	#chat-window {width: 317px; height: 422px;} /*480x640 x0.66*/
+	#version-history-window {width: 422px; height: 317px;} /*640x480 x0.66*/
 }
 
 hr 
@@ -153,7 +171,7 @@ inactive window 6, 5
 	display: flex;
 	justify-content: center; 
 	align-items: center;
-	width: 316px; height: 428px; /*todo make smaller size for mobile 640x480 x0.66*/
+	/*width n height are set separately, responsive to screen size*/
 	top: 5%; right: 13%;
 	z-index: 5;
 }
@@ -162,8 +180,7 @@ inactive window 6, 5
 {
 	font-family: "Input-Mono", monospace; font-size: 13px !important; 
 	position: absolute;
-	width: 250px;
-	height: 350px;
+	width: 80%; height: 70%;
 	top: 10%; bottom: 4%;
 }
 /******* chat *******/
@@ -173,7 +190,7 @@ inactive window 6, 5
 {
 	font-family: "Input-Mono", monospace; font-size: 13px; 
 	top: 13%; left: 7%;
-	width: 493px; height: 369px; /*todo make smaller size for mobile 640x480 x0.77*/
+	/*width n height are set separately, responsive to screen size*/
 	z-index: 6;
 }
 
@@ -282,14 +299,14 @@ inactive window 6, 5
 	position: absolute;
 	display: flex; flex-direction: row;
 	align-items: left; justify-content: center;
-	top: 0;
+	bottom: 0;
 	background-image: url("img/test-dock50.png");
 	background-size: 100%; background-position: 0;
 }
 .icon 
 {
 	display: none;
-	width: 49px; height: 49px; margin: 5px;
+	width: 55px; height: 55px; margin: 5px;
 	cursor: pointer;
 /*	opacity: 77%;*/
 }
@@ -303,8 +320,7 @@ inactive window 6, 5
 	background-image: url("img/player-mockup.png");
 	background-repeat: no-repeat;
 	background-size: 100%; 
-	width: 500px;
-	height: 620px;
+	/*width n height are set separately, responsive to screen size*/
 	top: 3%;
 	left: 20%;
 	z-index: 7;
@@ -431,19 +447,24 @@ so that texts of variable lengths can be scrolled*/
 /******* music player *******/
 
 /******* version history *******/
-#version-history-window{width: 426px; height: 316px;}
+#version-history-window{}
 
 #version-history-container
 {
 	position: absolute;
-	width: 90%; height: 80%;
-	left: 5%; top: 14%;
+	display: flex;
+	justify-content: center; align-items: center;
+	width: 90%; height: 82%;
+	left: 5%; top: 12%;
 	background-color: whitesmoke;
 }
 
 #version-history-texts
 {
-	position: absolute; top: -2%; left: 3%;
+	position: absolute; top: 0; left: 0;
+	width: 100%; height: 100%; 
+	margin: 0; padding: 0; padding-left: 3%;
+	overflow-y: scroll;
 }
 /******* version history *******/
 
