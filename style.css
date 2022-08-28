@@ -12,7 +12,7 @@
 
 p, label, button, option, ul
 {
-	font-family: "LoveLetter", "Courier New", monospace;
+	font-family: "Input-Mono", "Courier New", monospace;
 	color: black;
 }
 
@@ -25,7 +25,8 @@ body
 	margin: 0px;
 }
 
-/*bg lain pic and entry pic for mobile / portrait display*/
+/*mobile / portrait display*/
+/*bg lain pic, entry frame, and icon dock*/
 @media (min-aspect-ratio: 1/16) {
 	body
 	{
@@ -40,7 +41,7 @@ body
 	#icons-container {width: 400px; height: 90px;}
 }
 
-/*bg lain pic and entry pic for desktop / landscape display*/
+/*desktop / landscape display*/
 @media (min-aspect-ratio: 4/3) {
 	body
 	{
@@ -58,22 +59,46 @@ body
 /* mobile mini window sizes (screens with width < 500px)*/
 @media screen and (max-width: 500px)
 {
+	#entry-texts {font-size: 13px;}
+
 	#music-player{width: 370px;height: 459px;}
-	#terminal {width: 352px; height: 264px;} /*640x480 x0.55*/
-	#chat-window {width: 240px; height: 320px;} /*480x640 x0.5*/
-	#version-history-window {width: 320px; height: 240px;} /*640x480 x0.5*/
+	#terminal {width: 352px; height: 264px;} 				/*640x480 x0.55*/
+	#chat-window {width: 240px; height: 320px;} 			/*480x640 x0.5*/
+	#version-history-window {width: 320px; height: 240px;} 	/*640x480 x0.5*/
+
+	#cur-track-state {width: 18px;}
+	.cur-time {font-size: 14px;} 
+	.now-playing-marquee {font-size: 11px;}
+	#now-playing-static {font-size: 11px;}
+	#cur-track-bitrate, #mono-stereo {font-size: 9px;}
+
+	.playlist-entry {font-size: 11px;margin: 6px;}
+
+	#mini-total-time, #mini-cur-time {font-size: 9px;}
 }
 
 /* desktop n tablets mini window sizes (screens with width > 500px)*/
 @media screen and (min-width: 500px)
 {
+	#entry-texts {font-size: 16px;}
+
 	#music-player {width: 500px;height: 620px;}
-	#terminal {width: 493px; height: 369px;}	/*640x480 x0.77*/
-	#chat-window {width: 317px; height: 422px;} /*480x640 x0.66*/
-	#version-history-window {width: 422px; height: 317px;} /*640x480 x0.66*/
+	#terminal {width: 493px; height: 369px;}				/*640x480 x0.77*/
+	#chat-window {width: 317px; height: 422px;} 			/*480x640 x0.66*/
+	#version-history-window {width: 422px; height: 317px;} 	/*640x480 x0.66*/
+
+	#cur-track-state {width: 22px;}
+	.cur-time {font-size: 18px;} 
+	.now-playing-marquee {font-size: 13px;}
+	#now-playing-static {font-size: 13px;}
+	#cur-track-bitrate, #mono-stereo {font-size: 11px;}
+
+	.playlist-entry {font-size: 13px;margin: 4px;}
+
+	#mini-total-time, #mini-cur-time {font-size: 11px;}
 }
 
-hr 
+hr /*temp*/
 {
    display: block;
    position: relative;
@@ -90,48 +115,23 @@ hr
    border-bottom: 1px solid darkgray;
 }
 
-/*
-z-index: 
-entry page 		111
-window close	9
-window drag 	8
-active window 	7
-inactive window 6, 5
-*/
-
 #entry-page
 {
-	width: 100vw;
-	height: 100vh;
-	position: fixed;
-	display: flex;
-	justify-content: center; 
-	align-items: center;
+	width: 100vw; height: 100vh; position: fixed;
+	display: flex;justify-content: center; align-items: center;
 	transition: opacity 0.7s ease-out;
 	z-index: 111; 
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
+	top: 0;	left: 0; bottom: 0;	right: 0;
 	background-color: whitesmoke;
 }
 
-#entry-texts
-{
-	position: fixed; 
-	color: black; 
-}
+#entry-texts {font-family: LoveLetter !important; position: fixed; color: black;}
 
 #main-container
 {
 	position: fixed; 
-	display: flex;
-	justify-content: center; 
-	align-items: center;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
+	display: flex; justify-content: center; align-items: center;
+	top: 0;	left: 0; bottom: 0;	right: 0;
 	/*background-image: url("img/extended background_simple.png");
 	background-repeat: no-repeat;
 	background-size: 100%;*/
@@ -141,10 +141,7 @@ inactive window 6, 5
 .mini-window
 {
 	position: absolute;
-	top: 33%;
-	left: 50%;
-/*	width: 300px;
-	height: 380px;*/
+	top: 33%; left: 50%;
 	background-color: gainsboro;
 	z-index: 5;
 
@@ -158,8 +155,7 @@ inactive window 6, 5
 /*	top: 0px;
 	left: 0px;
 	right: 0px;*/
-	width: 100%;
-	height: 100%;
+	width: 100%; height: 100%;
 	cursor: grab;
 /*	background-color: violet;
 	opacity: 0.2;*/
@@ -168,9 +164,7 @@ inactive window 6, 5
 /******* chat *******/
 #chat-window
 {
-	display: flex;
-	justify-content: center; 
-	align-items: center;
+	display: flex; justify-content: center; align-items: center;
 	/*width n height are set separately, responsive to screen size*/
 	top: 5%; right: 13%;
 	z-index: 5;
@@ -314,7 +308,7 @@ inactive window 6, 5
 /******* music player *******/
 #music-player
 {
-	font-family: "LoveLetter"; font-size: small; color: black; 
+	color: black; 
 	background-color: transparent;
 	box-shadow: none;
 	background-image: url("img/player-mockup.png");
@@ -386,10 +380,16 @@ so that texts of variable lengths can be scrolled*/
 	opacity: 0.3;
 }
 
+#cur-track-state {position: absolute; margin-left: 4px;} /*play/pause/stop icons*/
+
 .cur-time, #old-total-time
 {
-	color: whitesmoke; margin: 5px; font-family:Input-Mono; font-size: small;
+	color: whitesmoke; margin: 5px; font-family:Input-Mono;
 }
+
+/*responsive font size*/
+#cur-track-bitrate {position: absolute; margin: 0; left: 1%; bottom: 0;}
+#mono-stereo {position: absolute; margin: 0; right: 6%; bottom: 0;}
 
 #playback-controls
 {
@@ -413,11 +413,7 @@ so that texts of variable lengths can be scrolled*/
 
 #playlist-content {list-style-type: none; color: black; padding-left: 13px;}
 
-.playlist-entry
-{
-	margin: 6px;
-	cursor: pointer;
-}
+.playlist-entry {cursor: pointer;}
 
 .playlist-entry:hover{
 	background-color: lavender !important;
@@ -435,13 +431,13 @@ so that texts of variable lengths can be scrolled*/
 #mini-total-time
 {
 	position: absolute; top: 2%; left: 3%; margin: 0; 
-	font-family: Input-Mono, monospace; font-size: 11px !important; color: black;
+	font-family: Input-Mono, monospace; color: black;
 }
 
 #mini-cur-time
 {
 	position: absolute;
-	font-family: Input-Mono, monospace; font-size: 11px !important; color: black;
+	font-family: Input-Mono, monospace; color: black;
 	bottom: 2%; right: 3%;
 }
 /******* music player *******/
@@ -487,7 +483,7 @@ so that texts of variable lengths can be scrolled*/
 	bottom: 0;
 	width: 200px;
 	height: 50px;
-	font-family: LoveLetter; font-size: small; color: black; text-align: center;
+	font-family: Input-Mono, monospace; font-size: small; color: black; text-align: center;
 	background-color: lightgray;
 	opacity: 0.4;
 	cursor: pointer;
@@ -500,7 +496,7 @@ so that texts of variable lengths can be scrolled*/
 	bottom: 15%;
 	width: 200px;
 	height: 50px;
-	font-family: LoveLetter; font-size: small; color: black; text-align: center;
+	font-family: Input-Mono, monospace; font-size: small; color: black; text-align: center;
 	background-color: lightgray;
 	opacity: 0.4;
 	cursor: pointer;
@@ -527,10 +523,7 @@ so that texts of variable lengths can be scrolled*/
 	overflow: auto;
 }
 
-#old-playlist-content
-{
-	list-style-type: none;
-}
+#old-playlist-content{list-style-type: none;}
 
 #old-player-container 
 {position: absolute; top: 0; display: none; color: black !important;}

@@ -250,7 +250,8 @@ let nowPlayingStatic = document.getElementById("now-playing-static")
 let nowPlayingWidth
 
 let curTrackStateIcon = document.getElementById("cur-track-state") //play / pause icon
-let curBitrate = document.getElementById("cur-track-bitrate")
+let curBitrate = document.getElementById("cur-track-bitrate") //192kbps 44khz
+let monoStereo = document.getElementById("mono-stereo")
 
 let shuffleBtn = document.getElementById("shuffle-btn")
 let isShuffle = false
@@ -296,7 +297,7 @@ let playlistEntries = playlistUl.getElementsByClassName("playlist-entry")
 
 //initial state//
 loadTrack();
-curTrackStateIcon.src = "img/test-stop.png";
+stopTrack(); //stop icon, no bitrate display
 //initial state//
 
 progressBar.addEventListener("click", setProgress);
@@ -314,7 +315,8 @@ function loadTrack()
 	progressTimer = setInterval(updateProgress, 1000);	
 
 	//hide dis on first track??
-	curBitrate.innerHTML = "192 Kbps 44.1k Hz&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;stereo"
+	curBitrate.textContent = "192 KBPS 44.1KHZ"
+	monoStereo.textContent = "stereo"
 	
 	//set playlist entry bg color 
 	for (let i = 0; i < trackList.length; i++)
@@ -410,6 +412,7 @@ function playTrack()
 	isPlaying = true;
 	curTrackStateIcon.src = "img/test-play.png"
 	curBitrate.style.opacity = "1"
+	monoStereo.style.opacity = "1"
 
 	playPauseBtn.textContent = "pause";//to be deleted
 }
@@ -491,6 +494,7 @@ function stopTrack()
 	curTrackStateIcon.src = "img/test-stop.png";
 
 	curBitrate.style.opacity = "0"
+	monoStereo.style.opacity = "0"
 }
 
 function toggleShuffle()
