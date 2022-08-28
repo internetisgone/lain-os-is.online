@@ -67,38 +67,38 @@ let trackList = [
 
 ////////////// entry page //////////////
 
-let entryPage = document.getElementById("entry-page")
-let entryTextsEl = document.getElementById("entry-texts")
+// let entryPage = document.getElementById("entry-page")
+// let entryTextsEl = document.getElementById("entry-texts")
 
-let bgAudio = document.getElementById("bg-track")
-let bgAudioToggle = document.getElementById("temp-bg-audio-toggle")
-let hasBgAudio = false
+// let bgAudio = document.getElementById("bg-track")
+// let bgAudioToggle = document.getElementById("temp-bg-audio-toggle")
+// let hasBgAudio = false
 
-bgAudioToggle.addEventListener("click", function(){
-	if (hasBgAudio) {bgAudio.pause(); hasBgAudio = false}
-	else {bgAudio.play(); hasBgAudio = true}
-})
+// bgAudioToggle.addEventListener("click", function(){
+// 	if (hasBgAudio) {bgAudio.pause(); hasBgAudio = false}
+// 	else {bgAudio.play(); hasBgAudio = true}
+// })
 
-window.onload = function() {
-	entryTextsEl.textContent = "log in"
+// window.onload = function() {
+// 	entryTextsEl.textContent = "log in"
 
-	entryPage.addEventListener("click", function(){
-	entryPage.style.opacity = "0"
-	if (audioContext.state === 'suspended') {audioContext.resume();}
-	bgAudio.load();
-	bgAudio.addEventListener("canplaythrough", function(){bgAudio.play();})
-	hasBgAudio = true;
-	bgAudio.volume = 0.2;
+// 	entryPage.addEventListener("click", function(){
+// 		entryPage.style.opacity = "0"
+// 		if (audioContext.state === 'suspended') {audioContext.resume();}
 
-	//temppp
-	//setInterval(totalLengthTest, 5000);
-})
+// 		bgAudio.load();
+// 		bgAudio.addEventListener("canplaythrough", function(){bgAudio.play();})
+// 		hasBgAudio = true;
+// 		bgAudio.volume = 0.2;
 
-entryPage.addEventListener('transitionend', function() {
-	entryPage.parentNode.removeChild(entryPage)
-})
+// 		//temppp
+// 		//setInterval(totalLengthTest, 5000);
+// 	})
 
-}
+// 	entryPage.addEventListener('transitionend', function() {
+// 		entryPage.parentNode.removeChild(entryPage)
+// 	})
+// }
 
 // let chatIFrame = document.getElementsByTagName("iframe").item(0)
 // chatIFrame.style.fontFamily = "'Input-Mono', monospace" //doesnt set the actual chat fonttt
@@ -408,7 +408,8 @@ function playTrack()
 	curTrack.play();
 	isPlaying = true;
 	curTrackStateIcon.src = "img/test-play.png"
-	
+	curBitrate.style.opacity = "1"
+
 	playPauseBtn.textContent = "pause";//to be deleted
 }
 
@@ -488,7 +489,7 @@ function stopTrack()
 	updateProgress();
 	curTrackStateIcon.src = "img/test-stop.png";
 
-	curBitrate.innerHTML = "";
+	curBitrate.style.opacity = "0"
 }
 
 function toggleShuffle()

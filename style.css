@@ -131,7 +131,7 @@ inactive window 6, 5
 	z-index: 5;
 
 	border-radius: 10px;
-	box-shadow:  -5px -5px 3px dimgray inset, 5px 5px 3px dimgray inset;
+	box-shadow:  -3px -3px 6px dimgray inset, 3px 3px 6px dimgray inset;
 }
 
 .mini-window-draggable
@@ -152,7 +152,6 @@ inactive window 6, 5
 {
 	display: flex;
 	justify-content: center; 
-	align-items: center;
 	align-items: center;
 	width: 316px; height: 428px; /*todo make smaller size for mobile 640x480 x0.66*/
 	top: 5%; right: 13%;
@@ -290,7 +289,7 @@ inactive window 6, 5
 .icon 
 {
 	display: none;
-	width: 55px; height: 55px; margin: 5px;
+	width: 49px; height: 49px; margin: 5px;
 	cursor: pointer;
 /*	opacity: 77%;*/
 }
@@ -412,24 +411,41 @@ so that texts of variable lengths can be scrolled*/
 #mini-display-container
 {
 	position: absolute;
-	left: 55%; right: 15%; bottom: 2%; top: 89%;
+	left: 55%; right: 16%; bottom: 2%; top: 90%;
 	background-color: lightgray;
 	opacity: 0.5;
 }
 
 #mini-total-time
 {
-	position: absolute; top: 3px; left: 3px; margin: 0; 
-	font-family: Input-Mono, monospace; font-size: small; color: black;
+	position: absolute; top: 2%; left: 3%; margin: 0; 
+	font-family: Input-Mono, monospace; font-size: 11px !important; color: black;
 }
 
 #mini-cur-time
 {
 	position: absolute;
-	font-family: Input-Mono, monospace; font-size: small; color: black;
+	font-family: Input-Mono, monospace; font-size: 11px !important; color: black;
 	bottom: 2%; right: 3%;
 }
 /******* music player *******/
+
+/******* version history *******/
+#version-history-window{width: 426px; height: 316px;}
+
+#version-history-container
+{
+	position: absolute;
+	width: 90%; height: 80%;
+	left: 5%; top: 14%;
+	background-color: whitesmoke;
+}
+
+#version-history-texts
+{
+	position: absolute; top: -2%; left: 3%;
+}
+/******* version history *******/
 
 /***************** mini windows /*****************/
 
