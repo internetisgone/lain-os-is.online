@@ -79,7 +79,24 @@ let trackList = [
 // 	else {bgAudio.play(); hasBgAudio = true}
 // })
 
+// let loadingTimer = setInterval(loadingText, 500)
+// let loadingIndex = 0
+// function loadingText()
+// {
+// 	if (loadingIndex < 3)
+// 	{
+// 		entryTextsEl.textContent += ".";
+// 		loadingIndex++;
+// 	}
+// 	else 
+// 		{
+// 			entryTextsEl.textContent = "initialising";
+// 			loadingIndex = 0;
+// 		}
+// }
+
 // window.onload = function() {
+// 	clearInterval(loadingTimer)
 // 	entryTextsEl.textContent = "log in"
 
 // 	entryPage.addEventListener("click", function(){
@@ -98,10 +115,6 @@ let trackList = [
 // 	entryPage.addEventListener('transitionend', function() {
 // 		entryPage.parentNode.removeChild(entryPage)
 // 	})
-
-// 	// let chatIFrame = document.getElementsByTagName("iframe").item(0)
-// 	// console.log(chatIFrame)
-// 	// console.log(chatIFrame.contentWindow.document.body)
 // }//end of onload
 
 
@@ -135,6 +148,7 @@ for (let i = 0; i < miniWindows.length; i++)
 	icon.addEventListener("click", function(){
 		if(miniWindow.id == "chat-window") miniWindow.style.display = "flex";
 		else miniWindow.style.display = "block";
+		miniWindow.style.zIndex = maxZ; maxZ++;
 		icon.style.display = "none"
 	})
 
