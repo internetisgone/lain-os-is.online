@@ -70,14 +70,14 @@ let trackList = [
 // let entryPage = document.getElementById("entry-page")
 // let entryTextsEl = document.getElementById("entry-texts")
 
-// let bgAudio = document.getElementById("bg-track")
-// let bgAudioToggle = document.getElementById("temp-bg-audio-toggle")
-// let hasBgAudio = false
+// // let bgAudio = document.getElementById("bg-track")
+// // let bgAudioToggle = document.getElementById("temp-bg-audio-toggle")
+// // let hasBgAudio = false
 
-// bgAudioToggle.addEventListener("click", function(){
-// 	if (hasBgAudio) {bgAudio.pause(); hasBgAudio = false}
-// 	else {bgAudio.play(); hasBgAudio = true}
-// })
+// // bgAudioToggle.addEventListener("click", function(){
+// // 	if (hasBgAudio) {bgAudio.pause(); hasBgAudio = false}
+// // 	else {bgAudio.play(); hasBgAudio = true}
+// // })
 
 // let loadingTimer = setInterval(loadingText, 500)
 // let loadingIndex = 0
@@ -103,10 +103,10 @@ let trackList = [
 // 		entryPage.style.opacity = "0"
 // 		if (audioContext.state === 'suspended') {audioContext.resume();}
 
-// 		bgAudio.load();
-// 		bgAudio.addEventListener("canplaythrough", function(){bgAudio.play();})
-// 		hasBgAudio = true;
-// 		bgAudio.volume = 0.2;
+// 		// bgAudio.load();
+// 		// bgAudio.addEventListener("canplaythrough", function(){bgAudio.play();})
+// 		// hasBgAudio = true;
+// 		// bgAudio.volume = 0.2;
 
 // 		//temppp 
 // 		//setInterval(totalLengthTest, 5000);

@@ -21,7 +21,7 @@ body
 	background-image: url("img/lain_extended_m.png");
 	background-repeat: no-repeat;
 /*	background-size: 100%;
-*/	background-color: whitesmoke;
+*/	background-color: rgb(226, 233, 236);
 	margin: 0px;
 }
 
@@ -68,24 +68,27 @@ body
 	}
 
 	/*dock at the left*/
-	#dock-container {left: 2%; width: 60px; height: 100%;}
+	#dock-container {left: 0; top: 0; bottom: 0; width: 60px; height: 100%;}
 	#dock-bg 
 	{
 		width: 160px; height: 900px; left: 0; 
-		background-image: url("img/test-dock50-vertical.png"); 
+		/*background-image: url("img/test-dock50-vertical.png"); */
+		background-image: none;
 	}
 	#icons-container 
 	{
-		width: 100%; height: 30%;
+		width: 55%; height: 30%; left: 0;
 		flex-direction: column; align-items: center; justify-content: flex-start;
 	}
+	#dock-bg-color {position: absolute; left: 0; height: 100%; width: 55%; background: black; opacity: 0.2;}
 }
+
 /* mobile mini window sizes (screens with width < 500px)*/
 @media screen and (max-width: 500px)
 {
 	#entry-texts {font-size: 13px;}
 
-	#music-player{width: 370px;height: 459px;}
+	#music-player{width: 370px;height: 480px;}
 	#terminal {width: 352px; height: 264px;} 				/*640x480 x0.55*/
 	#chat-window {width: 240px; height: 320px;} 			/*480x640 x0.5*/
 	#version-history-window {width: 320px; height: 240px;} 	/*640x480 x0.5*/
@@ -100,9 +103,6 @@ body
 	.playlist-entry {font-size: 11px; margin: 6px;}
 	#mini-total-time, #mini-cur-time {font-size: 9px;}
 	/*music player end*/
-
-	/*待测试*/
-	.cid0020000321473420645 {width:200px; height: 280px;}
 }
 
 /* desktop n tablets mini window sizes (screens with width > 500px)*/
@@ -110,7 +110,7 @@ body
 {
 	#entry-texts {font-size: 16px;}
 
-	#music-player {width: 500px;height: 620px;}
+	#music-player {width: 520px;height: 670px;}
 	#terminal {width: 493px; height: 369px;}				/*640x480 x0.77*/
 	#chat-window {width: 317px; height: 422px;} 			/*480x640 x0.66*/
 	#version-history-window {width: 422px; height: 317px;} 	/*640x480 x0.66*/
@@ -205,15 +205,15 @@ hr /*temp*/
 {
 	font-family: "Input-Mono", monospace; font-size: 13px !important; 
 	position: absolute;
-	width: 80%; height: 70%;
-	top: 10%; bottom: 4%;
+	width: 80%; height: 90%;
+	top: 6%; bottom: 2%;
 }
 /******* chat *******/
 
 /******* terminallllllll *******/
 #terminal
 {
-	font-family: "Input-Mono", monospace; font-size: 13px; 
+	font-size: 13px; 
 	top: 13%; left: 7%;
 	/*width n height are set separately, responsive to screen size*/
 	z-index: 6;
@@ -221,7 +221,7 @@ hr /*temp*/
 
 #terminal-txt-container
 {
-	font-family: "Input-Mono", monospace; font-size: 13px; 
+	font-size: 13px; 
 	position: absolute;
 	left: 3%; top: 11%; bottom: 5%;
 	width: 94%; height: 80%;
@@ -234,7 +234,7 @@ hr /*temp*/
 
 #terminal-input-container
 {
-	font-family: "Input-Mono", monospace; font-size: 13px; 
+	font-size: 13px; 
 	position: absolute; 
 	width: 94%;
 	left: 3%; right: 3%; bottom: 4%;
@@ -249,17 +249,22 @@ hr /*temp*/
 	background-color: black;
 }
 
+#terminal-ascii-art
+{
+	 color: whitesmoke; font-family: Input-Mono, monospace; font-size: 2px; line-height: 1;
+}
+
 #terminal-display /*shows submitted texts*/
 {
 	position: absolute; 
 	color: whitesmoke;
-	font-family: "Input-Mono", monospace; font-size: 13px; 
+	font-size: 13px; 
 	margin: 0px;	
 }
 
 #terminal-prompt 
 {
-	font-family: "Input-Mono", monospace; font-size: 13px; 
+	font-size: 13px; 
 	position: absolute; color: whitesmoke; 
 	margin-top: 4px; /*so it aligns with the fake caret*/
 	/*margin-left: 4px;*/
@@ -282,7 +287,8 @@ hr /*temp*/
 
 #terminal-input
 {
-	font-family: "Input-Mono", monospace; font-size: 13px; 
+	font-family: Input-Mono, monospace;
+	font-size: 13px; 
 	color: whitesmoke;
 	background-color: black; width: 100%;
 	padding: 0px;
@@ -354,7 +360,7 @@ hr /*temp*/
 #now-playing-container
 {
 	position: absolute;
-	left: 39%; right: 11%; top: 6%; bottom: 88%;
+	left: 43%; right: 11%; top: 3%; bottom: 91%;
 	width: auto; height: auto;
 	overflow: hidden;
 	background-color: lightgray; 
@@ -403,7 +409,7 @@ so that texts of variable lengths can be scrolled*/
 #cur-time-container
 {
 	position: absolute;
-	left: 15%; right: 61%; top: 6%; bottom: 83%;
+	left: 17%; right: 57%; top: 3%; bottom: 86%;
 	width: auto; height: auto;
 	background-color: lightgray;
 	opacity: 0.3;
@@ -433,7 +439,7 @@ so that texts of variable lengths can be scrolled*/
 {
 	position: absolute;
 	color: whitesmoke;
-	left: 19%; right: 13%; bottom: 15%; top: 57%;
+	left: 17%; right: 11%; bottom: 12%; top: 60%;
 	width: auto; height: auto;
 	background-color: lightgray;
 	opacity: 0.8;
@@ -452,7 +458,7 @@ so that texts of variable lengths can be scrolled*/
 #mini-display-container
 {
 	position: absolute;
-	left: 55%; right: 16%; bottom: 2%; top: 90%;
+	left: 59%; right: 11%; bottom: 2%; top: 91%;
 	background-color: lightgray;
 	opacity: 0.5;
 }
@@ -512,24 +518,12 @@ so that texts of variable lengths can be scrolled*/
 	bottom: 0;
 	width: 200px;
 	height: 50px;
-	font-family: Input-Mono, monospace; font-size: small; color: black; text-align: center;
+	font-size: small; color: black; text-align: center;
 	background-color: lightgray;
 	opacity: 0.4;
 	cursor: pointer;
 }
 
-#temp-bg-audio-toggle
-{
-	position: absolute;
-	left: 0%;
-	bottom: 15%;
-	width: 200px;
-	height: 50px;
-	font-family: Input-Mono, monospace; font-size: small; color: black; text-align: center;
-	background-color: lightgray;
-	opacity: 0.4;
-	cursor: pointer;
-}
 #biquad-prompt:hover #biquad-tips{opacity: 1;}
 
 #biquad-tips {
