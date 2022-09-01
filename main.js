@@ -847,8 +847,40 @@ function switchFilter(bqdIndex = 0, bqdFrequency = 1000, bqdGain = 25, bqdQ = 1,
 //test 
 function gotoToilet()
 {
-	switchBiquad(4)
-	biquadFilter.gain.setValueAtTime(40, audioContext.currentTime)
+	//disable volume slider 
+	let initialVolume = curTrack.volume
+
+	let fadeOut = setInterval(function(){
+		if (curTrack.volume > 0.1)
+		//gradually decrease volume 
+		{
+			curTrack.volume -= 0.1
+			console.log("fading out, current volume " + curTrack.volume)
+		}	
+		else 
+		//set filter and gradually increase volume 
+		{
+			switchBiquad(4)
+			biquadFilter.gain.setValueAtTime(40, audioContext.currentTime)
+
+			clearInterval(fadeOut);
+
+			//fade in
+			let fadeIn = setInterval(function(){
+				if (curTrack.volume < initialVolume)
+				{
+					curTrack.volume += 0.1
+					console.log("fading in, current volume " + curTrack.volume)
+				}
+				else {clearInterval(fadeIn)}
+			}
+			, 100)
+		}
+	}
+	, 100)
+		
+	//gradually increase volume 
+	//enable vilume slider 
 }
 
 ////////////// audio filter presets //////////////

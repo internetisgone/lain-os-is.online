@@ -251,7 +251,10 @@ hr /*temp*/
 
 #terminal-ascii-art
 {
-	 color: whitesmoke; font-family: Input-Mono, monospace; font-size: 2px; line-height: 1;
+	color: whitesmoke; font-family: Input-Mono; 
+	font-size: 2px; line-height: 2.4px;
+	padding: 0; margin: 0; border: 0;	
+	vertical-align: baseline;
 }
 
 #terminal-display /*shows submitted texts*/
