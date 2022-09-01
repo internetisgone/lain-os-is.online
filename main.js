@@ -632,9 +632,9 @@ function checkCommand(input)
 
 		case "help": terminalDisplay.innerHTML += helpText; break;
 
-		//test//
+		//filter presets//
 		case "toilet": gotoToilet(); break;
-		//test//
+		case "leave": clearFilters(); break;
 
 		default: terminalDisplay.innerHTML += "idk that word!</br>"
 	}
@@ -843,44 +843,86 @@ function switchFilter(bqdIndex = 0, bqdFrequency = 1000, bqdGain = 25, bqdQ = 1,
 	// biquadFilter.Q.value = bqdQ;
 }
 
-
 //test 
 function gotoToilet()
 {
-	//disable volume slider 
+	volumeSlider.disabled = true
 	let initialVolume = curTrack.volume
 
 	let fadeOut = setInterval(function(){
-		if (curTrack.volume > 0.1)
+		if (curTrack.volume > 0.05)
 		//gradually decrease volume 
 		{
-			curTrack.volume -= 0.1
+			curTrack.volume -= 0.05
 			console.log("fading out, current volume " + curTrack.volume)
 		}	
 		else 
 		//set filter and gradually increase volume 
 		{
+			clearInterval(fadeOut);
+
+			//switch filter 
 			switchBiquad(4)
 			biquadFilter.gain.setValueAtTime(40, audioContext.currentTime)
-
-			clearInterval(fadeOut);
+			//switch filter end 
 
 			//fade in
 			let fadeIn = setInterval(function(){
 				if (curTrack.volume < initialVolume)
 				{
-					curTrack.volume += 0.1
+					curTrack.volume += 0.05
 					console.log("fading in, current volume " + curTrack.volume)
 				}
-				else {clearInterval(fadeIn)}
+				else 
+				{
+					clearInterval(fadeIn)
+					volumeSlider.disabled = false
+				}
 			}
-			, 100)
+			, 50)
 		}
 	}
-	, 100)
-		
-	//gradually increase volume 
-	//enable vilume slider 
+	, 50)
+}
+
+//todo write a general func for fade in / fade out
+function clearFilters()
+{
+	volumeSlider.disabled = true
+	let initialVolume = curTrack.volume
+
+	let fadeOut = setInterval(function(){
+	if (curTrack.volume > 0.05)
+	//gradually decrease volume 
+	{
+		curTrack.volume -= 0.05
+		console.log("fading out, current volume " + curTrack.volume)
+	}	
+	else 
+	//set filter and gradually increase volume 
+	{
+		clearInterval(fadeOut);
+
+		if (hasReverb) toggleReverb();
+		switchBiquad(0);
+
+		//fade in
+		let fadeIn = setInterval(function(){
+			if (curTrack.volume < initialVolume)
+			{
+				curTrack.volume += 0.05
+				console.log("fading in, current volume " + curTrack.volume)
+			}
+			else 
+			{
+				clearInterval(fadeIn)
+				volumeSlider.disabled = false
+			}
+		}
+		, 50)
+	}
+}
+, 50)
 }
 
 ////////////// audio filter presets //////////////
