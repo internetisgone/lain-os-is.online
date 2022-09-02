@@ -246,7 +246,7 @@ function dragEnd()
 ////////////// music player //////////////
 
 let playPauseBtn = document.getElementById("old-play-pause-btn")
-let volumeSlider = document.getElementById("old-volume-slider")
+let volumeSlider = document.getElementById("volume-slider")
 let progressBar = document.getElementById("progress-bar-container")
 let progressFill = document.getElementById("progress-bar-fill")
 let curTrackText = document.getElementById("cur-track-info")
@@ -270,7 +270,6 @@ let monoStereo = document.getElementById("mono-stereo")
 let shuffleBtn = document.getElementById("shuffle-btn")
 let isShuffle = false
 let loopBtn = document.getElementById("loop-btn")
-let isLoop = false
 
 let miniTotalTime = document.getElementById("mini-total-time")
 let miniCurTime = document.getElementById("mini-cur-time")
@@ -309,10 +308,15 @@ let oldTotalTimeEl = document.getElementById("old-total-time")
 let wrapperClone
 let playlistEntries = playlistUl.getElementsByClassName("playlist-entry")
 
-//initial state//
+///////initial state///////
+
 loadTrack();
 stopTrack(); //stop icon, no bitrate display
-//initial state//
+
+let loopIndex = 2 //0 no loop, 1 loop album, 2 loop one song
+switchLoop() //no loop
+
+///////initial state///////
 
 progressBar.addEventListener("click", setProgress);
 
@@ -340,7 +344,7 @@ function loadTrack()
 	}
 }
 
-curTrack.addEventListener("ended", nextTrack)
+//curTrack.addEventListener("ended", nextTrack)
 
 curTrack.onloadedmetadata = function() 
 	{
@@ -491,8 +495,28 @@ function prevTrack()
 
 function nextTrack()
 {
-	if (isShuffle) curIndex = Math.floor(Math.random() * trackList.length);
-	else curIndex < trackList.length - 1 ? curIndex += 1 : curIndex = 0;
+	if (isShuffle) // always play a random song 
+	{
+		curIndex = Math.floor(Math.random() * trackList.length);
+	} 
+	else 
+	{
+		if (loopIndex == 0) //no loop 
+		{
+			if (curIndex == (trackList.length - 1)) 
+			{
+				curTrack.addEventListener("ended", stopTrack);
+				curTrack.removeEventListener("ended", nextTrack);
+				return; //end at last song
+			}
+		}
+		else if (loopIndex == 1) //loop album
+		{
+			curIndex < trackList.length - 1 ? curIndex += 1 : curIndex = 0;
+		}
+		// else loop song 
+	}
+
 
 	loadTrack();
 	playTrack();
@@ -523,24 +547,34 @@ function toggleShuffle()
 	}
 }
 
-function toggleLoop()
+function switchLoop() 
 {
-	if (isLoop == false)
+	if (loopIndex == 0) 
 	{
-		isLoop = true
-		loopBtn.textContent = "loop on"
+		loopIndex++ // 1 loop album
+		loopBtn.textContent = "loop album"
+		curTrack.addEventListener("ended", nextTrack); //handled in nextTrack()
+	}
+	else if (loopIndex == 1) 
+	{
+		loopIndex++ // 2 loop song 
+		loopBtn.textContent = "loop song"
 		curTrack.removeEventListener("ended", nextTrack)
-		curTrack.addEventListener("ended", function() {
-			curTrack.currentTime = 0;
-			curTrack.play()
-		})
+		curTrack.addEventListener("ended", loopSong)
 	}
-	else
+	else 
 	{
-		isLoop = false
-		loopBtn.textContent = "loop off"
-		curTrack.addEventListener("ended", nextTrack)
+		loopIndex = 0 // 0 no loop
+		loopBtn.textContent = "no loop"
+		curTrack.removeEventListener("ended", loopSong)
+		curTrack.addEventListener("ended", nextTrack); //handled in nextTrack()
 	}
+}
+
+function loopSong()
+{
+	curTrack.currentTime = 0;
+	curTrack.play()
 }
 
 function setVolume(){curTrack.volume = volumeSlider.value / volumeSlider.max}
@@ -615,8 +649,7 @@ function validateInput(e)
 	}
 }
 
-let helpText = "available commands: <br> play &emsp;&emsp; play the currently loaded song <br> pause <br> next <br> prev <br> random &nbsp;play a random song<br> help &emsp;&emsp; see the full list of available commands<br><br> try typing 'random' and hit enter<br>"
-
+let helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸<br>available commands:<br><br>playback control<br>&emsp;&emsp;play &emsp;&emsp; play the currently loaded song <br>&emsp;&emsp;pause <br>&emsp;&emsp;next <br>&emsp;&emsp;prev <br>&emsp;&emsp;random &nbsp;play a random song<br><br>audio filters<br>&emsp;&emsp;toilet &nbsp;pay a visit to the toilet<br>&emsp;&emsp;leave &nbsp; clear all audio filters<br>¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨<br>"
 function checkCommand(input) 
 {
 	switch (input.trim().toLowerCase()) 

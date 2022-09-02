@@ -18,7 +18,7 @@
 		<!---------- music player ---------->
 		<div class="mini-window" id="music-player">
 			<audio preload="auto" id="cur-track"></audio>
-			<audio preload="auto" id="bg-track" loop src="/bg-mp3/server_room_188.mp3"></audio>
+<!-- 			<audio preload="auto" id="bg-track" loop src="/bg-mp3/server_room_188.mp3"></audio>  -->
 			<div class="mini-window-draggable" id="music-player-drag"></div>
 			<div class="mini-window-close"></div>
 
@@ -36,6 +36,10 @@
 				<span class="cur-time" id="cur-time" style="color: black; margin: 23%;">00:00</span>
 			</div>
 
+			<div id="volume-slider-container">
+				<input type="range" min="0" max="100" value="77" id="volume-slider" onchange="setVolume()">
+			</div>
+
 			<div id="playback-controls">
 				<button id="prev-btn" onclick="prevTrack()">prev</button>
 				<button id="play-pause-btn" onclick="playTrack()">play</button>
@@ -44,7 +48,7 @@
 				<button id="next-btn" onclick="nextTrack()">next</button>
 
 				<button id="shuffle-btn" onclick="toggleShuffle()" style="margin-left:13px">shuffle off</button>
-				<button id="loop-btn" onclick="toggleLoop()">loop off</button>
+				<button id="loop-btn" onclick="switchLoop()">loop off</button>
 				<button style="margin-left: 13px;" >dl</button>
 			</div>
 
@@ -269,10 +273,10 @@ music player with biquad filters and reverb
 			</div>
 
 			<br>
-			<label>volume </label>
+<!-- 			<label>volume </label>
 			<input type="range" min="0" max="100" value="77" id="old-volume-slider" onchange="setVolume()">
-			<br>
-			<br>
+			<br> 
+			<br>-->
 
 			<div style="display: flex;"> 
 				<span class="cur-time" id="old-cur-time" style="color: black;">00:00</span>
@@ -286,7 +290,7 @@ music player with biquad filters and reverb
 			
 			<hr>
 			<p id="biquad-prompt" style="width: 100%;">choose a filter:
-				<span id = biquad-tips>gain adjustment is available for lowshelf, highshelf, peaking. <br><br> q factor adjustment is available for lowpass, highpass, bandpass, peaking, notch, allpasss. <br><br> search "biquad filter MDN" for more info</span> 
+				<span id = biquad-tips>gain adjustment is available for lowshelf, highshelf, peaking. <br><br> q factor adjustment is available for lowpass, highpass, bandpass, peaking, notch, allpasss. <br><br> search "biquad filter MDN" for more info.</span> 
 			</p>
 			<select id="switch-biquad" size="1">
 				<option value="0" selected="selected">none</option>

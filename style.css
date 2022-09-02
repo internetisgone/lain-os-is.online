@@ -252,7 +252,7 @@ hr /*temp*/
 #terminal-ascii-art
 {
 	color: whitesmoke; font-family: Input-Mono; 
-	font-size: 2px; line-height: 2.4px;
+	font-size: 2px; line-height: normal !important; /*todo*/
 	padding: 0; margin: 0; border: 0;	
 	vertical-align: baseline;
 }
@@ -412,7 +412,7 @@ so that texts of variable lengths can be scrolled*/
 #cur-time-container
 {
 	position: absolute;
-	left: 17%; right: 57%; top: 3%; bottom: 86%;
+	left: 19%; right: 57%; top: 3%; bottom: 86%;
 	width: auto; height: auto;
 	background-color: lightgray;
 	opacity: 0.3;
@@ -428,6 +428,13 @@ so that texts of variable lengths can be scrolled*/
 /*responsive font size*/
 #cur-track-bitrate {position: absolute; margin: 0; left: 1%; bottom: 0;}
 #mono-stereo {position: absolute; margin: 0; right: 6%; bottom: 0;}
+
+#volume-slider-container
+{
+	position: absolute; margin: 0;
+	left: 46%; top: 12%;
+	opacity: 0.7;
+}
 
 #playback-controls
 {
