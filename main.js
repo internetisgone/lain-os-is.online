@@ -266,8 +266,8 @@ let nowPlayingWidth
 let isScrolling
 
 let curTrackStateIcon = document.getElementById("cur-track-state") //play / pause icon
-let curBitrate = document.getElementById("cur-track-bitrate") //192kbps 44khz
-let monoStereo = document.getElementById("mono-stereo")
+let curBitrate = document.getElementById("cur-track-bitrate") //192kbps 44khz //toggle inner html
+let monoStereo = document.getElementById("mono-stereo") //toggle its opacity
 
 let shuffleBtn = document.getElementById("shuffle-btn")
 let isShuffle = false
@@ -318,9 +318,9 @@ stopTrack(); //stop icon, no bitrate display
 let loopIndex = 2 //0 no loop, 1 loop album, 2 loop one song
 switchLoop() //no loop
 
-///////initial state///////
-
 progressBar.addEventListener("click", setProgress);
+
+///////initial state///////
 
 function loadTrack()
 {
@@ -330,13 +330,11 @@ function loadTrack()
 
 	setNowPlayingAnim(false)
 	nowPlayingStatic.textContent = "loading metadata..."
+	curBitrate.innerHTML = "192 KBPS 44.1 KHZ"
+	monoStereo.style.opacity = "1"
 
 	curTrack.load();
 	progressTimer = setInterval(updateProgress, 1000);	
-
-	//hide dis on first track??
-	curBitrate.textContent = "192 KBPS 44.1KHZ"
-	monoStereo.textContent = "stereo"
 	
 	//set playlist entry bg color 
 	for (let i = 0; i < trackList.length; i++)
@@ -374,7 +372,6 @@ curTrack.onloadedmetadata = function()
 		}
 
 		//console.log("nowPlayingWidth = " + nowPlayingWidth + ", nowPlayingContainer width = " + nowPlayingContainer.offsetWidth)
-
 
 		//terminal 
 		terminalDisplay.innerHTML += "now playing " + trackList[curIndex].name + "<br>"
@@ -432,7 +429,7 @@ function playTrack()
 	curTrack.play();
 	isPlaying = true;
 	curTrackStateIcon.src = "img/test-play.png"
-	curBitrate.style.opacity = "1"
+	curBitrate.innerHTML = "192 KBPS 44.1 KHZ"
 	monoStereo.style.opacity = "1"
 
 	playPauseBtn.textContent = "pause";//to be deleted
@@ -533,7 +530,7 @@ function stopTrack()
 	updateProgress();
 	curTrackStateIcon.src = "img/test-stop.png";
 
-	curBitrate.style.opacity = "0"
+	curBitrate.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;KBPS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KHZ"
 	monoStereo.style.opacity = "0"
 }
 
