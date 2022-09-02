@@ -24,6 +24,7 @@
 
 			<div id="now-playing-container">
 				<p id="now-playing-static"></p>
+				<p id="changing-volume" style="opacity: 0;"></p>
 				<div id="now-playing">
 					<p class="now-playing-marquee"></p> 
 				</div>
@@ -37,7 +38,7 @@
 			</div>
 
 			<div id="volume-slider-container">
-				<input type="range" min="0" max="100" value="77" id="volume-slider" onchange="setVolume()">
+				<input type="range" min="0" max="100" value="77" step="1" id="volume-slider" oninput="setVolume()" onchange="onFinishSettingVolume()">
 			</div>
 
 			<div id="playback-controls">

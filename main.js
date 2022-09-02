@@ -261,7 +261,9 @@ let nowPlayingContainer = document.getElementById("now-playing-container")
 let nowPlayingWrapper = document.getElementById("now-playing")
 let nowPlayingText = document.getElementsByClassName("now-playing-marquee").item(0)
 let nowPlayingStatic = document.getElementById("now-playing-static")
+let changingVolumeText = document.getElementById("changing-volume")
 let nowPlayingWidth
+let isScrolling
 
 let curTrackStateIcon = document.getElementById("cur-track-state") //play / pause icon
 let curBitrate = document.getElementById("cur-track-bitrate") //192kbps 44khz
@@ -359,7 +361,8 @@ curTrack.onloadedmetadata = function()
 		nowPlayingText.textContent = trackList[curIndex].name	+ " " + timeStrings.min + ":" + timeStrings.sec;
 		//only scroll if track name + length is longer than the container 
 		nowPlayingWidth = nowPlayingWrapper.offsetWidth
-		if (nowPlayingWidth < nowPlayingContainer.offsetWidth) 
+		isScrolling = nowPlayingWidth > nowPlayingContainer.offsetWidth
+		if (!isScrolling) 
 		{
 			setNowPlayingAnim(false); //set the animated divs' opacity to 0
 			nowPlayingStatic.textContent = trackList[curIndex].name	+ " " + timeStrings.min + ":" + timeStrings.sec;
@@ -576,7 +579,29 @@ function loopSong()
 	curTrack.play()
 }
 
-function setVolume(){curTrack.volume = volumeSlider.value / volumeSlider.max}
+// function onBeforeSettingVolume()
+// {
+// 	console.log("onBeforeSettingVolume")
+// }
+
+function setVolume()
+{
+	changingVolumeText.style.opacity = "1"
+	changingVolumeText.textContent = "volume: " + Math.round(curTrack.volume * 10) / 10
+
+	curTrack.volume = volumeSlider.value / volumeSlider.max;
+	if (isScrolling) setNowPlayingAnim(false);
+	else nowPlayingStatic.style.opacity = "0";
+}
+
+function onFinishSettingVolume()
+{
+	changingVolumeText.style.opacity = "0"
+	changingVolumeText.textContent = ""
+
+	if (isScrolling) setNowPlayingAnim(true);
+	else nowPlayingStatic.style.opacity = "1";
+}
 
 //progress bar
 function updateProgress()

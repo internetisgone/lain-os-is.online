@@ -98,6 +98,7 @@ body
 	.cur-time {font-size: 14px;} 
 	.now-playing-marquee {font-size: 11px;}
 	#now-playing-static {font-size: 11px;}
+	#changing-volume {font-size: 11px;} /*same as now-playing-static*/
 	#cur-track-bitrate, #mono-stereo {font-size: 9px;}
 
 	.playlist-entry {font-size: 11px; margin: 6px;}
@@ -120,6 +121,7 @@ body
 	.cur-time {font-size: 18px;} 
 	.now-playing-marquee {font-size: 13px;}
 	#now-playing-static {font-size: 13px;}
+	#changing-volume {font-size: 13px;} /*same as now-playing-static*/
 	#cur-track-bitrate, #mono-stereo {font-size: 11px;}
 
 	.playlist-entry {font-size: 13px; margin: 4px;}
@@ -371,6 +373,8 @@ hr /*temp*/
 }
 
 #now-playing-static {position: absolute; margin: 0; margin-top: 3px; z-index: 33;}
+#changing-volume {position: absolute; margin: 0; margin-top: 3px; z-index: 33;} /*exact same pos as now-playing-static*/
+
 
 #now-playing 
 {
