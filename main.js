@@ -509,14 +509,13 @@ function nextTrack()
 				curTrack.removeEventListener("ended", nextTrack);
 				return; //end at last song
 			}
+			else curIndex++;
 		}
-		else if (loopIndex == 1) //loop album
+		else //loop album / loop song
 		{
 			curIndex < trackList.length - 1 ? curIndex += 1 : curIndex = 0;
 		}
-		// else loop song 
 	}
-
 
 	loadTrack();
 	playTrack();
