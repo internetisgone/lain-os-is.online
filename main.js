@@ -564,7 +564,7 @@ function switchLoop()
 	else 
 	{
 		loopIndex = 0 // 0 no loop
-		loopBtn.textContent = "no loop"
+		loopBtn.textContent = "loop off"
 		curTrack.removeEventListener("ended", loopSong)
 		curTrack.addEventListener("ended", nextTrack); //handled in nextTrack()
 	}
@@ -587,8 +587,16 @@ function setVolume()
 	changingVolumeText.textContent = "volume: " + Math.round(curTrack.volume * 10) / 10
 
 	curTrack.volume = volumeSlider.value / volumeSlider.max;
-	if (isScrolling) setNowPlayingAnim(false);
-	else nowPlayingStatic.style.opacity = "0";
+	if (isScrolling) 
+	{
+		setNowPlayingAnim(false);
+		setTimeout(onFinishSettingVolume, "2000")
+	}
+	else 
+	{
+		nowPlayingStatic.style.opacity = "0";
+		setTimeout(onFinishSettingVolume, "2000")
+	}
 }
 
 function onFinishSettingVolume()
