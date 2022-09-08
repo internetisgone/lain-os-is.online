@@ -79,24 +79,31 @@ let trackList = [
 // // 	else {bgAudio.play(); hasBgAudio = true}
 // // })
 
-// let loadingTimer = setInterval(loadingText, 500)
+// let initialLeft = entryTextsEl.parentElement.offsetWidth/2 - entryTextsEl.offsetWidth
+// entryTextsEl.style.left = initialLeft + "px"
+// let loadingTimer = setInterval(loadingText, 777)
 // let loadingIndex = 0
+
 // function loadingText()
 // {
-// 	if (loadingIndex < 3)
+// 	if (loadingIndex < 6)
 // 	{
 // 		entryTextsEl.textContent += ".";
 // 		loadingIndex++;
 // 	}
 // 	else 
-// 		{
-// 			entryTextsEl.textContent = "initialising";
-// 			loadingIndex = 0;
-// 		}
+// 	{
+// 		entryTextsEl.textContent = "initialising";
+// 		loadingIndex = 0;
+// 	}
 // }
 
 // window.onload = function() {
 // 	clearInterval(loadingTimer)
+// 	entryTextsEl.parentElement.style.display = "flex"
+// 	entryTextsEl.parentElement.style.justifyContent = "center"
+// 	entryTextsEl.style.left = "auto"
+
 // 	entryTextsEl.textContent = "log in"
 
 // 	entryPage.addEventListener("click", function(){
@@ -770,6 +777,11 @@ const biquadFilter = new BiquadFilterNode(audioContext, {frequency:1000})
 // biquadFilter.frequency.setValueAtTime(700, audioContext.currentTime);
 let impulse = impulseResponse(reverbDurationSlider.value, reverbDecaySlider.value)
 const convolver = new ConvolverNode(audioContext, {buffer:impulse})
+const analyser = new AnalyserNode(audioContext, {
+																  fftSize: 2048,
+																  maxDecibels: -25,
+																  minDecibels: -60,
+																  smoothingTimeConstant: 0.5})
 let hasReverb = false
 
 let source = audioContext.createMediaElementSource(curTrack);

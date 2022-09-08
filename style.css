@@ -38,6 +38,7 @@ body
 		left: 50%; top: 50%;
 		width: 60vw; height: auto;
 	}
+	#entry-bottom-text {bottom: 10%;}
 
 	/*dock at the bottom*/
 	#dock-container {bottom: 9%; width: 100%; height: 55px;}
@@ -66,6 +67,7 @@ body
 		 left: 50%; top: 50%; 
 		 height: 55vh; width: auto;
 	}
+	#entry-bottom-text {bottom: 3.3%;}
 
 	/*dock at the left*/
 	#dock-container {left: 0; top: 0; bottom: 0; width: 60px; height: 100%;}
@@ -86,7 +88,7 @@ body
 /* mobile mini window sizes (screens with width < 500px)*/
 @media screen and (max-width: 500px)
 {
-	#entry-texts {font-size: 13px;}
+	#entry-texts {font-size: 12px;}
 
 	#music-player{width: 370px;height: 480px;}
 	#terminal {width: 352px; height: 264px;} 				/*640x480 x0.55*/
@@ -100,6 +102,8 @@ body
 	#now-playing-static {font-size: 11px;}
 	#changing-volume {font-size: 11px;} /*same as now-playing-static*/
 	#cur-track-bitrate, #mono-stereo {font-size: 9px;}
+
+	#playback-controls button {width: 37px; font-size: x-small;}
 
 	.playlist-entry {font-size: 11px; margin: 6px;}
 	#mini-total-time, #mini-cur-time {font-size: 9px;}
@@ -115,7 +119,7 @@ body
 {
 	#entry-texts {font-size: 16px;}
 
-	#music-player {width: 520px;height: 670px;}
+	#music-player {width: 520px;height: 675px;}
 	#terminal {width: 493px; height: 369px;}				/*640x480 x0.77*/
 	#chat-window {width: 317px; height: 422px;} 			/*480x640 x0.66*/
 	#version-history-window {width: 422px; height: 317px;} 	/*640x480 x0.66*/
@@ -127,6 +131,8 @@ body
 	#now-playing-static {font-size: 13px;}
 	#changing-volume {font-size: 13px;} /*same as now-playing-static*/
 	#cur-track-bitrate, #mono-stereo {font-size: 11px;}
+
+	#playback-controls button {width: 50px; font-size: x-small;}
 
 	.playlist-entry {font-size: 13px; margin: 4px;}
 	#mini-total-time, #mini-cur-time {font-size: 11px;}
@@ -164,8 +170,14 @@ hr /*temp*/
 	background-color: whitesmoke;
 }
 
-#entry-texts {font-family: LoveLetter !important; position: fixed; color: black;}
+#entry-texts-container {position: fixed; width: 0; height: 0;}
+#entry-texts {font-family: LoveLetter !important; position: absolute; color: black; white-space: nowrap;}
 
+#entry-bottom-text 
+{
+	position: absolute; 
+	font-family: LoveLetter !important;font-size: small; color: darkgray; 
+}
 #main-container
 {
 	position: fixed; 
@@ -369,7 +381,7 @@ hr /*temp*/
 #now-playing-container
 {
 	position: absolute;
-	left: 43%; right: 11%; top: 3%; bottom: 91%;
+	left: 42%; right: 11%; top: 4%; bottom: 90%;
 	width: auto; height: auto;
 	overflow: hidden;
 	background-color: gainsboro; 
@@ -377,8 +389,7 @@ hr /*temp*/
 }
 
 #now-playing-static {position: absolute; margin: 0; margin-top: 3px; z-index: 33;}
-#changing-volume {position: absolute; margin: 0; margin-top: 3px; z-index: 33;} /*exact same pos as now-playing-static*/
-
+#changing-volume {position: absolute; margin: 0; margin-top: 3px; z-index: 33; opacity: 0;} /*exact same pos as now-playing-static*/
 
 #now-playing 
 {
@@ -420,7 +431,7 @@ so that texts of variable lengths can be scrolled*/
 #cur-time-container
 {
 	position: absolute;
-	left: 20%; right: 57%; top: 3%; bottom: 86%;
+	left: 17%; right: 58%; top: 4%; bottom: 85%;
 	width: auto; height: auto;
 	background-color: gainsboro;
 	opacity: 0.7;
@@ -433,11 +444,17 @@ so that texts of variable lengths can be scrolled*/
 	color: whitesmoke; margin: 5px; font-family:Input-Mono;
 }
 
-#visualiser
+#visualiser-container
 {
 	position: absolute;
 	margin: 0; 
 	bottom: 0; top: 40%; left: 2%; right: 2%;
+	background-color: violet;
+}
+
+#visualiser 
+{
+	width: 100%; height: 100%;
 }
 
 /*responsive font size*/
@@ -455,13 +472,13 @@ so that texts of variable lengths can be scrolled*/
 {
 	position: absolute; display: flex;
 	left:10%; top: 23%; bottom: 73%;
+	opacity: 0.7;
 }
-#playback-controls button {width: 49px; font-size: x-small;}
 
 #playlist-container
 {
 	position: absolute;
-	left: 17%; right: 10%; bottom: 13%; top: 60%;
+	left: 19%; right: 8%; bottom: 14%; top: 58%;
 	background-color: gainsboro;
 	opacity: 0.9;
 	overflow-y: scroll; overflow-x: hidden;
@@ -479,7 +496,7 @@ so that texts of variable lengths can be scrolled*/
 #mini-display-container
 {
 	position: absolute;
-	left: 59%; right: 11%; bottom: 2%; top: 91%;
+	left: 59%; right: 11%; bottom: 3%; top: 88%;
 	background-color: gainsboro;
 	opacity: 0.7;
 }

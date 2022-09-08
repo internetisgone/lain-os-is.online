@@ -9,8 +9,10 @@
 <body>
 <!-- 	<div id="entry-page"> 
 		<img src="img/frame.png" id="entry-img">
-		<p id="entry-texts">initialising</p>
-		<p style="position: absolute; bottom: 3.3%; color: darkgray; font-family: LoveLetter !important;font-size: small;">public domain operating system</p>
+ 		<div id="entry-texts-container">
+			<div id="entry-texts">initialising</div>
+		</div>
+		<p id="entry-bottom-text">public domain operating system</p>
 	</div> -->
 
 	<div id="main-container" style="font-family: Input-Mono, monospace;">
@@ -24,7 +26,7 @@
 
 			<div id="now-playing-container">
 				<p id="now-playing-static"></p>
-				<p id="changing-volume" style="opacity: 0;"></p>
+				<p id="changing-volume"></p>
 				<div id="now-playing">
 					<p class="now-playing-marquee"></p> 
 				</div>
@@ -35,7 +37,9 @@
 			<div id="cur-time-container">
 				<img id="cur-track-state"></img>
 				<span class="cur-time" id="cur-time" style="color: black; margin: 23%;">00:00</span>
-				<div id="visualiser"></div>
+				<div id="visualiser-container">
+					<canvas id="visualiser"></canvas>
+				</div>
 			</div>
 
 			<div id="volume-slider-container">
@@ -43,14 +47,16 @@
 			</div>
 
 			<div id="playback-controls">
+				<button id="loop-btn" onclick="switchLoop()">loop off</button>
+				<button id="shuffle-btn" onclick="toggleShuffle()" style="margin-right:13px">shuffle off</button>
+
 				<button id="prev-btn" onclick="prevTrack()">prev</button>
 				<button id="play-pause-btn" onclick="playTrack()">play</button>
 				<button onclick="pauseTrack()" >pause</button>
 				<button onclick="stopTrack()">stop</button>
 				<button id="next-btn" onclick="nextTrack()">next</button>
 
-				<button id="shuffle-btn" onclick="toggleShuffle()" style="margin-left:13px">shuffle off</button>
-				<button id="loop-btn" onclick="switchLoop()">loop off</button>
+				
 			</div>
 
 			<div id="playlist-container">
@@ -250,6 +256,16 @@ music player with biquad filters and reverb
 					<div class="icon" id="icon-version-history">
 						<img src="img/copland-icon.png" style="width: 100%;"></img>
 					</div>
+					<div class="icon" style="display: block;"> 
+						<a href="https://isitbandcampfriday.com/" target="_blank">
+							<img src="img/copland-icon.png" style="width: 100%;"></img> 
+						</a>
+					</div>
+					<!-- <div class="icon" style="display: block;"> 
+						<a href="https://www.mediafire.com/" target="_blank">
+							<img src="img/copland-icon.png" style="width: 100%;"></img> 
+						</a>
+					</div> -->
 				</div>
 			</div>
 			
