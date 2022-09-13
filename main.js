@@ -79,14 +79,14 @@ let trackList = [
 // // 	else {bgAudio.play(); hasBgAudio = true}
 // // })
 
-// let initialLeft = entryTextsEl.parentElement.offsetWidth/2 - entryTextsEl.offsetWidth
+// let initialLeft = entryTextsEl.parentElement.offsetWidth/2 - entryTextsEl.offsetWidth/2
 // entryTextsEl.style.left = initialLeft + "px"
 // let loadingTimer = setInterval(loadingText, 777)
 // let loadingIndex = 0
 
 // function loadingText()
 // {
-// 	if (loadingIndex < 6)
+// 	if (loadingIndex < 3)
 // 	{
 // 		entryTextsEl.textContent += ".";
 // 		loadingIndex++;
@@ -765,6 +765,7 @@ let gainEl = document.getElementById("cur-gain")
 let qSlider = document.getElementById("q-slider")
 let qEl = document.getElementById("cur-q")
 
+
 let reverbToggle = document.getElementById("reverb-toggle")
 let reverbDurationSlider = document.getElementById("reverb-duration")
 let reverbDecaySlider = document.getElementById("reverb-decay")
@@ -777,18 +778,24 @@ const biquadFilter = new BiquadFilterNode(audioContext, {frequency:1000})
 // biquadFilter.frequency.setValueAtTime(700, audioContext.currentTime);
 let impulse = impulseResponse(reverbDurationSlider.value, reverbDecaySlider.value)
 const convolver = new ConvolverNode(audioContext, {buffer:impulse})
+
+//todoooo
 const analyser = new AnalyserNode(audioContext, {
 																  fftSize: 2048,
 																  maxDecibels: -25,
 																  minDecibels: -60,
 																  smoothingTimeConstant: 0.5})
-let hasReverb = false
+
+const frequencyData = new Uint8Array(analyser.frequencyBinCount)
+console.log("analyserrr bin count " + analyser.frequencyBinCount + ", array " + frequencyData)
 
 let source = audioContext.createMediaElementSource(curTrack);
 
 let biquadIndex = 0
 let biquadTypes = ["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch", "allpass"]
+let hasReverb = false
 
+//source.connect(analyser).connect(audioContext.destination)
 source.connect(audioContext.destination)
 
 biquadSelectionEl.addEventListener("change", function(){switchBiquad(biquadSelectionEl.value);}) 

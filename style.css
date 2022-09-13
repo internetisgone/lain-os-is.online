@@ -110,7 +110,7 @@ body
 	/*music player end*/
 
 	/*terminal*/
-	#terminal-ascii-art {font-size: 1.5px;}
+	#terminal-ascii-art {font-size: 1px; line-height: 1.2;}
 	/*terminal end*/
 }
 
@@ -139,7 +139,7 @@ body
 	/*music player end*/
 
 	/*terminal*/
-	#terminal-ascii-art {font-size: 2px;}
+	#terminal-ascii-art {font-size: 2px; line-height: 1.2;}
 	/*terminal end*/
 }
 
@@ -168,10 +168,11 @@ hr /*temp*/
 	z-index: 111; 
 	top: 0;	left: 0; bottom: 0;	right: 0;
 	background-color: whitesmoke;
+	font-family: LoveLetter, monospace !important; 
 }
 
 #entry-texts-container {position: fixed; width: 0; height: 0;}
-#entry-texts {font-family: LoveLetter !important; position: absolute; color: black; white-space: nowrap;}
+#entry-texts {position: absolute; color: black; white-space: nowrap;}
 
 #entry-bottom-text 
 {
