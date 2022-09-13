@@ -450,7 +450,6 @@ so that texts of variable lengths can be scrolled*/
 	position: absolute;
 	margin: 0; 
 	bottom: 0; top: 40%; left: 2%; right: 2%;
-	background-color: violet;
 }
 
 #visualiser 

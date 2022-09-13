@@ -779,24 +779,56 @@ const biquadFilter = new BiquadFilterNode(audioContext, {frequency:1000})
 let impulse = impulseResponse(reverbDurationSlider.value, reverbDecaySlider.value)
 const convolver = new ConvolverNode(audioContext, {buffer:impulse})
 
-//todoooo
-const analyser = new AnalyserNode(audioContext, {
-																  fftSize: 2048,
-																  maxDecibels: -25,
-																  minDecibels: -60,
-																  smoothingTimeConstant: 0.5})
-
-const frequencyData = new Uint8Array(analyser.frequencyBinCount)
-console.log("analyserrr bin count " + analyser.frequencyBinCount + ", array " + frequencyData)
-
 let source = audioContext.createMediaElementSource(curTrack);
+
+///////todoooo frequency visualiser ///////
+let visualiserCanvas = document.getElementById("visualiser")
+let canvasContext = visualiserCanvas.getContext("2d")
+canvasContext.fillStyle = "black"
+
+const analyser = new AnalyserNode(audioContext, {
+																  fftSize: 64,
+																  // maxDecibels: -25,
+																  // minDecibels: -60,
+																  smoothingTimeConstant: 0.5
+																})
+
+let bufferLength = analyser.frequencyBinCount
+let frequencyData = new Uint8Array(bufferLength)
+let barWidth = visualiserCanvas.width / bufferLength
+
+console.log("barWidth " + barWidth)
+
+function drawFrame()
+{
+	requestAnimationFrame(drawFrame)
+
+	analyser.getByteFrequencyData(frequencyData)
+	//console.log("analyserrr bin count " + analyser.frequencyBinCount + ", data " + frequencyData)
+
+	canvasContext.clearRect(0, 0, visualiserCanvas.width, visualiserCanvas.height)
+	let x = 0
+	for (let i = 0; i < bufferLength; i++)
+	{
+		let barHeight = frequencyData[i] / 1.3;
+		console.log("index = " + i + ", x = " + x + ", bar height " + barHeight)
+		canvasContext.fillRect(x, visualiserCanvas.height - barHeight, barWidth, barHeight)
+
+		x += barWidth + 1
+	}
+}
+
+drawFrame();
+/////// frequency visualiser end ///////
+
+
 
 let biquadIndex = 0
 let biquadTypes = ["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch", "allpass"]
 let hasReverb = false
 
-//source.connect(analyser).connect(audioContext.destination)
-source.connect(audioContext.destination)
+source.connect(analyser).connect(audioContext.destination)
+//source.connect(audioContext.destination)
 
 biquadSelectionEl.addEventListener("change", function(){switchBiquad(biquadSelectionEl.value);}) 
 
