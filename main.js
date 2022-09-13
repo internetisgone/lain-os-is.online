@@ -284,6 +284,10 @@ let miniTotalTime = document.getElementById("mini-total-time")
 let miniCurTime = document.getElementById("mini-cur-time")
 let totalTime = "69:09" //tempppp
 
+//visualiserr
+let visualiserCanvas = document.getElementById("visualiser")
+let canvasContext = visualiserCanvas.getContext("2d")
+
 let playlistUl = document.getElementById("playlist-content")
 
 fillPlaylist(playlistUl);
@@ -439,6 +443,9 @@ function playTrack()
 	curBitrate.innerHTML = "192 KBPS 44.1 KHZ"
 	monoStereo.style.opacity = "1"
 
+	//visualiser
+	drawFrame()
+
 	playPauseBtn.textContent = "pause";//to be deleted
 }
 
@@ -539,6 +546,9 @@ function stopTrack()
 
 	curBitrate.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;KBPS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KHZ"
 	monoStereo.style.opacity = "0"
+
+	//cancelAnimationFrame(drawFrame)
+	canvasContext.clearRect(0, 0, visualiserCanvas.width, visualiserCanvas.height)
 }
 
 function toggleShuffle()
@@ -782,15 +792,15 @@ const convolver = new ConvolverNode(audioContext, {buffer:impulse})
 let source = audioContext.createMediaElementSource(curTrack);
 
 ///////todoooo frequency visualiser ///////
-let visualiserCanvas = document.getElementById("visualiser")
-let canvasContext = visualiserCanvas.getContext("2d")
+// let visualiserCanvas = document.getElementById("visualiser")
+// let canvasContext = visualiserCanvas.getContext("2d")
 canvasContext.fillStyle = "black"
 
 const analyser = new AnalyserNode(audioContext, {
-																  fftSize: 64,
+																  fftSize: 32,
 																  // maxDecibels: -25,
 																  // minDecibels: -60,
-																  smoothingTimeConstant: 0.5
+																  smoothingTimeConstant: 0.7
 																})
 
 let bufferLength = analyser.frequencyBinCount
@@ -801,7 +811,7 @@ console.log("barWidth " + barWidth)
 
 function drawFrame()
 {
-	requestAnimationFrame(drawFrame)
+	if (isPlaying) requestAnimationFrame(drawFrame);
 
 	analyser.getByteFrequencyData(frequencyData)
 	//console.log("analyserrr bin count " + analyser.frequencyBinCount + ", data " + frequencyData)
@@ -810,7 +820,7 @@ function drawFrame()
 	let x = 0
 	for (let i = 0; i < bufferLength; i++)
 	{
-		let barHeight = frequencyData[i] / 1.3;
+		let barHeight = frequencyData[i] / 2;
 		console.log("index = " + i + ", x = " + x + ", bar height " + barHeight)
 		canvasContext.fillRect(x, visualiserCanvas.height - barHeight, barWidth, barHeight)
 
@@ -818,9 +828,7 @@ function drawFrame()
 	}
 }
 
-drawFrame();
 /////// frequency visualiser end ///////
-
 
 
 let biquadIndex = 0
@@ -859,11 +867,11 @@ function switchBiquad(index)
 		if (hasReverb)
 		{
 			convolver.disconnect()
-			source.connect(convolver).connect(biquadFilter).connect(audioContext.destination)
+			source.connect(convolver).connect(biquadFilter).connect(analyser).connect(audioContext.destination)
 		}
 		else 
 		{	
-			source.connect(biquadFilter).connect(audioContext.destination)
+			source.connect(biquadFilter).connect(analyser).connect(audioContext.destination)
 		}
 		frequencyEl.style.color = "black";
 		gainEl.style.color = "black";
@@ -875,11 +883,11 @@ function switchBiquad(index)
 		biquadFilter.disconnect()
 		if (hasReverb)
 		{
-			source.connect(convolver).connect(audioContext.destination)
+			source.connect(convolver).connect(analyser).connect(audioContext.destination)
 		}
 		else 
 		{
-			source.connect(audioContext.destination)
+			source.connect(analyser).connect(audioContext.destination)
 		}
 		frequencyEl.style.color = "grey";
 		gainEl.style.color = "grey";
@@ -929,11 +937,11 @@ function toggleReverb()
 	{
 		if (biquadIndex > 0) 
 		{
-			source.connect(convolver).connect(biquadFilter).connect(audioContext.destination)
+			source.connect(convolver).connect(biquadFilter).connect(analyser).connect(audioContext.destination)
 		}
 		else 
 		{
-			source.connect(convolver).connect(audioContext.destination)
+			source.connect(convolver).connect(analyser).connect(audioContext.destination)
 		}
 		reverbToggle.textContent = "turn off reverb"
 		reverbDurationText.style.color = "black"

@@ -385,8 +385,7 @@ hr /*temp*/
 	left: 42%; right: 11%; top: 4%; bottom: 90%;
 	width: auto; height: auto;
 	overflow: hidden;
-	background-color: gainsboro; 
-	opacity: 0.7;
+	background-color: ghostwhite; 
 }
 
 #now-playing-static {position: absolute; margin: 0; margin-top: 3px; z-index: 33;}
@@ -432,17 +431,16 @@ so that texts of variable lengths can be scrolled*/
 #cur-time-container
 {
 	position: absolute;
-	left: 17%; right: 58%; top: 4%; bottom: 85%;
+	left: 18%; right: 58%; top: 4%; bottom: 85%;
 	width: auto; height: auto;
-	background-color: gainsboro;
-	opacity: 0.7;
+	background-color: ghostwhite;
 }
 
 #cur-track-state {position: absolute; margin-left: 4px;} /*play/pause/stop icons*/
 
 .cur-time, #old-total-time
 {
-	color: whitesmoke; margin: 5px; font-family:Input-Mono;
+	color: whitesmoke; margin: 5px; font-family:Input-Mono, monospace;
 }
 
 #visualiser-container
@@ -478,9 +476,8 @@ so that texts of variable lengths can be scrolled*/
 #playlist-container
 {
 	position: absolute;
-	left: 19%; right: 8%; bottom: 14%; top: 58%;
-	background-color: gainsboro;
-	opacity: 0.9;
+	left: 19%; right: 8%; bottom: 13%; top: 58%;
+	background-color: ghostwhite;
 	overflow-y: scroll; overflow-x: hidden;
 }
 
@@ -496,9 +493,8 @@ so that texts of variable lengths can be scrolled*/
 #mini-display-container
 {
 	position: absolute;
-	left: 59%; right: 11%; bottom: 3%; top: 88%;
-	background-color: gainsboro;
-	opacity: 0.7;
+	left: 59%; right: 11%; bottom: 2%; top: 90%;
+	background-color: ghostwhite;
 }
 
 #mini-total-time
