@@ -103,14 +103,14 @@ body
 	#changing-volume {font-size: 11px;} /*same as now-playing-static*/
 	#cur-track-bitrate, #mono-stereo {font-size: 9px;}
 
-	#playback-controls button {width: 37px; font-size: x-small;}
-
+/*	#playback-controls button {width: 37px; font-size: x-small;}
+*/
 	.playlist-entry {font-size: 11px; margin: 6px;}
 	#mini-total-time, #mini-cur-time {font-size: 9px;}
 	/*music player end*/
 
 	/*terminal*/
-	#terminal-ascii-art {font-size: 1px; line-height: 1.2;}
+	#terminal-ascii-art {font-size: 1。5px;}
 	/*terminal end*/
 }
 
@@ -132,14 +132,14 @@ body
 	#changing-volume {font-size: 13px;} /*same as now-playing-static*/
 	#cur-track-bitrate, #mono-stereo {font-size: 11px;}
 
-	#playback-controls button {width: 50px; font-size: x-small;}
-
+/*	#playback-controls button {width: 50px; font-size: x-small;}
+*/
 	.playlist-entry {font-size: 13px; margin: 4px;}
 	#mini-total-time, #mini-cur-time {font-size: 11px;}
 	/*music player end*/
 
 	/*terminal*/
-	#terminal-ascii-art {font-size: 2px; line-height: 1.2;}
+	#terminal-ascii-art {font-size: 2px;}
 	/*terminal end*/
 }
 
@@ -468,10 +468,17 @@ so that texts of variable lengths can be scrolled*/
 
 #playback-controls
 {
-	position: absolute; display: flex;
+	position: absolute; 
 	left:10%; top: 23%; bottom: 73%;
 	opacity: 0.7;
 }
+
+#playback-controls button 
+{
+	width: 40px; height: 40px;
+	border: none; margin: 0; padding: 0;
+}
+#playback-controls button img {width: 100%; height: auto;}
 
 #playlist-container
 {
