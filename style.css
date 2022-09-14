@@ -38,7 +38,7 @@ body
 		left: 50%; top: 50%;
 		width: 60vw; height: auto;
 	}
-	#entry-bottom-text {bottom: 8%;}
+	#entry-bottom-text {bottom: 10%;}
 
 	/*dock at the bottom*/
 	#dock-container {bottom: 9%; width: 100%; height: 55px;}
@@ -203,14 +203,9 @@ hr /*temp*/
 
 .mini-window-draggable
 {
-	position: relative;
-/*	top: 0px;
-	left: 0px;
-	right: 0px;*/
+	position: absolute;
 	width: 100%; height: 100%;
 	cursor: grab;
-/*	background-color: violet;
-	opacity: 0.2;*/
 }
 
 /******* chat *******/
@@ -272,7 +267,7 @@ hr /*temp*/
 
 #terminal-ascii-art
 {
-	color: whitesmoke; font-family: Input-Mono; 
+	color: whitesmoke; font-family: Input-Mono, monospace !important; 
 	line-height: normal !important; /*todo*/
 	padding: 0; margin: 0; border: 0;	
 	vertical-align: baseline;
@@ -382,6 +377,8 @@ hr /*temp*/
 	--music-player-bg-opacity: 1;
 }
 
+#music-player-drag {width: 93%; right: 0;}
+
 #now-playing-container
 {
 	position: absolute;
@@ -480,6 +477,26 @@ so that texts of variable lengths can be scrolled*/
 	width: 100%; cursor: pointer;
 }
 
+
+#volume-slider::-webkit-slider-thumb 
+{
+	-webkit-appearance: none;
+	appearance: none;
+	width: 25px;
+	height: 25px;
+	background: url("img/music-player-components/volume_slider_thumb.png") no-repeat;
+	background-size: auto 100%;
+	cursor: pointer;
+}
+
+#volume-slider::-moz-range-thumb {
+	width: 25px;
+	height: 25px;
+	background: url("img/music-player-components/volume_slider_thumb.png") no-repeat;
+	background-size: auto 100%;
+	cursor: pointer;
+}
+
 #progress-bar-container
 {
 	position: absolute;
@@ -490,7 +507,7 @@ so that texts of variable lengths can be scrolled*/
 #shuffle-loop-container
 {
 	position: absolute;
-	left: 13%; right: 77%; top: 19%; bottom: 60%;
+	left: 13%; right: 77%; top: 19%; bottom: 66%;
 }
 
 #shuffle-loop-container button 

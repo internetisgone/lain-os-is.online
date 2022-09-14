@@ -701,15 +701,27 @@ function validateInput(e)
 	}
 }
 
-let helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸<br>available commands:<br><br>playback control<br>&emsp;&emsp;play &emsp;&emsp; play the currently loaded song <br>&emsp;&emsp;pause <br>&emsp;&emsp;next <br>&emsp;&emsp;prev <br>&emsp;&emsp;random &nbsp;play a random song<br><br>audio filters<br>&emsp;&emsp;toilet &nbsp;pay a visit to the toilet<br>&emsp;&emsp;leave &nbsp; clear all audio filters<br>¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨<br>"
+let helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸<br><br>available commands:<br><br>"
+							+ "playback controls<br>"
+							+ "&emsp;&emsp;<span style='color:lime'>play </span> &emsp;&emsp; play the currently loaded song<br>"
+							+ "&emsp;&emsp;<span style='color:lime'>pause </span><br>"
+							+ "&emsp;&emsp;<span style='color:lime'>stop </span><br>"
+							+ "&emsp;&emsp;<span style='color:lime'>prev </span><br>"
+							+ "&emsp;&emsp;<span style='color:lime'>next </span><br>"
+							+ "&emsp;&emsp;<span style='color:lime'>random </span>&nbsp;play a random song<br><br>"
+							+ "audio filters<br>"
+							+ "&emsp;&emsp;<span style='color:lime'>toilet </span>&nbsp;pay a visit to the toilet<br>"
+							+ "&emsp;&emsp;<span style='color:lime'>leave </span>&nbsp; clear all audio filters<br><br>"
+							+ "¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨<br>"
 function checkCommand(input) 
 {
 	switch (input.trim().toLowerCase()) 
 	{
 		case "play": playTrack(); break;
 		case "pause": pauseTrack(); break;
-		case "next": nextTrack(); break;
+		case "stop": stopTrack(); break;
 		case "prev": prevTrack(); break;
+		case "next": nextTrack(); break;
 		case "random": 
 			curIndex = Math.floor(Math.random() * trackList.length);
 			loadTrack(); playTrack();
@@ -723,7 +735,6 @@ function checkCommand(input)
 
 		default: terminalDisplay.innerHTML += "idk that word!</br>"
 	}
-
 }
 
 ////////////// terminal //////////////
