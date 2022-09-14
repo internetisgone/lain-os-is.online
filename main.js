@@ -254,8 +254,10 @@ function dragEnd()
 
 let playPauseBtn = document.getElementById("old-play-pause-btn")
 let volumeSlider = document.getElementById("volume-slider")
+
 let progressBar = document.getElementById("progress-bar-container")
-let progressFill = document.getElementById("progress-bar-fill")
+let oldProgressBar = document.getElementById("old-progress-bar-container")
+let progressFill = document.getElementById("old-progress-bar-fill")
 let curTrackText = document.getElementById("cur-track-info")
 
 //load a random song
@@ -329,7 +331,9 @@ stopTrack(); //stop icon, no bitrate display
 let loopIndex = 2 //0 no loop, 1 loop album, 2 loop one song
 switchLoop() //no loop
 
-progressBar.addEventListener("click", setProgress);
+//todo new progress barrrr
+//progressBar.addEventListener("click", setProgress)
+oldProgressBar.addEventListener("click", setProgress);
 
 ///////initial state///////
 
@@ -546,9 +550,10 @@ function stopTrack()
 
 	curBitrate.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;KBPS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KHZ"
 	monoStereo.style.opacity = "0"
-
-	//cancelAnimationFrame(drawFrame)
-	canvasContext.clearRect(0, 0, visualiserCanvas.width, visualiserCanvas.height)
+	
+	requestAnimationFrame(function() {
+		canvasContext.clearRect(0, 0, visualiserCanvas.width, visualiserCanvas.height)
+	})
 }
 
 function toggleShuffle()
@@ -629,7 +634,7 @@ function onFinishSettingVolume()
 function updateProgress()
 {
 	let progress = curTrack.currentTime / curTrack.duration;
-	progressFill.style.width = progress * progressBar.offsetWidth + "px";
+	progressFill.style.width = progress * oldProgressBar.offsetWidth + "px";
 
 	//set time
 	let timeStrings = parseTime(curTrack.currentTime)
@@ -642,10 +647,11 @@ function updateProgress()
 
 function setProgress(el)
 {
-	let jumpTo = curTrack.duration * (el.offsetX / progressBar.offsetWidth);
+	let jumpTo = curTrack.duration * (el.offsetX / oldProgressBar.offsetWidth);
 	curTrack.currentTime = jumpTo;
 	updateProgress()
-	console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + progressBar.offsetWidth + ", jumpTo = " + jumpTo)
+	console.log("progressss " + el)
+	console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + oldProgressBar.offsetWidth + ", jumpTo = " + jumpTo)
 }
 
 let oldPlaylist = document.getElementById("old-playlist-content")

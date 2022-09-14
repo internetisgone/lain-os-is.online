@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<title>club cyberia</title>
 </head>
@@ -46,16 +45,22 @@
 				<input type="range" min="0" max="100" value="77" step="1" id="volume-slider" oninput="setVolume()" onchange="onFinishSettingVolume()">
 			</div>
 
-			<div id="playback-controls">
+			<div id="progress-bar-container">
+				<img src="img/music-player-components/progress_bar.png" style="width: 100%">
+			</div>
+
+			<div id="shuffle-loop-container">
 				<button id="loop-btn" onclick="switchLoop()">loop off</button>
-				<button id="shuffle-btn" onclick="toggleShuffle()" style="margin-right:13px">shuffle off</button>
+				<button id="shuffle-btn" onclick="toggleShuffle()">shuffle off</button>
+			</div>
 
-				<button onclick="prevTrack()"><img src="img/playback-ctrls/prev.png"></button>
-				<button onclick="playTrack()"><img src="img/playback-ctrls/play.png"></button>
-				<button onclick="pauseTrack()"><img src="img/playback-ctrls/pause.png"></button>
-				<button onclick="stopTrack()"><img src="img/playback-ctrls/stop.png"></button>
-				<button onclick="nextTrack()"><img src="img/playback-ctrls/next.png"></button>
-
+			<div id="playback-controls">
+				<button onclick="prevTrack()"><img src="img/music-player-components/prev.png"></button>
+				<button onclick="playTrack()"><img src="img/music-player-components/play.png"></button>
+				<button onclick="pauseTrack()"><img src="img/music-player-components/pause.png"></button>
+<!-- 				<button onclick="pauseTrack()" style="background-image: url('img/music-player-components/pause.png');background-repeat: no-repeat;background-size: 100%;"></button>
+ -->				<button onclick="stopTrack()"><img src="img/music-player-components/stop.png"></button>
+				<button onclick="nextTrack()"><img src="img/music-player-components/next.png"></button>
 			</div>
 
 			<div id="playlist-container">
@@ -65,6 +70,9 @@
 
 			<div id="mini-display-container">
 				<div id="mini-total-time">00:00 / 00:00</div>
+				<div id="mini-controls">
+					<img src="img/music-player-components/icons_all.png" style="width: 100%;">
+				</div>
 				<div id = "mini-cur-time">00:00</div>
 			</div>
 		</div>
@@ -276,17 +284,12 @@ music player with biquad filters and reverb
 				<button onclick="nextTrack()">next</button>
 				<button id="pl-toggle" >playlist</button>
 			</div>
-
 			<br>
-<!-- 			<label>volume </label>
-			<input type="range" min="0" max="100" value="77" id="old-volume-slider" onchange="setVolume()">
-			<br> 
-			<br>-->
 
 			<div style="display: flex;"> 
 				<span class="cur-time" id="old-cur-time" style="color: black;">00:00</span>
-				<div id ="progress-bar-container">
-					<div id="progress-bar-fill"></div>
+				<div id ="old-progress-bar-container">
+					<div id="old-progress-bar-fill"></div>
 				</div>
 				<span id="old-total-time" style="color: black;">00:00</span>
 			</div>
