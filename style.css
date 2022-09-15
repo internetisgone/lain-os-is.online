@@ -27,7 +27,7 @@ body
 
 /*mobile / portrait display*/
 /*bg lain pic, entry frame, and icon dock*/
-@media (min-aspect-ratio: 1/16) {
+@media (max-aspect-ratio: 4/3) {
 	body
 	{
 		background-size: auto 100vh;
@@ -98,7 +98,7 @@ body
 	/*music player*/
 	#cur-track-state {width: 18px;}
 	.cur-time {font-size: 14px;} 
-	.now-playing-marquee {font-size: 11px;}
+	#now-playing-marquee, #now-playing-marquee-clone {font-size: 11px;}
 	#now-playing-static {font-size: 11px;}
 	#changing-volume {font-size: 11px;} /*same as now-playing-static*/
 	#cur-track-bitrate, #mono-stereo {font-size: 9px;}
@@ -127,7 +127,7 @@ body
 	/*music player*/
 	#cur-track-state {width: 22px;}
 	.cur-time {font-size: 18px;} 
-	.now-playing-marquee {font-size: 13px;}
+	#now-playing-marquee, #now-playing-marquee-clone {font-size: 13px;}
 	#now-playing-static {font-size: 13px;}
 	#changing-volume {font-size: 13px;} /*same as now-playing-static*/
 	#cur-track-bitrate, #mono-stereo {font-size: 11px;}
@@ -392,16 +392,25 @@ hr /*temp*/
 #now-playing-static {position: absolute; margin: 0; margin-top: 3px; z-index: 33;}
 #changing-volume {position: absolute; margin: 0; margin-top: 3px; z-index: 33; opacity: 0;} /*exact same pos as now-playing-static*/
 
-#now-playing 
+#now-playing
 {
 	position: absolute;
 	display: flex;
 	margin-top: 3px;
 	width: auto; height: 100%;
-	animation: scrollTextWrap 7s linear infinite;
+	animation: scrollText 7s linear infinite;
 }
 
-.now-playing-marquee
+ #now-playing-clone 
+ {
+ 	position: absolute;
+	display: flex;
+	margin-top: 3px;
+	width: auto; height: 100%;
+	animation: scrollTextDelayed 7s linear infinite;
+ }
+
+#now-playing-marquee
 {
 	position: relative;
 	width: auto; height: 100%; margin: 0;
@@ -411,22 +420,27 @@ hr /*temp*/
 	animation: scrollText 7s linear infinite;
 }
 
+#now-playing-marquee-clone
+{
+	position: relative;
+	width: auto; height: 100%; margin: 0;
+	margin-left: -100%; left: 0;
+	white-space: nowrap;
+	background-color: transparent;
+	animation: scrollTextDelayed 7s linear infinite;
+}
+
 /*animate the two elements at same time 
 so that texts of variable lengths can be scrolled*/
-@keyframes scrollTextWrap
-{
-/*	from {margin-left: 100%;}
-    to {margin-left: 0%;}*/
-    from {left: 100%;}
-    to {left: 0;}
-}
 @keyframes scrollText
 {
-/*	from {transform: translateX(100%);}
-  	to {transform: translateX(-100%);}*/
-  	from {left: 100%;}
-/*  	50% {left: 0;} 
-*/ to {left: 0;}
+	from {transform: translateX(100%);}
+	to {transform: translateX(0);}
+}
+@keyframes scrollTextDelayed
+{
+	from {transform: translateX(0);}
+	to {transform: translateX(-100%);}
 }
 
 #cur-time-container
@@ -465,18 +479,17 @@ so that texts of variable lengths can be scrolled*/
 #volume-slider-container
 {
 	position: absolute; margin: 0;
-	left: 46%; right: 29%; top: 13%; bottom: 82%;
+	left: 46%; right: 29%; top: 13%; bottom: 84%;
 	background-image: url("img/music-player-components/volume_bar.png");
 	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: 90% auto;
 }
 
-#volume-slider-container input 
+#volume-slider
 {
 	all: unset; 
-	width: 100%; cursor: pointer;
+	width: 100%; height: 100%; cursor: pointer;
 }
-
 
 #volume-slider::-webkit-slider-thumb 
 {
@@ -544,9 +557,17 @@ so that texts of variable lengths can be scrolled*/
 {
 	outline: none; background: transparent;	border: none; 
 	margin: 1%; padding: 0; border: 0; margin-bottom: 2%;
+	border-radius: 11px;
 	cursor: pointer;
 }
-#playback-controls button img {width: 105%; height: auto;}
+#playback-controls button img {width: 100%; height: auto;}
+
+/*pressed down animation*/
+#playback-controls button:active 
+{
+	transform: translate(1px, 2px);
+	/*box-shadow:  -1px -2px 2px dimgray;*/
+}
 
 #playlist-container
 {

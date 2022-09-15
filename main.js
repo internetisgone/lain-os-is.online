@@ -268,7 +268,7 @@ let progressTimer = null
 
 let nowPlayingContainer = document.getElementById("now-playing-container")
 let nowPlayingWrapper = document.getElementById("now-playing")
-let nowPlayingText = document.getElementsByClassName("now-playing-marquee").item(0)
+let nowPlayingText = document.getElementById("now-playing-marquee")
 let nowPlayingStatic = document.getElementById("now-playing-static")
 let changingVolumeText = document.getElementById("changing-volume")
 let nowPlayingWidth
@@ -467,7 +467,11 @@ function pauseTrack()
 
 function setNowPlayingAnim(playAnim)
 {
-	//if (wrapperClone)	wrapperClone = null;
+	if (wrapperClone)	
+	{
+		nowPlayingContainer.removeChild(wrapperClone)
+		wrapperClone = null;
+	}
 
 	if (playAnim) //show the scrolling divs
 	{
@@ -475,15 +479,11 @@ function setNowPlayingAnim(playAnim)
 		nowPlayingText.style.opacity = "1"
 
 		//todoo continuous scrolling text
-		// wrapperClone = nowPlayingWrapper.cloneNode(true) //deep clone, clones its content 
-		// nowPlayingContainer.appendChild(wrapperClone) 
-		// wrapperClone.style.top = "0"
-
-		// wrapperClone.style.animationDelay = "3.5s"
-		// wrapperClone.getElementsByClassName("now-playing-marquee").item(0).style.animationDelay = "3.5s"
-
-		// nowPlayingWrapper.style.animationDelay = "1.33s"
-		// nowPlayingText.style.animationDelay = "1.33s"
+		wrapperClone = nowPlayingWrapper.cloneNode(true) //deep clone, clones its content 
+		wrapperClone.id = "now-playing-clone"
+		wrapperClone.firstChild.id = "now-playing-marquee-clone"
+				
+		nowPlayingContainer.appendChild(wrapperClone) 
 	}
 	else //show the static element
 	{
