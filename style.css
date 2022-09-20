@@ -8,11 +8,14 @@
 {
 	font-family: "Input-Mono";
 	src: url("/fonts/Input-Regular_(InputMonoNarrow-Regular).ttf") format("truetype");
+	
+	/*basic latin*/ 
+	/*unicode-range: U+0020-007F; */
 }
 
 p, label, button, option, ul
 {
-	font-family: "Input-Mono", "Courier New", monospace;
+	font-family: Input-Mono, "Courier New", monospace;
 	color: black;
 }
 
@@ -139,7 +142,7 @@ body
 	/*music player end*/
 
 	/*terminal*/
-	#terminal-ascii-art {font-size: 2px;}
+	#terminal-ascii-art {font-size: 2px !important;}
 	/*terminal end*/
 }
 
@@ -168,7 +171,7 @@ hr /*temp*/
 	z-index: 111; 
 	top: 0;	left: 0; bottom: 0;	right: 0;
 	background-color: whitesmoke;
-	font-family: LoveLetter, monospace !important; 
+	font-family: LoveLetter, "Courier New", monospace !important; 
 }
 
 #entry-texts-container {position: fixed; width: 0; height: 0;}
@@ -177,7 +180,8 @@ hr /*temp*/
 #entry-bottom-text 
 {
 	position: absolute; 
-	font-family: LoveLetter !important;font-size: small; color: darkgray; 
+	font-family: LoveLetter, "Courier New", monospace !important;
+	font-size: small; color: darkgray; 
 }
 #main-container
 {
@@ -219,7 +223,7 @@ hr /*temp*/
 
 #chat-container
 {
-	font-family: "Input-Mono", monospace; font-size: 13px !important; 
+	font-family: Input-Mono, "Courier New", monospace; font-size: 13px; 
 	position: absolute;
 	width: 80%; height: 90%;
 	top: 6%; bottom: 2%;
@@ -229,7 +233,8 @@ hr /*temp*/
 /******* terminallllllll *******/
 #terminal
 {
-	font-size: 13px; 
+	font-size: 13px; color: whitesmoke;  
+	font-family: Input-Mono, "Courier New", monospace !important;
 	top: 13%; left: 7%;
 	/*width n height are set separately, responsive to screen size*/
 	z-index: 6;
@@ -244,6 +249,9 @@ hr /*temp*/
 	background-color: black;
 	overflow-y: scroll;
 	z-index: 7; /*in case it gets occluded by input are*/
+
+	-ms-overflow-style: none;  /* hide scroll bar in IE and edge */
+  scrollbar-width: none;  /* hide scroll bar in firefox */
 }
 /*hide scroll bar inside terminal but still scrollable*/
 #terminal-txt-container::-webkit-scrollbar {display: none;}
@@ -267,11 +275,12 @@ hr /*temp*/
 
 #terminal-ascii-art
 {
-	color: whitesmoke; font-family: Input-Mono, monospace !important; 
-	line-height: normal !important; /*todo*/
+	/*todo*/
+	font-family: monospace !important;
+	/*line-height: normal !important; */
 	padding: 0; margin: 0; border: 0;	
-	vertical-align: baseline;
-}
+/*	vertical-align: baseline;
+*/}
 
 #terminal-display /*shows submitted texts*/
 {
@@ -407,7 +416,7 @@ hr /*temp*/
 	display: flex;
 	margin-top: 3px;
 	width: auto; height: 100%;
-	animation: scrollTextDelayed 7s linear infinite;
+	animation: scrollText 7s linear infinite;
  }
 
 #now-playing-marquee
@@ -424,10 +433,11 @@ hr /*temp*/
 {
 	position: relative;
 	width: auto; height: 100%; margin: 0;
-	margin-left: -100%; left: 0;
+	margin: 0; left: 0;
 	white-space: nowrap;
 	background-color: transparent;
-	animation: scrollTextDelayed 7s linear infinite;
+	color: violet;
+	animation: scrollText 7s linear infinite;
 }
 
 /*animate the two elements at same time 
@@ -609,7 +619,7 @@ so that texts of variable lengths can be scrolled*/
 #mini-cur-time
 {
 	position: absolute;
-	font-family: Input-Mono, monospace; color: black;
+	font-family: Input-Mono,  monospace; color: black;
 	bottom: 2%; right: 3%;
 }
 /******* music player *******/

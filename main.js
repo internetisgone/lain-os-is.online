@@ -79,6 +79,7 @@ let trackList = [
 // // 	else {bgAudio.play(); hasBgAudio = true}
 // // })
 
+// // manually center the loading text so its position is fixed while adding the "..."
 // let initialLeft = entryTextsEl.parentElement.offsetWidth/2 - entryTextsEl.offsetWidth/2
 // entryTextsEl.style.left = initialLeft + "px"
 // let loadingTimer = setInterval(loadingText, 777)
@@ -479,11 +480,11 @@ function setNowPlayingAnim(playAnim)
 		nowPlayingText.style.opacity = "1"
 
 		//todoo continuous scrolling text
-		wrapperClone = nowPlayingWrapper.cloneNode(true) //deep clone, clones its content 
-		wrapperClone.id = "now-playing-clone"
-		wrapperClone.firstChild.id = "now-playing-marquee-clone"
+		// wrapperClone = nowPlayingWrapper.cloneNode(true) //deep clone, clones its content 
+		// wrapperClone.id = "now-playing-clone"
+		// wrapperClone.children.item(0).id = "now-playing-marquee-clone"
 				
-		nowPlayingContainer.appendChild(wrapperClone) 
+		// nowPlayingContainer.appendChild(wrapperClone) 
 	}
 	else //show the static element
 	{
