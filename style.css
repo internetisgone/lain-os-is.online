@@ -113,7 +113,7 @@ body
 	/*music player end*/
 
 	/*terminal*/
-	#terminal-ascii-art {font-size: 1.5px !important;}
+	/*#terminal-ascii-art {font-size: 1.5px !important;}*/
 	/*terminal end*/
 }
 
@@ -142,7 +142,7 @@ body
 	/*music player end*/
 
 	/*terminal*/
-	#terminal-ascii-art {font-size: 2px !important;}
+	/*#terminal-ascii-art {font-size: 2px !important;}*/
 	/*terminal end*/
 }
 
@@ -233,7 +233,7 @@ hr /*temp*/
 /******* terminallllllll *******/
 #terminal
 {
-	font-size: 13px; color: whitesmoke;  
+	font-size: 13px; color: whitesmoke !important;  
 	font-family: Input-Mono, "Courier New", monospace !important;
 	top: 13%; left: 7%;
 	/*width n height are set separately, responsive to screen size*/
@@ -242,7 +242,7 @@ hr /*temp*/
 
 #terminal-txt-container
 {
-	font-size: 13px; 
+	font-size: 13px; color: whitesmoke;
 	position: absolute;
 	left: 3%; top: 11%; bottom: 5%;
 	width: 94%; height: 80%;
@@ -258,7 +258,7 @@ hr /*temp*/
 
 #terminal-input-container
 {
-	font-size: 13px; 
+	font-size: 13px; color: whitesmoke;
 	position: absolute; 
 	width: 94%;
 	left: 3%; right: 3%; bottom: 4%;
@@ -275,17 +275,20 @@ hr /*temp*/
 
 #terminal-ascii-art
 {
-	/*todo*/
-	font-family: monospace !important;
+	font-size: 12px;
+	font-family: Input-Mono, "Courier New", monospace;
 	/*line-height: normal !important; */
 	padding: 0; margin: 0; border: 0;	
-/*	vertical-align: baseline;
-*/}
+
+	/*when browser's preferred language is set to chinese, */
+	/*the min font-size is restricted to 12px. */
+	/*transform:scale() can be used to counter this browser limitation*/
+	transform: scale(0.16) translate(-200%, 250%);
+}
 
 #terminal-display /*shows submitted texts*/
 {
-	position: absolute; 
-	color: whitesmoke;
+	position: absolute; color: whitesmoke !important;
 	font-size: 13px; 
 	margin: 0px;	
 }
@@ -293,7 +296,7 @@ hr /*temp*/
 #terminal-prompt 
 {
 	font-size: 13px; 
-	position: absolute; color: whitesmoke; 
+	position: absolute; 
 	margin-top: 4px; /*so it aligns with the fake caret*/
 	/*margin-left: 4px;*/
 }
@@ -705,16 +708,19 @@ so that texts of variable lengths can be scrolled*/
 
 #old-progress-bar-container
 {
-	margin: 8px; background-color: gainsboro; 
+	position: relative;
+	margin: 8px; 
 	width: 210px;
 	height: 10px;
 }
 
 #old-progress-bar-fill
 {
+	position: absolute;
 	max-width: 210px;
 	width: 0px;
 	height: 10px;
 	background-color: violet;
+	z-index: -1;
 }
 /***************** old music player *****************/

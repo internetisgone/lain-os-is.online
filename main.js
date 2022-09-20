@@ -69,6 +69,7 @@ let trackList = [
 
 // let entryPage = document.getElementById("entry-page")
 // let entryTextsEl = document.getElementById("entry-texts")
+// let entryBottomTexts = document.getElementById("entry-bottom-text")
 
 // // let bgAudio = document.getElementById("bg-track")
 // // let bgAudioToggle = document.getElementById("temp-bg-audio-toggle")
@@ -99,6 +100,14 @@ let trackList = [
 // 	}
 // }
 
+// //todo
+// //let chars = 
+// let bottomTextTimer = setInterval(scrambleBottomText, 50)
+// function scrambleBottomText()
+// {
+// 	entryBottomTexts.textContent = "lskvjadvn"
+// }
+
 // window.onload = function() {
 // 	clearInterval(loadingTimer)
 // 	entryTextsEl.parentElement.style.display = "flex"
@@ -106,6 +115,7 @@ let trackList = [
 // 	entryTextsEl.style.left = "auto"
 
 // 	entryTextsEl.textContent = "log in"
+// 	entryBottomTexts.textContent = "public domain operating system"
 
 // 	entryPage.addEventListener("click", function(){
 // 		entryPage.style.opacity = "0"
@@ -342,7 +352,7 @@ function loadTrack()
 {
 	if (progressTimer != null) 	{clearInterval(progressTimer)}
 	curTrack.src = trackList[curIndex].path;
-	curTrackText.textContent = "loading metadata..." //deletee
+	curTrackText.textContent = "loading metadata..." //old music player
 
 	setNowPlayingAnim(false)
 	nowPlayingStatic.textContent = "loading metadata..."
