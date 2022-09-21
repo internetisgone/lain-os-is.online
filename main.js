@@ -1,139 +1,154 @@
-let trackList = [
+const trackList = [
   {
-  	name: "afalfl - just some kick noyze",
-		path: "/demo-mp3/afalfl - just some kick noyze.mp3"
+  	name: "afalfl - just some kick noyze [master 20220921]",
+		path: "/21sept-master-mp3/afalfl - just some kick noyze [master 20220921].mp3"
   },
   {
-  	name: "Fetus - Footprints (premix)",
-		path: "/demo-mp3/Fetus - Footprints (premix).mp3"
+  	name: "Fetus - Footprints [master 20220921]",
+		path: "/21sept-master-mp3/Fetus - Footprints [master 20220921].mp3"
   },
   {
-  	name: "GRASPS X NERDIE - I AM HURTING (PREMASTER)",
-		path: "/demo-mp3/GRASPS X NERDIE - I AM HURTING (PREMASTER).mp3"
+  	name: "GRASPS X NERDIE - I AM HURTING [master 20220921]",
+		path: "/21sept-master-mp3/GRASPS X NERDIE - I AM HURTING [master 20220921].mp3"
   },
   {
-  	name: "Imryll - Family Portrait (Imryll Reimagined)",
-		path: "/demo-mp3/Imryll - Family Portrait (Imryll Reimagined).mp3"
+  	name: "Imryll - Family Portrait (Imryll Reimagined) [master 20220921]",
+		path: "/21sept-master-mp3/Imryll - Family Portrait (Imryll Reimagined) [master 20220921].mp3"
   },
   {
-  	name: "Jennifer Walton - At Last, Lain Is Free",
-		path: "/demo-mp3/Jennifer Walton - At Last, Lain Is Free.mp3"
+  	name: "Jennifer Walton - At Last, Lain Is Free [master 20220921]",
+		path: "/21sept-master-mp3/Jennifer Walton - At Last, Lain Is Free [master 20220921].mp3"
   },
   {
-  	name: "Kagami Smile -  Acts of Betrayal",
-		path: "/demo-mp3/Kagami Smile -  Acts of Betrayal.mp3"
+  	name: "Kagami Smile -  Acts of Betrayal [master 20220921]",
+		path: "/21sept-master-mp3/Kagami Smile -  Acts of Betrayal [master 20220921].mp3"
   },
   {
-  	name: "lovefear - SEL compilation track final",
-  	path: "/demo-mp3/lovefear - SEL compilation track final.mp3"
+  	name: "lovefear - SEL compilation track final  [master 20220921]",
+  	path: "/21sept-master-mp3/lovefear - SEL compilation track final  [master 20220921].mp3"
   },
   {
-  	name: "Nerve - I'm Gonna Diss You",
-  	path: "/demo-mp3/Nerve - I'm Gonna Diss You.mp3"
+  	name: "Nerve - I_m Gonna Diss You [master 20220921]",
+  	path: "/21sept-master-mp3/Nerve - I_m Gonna Diss You [master 20220921].mp3"
   },
   {
-  	name: "Sour Gout - Transmigration(-60db_unmastered)",
-		path: "/demo-mp3/Sour Gout - Transmigration(-60db_unmastered).mp3"
+  	name: "Sour Gout - Transmigration [master 20220921]",
+		path: "/21sept-master-mp3/Sour Gout - Transmigration [master 20220921].mp3"
   },
   {
-  	name: "thegn ft. vrain - phantoma_-_track04.wav (unmastered)",
-		path: "/demo-mp3/thegn ft. vrain - phantoma_-_track04.wav (unmastered).mp3"
+  	name: "thegn ft. vrain - phantoma [master 20220921]",
+		path: "/21sept-master-mp3/thegn ft. vrain - phantoma [master 20220921].mp3"
   },
   {
-  	name: "Wa_ste - cyberia texture 5a x professed intention and real intention",
-		path: "/demo-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention.mp3"
+  	name: "Wa_ste - cyberia texture 5a x professed intention and real intention [master 20220921]",
+		path: "/21sept-master-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention [master 20220921].mp3"
   },
   {
-  	name: "xo - 200529-DuvetBoa8-absurd3bF",
-		path: "/demo-mp3/xo - 200529-DuvetBoa8-absurd3bF.mp3"
+  	name: "xo - 200529-DuvetBoa8  [master 20220921]",
+		path: "/21sept-master-mp3/xo - 200529-DuvetBoa8  [master 20220921].mp3"
   },
   {
-  	name: "Yikii - Ancient Scanner",
-  	path: "/demo-mp3/Yikii - Ancient Scanner.mp3"
+  	name: "Yikii - Ancient Scanner [master 20220921]",
+  	path: "/21sept-master-mp3/Yikii - Ancient Scanner [master 20220921].mp3"
   },
   {
-  	name: "Yraki - Lights Down - PREMASTER24bit",
-		path: "/demo-mp3/Yraki - Lights Down - PREMASTER24bit.mp3"
+  	name: "Yraki - Lights Down [master 20220921]",
+		path: "/21sept-master-mp3/Yraki - Lights Down [master 20220921].mp3"
   },
   {
-  	name: "Yumea Horiike - lain - 2022_05_18 23",
-		path: "/demo-mp3/Yumea Horiike - lain - 2022_05_18 23.mp3"
+  	name: "Yumea Horiike - lain [master 20220921]",
+		path: "/21sept-master-mp3/Yumea Horiike - lain [master 20220921].mp3"
   },
   {
-  	name: "Yuting Wu - Help me to Breathe",
-		path: "/demo-mp3/Yuting Wu - Help me to Breathe.mp3"
+  	name: "Yuting Wu - Help me to Breathe [master 20220921]",
+		path: "/21sept-master-mp3/Yuting Wu - Help me to Breathe [master 20220921].mp3"
   },
 ]; 
 
+const entryInitString = "initialising";
+const entryOnloadString = "log in";
+const entryBottomString = "public domain operating system"
+
+const bitrateStereoString = "320 KBPS 44.1 KHZ";  
+const bitrateStereoPlaceholder = "&nbsp;&nbsp;&nbsp;&nbsp;KBPS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KHZ"
+const loadingTrackString = "loading metadata..."; 
+
 ////////////// entry page //////////////
 
-// let entryPage = document.getElementById("entry-page")
-// let entryTextsEl = document.getElementById("entry-texts")
-// let entryBottomTexts = document.getElementById("entry-bottom-text")
+let entryPage = document.getElementById("entry-page")
+let entryTextsEl = document.getElementById("entry-texts")
+let entryBottomTexts = document.getElementById("entry-bottom-text")
 
-// // let bgAudio = document.getElementById("bg-track")
-// // let bgAudioToggle = document.getElementById("temp-bg-audio-toggle")
-// // let hasBgAudio = false
+// let bgAudio = document.getElementById("bg-track")
+// let bgAudioToggle = document.getElementById("temp-bg-audio-toggle")
+// let hasBgAudio = false
 
-// // bgAudioToggle.addEventListener("click", function(){
-// // 	if (hasBgAudio) {bgAudio.pause(); hasBgAudio = false}
-// // 	else {bgAudio.play(); hasBgAudio = true}
-// // })
+// bgAudioToggle.addEventListener("click", function(){
+// 	if (hasBgAudio) {bgAudio.pause(); hasBgAudio = false}
+// 	else {bgAudio.play(); hasBgAudio = true}
+// })
 
-// // manually center the loading text so its position is fixed while adding the "..."
-// let initialLeft = entryTextsEl.parentElement.offsetWidth/2 - entryTextsEl.offsetWidth/2
-// entryTextsEl.style.left = initialLeft + "px"
-// let loadingTimer = setInterval(loadingText, 777)
-// let loadingIndex = 0
+// manually center the loading text so its position is fixed while adding the "..."
+let initialLeft = entryTextsEl.parentElement.offsetWidth/2 - entryTextsEl.offsetWidth/2
+entryTextsEl.style.left = initialLeft + "px"
+let loadingTimer = setInterval(loadingText, 777)
+let loadingIndex = 0
 
-// function loadingText()
-// {
-// 	if (loadingIndex < 3)
-// 	{
-// 		entryTextsEl.textContent += ".";
-// 		loadingIndex++;
-// 	}
-// 	else 
-// 	{
-// 		entryTextsEl.textContent = "initialising";
-// 		loadingIndex = 0;
-// 	}
-// }
+function loadingText()
+{
+	if (loadingIndex < 3)
+	{
+		entryTextsEl.textContent += ".";
+		loadingIndex++;
+	}
+	else 
+	{
+		entryTextsEl.textContent = entryInitString;
+		loadingIndex = 0;
+	}
+}
 
-// //todo
-// //let chars = 
-// let bottomTextTimer = setInterval(scrambleBottomText, 50)
-// function scrambleBottomText()
-// {
-// 	entryBottomTexts.textContent = "lskvjadvn"
-// }
+//todooooooo
+//let chars = 
+let tempIndex = 161
+let bottomTextTimer = setInterval(scrambleBottomText, 50)
+function scrambleBottomText()
+{
+	let currentChar = String.fromCharCode(tempIndex)
 
-// window.onload = function() {
-// 	clearInterval(loadingTimer)
-// 	entryTextsEl.parentElement.style.display = "flex"
-// 	entryTextsEl.parentElement.style.justifyContent = "center"
-// 	entryTextsEl.style.left = "auto"
+	entryBottomTexts.textContent = currentChar.repeat(27)
+	tempIndex++;
+}
 
-// 	entryTextsEl.textContent = "log in"
-// 	entryBottomTexts.textContent = "public domain operating system"
+window.onload = function() {
+	clearInterval(loadingTimer)
+	clearInterval(bottomTextTimer)
 
-// 	entryPage.addEventListener("click", function(){
-// 		entryPage.style.opacity = "0"
-// 		if (audioContext.state === 'suspended') {audioContext.resume();}
+	entryTextsEl.parentElement.style.display = "flex"
+	entryTextsEl.parentElement.style.justifyContent = "center"
+	entryTextsEl.style.left = "auto"
 
-// 		// bgAudio.load();
-// 		// bgAudio.addEventListener("canplaythrough", function(){bgAudio.play();})
-// 		// hasBgAudio = true;
-// 		// bgAudio.volume = 0.2;
+	entryTextsEl.textContent = entryOnloadString
+	entryBottomTexts.style.fontFamily = "LoveLetter, 'Courier New', monospace !important;"
+	entryBottomTexts.textContent = entryBottomString
 
-// 		//temppp 
-// 		//setInterval(totalLengthTest, 5000);
-// 	})
+	entryPage.addEventListener("click", function(){
+		entryPage.style.opacity = "0"
+		if (audioContext.state === 'suspended') {audioContext.resume();}
 
-// 	entryPage.addEventListener('transitionend', function() {
-// 		entryPage.parentNode.removeChild(entryPage)
-// 	})
-// }//end of onload
+		// bgAudio.load();
+		// bgAudio.addEventListener("canplaythrough", function(){bgAudio.play();})
+		// hasBgAudio = true;
+		// bgAudio.volume = 0.2;
+
+		//temppp 
+		//setInterval(totalLengthTest, 5000);
+	})
+
+	entryPage.addEventListener('transitionend', function() {
+		entryPage.parentNode.removeChild(entryPage)
+	})
+}//end of onload
 
 
 ////////////// entry page //////////////
@@ -286,7 +301,7 @@ let nowPlayingWidth
 let isScrolling
 
 let curTrackStateIcon = document.getElementById("cur-track-state") //play / pause icon
-let curBitrate = document.getElementById("cur-track-bitrate") //192kbps 44khz //toggle inner html
+let curBitrate = document.getElementById("cur-track-bitrate") //320kbps 44khz //toggle inner html
 let monoStereo = document.getElementById("mono-stereo") //toggle its opacity
 
 let shuffleBtn = document.getElementById("shuffle-btn")
@@ -352,11 +367,11 @@ function loadTrack()
 {
 	if (progressTimer != null) 	{clearInterval(progressTimer)}
 	curTrack.src = trackList[curIndex].path;
-	curTrackText.textContent = "loading metadata..." //old music player
+	curTrackText.textContent = loadingTrackString //old music player
 
 	setNowPlayingAnim(false)
-	nowPlayingStatic.textContent = "loading metadata..."
-	curBitrate.innerHTML = "192 KBPS 44.1 KHZ"
+	nowPlayingStatic.textContent = loadingTrackString
+	curBitrate.innerHTML = bitrateStereoString
 	monoStereo.style.opacity = "1"
 
 	curTrack.load();
@@ -455,7 +470,7 @@ function playTrack()
 	curTrack.play();
 	isPlaying = true;
 	curTrackStateIcon.src = "img/test-play.png"
-	curBitrate.innerHTML = "192 KBPS 44.1 KHZ"
+	curBitrate.innerHTML = bitrateStereoString
 	monoStereo.style.opacity = "1"
 
 	//visualiser
@@ -559,7 +574,7 @@ function stopTrack()
 	updateProgress();
 	curTrackStateIcon.src = "img/test-stop.png";
 
-	curBitrate.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;KBPS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KHZ"
+	curBitrate.innerHTML = bitrateStereoPlaceholder
 	monoStereo.style.opacity = "0"
 	
 	requestAnimationFrame(function() {

@@ -171,7 +171,7 @@ hr /*temp*/
 	z-index: 111; 
 	top: 0;	left: 0; bottom: 0;	right: 0;
 	background-color: whitesmoke;
-	font-family: LoveLetter, "Courier New", monospace !important; 
+	font-family: LoveLetter, "Courier New", monospace; 
 }
 
 #entry-texts-container {position: fixed; width: 0; height: 0;}
@@ -180,7 +180,7 @@ hr /*temp*/
 #entry-bottom-text 
 {
 	position: absolute; 
-	font-family: LoveLetter, "Courier New", monospace !important;
+	font-family: "Courier New:", monospace; /*font is changed later in js*/
 	font-size: small; color: darkgray; 
 }
 #main-container
@@ -238,6 +238,9 @@ hr /*temp*/
 	top: 13%; left: 7%;
 	/*width n height are set separately, responsive to screen size*/
 	z-index: 6;
+
+/*	display: flex; 
+	flex-direction: column; */
 }
 
 #terminal-txt-container
@@ -273,22 +276,29 @@ hr /*temp*/
 	background-color: black;
 }
 
+/*todoooooo*/
+/*#terminal-ascii-art-container
+{
+	top: 0; left: 0;
+	width: 100%;
+}*/
+
 #terminal-ascii-art
 {
 	font-size: 12px;
-	font-family: Input-Mono, "Courier New", monospace;
+	font-family: Consolas, monospace;
 	/*line-height: normal !important; */
 	padding: 0; margin: 0; border: 0;	
 
 	/*when browser's preferred language is set to chinese, */
 	/*the min font-size is restricted to 12px. */
 	/*transform:scale() can be used to counter this browser limitation*/
-	transform: scale(0.16) translate(-200%, 250%);
+	transform: scale(0.3) translate(-110%, 110%);
 }
 
 #terminal-display /*shows submitted texts*/
 {
-	position: absolute; color: whitesmoke !important;
+	color: whitesmoke;
 	font-size: 13px; 
 	margin: 0px;	
 }
