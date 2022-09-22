@@ -1,66 +1,66 @@
 const trackList = [
   {
-  	name: "afalfl - just some kick noyze [master 20220921]",
+  	name: "afalfl - just some kick noyze",
 		path: "/21sept-master-mp3/afalfl - just some kick noyze [master 20220921].mp3"
   },
   {
-  	name: "Fetus - Footprints [master 20220921]",
+  	name: "Fetus - Footprints",
 		path: "/21sept-master-mp3/Fetus - Footprints [master 20220921].mp3"
   },
   {
-  	name: "GRASPS X NERDIE - I AM HURTING [master 20220921]",
+  	name: "GRASPS X NERDIE - I AM HURTING",
 		path: "/21sept-master-mp3/GRASPS X NERDIE - I AM HURTING [master 20220921].mp3"
   },
   {
-  	name: "Imryll - Family Portrait (Imryll Reimagined) [master 20220921]",
+  	name: "Imryll - Family Portrait (Imryll Reimagined)",
 		path: "/21sept-master-mp3/Imryll - Family Portrait (Imryll Reimagined) [master 20220921].mp3"
   },
   {
-  	name: "Jennifer Walton - At Last, Lain Is Free [master 20220921]",
+  	name: "Jennifer Walton - At Last, Lain Is Free",
 		path: "/21sept-master-mp3/Jennifer Walton - At Last, Lain Is Free [master 20220921].mp3"
   },
   {
-  	name: "Kagami Smile -  Acts of Betrayal [master 20220921]",
+  	name: "Kagami Smile -  Acts of Betrayal",
 		path: "/21sept-master-mp3/Kagami Smile -  Acts of Betrayal [master 20220921].mp3"
   },
   {
-  	name: "lovefear - SEL compilation track final  [master 20220921]",
+  	name: "lovefear - SEL compilation track final",
   	path: "/21sept-master-mp3/lovefear - SEL compilation track final  [master 20220921].mp3"
   },
   {
-  	name: "Nerve - I_m Gonna Diss You [master 20220921]",
+  	name: "Nerve - I_m Gonna Diss You",
   	path: "/21sept-master-mp3/Nerve - I_m Gonna Diss You [master 20220921].mp3"
   },
   {
-  	name: "Sour Gout - Transmigration [master 20220921]",
+  	name: "Sour Gout - Transmigration",
 		path: "/21sept-master-mp3/Sour Gout - Transmigration [master 20220921].mp3"
   },
   {
-  	name: "thegn ft. vrain - phantoma [master 20220921]",
+  	name: "thegn ft. vrain - phantoma",
 		path: "/21sept-master-mp3/thegn ft. vrain - phantoma [master 20220921].mp3"
   },
   {
-  	name: "Wa_ste - cyberia texture 5a x professed intention and real intention [master 20220921]",
+  	name: "Wa_ste - cyberia texture 5a x professed intention and real intention",
 		path: "/21sept-master-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention [master 20220921].mp3"
   },
   {
-  	name: "xo - 200529-DuvetBoa8  [master 20220921]",
+  	name: "xo - 200529-DuvetBoa8",
 		path: "/21sept-master-mp3/xo - 200529-DuvetBoa8  [master 20220921].mp3"
   },
   {
-  	name: "Yikii - Ancient Scanner [master 20220921]",
+  	name: "Yikii - Ancient Scanner",
   	path: "/21sept-master-mp3/Yikii - Ancient Scanner [master 20220921].mp3"
   },
   {
-  	name: "Yraki - Lights Down [master 20220921]",
+  	name: "Yraki - Lights Down",
 		path: "/21sept-master-mp3/Yraki - Lights Down [master 20220921].mp3"
   },
   {
-  	name: "Yumea Horiike - lain [master 20220921]",
+  	name: "Yumea Horiike - lain",
 		path: "/21sept-master-mp3/Yumea Horiike - lain [master 20220921].mp3"
   },
   {
-  	name: "Yuting Wu - Help me to Breathe [master 20220921]",
+  	name: "Yuting Wu - Help me to Breathe",
 		path: "/21sept-master-mp3/Yuting Wu - Help me to Breathe [master 20220921].mp3"
   },
 ]; 
@@ -76,86 +76,85 @@ const bitrateStereoPlaceholder = "&nbsp;&nbsp;&nbsp;&nbsp;KBPS&nbsp;&nbsp;&nbsp;
 const loadingTrackString = "loading metadata..."; 
 const totalTime = "68:21" //calculated with totalLengthTest() in onload()
 
-
 ////////////// entry page //////////////
 
-let entryPage = document.getElementById("entry-page")
-let entryTextsEl = document.getElementById("entry-texts")
-let entryBottomTexts = document.getElementById("entry-bottom-text")
+// let entryPage = document.getElementById("entry-page")
+// let entryTextsEl = document.getElementById("entry-texts")
+// let entryBottomTexts = document.getElementById("entry-bottom-text")
 
-// let bgAudio = document.getElementById("bg-track")
-// let bgAudioToggle = document.getElementById("temp-bg-audio-toggle")
-// let hasBgAudio = false
+// // let bgAudio = document.getElementById("bg-track")
+// // let bgAudioToggle = document.getElementById("temp-bg-audio-toggle")
+// // let hasBgAudio = false
 
-// bgAudioToggle.addEventListener("click", function(){
-// 	if (hasBgAudio) {bgAudio.pause(); hasBgAudio = false}
-// 	else {bgAudio.play(); hasBgAudio = true}
-// })
+// // bgAudioToggle.addEventListener("click", function(){
+// // 	if (hasBgAudio) {bgAudio.pause(); hasBgAudio = false}
+// // 	else {bgAudio.play(); hasBgAudio = true}
+// // })
 
-// manually center the loading text so its position is fixed while adding the "..."
-let initialLeft = entryTextsEl.parentElement.offsetWidth/2 - entryTextsEl.offsetWidth/2
-entryTextsEl.style.left = initialLeft + "px"
-let loadingTimer = setInterval(loadingText, 777)
-let loadingIndex = 0
+// // manually center the loading text so its position is fixed while adding the "..."
+// let initialLeft = entryTextsEl.parentElement.offsetWidth/2 - entryTextsEl.offsetWidth/2
+// entryTextsEl.style.left = initialLeft + "px"
+// let loadingTimer = setInterval(loadingText, 777)
+// let loadingIndex = 0
 
-function loadingText()
-{
-	if (loadingIndex < 3)
-	{
-		entryTextsEl.textContent += ".";
-		loadingIndex++;
-	}
-	else 
-	{
-		entryTextsEl.textContent = entryInitString;
-		loadingIndex = 0;
-	}
-}
+// function loadingText()
+// {
+// 	if (loadingIndex < 3)
+// 	{
+// 		entryTextsEl.textContent += ".";
+// 		loadingIndex++;
+// 	}
+// 	else 
+// 	{
+// 		entryTextsEl.textContent = entryInitString;
+// 		loadingIndex = 0;
+// 	}
+// }
 
-//unicode chars 33-122, 161-404. see getUnicodeChars() in utilities
-let chars = ["!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","¡","¢","£","¤","¥","¦","§","¨","©","ª","«","¬","­","®","¯","°","±","²","³","´","µ","¶","·","¸","¹","º","»","¼","½","¾","¿","À","Á","Â","Ã","Ä","Å","Æ","Ç","È","É","Ê","Ë","Ì","Í","Î","Ï","Ð","Ñ","Ò","Ó","Ô","Õ","Ö","×","Ø","Ù","Ú","Û","Ü","Ý","Þ","ß","à","á","â","ã","ä","å","æ","ç","è","é","ê","ë","ì","í","î","ï","ð","ñ","ò","ó","ô","õ","ö","÷","ø","ù","ú","û","ü","ý","þ","ÿ","Ā","ā","Ă","ă","Ą","ą","Ć","ć","Ĉ","ĉ","Ċ","ċ","Č","č","Ď","ď","Đ","đ","Ē","ē","Ĕ","ĕ","Ė","ė","Ę","ę","Ě","ě","Ĝ","ĝ","Ğ","ğ","Ġ","ġ","Ģ","ģ","Ĥ","ĥ","Ħ","ħ","Ĩ","ĩ","Ī","ī","Ĭ","ĭ","Į","į","İ","ı","Ĳ","ĳ","Ĵ","ĵ","Ķ","ķ","ĸ","Ĺ","ĺ","Ļ","ļ","Ľ","ľ","Ŀ","ŀ","Ł","ł","Ń","ń","Ņ","ņ","Ň","ň","ŉ","Ŋ","ŋ","Ō","ō","Ŏ","ŏ","Ő","ő","Œ","œ","Ŕ","ŕ","Ŗ","ŗ","Ř","ř","Ś","ś","Ŝ","ŝ","Ş","ş","Š","š","Ţ","ţ","Ť","ť","Ŧ","ŧ","Ũ","ũ","Ū","ū","Ŭ","ŭ","Ů","ů","Ű","ű","Ų","ų","Ŵ","ŵ","Ŷ","ŷ","Ÿ","Ź","ź","Ż","ż","Ž","ž","ſ","ƀ","Ɓ","Ƃ","ƃ","Ƅ","ƅ","Ɔ","Ƈ","ƈ","Ɖ","Ɗ","Ƌ","ƌ","ƍ","Ǝ","Ə","Ɛ","Ƒ","ƒ","Ɠ","Ɣ"]
-let BottomTextLength = 33
-let bottomTextTimer = setInterval(scrambleBottomText, 100)
+// //unicode chars 33-122, 161-404. see getUnicodeChars() in utilities
+// let chars = ["!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","¡","¢","£","¤","¥","¦","§","¨","©","ª","«","¬","­","®","¯","°","±","²","³","´","µ","¶","·","¸","¹","º","»","¼","½","¾","¿","À","Á","Â","Ã","Ä","Å","Æ","Ç","È","É","Ê","Ë","Ì","Í","Î","Ï","Ð","Ñ","Ò","Ó","Ô","Õ","Ö","×","Ø","Ù","Ú","Û","Ü","Ý","Þ","ß","à","á","â","ã","ä","å","æ","ç","è","é","ê","ë","ì","í","î","ï","ð","ñ","ò","ó","ô","õ","ö","÷","ø","ù","ú","û","ü","ý","þ","ÿ","Ā","ā","Ă","ă","Ą","ą","Ć","ć","Ĉ","ĉ","Ċ","ċ","Č","č","Ď","ď","Đ","đ","Ē","ē","Ĕ","ĕ","Ė","ė","Ę","ę","Ě","ě","Ĝ","ĝ","Ğ","ğ","Ġ","ġ","Ģ","ģ","Ĥ","ĥ","Ħ","ħ","Ĩ","ĩ","Ī","ī","Ĭ","ĭ","Į","į","İ","ı","Ĳ","ĳ","Ĵ","ĵ","Ķ","ķ","ĸ","Ĺ","ĺ","Ļ","ļ","Ľ","ľ","Ŀ","ŀ","Ł","ł","Ń","ń","Ņ","ņ","Ň","ň","ŉ","Ŋ","ŋ","Ō","ō","Ŏ","ŏ","Ő","ő","Œ","œ","Ŕ","ŕ","Ŗ","ŗ","Ř","ř","Ś","ś","Ŝ","ŝ","Ş","ş","Š","š","Ţ","ţ","Ť","ť","Ŧ","ŧ","Ũ","ũ","Ū","ū","Ŭ","ŭ","Ů","ů","Ű","ű","Ų","ų","Ŵ","ŵ","Ŷ","ŷ","Ÿ","Ź","ź","Ż","ż","Ž","ž","ſ","ƀ","Ɓ","Ƃ","ƃ","Ƅ","ƅ","Ɔ","Ƈ","ƈ","Ɖ","Ɗ","Ƌ","ƌ","ƍ","Ǝ","Ə","Ɛ","Ƒ","ƒ","Ɠ","Ɣ"]
+// let BottomTextLength = 33
+// let bottomTextTimer = setInterval(scrambleBottomText, 100)
 
-function scrambleBottomText()
-{
-	entryBottomTexts.textContent = ""
-	for (let i = 0; i < BottomTextLength; i++)
-	{
-		randIndex = Math.floor(Math.random() * chars.length)
-		//console.log(randIndex)
-		entryBottomTexts.textContent += chars[randIndex]
-	}
-}
+// function scrambleBottomText()
+// {
+// 	entryBottomTexts.textContent = ""
+// 	for (let i = 0; i < BottomTextLength; i++)
+// 	{
+// 		randIndex = Math.floor(Math.random() * chars.length)
+// 		//console.log(randIndex)
+// 		entryBottomTexts.textContent += chars[randIndex]
+// 	}
+// }
 
-window.onload = function() {
-	clearInterval(loadingTimer)
-	clearInterval(bottomTextTimer)
+// window.onload = function() {
+// 	clearInterval(loadingTimer)
+// 	clearInterval(bottomTextTimer)
 
-	entryTextsEl.parentElement.style.display = "flex"
-	entryTextsEl.parentElement.style.justifyContent = "center"
-	entryTextsEl.style.left = "auto"
+// 	entryTextsEl.parentElement.style.display = "flex"
+// 	entryTextsEl.parentElement.style.justifyContent = "center"
+// 	entryTextsEl.style.left = "auto"
 
-	entryTextsEl.textContent = entryOnloadString
-	entryBottomTexts.style.fontFamily = "LoveLetter"
-	entryBottomTexts.textContent = entryBottomString
+// 	entryTextsEl.textContent = entryOnloadString
+// 	entryBottomTexts.style.fontFamily = "LoveLetter"
+// 	entryBottomTexts.textContent = entryBottomString
 
-	entryPage.addEventListener("click", function(){
-		entryPage.style.opacity = "0"
-		if (audioContext.state === 'suspended') {audioContext.resume();}
+// 	entryPage.addEventListener("click", function(){
+// 		entryPage.style.opacity = "0"
+// 		if (audioContext.state === 'suspended') {audioContext.resume();}
 
-		// bgAudio.load();
-		// bgAudio.addEventListener("canplaythrough", function(){bgAudio.play();})
-		// hasBgAudio = true;
-		// bgAudio.volume = 0.2;
+// 		// bgAudio.load();
+// 		// bgAudio.addEventListener("canplaythrough", function(){bgAudio.play();})
+// 		// hasBgAudio = true;
+// 		// bgAudio.volume = 0.2;
 
-		//setInterval(totalLengthTest, 3000);
-	})
+// 		//setInterval(totalLengthTest, 3000);
+// 	})
 
-	entryPage.addEventListener('transitionend', function() {
-		entryPage.parentNode.removeChild(entryPage)
-	})
-}//end of onload
+// 	entryPage.addEventListener('transitionend', function() {
+// 		entryPage.parentNode.removeChild(entryPage)
+// 	})
+// }//end of onload
 
 
 ////////////// entry page //////////////
@@ -690,10 +689,16 @@ function validateInput(e)
 
 	if (e.key == "Enter")
 	{
-		if (inputEl.value.match(letters))	
+		if (inputEl.value.match(letters))	//valid input
 		{
 			terminalDisplay.innerHTML += "lain@navi ~ % " + inputEl.value + "</br>";	
-			checkCommand(inputEl.value);
+
+			//easter egg
+			if (inputEl.value.toLowerCase().includes("lain"))
+			{
+				terminalDisplay.innerHTML += "let's all love lain!</br>";
+			}
+			else  checkCommand(inputEl.value.toLowerCase());
 		}
 		else //invalid input
 		{
@@ -723,6 +728,7 @@ function checkCommand(input)
 {
 	switch (input.trim().toLowerCase()) 
 	{
+		//playback
 		case "play": playTrack(); break;
 		case "pause": pauseTrack(); break;
 		case "stop": stopTrack(); break;
@@ -735,7 +741,7 @@ function checkCommand(input)
 
 		case "help": terminalDisplay.innerHTML += helpText; break;
 
-		//filter presets//
+		//filters
 		case "toilet": gotoToilet(); break;
 		case "leave": clearFilters(); break;
 

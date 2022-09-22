@@ -88,7 +88,15 @@ p, label, button, option, ul
 		width: 55%; height: 30%; left: 0;
 		flex-direction: column; align-items: center; justify-content: flex-start;
 	}
-	#dock-bg-color {position: absolute; left: 0; height: 100%; width: 55%; background: black; opacity: 0.2;}
+	#dock-bg-color 
+	{
+		position: absolute; left: 0; height: 100%; width: 55%; 
+		/*background: black; opacity: 0.2;*/
+		border-radius: 40px;
+
+		backdrop-filter: blur(20px) brightness(95%);
+		-webkit-backdrop-filter: blur(20px) brightness(95%); /*safari*/
+	}
 }
 
 /* mobile mini window sizes (screens with width < 500px)*/
@@ -169,10 +177,10 @@ hr /*temp*/
 #entry-page
 {
 	width: 100vw; height: 100vh; position: fixed;
-	display: flex;justify-content: center; align-items: center;
+	display: flex; justify-content: center; align-items: center;
 	transition: opacity 0.7s ease-out;
-	z-index: 111; 
-	top: 0;	left: 0; bottom: 0;	right: 0;
+	z-index: 1111; 
+	top: 0; left: 0; bottom: 0; right: 0;
 	background-color: whitesmoke;
 	font-family: var(--lain-font); 
 }
@@ -188,9 +196,10 @@ hr /*temp*/
 }
 #main-container
 {
-	position: fixed; 
+	position: fixed; width: 100vw; height: 100vh;
 	display: flex; justify-content: center; align-items: center;
 	top: 0;	left: 0; bottom: 0;	right: 0;
+	font-family: var(--mono-font);
 	/*background-image: url("img/extended background_simple.png");
 	background-repeat: no-repeat;
 	background-size: 100%;*/
@@ -215,6 +224,17 @@ hr /*temp*/
 	cursor: grab;
 }
 
+.mini-window-close
+{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 27px; height: 27px;
+	background-color: black;
+	opacity: 0.3;
+}
+/*.mini-window-close img { width: 100%; height: 100%;}
+*/
 /******* chat *******/
 #chat-window
 {
@@ -226,7 +246,6 @@ hr /*temp*/
 
 #chat-container
 {
-	font-family: var(--mono-font);
 	font-size: 13px; 
 	position: absolute;
 	width: 80%; height: 90%;
@@ -238,7 +257,6 @@ hr /*temp*/
 #terminal
 {
 	font-size: 13px; color: whitesmoke !important;  
-	font-family: var(--mono-font);
 	top: 13%; left: 7%;
 	/*width n height are set separately, responsive to screen size*/
 	z-index: 6;
@@ -280,7 +298,7 @@ hr /*temp*/
 	background-color: black;
 }
 
-/*todoooooo*/
+/*todoooooo hide the scrollable blank space above the ascii art*/
 /*#terminal-ascii-art-container
 {
 	top: 0; left: 0;
@@ -348,18 +366,6 @@ hr /*temp*/
     outline: none !important;
 }
 /******* terminallllllll *******/
-
-
-.mini-window-close
-{
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	width: 27px; height: 27px;
-/*	z-index: 9;
-*/	background-color: black;
-	opacity: 0.3;
-}
 
 #dock-container
 {
@@ -601,21 +607,33 @@ so that texts of variable lengths can be scrolled*/
 #dl-button-container
 {
 	position: absolute;
-	left: 84%; right: 7%; top: 22%; bottom: 69%;
+	left: 85%; right: 7%; top: 22%; bottom: 69%;
 }
 
 #playlist-container
 {
 	position: absolute;
-	left: 19%; right: 8%; bottom: 13%; top: 58%;
+	left: 19%; right: 7%; bottom: 14%; top: 58%;
 	background-color: var(--music-player-bg); 
 	opacity: var(--music-player-bg-opacity);
+/*	backdrop-filter: blur(13px) brightness(120%) contrast(80%);
+	-webkit-backdrop-filter: blur(13px) brightness(120%) contrast(80%); /*safari*/*/
+
 	overflow-y: scroll; overflow-x: hidden;
+}
+#playlist-container::-webkit-scrollbar {width: 10px; background-color: transparent;}
+#playlist-container::-webkit-scrollbar-thumb 
+{
+	background-image: url("img/music-player-components/playlist_scrollbar_thumb.png");
 }
 
 #playlist-content {list-style-type: none; padding-left: 13px; background-color: transparent;}
 
-.playlist-entry {cursor: pointer; background-color: transparent;}
+.playlist-entry 
+{
+	cursor: pointer; padding: 1px;
+	background-color: transparent;
+}
 
 .playlist-entry:hover{
 	background-color: lavender !important;
@@ -633,7 +651,7 @@ so that texts of variable lengths can be scrolled*/
 #mini-total-time
 {
 	position: absolute; top: 2%; left: 3%; margin: 0; 
-	font-family: var(--mono-font); color: black;
+	color: black;
 }
 
 #mini-controls 
@@ -644,7 +662,7 @@ so that texts of variable lengths can be scrolled*/
 #mini-cur-time
 {
 	position: absolute;
-	font-family: var(--mono-font); color: black;
+	color: black;
 	bottom: 2%; right: 3%;
 }
 /******* music player *******/
@@ -664,12 +682,15 @@ so that texts of variable lengths can be scrolled*/
 
 #version-history-texts
 {
-	position: absolute; top: 0; left: 0;
-	font-family: var(--mono-font);
+	font-family: var(--mono-font); font-size: 13px;
 	width: 100%; height: 100%; 
-	margin: 0; padding: 0; padding-left: 3%;
+	margin: 0; padding: 0;
 	overflow-y: scroll;
+	white-space: pre-wrap; 
 }
+
+/*dates to the right of each version number*/
+#version-history-texts span {float: right;}
 /******* version history *******/
 
 /***************** mini windows /*****************/
@@ -747,3 +768,10 @@ so that texts of variable lengths can be scrolled*/
 	z-index: -1;
 }
 /***************** old music player *****************/
+
+
+/***************** credits *****************/
+
+#credits {font-family: var(--mono-font);}
+
+/***************** credits end *****************/
