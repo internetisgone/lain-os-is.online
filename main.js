@@ -74,6 +74,8 @@ const entryBottomString = "public domain operating system"
 const bitrateStereoString = "320 KBPS 44.1 KHZ";  
 const bitrateStereoPlaceholder = "&nbsp;&nbsp;&nbsp;&nbsp;KBPS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KHZ"
 const loadingTrackString = "loading metadata..."; 
+const totalTime = "68:21" //calculated with totalLengthTest() in onload()
+
 
 ////////////// entry page //////////////
 
@@ -111,7 +113,7 @@ function loadingText()
 }
 
 //unicode chars 33-122, 161-404. see getUnicodeChars() in utilities
-let chars = ["!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","¡","¢","£","¤","¥","¦","§","¨","©","ª","«","¬","­","®","¯","°","±","²","³","´","µ","¶","·","¸","¹","º","»","¼","½","¾","¿","À","Á","Â","Ã","Ä","Å","Æ","Ç","È","É","Ê","Ë","Ì","Í","Î","Ï","Ð","Ñ","Ò","Ó","Ô","Õ","Ö","×","Ø","Ù","Ú","Û","Ü","Ý","Þ","ß","à","á","â","ã","ä","å","æ","ç","è","é","ê","ë","ì","í","î","ï","ð","ñ","ò","ó","ô","õ","ö","÷","ø","ù","ú","û","ü","ý","þ","ÿ","Ā","ā","Ă","ă","Ą","ą","Ć","ć","Ĉ","ĉ","Ċ","ċ","Č","č","Ď","ď","Đ","đ","Ē","ē","Ĕ","ĕ","Ė","ė","Ę","ę","Ě","ě","Ĝ","ĝ","Ğ","ğ","Ġ","ġ","Ģ","ģ","Ĥ","ĥ","Ħ","ħ","Ĩ","ĩ","Ī","ī","Ĭ","ĭ","Į","į","İ","ı","Ĳ","ĳ","Ĵ","ĵ","Ķ","ķ","ĸ","Ĺ","ĺ","Ļ","ļ","Ľ","ľ","Ŀ","ŀ","Ł","ł","Ń","ń","Ņ","ņ","Ň","ň","ŉ","Ŋ","ŋ","Ō","ō","Ŏ","ŏ","Ő","ő","Œ","œ","Ŕ","ŕ","Ŗ","ŗ","Ř","ř","Ś","ś","Ŝ","ŝ","Ş","ş","Š","š","Ţ","ţ","Ť","ť","Ŧ","ŧ","Ũ","ũ","Ū","ū","Ŭ","ŭ","Ů","ů","Ű","ű","Ų","ų","Ŵ","ŵ","Ŷ","ŷ","Ÿ","Ź","ź","Ż","ż","Ž","ž","ſ","ƀ","Ɓ","Ƃ","ƃ","Ƅ","ƅ","Ɔ","Ƈ","ƈ","Ɖ","Ɗ","Ƌ","ƌ","ƍ","Ǝ","Ə","Ɛ","Ƒ","ƒ","Ɠ","Ɣ"]
+let chars = ["!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","¡","¢","£","¤","¥","¦","§","¨","©","ª","«","¬","­","®","¯","°","±","²","³","´","µ","¶","·","¸","¹","º","»","¼","½","¾","¿","À","Á","Â","Ã","Ä","Å","Æ","Ç","È","É","Ê","Ë","Ì","Í","Î","Ï","Ð","Ñ","Ò","Ó","Ô","Õ","Ö","×","Ø","Ù","Ú","Û","Ü","Ý","Þ","ß","à","á","â","ã","ä","å","æ","ç","è","é","ê","ë","ì","í","î","ï","ð","ñ","ò","ó","ô","õ","ö","÷","ø","ù","ú","û","ü","ý","þ","ÿ","Ā","ā","Ă","ă","Ą","ą","Ć","ć","Ĉ","ĉ","Ċ","ċ","Č","č","Ď","ď","Đ","đ","Ē","ē","Ĕ","ĕ","Ė","ė","Ę","ę","Ě","ě","Ĝ","ĝ","Ğ","ğ","Ġ","ġ","Ģ","ģ","Ĥ","ĥ","Ħ","ħ","Ĩ","ĩ","Ī","ī","Ĭ","ĭ","Į","į","İ","ı","Ĳ","ĳ","Ĵ","ĵ","Ķ","ķ","ĸ","Ĺ","ĺ","Ļ","ļ","Ľ","ľ","Ŀ","ŀ","Ł","ł","Ń","ń","Ņ","ņ","Ň","ň","ŉ","Ŋ","ŋ","Ō","ō","Ŏ","ŏ","Ő","ő","Œ","œ","Ŕ","ŕ","Ŗ","ŗ","Ř","ř","Ś","ś","Ŝ","ŝ","Ş","ş","Š","š","Ţ","ţ","Ť","ť","Ŧ","ŧ","Ũ","ũ","Ū","ū","Ŭ","ŭ","Ů","ů","Ű","ű","Ų","ų","Ŵ","ŵ","Ŷ","ŷ","Ÿ","Ź","ź","Ż","ż","Ž","ž","ſ","ƀ","Ɓ","Ƃ","ƃ","Ƅ","ƅ","Ɔ","Ƈ","ƈ","Ɖ","Ɗ","Ƌ","ƌ","ƍ","Ǝ","Ə","Ɛ","Ƒ","ƒ","Ɠ","Ɣ"]
 let BottomTextLength = 33
 let bottomTextTimer = setInterval(scrambleBottomText, 100)
 
@@ -135,7 +137,7 @@ window.onload = function() {
 	entryTextsEl.style.left = "auto"
 
 	entryTextsEl.textContent = entryOnloadString
-	entryBottomTexts.style.fontFamily = "LoveLetter, 'Courier New', monospace !important;"
+	entryBottomTexts.style.fontFamily = "LoveLetter"
 	entryBottomTexts.textContent = entryBottomString
 
 	entryPage.addEventListener("click", function(){
@@ -147,8 +149,7 @@ window.onload = function() {
 		// hasBgAudio = true;
 		// bgAudio.volume = 0.2;
 
-		//temppp 
-		//setInterval(totalLengthTest, 5000);
+		//setInterval(totalLengthTest, 3000);
 	})
 
 	entryPage.addEventListener('transitionend', function() {
@@ -316,7 +317,6 @@ let loopBtn = document.getElementById("loop-btn")
 
 let miniTotalTime = document.getElementById("mini-total-time")
 let miniCurTime = document.getElementById("mini-cur-time")
-let totalTime = "69:09" //tempppp
 
 //visualiserr
 let visualiserCanvas = document.getElementById("visualiser")
@@ -798,7 +798,6 @@ let gainEl = document.getElementById("cur-gain")
 let qSlider = document.getElementById("q-slider")
 let qEl = document.getElementById("cur-q")
 
-
 let reverbToggle = document.getElementById("reverb-toggle")
 let reverbDurationSlider = document.getElementById("reverb-duration")
 let reverbDecaySlider = document.getElementById("reverb-decay")
@@ -845,7 +844,7 @@ function drawFrame()
 	for (let i = 0; i < bufferLength; i++)
 	{
 		let barHeight = frequencyData[i] / 2.5;
-		console.log("index = " + i + ", x = " + x + ", bar height " + barHeight)
+		//console.log("index = " + i + ", x = " + x + ", bar height " + barHeight)
 		canvasContext.fillRect(x, visualiserCanvas.height - barHeight, barWidth, barHeight)
 
 		x += barWidth + barGap
@@ -1097,30 +1096,34 @@ function clearFilters()
 // 			testIndex++;
 // 		}
 // 	}
-// 	else console.log("total length " + testTotalMin + "min " + testTotalSec + "sec")
+// 	else //loaded all tracks
+// 	{
+// 		testTotalMin += Math.floor(testTotalSec / 60)
+// 		testTotalSec = testTotalSec % 60
+// 		console.log("total length " + testTotalMin + "min " + testTotalSec + "sec")
+// 	} 
 // }
 
-
 //prints unicode char array in console
-function getUnicodeChars()
-{
-	let chars = new Array()
-	let unicodeIndex
-	let charArrayIndex = 0
+// function getUnicodeChars()
+// {
+// 	let chars = new Array()
+// 	let unicodeIndex
+// 	let charArrayIndex = 0
 
-	// 33-122, 161-404
-	for (unicodeIndex = 33; unicodeIndex <= 404; unicodeIndex++)
-	{
-		if (unicodeIndex < 122 | unicodeIndex >= 161 & unicodeIndex <= 404)
-		{
-			currentChar = String.fromCharCode(unicodeIndex)
-			chars.push(currentChar)
-			//console.log(unicodeIndex + " " + chars[charArrayIndex])
-			charArrayIndex++;
-		}
-	}
-	console.log(JSON.stringify(chars)) // prints the full array 
-}
+// 	// 33-122, 161-404
+// 	for (unicodeIndex = 33; unicodeIndex <= 404; unicodeIndex++)
+// 	{
+// 		if (unicodeIndex <= 122 | unicodeIndex >= 161)
+// 		{
+// 			currentChar = String.fromCharCode(unicodeIndex)
+// 			chars.push(currentChar)
+// 			//console.log(unicodeIndex + " " + chars[charArrayIndex])
+// 			charArrayIndex++;
+// 		}
+// 	}
+// 	console.log(JSON.stringify(chars)) // prints the full array 
+// }
 
 ////////////// utilities //////////////
 

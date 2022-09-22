@@ -13,12 +13,6 @@
 	/*unicode-range: U+0020-007F; */
 }
 
-p, label, button, option, ul
-{
-	font-family: Input-Mono, "Courier New", monospace;
-	color: black;
-}
-
 body 
 {
 	background-image: url("img/lain_extended_m.png");
@@ -26,6 +20,15 @@ body
 /*	background-size: 100%;
 */	background-color: rgb(226, 233, 236);
 	margin: 0px;
+
+	--mono-font: "Input-Mono", "Courier New", monospace;
+	--lain-font: "LoveLetter", "Courier New", monospace;
+}
+
+p, label, button, option, ul
+{
+	font-family: var(--mono-font);
+	color: black;
 }
 
 /*mobile / portrait display*/
@@ -171,7 +174,7 @@ hr /*temp*/
 	z-index: 111; 
 	top: 0;	left: 0; bottom: 0;	right: 0;
 	background-color: whitesmoke;
-	font-family: LoveLetter, "Courier New", monospace; 
+	font-family: var(--lain-font); 
 }
 
 #entry-texts-container {position: fixed; width: 0; height: 0;}
@@ -180,7 +183,7 @@ hr /*temp*/
 #entry-bottom-text 
 {
 	position: absolute; white-space: nowrap;
-	font-family: "Courier New:", monospace; /*font is changed later in js*/
+	font-family: var(--mono-font); /*font is changed later in js*/
 	font-size: small; color: darkgray; 
 }
 #main-container
@@ -223,7 +226,8 @@ hr /*temp*/
 
 #chat-container
 {
-	font-family: Input-Mono, "Courier New", monospace; font-size: 13px; 
+	font-family: var(--mono-font);
+	font-size: 13px; 
 	position: absolute;
 	width: 80%; height: 90%;
 	top: 6%; bottom: 2%;
@@ -234,7 +238,7 @@ hr /*temp*/
 #terminal
 {
 	font-size: 13px; color: whitesmoke !important;  
-	font-family: Input-Mono, "Courier New", monospace !important;
+	font-family: var(--mono-font);
 	top: 13%; left: 7%;
 	/*width n height are set separately, responsive to screen size*/
 	z-index: 6;
@@ -286,7 +290,7 @@ hr /*temp*/
 #terminal-ascii-art
 {
 	font-size: 12px;
-	font-family: Consolas, monospace;
+	font-family: Consolas, monospace; 
 	/*line-height: normal !important; */
 	padding: 0; margin: 0; border: 0;	
 
@@ -328,7 +332,7 @@ hr /*temp*/
 
 #terminal-input
 {
-	font-family: Input-Mono, monospace;
+	font-family: var(--mono-font);
 	font-size: 13px; 
 	color: whitesmoke;
 	background-color: black; width: 100%;
@@ -480,7 +484,7 @@ so that texts of variable lengths can be scrolled*/
 
 .cur-time, #old-total-time
 {
-	color: whitesmoke; margin: 0; font-family: Input-Mono, monospace;
+	color: whitesmoke; margin: 0; font-family: var(--mono-font);
 }
 
 #visualiser-container
@@ -578,18 +582,26 @@ so that texts of variable lengths can be scrolled*/
 
 #playback-controls button 
 {
-	outline: none; background: transparent;	border: none; 
+	outline: none; background: transparent;border: none; 
 	margin: 1%; padding: 0; border: 0; margin-bottom: 2%;
 	border-radius: 11px;
 	cursor: pointer;
 }
-#playback-controls button img {width: 100%; height: auto;}
+
+#playback-controls button img, #dl-button-container img
+{width: 100%; height: auto;}
 
 /*pressed down animation*/
 #playback-controls button:active 
 {
 	transform: translate(1px, 2px);
 	/*box-shadow:  -1px -2px 2px dimgray;*/
+}
+
+#dl-button-container
+{
+	position: absolute;
+	left: 84%; right: 7%; top: 22%; bottom: 69%;
 }
 
 #playlist-container
@@ -621,7 +633,7 @@ so that texts of variable lengths can be scrolled*/
 #mini-total-time
 {
 	position: absolute; top: 2%; left: 3%; margin: 0; 
-	font-family: Input-Mono, monospace; color: black;
+	font-family: var(--mono-font); color: black;
 }
 
 #mini-controls 
@@ -632,7 +644,7 @@ so that texts of variable lengths can be scrolled*/
 #mini-cur-time
 {
 	position: absolute;
-	font-family: Input-Mono,  monospace; color: black;
+	font-family: var(--mono-font); color: black;
 	bottom: 2%; right: 3%;
 }
 /******* music player *******/
@@ -653,6 +665,7 @@ so that texts of variable lengths can be scrolled*/
 #version-history-texts
 {
 	position: absolute; top: 0; left: 0;
+	font-family: var(--mono-font);
 	width: 100%; height: 100%; 
 	margin: 0; padding: 0; padding-left: 3%;
 	overflow-y: scroll;
