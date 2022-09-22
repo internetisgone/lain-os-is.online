@@ -65,10 +65,12 @@ const trackList = [
   },
 ]; 
 
+//entry page texts
 const entryInitString = "initialising";
 const entryOnloadString = "log in";
 const entryBottomString = "public domain operating system"
 
+//music player texts
 const bitrateStereoString = "320 KBPS 44.1 KHZ";  
 const bitrateStereoPlaceholder = "&nbsp;&nbsp;&nbsp;&nbsp;KBPS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KHZ"
 const loadingTrackString = "loading metadata..."; 
@@ -108,16 +110,20 @@ function loadingText()
 	}
 }
 
-//todooooooo
-//let chars = 
-let tempIndex = 161
-let bottomTextTimer = setInterval(scrambleBottomText, 50)
+//unicode chars 33-122, 161-404. see getUnicodeChars() in utilities
+let chars = ["!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","¡","¢","£","¤","¥","¦","§","¨","©","ª","«","¬","­","®","¯","°","±","²","³","´","µ","¶","·","¸","¹","º","»","¼","½","¾","¿","À","Á","Â","Ã","Ä","Å","Æ","Ç","È","É","Ê","Ë","Ì","Í","Î","Ï","Ð","Ñ","Ò","Ó","Ô","Õ","Ö","×","Ø","Ù","Ú","Û","Ü","Ý","Þ","ß","à","á","â","ã","ä","å","æ","ç","è","é","ê","ë","ì","í","î","ï","ð","ñ","ò","ó","ô","õ","ö","÷","ø","ù","ú","û","ü","ý","þ","ÿ","Ā","ā","Ă","ă","Ą","ą","Ć","ć","Ĉ","ĉ","Ċ","ċ","Č","č","Ď","ď","Đ","đ","Ē","ē","Ĕ","ĕ","Ė","ė","Ę","ę","Ě","ě","Ĝ","ĝ","Ğ","ğ","Ġ","ġ","Ģ","ģ","Ĥ","ĥ","Ħ","ħ","Ĩ","ĩ","Ī","ī","Ĭ","ĭ","Į","į","İ","ı","Ĳ","ĳ","Ĵ","ĵ","Ķ","ķ","ĸ","Ĺ","ĺ","Ļ","ļ","Ľ","ľ","Ŀ","ŀ","Ł","ł","Ń","ń","Ņ","ņ","Ň","ň","ŉ","Ŋ","ŋ","Ō","ō","Ŏ","ŏ","Ő","ő","Œ","œ","Ŕ","ŕ","Ŗ","ŗ","Ř","ř","Ś","ś","Ŝ","ŝ","Ş","ş","Š","š","Ţ","ţ","Ť","ť","Ŧ","ŧ","Ũ","ũ","Ū","ū","Ŭ","ŭ","Ů","ů","Ű","ű","Ų","ų","Ŵ","ŵ","Ŷ","ŷ","Ÿ","Ź","ź","Ż","ż","Ž","ž","ſ","ƀ","Ɓ","Ƃ","ƃ","Ƅ","ƅ","Ɔ","Ƈ","ƈ","Ɖ","Ɗ","Ƌ","ƌ","ƍ","Ǝ","Ə","Ɛ","Ƒ","ƒ","Ɠ","Ɣ"]
+let BottomTextLength = 33
+let bottomTextTimer = setInterval(scrambleBottomText, 100)
+
 function scrambleBottomText()
 {
-	let currentChar = String.fromCharCode(tempIndex)
-
-	entryBottomTexts.textContent = currentChar.repeat(27)
-	tempIndex++;
+	entryBottomTexts.textContent = ""
+	for (let i = 0; i < BottomTextLength; i++)
+	{
+		randIndex = Math.floor(Math.random() * chars.length)
+		//console.log(randIndex)
+		entryBottomTexts.textContent += chars[randIndex]
+	}
 }
 
 window.onload = function() {
@@ -418,32 +424,6 @@ curTrack.onloadedmetadata = function()
 		terminalDisplay.innerHTML += "now playing " + trackList[curIndex].name + "<br>"
 		terminalTxtContainer.scrollTop = terminalTxtContainer.scrollHeight; 
 	}
-
-//test func. gets total length of album
-// let testIndex = 0;
-// let testTotalMin = 0;
-// let testTotalSec = 0;
-// function totalLengthTest()
-// {
-// 	if (testIndex < trackList.length)
-// 	{
-// 		curIndex = testIndex;
-// 		loadTrack();
-
-// 		curTrack.onloadedmetadata = function()
-// 		{
-// 			let minutes = Math.floor(curTrack.duration/60)
-// 			let seconds = Math.round(curTrack.duration % 60)
-
-// 			testTotalMin += minutes
-// 			testTotalSec += seconds
-// 			console.log("loaded track metadata at " + testIndex + ", length " + minutes + ":" + seconds)
-// 			testIndex++;
-// 		}
-// 	}
-// 	else console.log("total length " + testTotalMin + "min " + testTotalSec + "sec")
-// }
-//test func end
 
 function parseTime(duration)
 {
@@ -848,9 +828,10 @@ const analyser = new AnalyserNode(audioContext, {
 
 let bufferLength = analyser.frequencyBinCount
 let frequencyData = new Uint8Array(bufferLength)
-let barWidth = visualiserCanvas.width / bufferLength
+let barGap = 1
+let barWidth = visualiserCanvas.width / bufferLength - barGap
 
-console.log("barWidth " + barWidth)
+// console.log("barWidth " + barWidth)
 
 function drawFrame()
 {
@@ -863,11 +844,11 @@ function drawFrame()
 	let x = 0
 	for (let i = 0; i < bufferLength; i++)
 	{
-		let barHeight = frequencyData[i] / 2;
+		let barHeight = frequencyData[i] / 2.5;
 		console.log("index = " + i + ", x = " + x + ", bar height " + barHeight)
 		canvasContext.fillRect(x, visualiserCanvas.height - barHeight, barWidth, barHeight)
 
-		x += barWidth + 1
+		x += barWidth + barGap
 	}
 }
 
@@ -1090,4 +1071,56 @@ function clearFilters()
 }
 
 ////////////// audio filter presets //////////////
+
+
+////////////// utilities //////////////
+
+//get total length of album
+// let testIndex = 0;
+// let testTotalMin = 0;
+// let testTotalSec = 0;
+// function totalLengthTest()
+// {
+// 	if (testIndex < trackList.length)
+// 	{
+// 		curIndex = testIndex;
+// 		loadTrack();
+
+// 		curTrack.onloadedmetadata = function()
+// 		{
+// 			let minutes = Math.floor(curTrack.duration/60)
+// 			let seconds = Math.round(curTrack.duration % 60)
+
+// 			testTotalMin += minutes
+// 			testTotalSec += seconds
+// 			console.log("loaded track metadata at " + testIndex + ", length " + minutes + ":" + seconds)
+// 			testIndex++;
+// 		}
+// 	}
+// 	else console.log("total length " + testTotalMin + "min " + testTotalSec + "sec")
+// }
+
+
+//prints unicode char array in console
+function getUnicodeChars()
+{
+	let chars = new Array()
+	let unicodeIndex
+	let charArrayIndex = 0
+
+	// 33-122, 161-404
+	for (unicodeIndex = 33; unicodeIndex <= 404; unicodeIndex++)
+	{
+		if (unicodeIndex < 122 | unicodeIndex >= 161 & unicodeIndex <= 404)
+		{
+			currentChar = String.fromCharCode(unicodeIndex)
+			chars.push(currentChar)
+			//console.log(unicodeIndex + " " + chars[charArrayIndex])
+			charArrayIndex++;
+		}
+	}
+	console.log(JSON.stringify(chars)) // prints the full array 
+}
+
+////////////// utilities //////////////
 

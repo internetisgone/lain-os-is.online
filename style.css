@@ -179,7 +179,7 @@ hr /*temp*/
 
 #entry-bottom-text 
 {
-	position: absolute; 
+	position: absolute; white-space: nowrap;
 	font-family: "Courier New:", monospace; /*font is changed later in js*/
 	font-size: small; color: darkgray; 
 }
