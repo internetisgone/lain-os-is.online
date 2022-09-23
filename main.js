@@ -122,7 +122,6 @@ const totalTime = "68:21" //calculated with totalLengthTest() in onload()
 // 	for (let i = 0; i < BottomTextLength; i++)
 // 	{
 // 		randIndex = Math.floor(Math.random() * chars.length)
-// 		//console.log(randIndex)
 // 		entryBottomTexts.textContent += chars[randIndex]
 // 	}
 // }
