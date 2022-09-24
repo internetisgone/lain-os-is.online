@@ -217,7 +217,7 @@ function dragStart(e)
   ]
   if (e.touches != null)
 	{
-		console.log("touch event")
+		//console.log("touch event")
 		offset = [
 			movingWindow.offsetLeft - e.touches[0].clientX,
 		  movingWindow.offsetTop - e.touches[0].clientY

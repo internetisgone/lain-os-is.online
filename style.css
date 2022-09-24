@@ -674,7 +674,27 @@ so that texts of variable lengths can be scrolled*/
 
 #mini-controls 
 {
-	position: absolute; bottom: 1%; left: 4%; right: 31%;
+	position: absolute; 
+	top: 63%; bottom: 1%; left: 4%; right: 31%;
+}
+
+#mini-controls img {position: absolute; width: 100%; height: auto;}
+
+#mini-controls-btns-container
+{
+	position: absolute;
+	width: 100%; height: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
+	gap: 2%;
+}
+
+#mini-controls-btns-container button 
+{
+	outline: none; background: transparent;	border: none; 
+	margin: 0; padding: 0; border: 0;
+	cursor: pointer;
+	/* background-color: violet; */
 }
 
 #mini-cur-time
