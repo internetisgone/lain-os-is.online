@@ -7,20 +7,21 @@
 	<title>club cyberia</title>
 </head>
 <body>
-<!-- 	<div id="entry-page"> 
+	<!-- <div id="entry-page"> 
 		<img src="img/frame.png" id="entry-img">
  		<div id="entry-texts-container">
 			<div id="entry-texts">initialising</div>
 		</div>
 		<p id="entry-bottom-text"></p>
-	</div>
- -->
+	</div> -->
+
 	<div id="main-container">
 
 		<!---------- music player ---------->
 		<div class="mini-window" id="music-player">
 			<audio preload="auto" id="cur-track"></audio>
 <!-- 			<audio preload="auto" id="bg-track" loop src="/bg-mp3/server_room_188.mp3"></audio>  -->
+			<div class="mini-window-header"></div>
 			<div class="mini-window-draggable" id="music-player-drag"></div>
 			<div class="mini-window-close"></div>
 
@@ -87,11 +88,10 @@
 
 		<!-------------- terminal -------------->
 		<div class="mini-window" id="terminal">
-			<div class="mini-window-draggable">
-<!-- 				<div class="drag-top"></div>
-				<div class="drag-bottom"></div> -->
-			</div>
+			<div class="mini-window-header">terminal</div>
+			<div class="mini-window-draggable"></div>
 			<div class="mini-window-close"></div>
+
 			<div id="terminal-inner-container">
 				<div id="terminal-txt-container">
 <!-- 				<pre style="color: whitesmoke;">
@@ -178,7 +178,6 @@ c:;;;;,,,,'''.....         ..';:::::::::::;:;....................,::::::::::::::
 					</p>
 
 				</div>
-				<div id="input-bg"></div>
 				<div id="terminal-input-container"> 
 					<span id="terminal-prompt">lain@navi ~ % &nbsp;</span><span id="fake-caret">&nbsp;</span>
 					<input id="terminal-input" maxlength="33">	
@@ -189,8 +188,10 @@ c:;;;;,,,,'''.....         ..';:::::::::::;:;....................,::::::::::::::
 
 		<!-------------- chat -------------->
 		<div class="mini-window" id="chat-window">
+			<div class="mini-window-header">chat</div>
 			<div class="mini-window-draggable"></div>
 			<div class="mini-window-close"></div>
+
 			<div id="chat-container">
 				<p style="position: absolute; color: white; z-index: 1;">loading chat...</p>
 				<script id="cid0020000321473420645" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 100%;">{"handle":"lain-os-test","arch":"js","styles":{"b":100,"c":"000000","d":"000000","l":"FFFFFF","m":"FFFFFF","p":"11","r":100,"t":0,"surl":0,"cnrs":"0.35","showx":0}}</script>
@@ -200,12 +201,12 @@ c:;;;;,,,,'''.....         ..';:::::::::::;:;....................,::::::::::::::
 
 		<!-------------- version history -------------->
 		<div class="mini-window" id="version-history-window">
+			<div class="mini-window-header">version history</div>
 			<div class="mini-window-draggable"></div>
 			<div class="mini-window-close"></div>
+
 			<div id="version-history-container">
 				<pre id="version-history-texts">
-
- version history
 
  0.3.0<span>?? ??? 2022 </span>
  lain comp vol 1 uploaded

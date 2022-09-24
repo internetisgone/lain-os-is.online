@@ -103,6 +103,9 @@ p, label, button, option, ul
 @media screen and (max-width: 500px)
 {
 	#entry-texts {font-size: 12px;}
+	#entry-bottom-text {font-size: 11px;}
+
+	.mini-window-header {height: 30px; font-size: 11px;}
 
 	#music-player{width: 100vw; height: 133vw;}				/*100x133*/
 	#terminal {width: 352px; height: 264px;} 				/*640x480 x0.55*/
@@ -119,7 +122,7 @@ p, label, button, option, ul
 
 /*	#playback-controls button {width: 29px !important;}
 */
-	.playlist-entry {font-size: 11px; margin: 6px;}
+	.playlist-entry {font-size: 11px; margin: 4px;}
 	#mini-total-time, #mini-cur-time {font-size: 9px;}
 	/*music player end*/
 
@@ -132,6 +135,9 @@ p, label, button, option, ul
 @media screen and (min-width: 500px)
 {
 	#entry-texts {font-size: 16px;}
+	#entry-bottom-text {font-size: 13px;}
+
+	.mini-window-header {height: 40px; font-size: 13px;}
 
 	#music-player {width: 520px;height: 685px;}
 	#terminal {width: 493px; height: 369px;}				/*640x480 x0.77*/
@@ -149,7 +155,7 @@ p, label, button, option, ul
 /*	#playback-controls button {width: 12vw;}
 */
 	.playlist-entry {font-size: 13px; margin: 4px;}
-	#mini-total-time, #mini-cur-time {font-size: 11px;}
+	#mini-total-time, #mini-cur-time {font-size: 12px;}
 	/*music player end*/
 
 	/*terminal*/
@@ -192,7 +198,7 @@ hr /*temp*/
 {
 	position: absolute; white-space: nowrap;
 	font-family: var(--mono-font); /*font is changed later in js*/
-	font-size: small; color: darkgray; 
+	color: darkgray; 
 }
 #main-container
 {
@@ -216,7 +222,8 @@ hr /*temp*/
 	border-radius: 10px;
 	box-shadow:  -3px -3px 6px dimgray inset, 3px 3px 6px dimgray inset;
 
-	--inner-container-shadow: -1px -1px 1px dimgray, 1px 1px 1px dimgray;
+/*	--inner-container-top-margin: 12%;
+*/	--inner-container-shadow: -1px -1px 1px dimgray, 1px 1px 1px dimgray;
 }
 
 .mini-window-draggable
@@ -226,17 +233,22 @@ hr /*temp*/
 	cursor: grab;
 }
 
+.mini-window-header
+{
+	position: absolute;
+	top: 0; left: 0; right: 0;
+	display: flex; justify-content: center; align-items: center;
+	color: dimgray;
+}
+
 .mini-window-close
 {
 	position: absolute;
-	top: 0px;
-	right: 0px;
-	width: 27px; height: 27px;
-	background-color: black;
-	opacity: 0.3;
+	right: 0; top: 0;
+	height: 30px; width: 40px;
+	background-color: black; opacity: 0.1;
 }
-/*.mini-window-close img { width: 100%; height: 100%;}
-*/
+
 /******* chat *******/
 #chat-window
 {
@@ -250,8 +262,8 @@ hr /*temp*/
 {
 	font-size: 13px; 
 	position: absolute;
-	width: 80%; height: 90%;
-	top: 6%; bottom: 2%;
+	width: 90%;
+	top: 9%; bottom: 4%;
 }
 /******* chat *******/
 
@@ -269,6 +281,7 @@ hr /*temp*/
 	position: absolute;
 	width: 94%; height: 85%;
 	left: 3%; right: 3%; top: 11%;
+	background-color: black;
 
 	box-shadow: var(--inner-container-shadow);
 }
@@ -276,8 +289,8 @@ hr /*temp*/
 #terminal-txt-container
 {
 	position: absolute;
-	left: 0; top: 0; bottom: 5%;
-	width: 100%;
+	left: 1%; right: 1%; top: 0; bottom: 7%;
+	width: 98%;
 	background-color: black;
 	overflow-y: scroll;
 	z-index: 7; /*in case it gets occluded by input are*/
@@ -291,17 +304,9 @@ hr /*temp*/
 #terminal-input-container
 {
 	position: absolute; 
-	width: 100%;
-	left: 0; right: 0; bottom: 0;
+	width: 98%;
+	left: 1%; right: 1%; bottom: 1%;
 	background-color: transparent; /*in case it gets occluded by input are*/
-}
-
-#input-bg /*fills in the transparent gap*/
-{
-	position: absolute; 
-	width: 100%; height: 13%;
-	left: 0; right: 0; bottom: 0;
-	background-color: black;
 }
 
 /*todoooooo hide the scrollable blank space above the ascii art*/
@@ -416,6 +421,8 @@ hr /*temp*/
 }
 
 #music-player-drag {width: 93%; right: 0;}
+
+#music-player .mini-window-header {display: none;}
 
 #now-playing-container
 {
@@ -623,7 +630,7 @@ so that texts of variable lengths can be scrolled*/
 	background-color: var(--music-player-bg); 
 	opacity: var(--music-player-bg-opacity);
 /*	backdrop-filter: blur(13px) brightness(120%) contrast(80%);
-	-webkit-backdrop-filter: blur(13px) brightness(120%) contrast(80%); /*safari*/*/
+	-webkit-backdrop-filter: blur(13px) brightness(120%) contrast(80%); /*safari*/
 
 	overflow-y: scroll; overflow-x: hidden;
 }
@@ -655,31 +662,31 @@ so that texts of variable lengths can be scrolled*/
 {
 	position: absolute;
 	left: 59%; right: 11%; bottom: 4%; top: 88%;
-	background-color: var(--music-player-bg); 
-	opacity: var(--music-player-bg-opacity);
+	/* background-color: var(--music-player-bg); 
+	opacity: var(--music-player-bg-opacity); */
 }
 
 #mini-total-time
 {
-	position: absolute; top: 2%; left: 3%; margin: 0; 
+	position: absolute; top: 4%; left: 6%; margin: 0; 
 	color: black;
 }
 
 #mini-controls 
 {
-	position: absolute; bottom: 0; left: 2%; right: 27%;
+	position: absolute; bottom: 1%; left: 4%; right: 31%;
 }
 
 #mini-cur-time
 {
 	position: absolute;
 	color: black;
-	bottom: 2%; right: 3%;
+	bottom: 7%; right: 5%;
 }
 /******* music player *******/
 
 /******* version history *******/
-#version-history-window{}
+/* #version-history-window{} */
 
 #version-history-container
 {

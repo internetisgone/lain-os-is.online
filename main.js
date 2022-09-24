@@ -121,7 +121,7 @@ const totalTime = "68:21" //calculated with totalLengthTest() in onload()
 // 	entryBottomTexts.textContent = ""
 // 	for (let i = 0; i < BottomTextLength; i++)
 // 	{
-// 		randIndex = Math.floor(Math.random() * chars.length)
+// 		randIndex = Math.round(Math.random() * chars.length)
 // 		entryBottomTexts.textContent += chars[randIndex]
 // 	}
 // }
@@ -235,9 +235,9 @@ function dragStart(e)
   }
 
   document.addEventListener("mousemove", doDrag)
-	document.addEventListener("mouseup", dragEnd)
-	document.addEventListener("touchmove", doDrag)
-	document.addEventListener("touchend", dragEnd)
+  document.addEventListener("mouseup", dragEnd)
+  document.addEventListener("touchmove", doDrag)
+  document.addEventListener("touchend", dragEnd)
 }
 
 function doDrag(e)
@@ -292,7 +292,7 @@ let progressFill = document.getElementById("old-progress-bar-fill")
 let curTrackText = document.getElementById("cur-track-info")
 
 //load a random song
-let curIndex = Math.floor(Math.random() * trackList.length)
+let curIndex = Math.round(Math.random() * trackList.length)
 let curTrack = document.getElementById("cur-track")
 let isPlaying = false
 let progressTimer = null
@@ -519,7 +519,7 @@ function nextTrack()
 {
 	if (isShuffle) // always play a random song 
 	{
-		curIndex = Math.floor(Math.random() * trackList.length);
+		curIndex = Math.round(Math.random() * trackList.length);
 	} 
 	else 
 	{
@@ -695,9 +695,9 @@ function validateInput(e)
 			//easter egg
 			if (inputEl.value.toLowerCase().includes("lain"))
 			{
-				terminalDisplay.innerHTML += "let's all love lain!</br>";
+				terminalDisplay.innerHTML += "let's all love lain (づ◡﹏◡)づ</br>";
 			}
-			else  checkCommand(inputEl.value.toLowerCase());
+			else checkCommand(inputEl.value);
 		}
 		else //invalid input
 		{
@@ -734,7 +734,7 @@ function checkCommand(input)
 		case "prev": prevTrack(); break;
 		case "next": nextTrack(); break;
 		case "random": 
-			curIndex = Math.floor(Math.random() * trackList.length);
+			curIndex = Math.round(Math.random() * trackList.length);
 			loadTrack(); playTrack();
 			break;
 
