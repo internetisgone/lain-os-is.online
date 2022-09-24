@@ -52,13 +52,13 @@ p, label, button, option, ul
 	{
 		width: 400px; height: 90px; bottom: 0; 
 		background-image: url("img/test-dock50.png"); 
-		flex-direction: row; 
 	}
 	#icons-container 
 	{
 		width: 60%; height: 100%; 
-		flex-direction: row; justify-content: left;
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	}
+	.icon {margin: 2px;}
 }
 
 /*desktop / landscape display*/
@@ -85,15 +85,13 @@ p, label, button, option, ul
 	}
 	#icons-container 
 	{
-		width: 55%; height: 30%; left: 0;
-		flex-direction: column; align-items: center; justify-content: flex-start;
+		width: 55%; height: 40%; left: 6%; top: 23%;
+		grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 	}
+	.icon {width: 55px; height: 55px; margin: 5px;}
 	#dock-bg-color 
 	{
 		position: absolute; left: 0; height: 100%; width: 55%; 
-		/*background: black; opacity: 0.2;*/
-		border-radius: 40px;
-
 		backdrop-filter: blur(20px) brightness(95%);
 		-webkit-backdrop-filter: blur(20px) brightness(95%); /*safari*/
 	}
@@ -222,8 +220,7 @@ hr /*temp*/
 	border-radius: 10px;
 	box-shadow:  -3px -3px 6px dimgray inset, 3px 3px 6px dimgray inset;
 
-/*	--inner-container-top-margin: 12%;
-*/	--inner-container-shadow: -1px -1px 1px dimgray, 1px 1px 1px dimgray;
+	--inner-container-shadow: -1px -1px 1px dimgray, 1px 1px 1px dimgray;
 }
 
 .mini-window-draggable
@@ -264,6 +261,7 @@ hr /*temp*/
 	position: absolute;
 	width: 90%;
 	top: 9%; bottom: 4%;
+	box-shadow: var(--inner-container-shadow);
 }
 /******* chat *******/
 
@@ -385,7 +383,7 @@ hr /*temp*/
 	justify-content: center; align-items: center;
 }
 
-#dock-bg /*adaptive size*/
+#dock-bg 
 {
 	position: absolute;	display: flex; 
 	justify-content: center; align-items: center;
@@ -393,13 +391,15 @@ hr /*temp*/
 	background-repeat: no-repeat;
 }
 
-#icons-container {position: absolute; display: flex;}
+#icons-container 
+{
+	position: absolute; 
+	display: grid;
+}
 .icon 
 {
 	display: none;
-	width: 55px; height: 55px; margin: 5px;
 	cursor: pointer;
-/*	opacity: 77%;*/
 }
 
 /******* music player *******/
@@ -408,7 +408,7 @@ hr /*temp*/
 	color: black; 
 	background-color: transparent;
 	box-shadow: none;
-	background-image: url("img/player-mockup.png");
+	background-image: url("img/player-mockup-w-bg.png");  /*bg fill colour e1e4eb*/
 	background-repeat: no-repeat;
 	background-size: 100%; 
 	/*width n height are set separately, responsive to screen size*/
@@ -430,8 +430,8 @@ hr /*temp*/
 	left: 42%; right: 11%; top: 4%; bottom: 90%;
 	width: auto; height: auto;
 	overflow: hidden;
-	background-color: var(--music-player-bg); 
-	opacity: var(--music-player-bg-opacity);
+	/* background-color: var(--music-player-bg); 
+	opacity: var(--music-player-bg-opacity); */
 }
 
 #now-playing-static {position: absolute; margin: 0; margin-top: 3px; z-index: 33;}
@@ -443,9 +443,11 @@ hr /*temp*/
 	display: flex;
 	margin-top: 3px;
 	width: auto; height: 100%;
-	animation: scrollText 7s linear infinite;
-}
 
+	animation: scrollText 7s linear infinite;
+	-webkit-animation: webkitScrollText 7s linear infinite;
+}
+/* 
  #now-playing-clone 
  {
  	position: absolute;
@@ -453,7 +455,7 @@ hr /*temp*/
 	margin-top: 3px;
 	width: auto; height: 100%;
 	animation: scrollText 7s linear infinite;
- }
+ } */
 
 #now-playing-marquee
 {
@@ -462,10 +464,12 @@ hr /*temp*/
 	margin-left: -100%; left: 0;
 	white-space: nowrap;
 	background-color: transparent;
+
 	animation: scrollText 7s linear infinite;
+	-webkit-animation: webkitScrollText 7s linear infinite;
 }
 
-#now-playing-marquee-clone
+/* #now-playing-marquee-clone
 {
 	position: relative;
 	width: auto; height: 100%; margin: 0;
@@ -474,7 +478,7 @@ hr /*temp*/
 	background-color: transparent;
 	color: violet;
 	animation: scrollText 7s linear infinite;
-}
+} */
 
 /*animate the two elements at same time 
 so that texts of variable lengths can be scrolled*/
@@ -483,19 +487,33 @@ so that texts of variable lengths can be scrolled*/
 	from {transform: translateX(100%);}
 	to {transform: translateX(0);}
 }
-@keyframes scrollTextDelayed
+
+/*todoooooo*/
+@-webkit-keyframes webkitScrollText
+{
+	0% 	{-webkit-transform: translateX(100%);}
+	50%	{-webkit-transform: translateX(50%);}
+	100% {-webkit-transform: translateX(0);}
+}
+
+/* @-webkit-keyframes scrollText
+{
+	from {-webkit-transform: translateX(100%);}
+	to {-webkit-transform: translateX(0);}
+} */
+/* @keyframes scrollTextDelayed
 {
 	from {transform: translateX(0);}
 	to {transform: translateX(-100%);}
-}
+} */
 
 #cur-time-container
 {
 	position: absolute;
-	left: 18%; right: 58%; top: 4%; bottom: 85%;
+	left: 18%; right: 59%; top: 4%; bottom: 85%;
 	width: auto; height: auto;
-	background-color: var(--music-player-bg); 
-	opacity: var(--music-player-bg-opacity);
+	/* background-color: var(--music-player-bg); 
+	opacity: var(--music-player-bg-opacity); */
 }
 
 /*play/pause/stop icons*/
@@ -627,8 +645,8 @@ so that texts of variable lengths can be scrolled*/
 {
 	position: absolute;
 	left: 19%; right: 8%; bottom: 14%; top: 58%;
-	background-color: var(--music-player-bg); 
-	opacity: var(--music-player-bg-opacity);
+	/* background-color: var(--music-player-bg); 
+	opacity: var(--music-player-bg-opacity); */
 /*	backdrop-filter: blur(13px) brightness(120%) contrast(80%);
 	-webkit-backdrop-filter: blur(13px) brightness(120%) contrast(80%); /*safari*/
 
@@ -638,7 +656,8 @@ so that texts of variable lengths can be scrolled*/
 #playlist-container::-webkit-scrollbar-thumb 
 {
 	border-radius: 10px;
-	background-image: url("img/music-player-components/playlist_scrollbar_thumb.png");
+	background-color: gainsboro;
+	/* background: url("img/music-player-components/playlist_scrollbar_thumb.png") center no-repeat;*/
 }
 
 #playlist-content 
@@ -661,7 +680,7 @@ so that texts of variable lengths can be scrolled*/
 #mini-display-container
 {
 	position: absolute;
-	left: 59%; right: 11%; bottom: 4%; top: 88%;
+	left: 59%; right: 11%; bottom: 5%; top: 88%;
 	/* background-color: var(--music-player-bg); 
 	opacity: var(--music-player-bg-opacity); */
 }
@@ -675,10 +694,10 @@ so that texts of variable lengths can be scrolled*/
 #mini-controls 
 {
 	position: absolute; 
-	top: 63%; bottom: 1%; left: 4%; right: 31%;
+	top: 66%; bottom: 1%; left: 4%; right: 31%;
 }
 
-#mini-controls img {position: absolute; width: 100%; height: auto;}
+#mini-controls img {position: absolute; left: 0; top: 0; width: 100%; height: auto;}
 
 #mini-controls-btns-container
 {
@@ -701,7 +720,7 @@ so that texts of variable lengths can be scrolled*/
 {
 	position: absolute;
 	color: black;
-	bottom: 7%; right: 5%;
+	bottom: 0; right: 5%;
 }
 /******* music player *******/
 
@@ -736,14 +755,6 @@ so that texts of variable lengths can be scrolled*/
 /***************** mini windows /*****************/
 
 /***************** old music player *****************/
-
-
-/*#volume-slider, .long-slider
-{
-	-webkit-appearance: none;
-	background: whitesmoke;
-	outline: none;
-}*/
 
 #temp-toggle
 {

@@ -234,6 +234,7 @@ function dragStart(e)
   		}
   }
 
+  // use document instead of movingWindow so drag continues even when cursor / touch pos leaves the movingWindow
   document.addEventListener("mousemove", doDrag)
   document.addEventListener("mouseup", dragEnd)
   document.addEventListener("touchmove", doDrag)
@@ -258,7 +259,7 @@ function doDrag(e)
 			}
 		}
 		movingWindow.style.left = (cursorPos.x + offset[0]) + 'px';
-    movingWindow.style.top  = (cursorPos.y + offset[1]) + 'px';
+    	movingWindow.style.top  = (cursorPos.y + offset[1]) + 'px';
 	}
 }
 
@@ -292,7 +293,7 @@ let progressFill = document.getElementById("old-progress-bar-fill")
 let curTrackText = document.getElementById("cur-track-info")
 
 //load a random song
-let curIndex = Math.round(Math.random() * trackList.length)
+let curIndex = Math.round(Math.random() * (trackList.length - 1))
 let curTrack = document.getElementById("cur-track")
 let isPlaying = false
 let progressTimer = null
@@ -519,7 +520,7 @@ function nextTrack()
 {
 	if (isShuffle) // always play a random song 
 	{
-		curIndex = Math.round(Math.random() * trackList.length);
+		curIndex = Math.round(Math.random() * (trackList.length - 1));
 	} 
 	else 
 	{
@@ -613,16 +614,11 @@ function setVolume()
 	changingVolumeText.textContent = "volume: " + Math.round(curTrack.volume * 10) / 10
 
 	curTrack.volume = volumeSlider.value / volumeSlider.max;
-	if (isScrolling) 
-	{
-		setNowPlayingAnim(false);
-		setTimeout(onFinishSettingVolume, "2000")
-	}
-	else 
-	{
-		nowPlayingStatic.style.opacity = "0";
-		setTimeout(onFinishSettingVolume, "2000")
-	}
+	if (isScrolling)  setNowPlayingAnim(false);
+	else  			  nowPlayingStatic.style.opacity = "0";
+
+	//in case it gets stuck
+	setTimeout(onFinishSettingVolume, "2000")
 }
 
 function onFinishSettingVolume()
@@ -734,7 +730,7 @@ function checkCommand(input)
 		case "prev": prevTrack(); break;
 		case "next": nextTrack(); break;
 		case "random": 
-			curIndex = Math.round(Math.random() * trackList.length);
+			curIndex = Math.round(Math.random() * (trackList.length - 1));
 			loadTrack(); playTrack();
 			break;
 
@@ -824,11 +820,11 @@ let source = audioContext.createMediaElementSource(curTrack);
 canvasContext.fillStyle = "black"
 
 const analyser = new AnalyserNode(audioContext, {
-																  fftSize: 32,
-																  // maxDecibels: -25,
-																  // minDecibels: -60,
-																  smoothingTimeConstant: 0.7
-																})
+													fftSize: 32,
+													// maxDecibels: -25,
+													// minDecibels: -60,
+													smoothingTimeConstant: 0.7
+												})
 
 let bufferLength = analyser.frequencyBinCount
 let frequencyData = new Uint8Array(bufferLength)
@@ -920,7 +916,7 @@ function switchBiquad(index)
 		frequencyEl.style.color = "grey";
 		gainEl.style.color = "grey";
 		qEl.style.color = "grey"
-		console.log("milady " + biquadIndex + ", biquad type = none") 
+		console.log("biquad index " + biquadIndex + ", biquad type = none") 
 	}
 }
 
@@ -1041,37 +1037,35 @@ function clearFilters()
 	let initialVolume = curTrack.volume
 
 	let fadeOut = setInterval(function(){
-	if (curTrack.volume > 0.05)
-	//gradually decrease volume 
-	{
-		curTrack.volume -= 0.05
-		console.log("fading out, current volume " + curTrack.volume)
-	}	
-	else 
-	//set filter and gradually increase volume 
-	{
-		clearInterval(fadeOut);
+        if (curTrack.volume > 0.05)
+        //gradually decrease volume 
+        {
+            curTrack.volume -= 0.05
+            console.log("fading out, current volume " + curTrack.volume)
+        }	
+        else 
+        //set filter and gradually increase volume 
+        {
+            clearInterval(fadeOut);
 
-		if (hasReverb) toggleReverb();
-		switchBiquad(0);
+            if (hasReverb) toggleReverb();
+            switchBiquad(0);
 
-		//fade in
-		let fadeIn = setInterval(function(){
-			if (curTrack.volume < initialVolume)
-			{
-				curTrack.volume += 0.05
-				console.log("fading in, current volume " + curTrack.volume)
-			}
-			else 
-			{
-				clearInterval(fadeIn)
-				volumeSlider.disabled = false
-			}
-		}
-		, 50)
-	}
-}
-, 50)
+            //fade in
+            let fadeIn = setInterval(function(){
+                if (curTrack.volume < initialVolume)
+                {
+                    curTrack.volume += 0.05
+                    console.log("fading in, current volume " + curTrack.volume)
+                }
+                else 
+                {
+                    clearInterval(fadeIn)
+                    volumeSlider.disabled = false
+                }
+            }, 50)
+        }
+    }, 50)
 }
 
 ////////////// audio filter presets //////////////
