@@ -737,8 +737,12 @@ function checkCommand(input)
 		case "help": terminalDisplay.innerHTML += helpText; break;
 
 		//filters
-		case "toilet": gotoToilet(); break;
-		case "leave": clearFilters(); break;
+		case "leave": applyFilter(0); break;
+		case "toilet": applyFilter(1); break;
+
+		//test
+		case "test1": applyFilter(2); break;
+		case "test2": applyFilter(3); break;
 
 		default: terminalDisplay.innerHTML += "idk that word!</br>"
 	}
@@ -939,7 +943,7 @@ function setQ()
 	qEl.textContent = "Q factor: " + qSlider.value
 }
 
-function setReverb()
+function setReverb() //to be deleted
 {
 	reverbDurationText.textContent = "duration :" + reverbDurationSlider.value
 	reverbDecayText.textContent = "decay: " + reverbDecaySlider.value
@@ -947,7 +951,7 @@ function setReverb()
 	convolver.buffer = impulse
 }
 
-function toggleReverb()
+function toggleReverb() //to be deleted
 {
 	if (hasReverb)
 	{
@@ -974,22 +978,87 @@ function toggleReverb()
 	}
 }
 
+function turnOffReverb()
+{
+	if (hasReverb)
+	{
+		convolver.disconnect()
+		hasReverb = false
+	}
+}
+
+function turnOnReverb()
+{
+	if (!hasReverb)
+	{	
+		//source.disconnect()
+		if (biquadIndex > 0) 
+		{
+			source.connect(convolver).connect(biquadFilter).connect(analyser).connect(audioContext.destination)
+		}
+		else 
+		{
+			source.connect(convolver).connect(analyser).connect(audioContext.destination)
+		}
+		hasReverb = true
+	}
+	
+}
+
 ////////////// end of audio filter //////////////
 
 
 ////////////// audio filter presets //////////////
 
-//todo crossfade 
-function switchFilter(bqdIndex = 0, bqdFrequency = 1000, bqdGain = 25, bqdQ = 1, hasRvrb, rvrbbDuration, rvrbDecay)
+const crossfadeStepDuration = 100; //in ms
+
+function clearAllFilters()
 {
-	// switchBiquad(bqdIndex);
-	// biquadFilter.frequency.value = bqdFrequency;
-	// biquadFilter.gain.value = bqdGain;
-	// biquadFilter.Q.value = bqdQ;
+	turnOffReverb();
+    switchBiquad(0);
 }
 
-//test 
-function gotoToilet()
+function gotoToilet() //test filter 0
+{
+	//lowshelf
+	switchBiquad(4);
+	biquadFilter.gain.value = 40;
+}
+
+function TestFilter1()
+//lowpass + reverb
+{
+	switchBiquad(1); //["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch", "allpass"]
+	biquadFilter.frequency.value = 1000;
+	// biquadFilter.gain.value = 20;
+	// biquadFilter.Q.value = 1;
+	if (!hasReverb)
+	{
+		toggleReverb();
+		impulse = impulseResponse(100, 15) //duration, decay
+		convolver.buffer = impulse
+	}
+}
+
+function TestFilter2()
+//reverb
+{
+	switchBiquad(0);
+	if (!hasReverb)
+	{
+		toggleReverb();
+		impulse = impulseResponse(100, 15) //duration, decay
+		convolver.buffer = impulse
+	}
+}
+
+let filterPresetsArray = [
+	clearAllFilters, 
+	gotoToilet,
+	TestFilter1, 
+	TestFilter2]
+
+function applyFilter(index)
 {
 	volumeSlider.disabled = true
 	let initialVolume = curTrack.volume
@@ -1006,14 +1075,13 @@ function gotoToilet()
 		{
 			clearInterval(fadeOut);
 
-			//switch filter 
-			switchBiquad(4)
-			biquadFilter.gain.setValueAtTime(40, audioContext.currentTime)
-			//switch filter end 
-
+			//apply filter 
+			filterPresetsArray[index]();
+			console.log("applied audio filter at index " + index)
+			
 			//fade in
 			let fadeIn = setInterval(function(){
-				if (curTrack.volume < initialVolume)
+				if (curTrack.volume < (initialVolume - 0.05))
 				{
 					curTrack.volume += 0.05
 					console.log("fading in, current volume " + curTrack.volume)
@@ -1023,14 +1091,11 @@ function gotoToilet()
 					clearInterval(fadeIn)
 					volumeSlider.disabled = false
 				}
-			}
-			, 50)
+			}, crossfadeStepDuration)
 		}
-	}
-	, 50)
+	}, crossfadeStepDuration)
 }
 
-//todo write a general func for fade in / fade out
 function clearFilters()
 {
 	volumeSlider.disabled = true
@@ -1048,8 +1113,7 @@ function clearFilters()
         {
             clearInterval(fadeOut);
 
-            if (hasReverb) toggleReverb();
-            switchBiquad(0);
+            
 
             //fade in
             let fadeIn = setInterval(function(){
@@ -1063,9 +1127,9 @@ function clearFilters()
                     clearInterval(fadeIn)
                     volumeSlider.disabled = false
                 }
-            }, 50)
+            }, crossfadeStepDuration)
         }
-    }, 50)
+    }, crossfadeStepDuration)
 }
 
 ////////////// audio filter presets //////////////

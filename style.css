@@ -55,7 +55,7 @@ p, label, button, option, ul
 	}
 	#icons-container 
 	{
-		width: 60%; height: 100%; 
+		width: 60%; height: 90%; bottom: 0;
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	}
 	.icon {margin: 2px;}
@@ -324,7 +324,7 @@ hr /*temp*/
 	/*when browser's preferred language is set to chinese, */
 	/*the min font-size is restricted to 12px. */
 	/*transform:scale() can be used to counter this browser limitation*/
-	transform: scale(0.3) translate(-110%, 110%);
+	transform: scale(0.3) translate(-115%, 110%);
 }
 
 #terminal-display /*shows submitted texts*/
@@ -657,6 +657,7 @@ so that texts of variable lengths can be scrolled*/
 {
 	border-radius: 10px;
 	background-color: gainsboro;
+	box-shadow:  -2px -2px 2px dimgray inset, 2px 2px 2px dimgray inset;
 	/* background: url("img/music-player-components/playlist_scrollbar_thumb.png") center no-repeat;*/
 }
 
