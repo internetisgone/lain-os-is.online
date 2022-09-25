@@ -78,7 +78,7 @@ const totalTime = "68:21" //calculated with totalLengthTest() in onload()
 
 //initial audio node params
 //gain node
-const initialGain = 0.7;
+const initialGain = 0.77;
 
 ////////////// entry page //////////////
 
@@ -875,7 +875,6 @@ function impulseResponse(duration, decay)
 	var IR1 = impulse.getChannelData(1)
 	for (var i = 0; i < length; i++) 
 	{
-		//todo make the noise less harsh 
 		IR0[i] = (2*Math.random() - 1) * Math.pow(1 - i/length, decay)
 		IR1[i] = IR0[i]
 	}
@@ -983,8 +982,8 @@ function turnOffReverb()
 {
 	if (hasReverb)
 	{
-		convolver.disconnect();
 		convolver.buffer = null;
+		convolver.disconnect();
 		hasReverb = false;
 	}
 }
@@ -993,7 +992,6 @@ function turnOnReverb()
 {
 	if (!hasReverb)
 	{	
-		setReverb();
 		if (biquadIndex > 0) 
 		{
 			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(analyser).connect(audioContext.destination)
@@ -1012,7 +1010,8 @@ function turnOnReverb()
 
 ////////////// audio filter presets //////////////
 
-const crossfadeStepDuration = 100; //in ms
+const crossfadeGainDelta = 0.05;
+const crossfadeStep = 20; //in ms
 
 function clearAllFilters()
 {
@@ -1031,27 +1030,25 @@ function TestFilter1()
 //lowpass + reverb
 {
 	switchBiquad(1); //["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch", "allpass"]
-	biquadFilter.frequency.value = 1000;
+	// biquadFilter.frequency.value = 1000;
 	// biquadFilter.gain.value = 20;
 	// biquadFilter.Q.value = 1;
-	if (!hasReverb)
-	{
-		toggleReverb();
-		impulse = impulseResponse(100, 15) //duration, decay
-		convolver.buffer = impulse
-	}
+	
+	turnOffReverb(); //clear convolver buffer 
+	impulse = impulseResponse(100, 15) //duration, decay
+	convolver.buffer = impulse
+	turnOnReverb();
 }
 
 function TestFilter2()
 //reverb
 {
 	switchBiquad(0);
-	if (!hasReverb)
-	{
-		toggleReverb();
-		impulse = impulseResponse(100, 15) //duration, decay
-		convolver.buffer = impulse
-	}
+
+	turnOffReverb(); //clear convolver buffer 
+	impulse = impulseResponse(100, 15) //duration, decay
+	convolver.buffer = impulse
+	turnOnReverb();
 }
 
 let filterPresetsArray = [
@@ -1062,15 +1059,15 @@ let filterPresetsArray = [
 
 function applyFilter(index)
 {
-	volumeSlider.disabled = true
-	let initialVolume = curTrack.volume
+	volumeSlider.disabled = true;
+	let initialVolume = gainNode.gain.value;
 
 	let fadeOut = setInterval(function(){
-		if (curTrack.volume > 0.05)
+		if (gainNode.gain.value > crossfadeGainDelta)
 		//gradually decrease volume 
 		{
-			curTrack.volume -= 0.05
-			console.log("fading out, current volume " + curTrack.volume)
+			gainNode.gain.setValueAtTime((gainNode.gain.value - crossfadeGainDelta), audioContext.currentTime);
+			console.log("fading out, current volume " + gainNode.gain.value)
 		}	
 		else 
 		//set filter and gradually increase volume 
@@ -1078,24 +1075,25 @@ function applyFilter(index)
 			clearInterval(fadeOut);
 
 			//apply filter 
+			gainNode.gain.setValueAtTime(0, audioContext.currentTime);
 			filterPresetsArray[index]();
 			console.log("applied audio filter at index " + index)
 			
 			//fade in
 			let fadeIn = setInterval(function(){
-				if (curTrack.volume < (initialVolume - 0.05))
+				if (gainNode.gain.value < (initialVolume - crossfadeGainDelta))
 				{
-					curTrack.volume += 0.05
-					console.log("fading in, current volume " + curTrack.volume)
+					gainNode.gain.setValueAtTime((gainNode.gain.value + crossfadeGainDelta), audioContext.currentTime);
+					console.log("fading in, current volume " + gainNode.gain.value)
 				}
 				else 
 				{
 					clearInterval(fadeIn)
 					volumeSlider.disabled = false
 				}
-			}, crossfadeStepDuration)
+			}, crossfadeStep)
 		}
-	}, crossfadeStepDuration)
+	}, crossfadeStep)
 }
 
 ////////////// audio filter presets //////////////
