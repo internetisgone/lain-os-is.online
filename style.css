@@ -824,6 +824,20 @@ so that texts of variable lengths can be scrolled*/
 
 /***************** credits *****************/
 
-#credits {font-family: var(--mono-font);}
+#credits-btn 
+{
+	position: absolute;
+	right: 5%; bottom: 0;
+	width: 120px; height: 200px; /*temp sizes*/
+}
+
+#credits-btn img {position: absolute; top: 0; right: 0; width: 100%; height: auto;}
+
+#credits 
+{
+	width: 50vw; height: auto; padding: 5%;
+	font-family: var(--mono-font);
+	text-align: center;
+}
 
 /***************** credits end *****************/
