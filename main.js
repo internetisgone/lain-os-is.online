@@ -76,6 +76,10 @@ const bitrateStereoPlaceholder = "&nbsp;&nbsp;&nbsp;&nbsp;KBPS&nbsp;&nbsp;&nbsp;
 const loadingTrackString = "loading metadata..."; 
 const totalTime = "68:21" //calculated with totalLengthTest() in onload()
 
+//initial audio node params
+//gain node
+const initialGain = 0.7;
+
 ////////////// entry page //////////////
 
 // let entryPage = document.getElementById("entry-page")
@@ -320,6 +324,7 @@ let miniCurTime = document.getElementById("mini-cur-time")
 //visualiserr
 let visualiserCanvas = document.getElementById("visualiser")
 let canvasContext = visualiserCanvas.getContext("2d")
+canvasContext.fillStyle = "black"
 
 let playlistUl = document.getElementById("playlist-content")
 
@@ -356,6 +361,7 @@ let playlistEntries = playlistUl.getElementsByClassName("playlist-entry")
 
 ///////initial state///////
 
+//function initAudio()
 loadTrack();
 stopTrack(); //stop icon, no bitrate display
 
@@ -611,9 +617,10 @@ function loopSong()
 function setVolume()
 {
 	changingVolumeText.style.opacity = "1"
-	changingVolumeText.textContent = "volume: " + Math.round(curTrack.volume * 10) / 10
+	changingVolumeText.textContent = "volume: " + Math.round(gainNode.gain.value * 10) / 10
 
-	curTrack.volume = volumeSlider.value / volumeSlider.max;
+	//set the gain instead of curTrack.volume otherwise volume can't be changed in safari (this is a konwn bug)
+	gainNode.gain.setValueAtTime((volumeSlider.value / volumeSlider.max), audioContext.currentTime);
 	if (isScrolling)  setNowPlayingAnim(false);
 	else  			  nowPlayingStatic.style.opacity = "0";
 
@@ -739,8 +746,6 @@ function checkCommand(input)
 		//filters
 		case "leave": applyFilter(0); break;
 		case "toilet": applyFilter(1); break;
-
-		//test
 		case "test1": applyFilter(2); break;
 		case "test2": applyFilter(3); break;
 
@@ -810,19 +815,13 @@ let reverbDecaySlider = document.getElementById("reverb-decay")
 let reverbDurationText = document.getElementById("cur-reverb-duration")
 let reverbDecayText = document.getElementById("cur-reverb-decay")
 
-const audioContext = new AudioContext();
-const biquadFilter = new BiquadFilterNode(audioContext, {frequency:1000})
-// biquadFilter.frequency.setValueAtTime(700, audioContext.currentTime);
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+const biquadFilter = new BiquadFilterNode(audioContext, {frequency:1000});
 let impulse = impulseResponse(reverbDurationSlider.value, reverbDecaySlider.value)
 const convolver = new ConvolverNode(audioContext, {buffer:impulse})
+const gainNode = new GainNode(audioContext, {gain:initialGain}) 
 
-let source = audioContext.createMediaElementSource(curTrack);
-
-///////todoooo frequency visualiser ///////
-// let visualiserCanvas = document.getElementById("visualiser")
-// let canvasContext = visualiserCanvas.getContext("2d")
-canvasContext.fillStyle = "black"
-
+/////// frequency visualiser ///////
 const analyser = new AnalyserNode(audioContext, {
 													fftSize: 32,
 													// maxDecibels: -25,
@@ -863,24 +862,24 @@ let biquadIndex = 0
 let biquadTypes = ["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch", "allpass"]
 let hasReverb = false
 
-source.connect(analyser).connect(audioContext.destination)
-//source.connect(audioContext.destination)
+let source = audioContext.createMediaElementSource(curTrack);
+source.connect(gainNode).connect(analyser).connect(audioContext.destination)
 
 biquadSelectionEl.addEventListener("change", function(){switchBiquad(biquadSelectionEl.value);}) 
 
 function impulseResponse(duration, decay)
 {
 	var length = audioContext.sampleRate * duration
-  var impulse = audioContext.createBuffer(2, length, audioContext.sampleRate)
-  var IR0 = impulse.getChannelData(0)
-  var IR1 = impulse.getChannelData(1)
-  for (var i = 0; i < length; i++) 
-  {
-  	//todo make the noise less harsh 
-  	IR0[i] = (2*Math.random() - 1) * Math.pow(1 - i/length, decay)
-  	IR1[i] = IR0[i]
-  }
-  return impulse
+	var impulse = audioContext.createBuffer(2, length, audioContext.sampleRate)
+	var IR0 = impulse.getChannelData(0)
+	var IR1 = impulse.getChannelData(1)
+	for (var i = 0; i < length; i++) 
+	{
+		//todo make the noise less harsh 
+		IR0[i] = (2*Math.random() - 1) * Math.pow(1 - i/length, decay)
+		IR1[i] = IR0[i]
+	}
+	return impulse
 }
 
 function switchBiquad(index)
@@ -895,11 +894,11 @@ function switchBiquad(index)
 		if (hasReverb)
 		{
 			convolver.disconnect()
-			source.connect(convolver).connect(biquadFilter).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(analyser).connect(audioContext.destination)
 		}
 		else 
 		{	
-			source.connect(biquadFilter).connect(analyser).connect(audioContext.destination)
+			source.connect(biquadFilter).connect(gainNode).connect(analyser).connect(audioContext.destination)
 		}
 		frequencyEl.style.color = "black";
 		gainEl.style.color = "black";
@@ -911,11 +910,11 @@ function switchBiquad(index)
 		biquadFilter.disconnect()
 		if (hasReverb)
 		{
-			source.connect(convolver).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(gainNode).connect(analyser).connect(audioContext.destination)
 		}
 		else 
 		{
-			source.connect(analyser).connect(audioContext.destination)
+			source.connect(gainNode).connect(analyser).connect(audioContext.destination)
 		}
 		frequencyEl.style.color = "grey";
 		gainEl.style.color = "grey";
@@ -943,7 +942,7 @@ function setQ()
 	qEl.textContent = "Q factor: " + qSlider.value
 }
 
-function setReverb() //to be deleted
+function setReverb() 
 {
 	reverbDurationText.textContent = "duration :" + reverbDurationSlider.value
 	reverbDecayText.textContent = "decay: " + reverbDecaySlider.value
@@ -956,6 +955,7 @@ function toggleReverb() //to be deleted
 	if (hasReverb)
 	{
 		convolver.disconnect()
+		convolver.buffer = null
 		reverbToggle.textContent = "turn on reverb "
 		reverbDurationText.style.color = "grey"
 		reverbDecayText.style.color = "grey"
@@ -963,13 +963,14 @@ function toggleReverb() //to be deleted
 	}
 	else 
 	{
+		setReverb();
 		if (biquadIndex > 0) 
 		{
-			source.connect(convolver).connect(biquadFilter).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(analyser).connect(audioContext.destination)
 		}
 		else 
 		{
-			source.connect(convolver).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(gainNode).connect(analyser).connect(audioContext.destination)
 		}
 		reverbToggle.textContent = "turn off reverb"
 		reverbDurationText.style.color = "black"
@@ -982,8 +983,9 @@ function turnOffReverb()
 {
 	if (hasReverb)
 	{
-		convolver.disconnect()
-		hasReverb = false
+		convolver.disconnect();
+		convolver.buffer = null;
+		hasReverb = false;
 	}
 }
 
@@ -991,14 +993,14 @@ function turnOnReverb()
 {
 	if (!hasReverb)
 	{	
-		//source.disconnect()
+		setReverb();
 		if (biquadIndex > 0) 
 		{
-			source.connect(convolver).connect(biquadFilter).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(analyser).connect(audioContext.destination)
 		}
 		else 
 		{
-			source.connect(convolver).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(gainNode).connect(analyser).connect(audioContext.destination)
 		}
 		hasReverb = true
 	}
@@ -1094,42 +1096,6 @@ function applyFilter(index)
 			}, crossfadeStepDuration)
 		}
 	}, crossfadeStepDuration)
-}
-
-function clearFilters()
-{
-	volumeSlider.disabled = true
-	let initialVolume = curTrack.volume
-
-	let fadeOut = setInterval(function(){
-        if (curTrack.volume > 0.05)
-        //gradually decrease volume 
-        {
-            curTrack.volume -= 0.05
-            console.log("fading out, current volume " + curTrack.volume)
-        }	
-        else 
-        //set filter and gradually increase volume 
-        {
-            clearInterval(fadeOut);
-
-            
-
-            //fade in
-            let fadeIn = setInterval(function(){
-                if (curTrack.volume < initialVolume)
-                {
-                    curTrack.volume += 0.05
-                    console.log("fading in, current volume " + curTrack.volume)
-                }
-                else 
-                {
-                    clearInterval(fadeIn)
-                    volumeSlider.disabled = false
-                }
-            }, crossfadeStepDuration)
-        }
-    }, crossfadeStepDuration)
 }
 
 ////////////// audio filter presets //////////////
