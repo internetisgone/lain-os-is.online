@@ -714,6 +714,13 @@ function validateInput(e)
 	}
 }
 
+terminalTxtContainer.onscroll = function()
+{
+	//prevent scrolling past the ascii art. since the ascii art is scaled down there's blank space above it
+	if (terminalTxtContainer.scrollTop < 570) terminalTxtContainer.scrollTop = 570;
+	//console.log("terminal scroll pos " + terminalTxtContainer.scrollTop + ", scroll height = " + terminalTxtContainer.scrollHeight)
+}
+
 let helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸<br><br>available commands:<br><br>"
 							+ "playback controls<br>"
 							+ "&emsp;&emsp;<span style='color:lime'>play </span> &emsp;&emsp; play the currently loaded song<br>"
@@ -927,6 +934,7 @@ function switchBiquad(index)
 		frequencyEl.style.color = "grey";
 		gainEl.style.color = "grey";
 		qEl.style.color = "grey"
+		detuneEl.style.color = "grey";
 		console.log("biquad index " + biquadIndex + ", biquad type = none") 
 	}
 }

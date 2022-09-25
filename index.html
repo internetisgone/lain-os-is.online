@@ -43,7 +43,7 @@
 
 			<div id="cur-time-container">
 				<img id="cur-track-state"></img>
-				<span class="cur-time" id="cur-time" style="color: black; margin: 23%;">00:00</span>
+				<div class="cur-time" id="cur-time">00:00</div>
 				<div id="visualiser-container">
 					<canvas id="visualiser"></canvas>
 				</div>
@@ -303,7 +303,7 @@ c:;;;;,,,,'''.....         ..';:::::::::::;:;....................,::::::::::::::
 			<br>
 
 			<div style="display: flex;"> 
-				<span class="cur-time" id="old-cur-time" style="color: black; font-size: 13px;">00:00</span>
+				<span class="cur-time" id="old-cur-time" style="color: black; font-size: 13px; margin: 0;">00:00</span>
 				<div id ="old-progress-bar-container">
 					<img src="img/music-player-components/progress_bar.png" style="position: absolute; width: 100%">
 					<div id="old-progress-bar-fill"></div>
@@ -313,8 +313,8 @@ c:;;;;,,,,'''.....         ..';:::::::::::;:;....................,::::::::::::::
 			
 				
 			<hr>
-			<p id="biquad-prompt" style="width: 100%;">choose a filter:
-				<span id = biquad-tips>gain adjustment is available for lowshelf, highshelf, peaking. <br><br> q factor adjustment is available for lowpass, highpass, bandpass, peaking, notch, allpasss. <br><br> search "biquad filter MDN" for more info.</span> 
+			<p id="biquad-prompt" style="width: 100%;">choose a biquad filter:
+				<span id="biquad-tips">gain adjustment is available for lowshelf, highshelf, peaking.<br><br>q factor adjustment is available for lowpass, highpass, bandpass, peaking, notch, allpasss.<br><br>not much info is found about detune but it seems to work with lowpass, highpass, bandpass, allpass.<br><br>search "biquad filter MDN" for more info.</span> 
 			</p>
 			<select id="switch-biquad" size="1">
 				<option value="0" selected="selected">none</option>
@@ -346,10 +346,10 @@ c:;;;;,,,,'''.....         ..';:::::::::::;:;....................,::::::::::::::
 
 			<button id="reverb-toggle" onclick="toggleReverb()">turn on reverb</button>
 			<br>
-			<p id="cur-reverb-duration" style="color: grey;">duration: 100</p>
-			<input class="long-slider" type="range" min="0.1" max="150" value="100" id="reverb-duration" step="0.2" onchange="setReverb()">
-			<p id="cur-reverb-decay" style="color: grey;">decay: 10</p>
-			<input class="long-slider" type="range" min="0.1" max="80" value="10" id="reverb-decay" step="0.2" onchange="setReverb()">
+			<p id="cur-reverb-duration" style="color: grey;">duration: 15</p>
+			<input class="long-slider" type="range" min="0.1" max="120" value="15" id="reverb-duration" step="1" onchange="setReverb()">
+			<p id="cur-reverb-decay" style="color: grey;">decay: 5</p>
+			<input class="long-slider" type="range" min="0.1" max="80" value="5" id="reverb-decay" step="0.2" onchange="setReverb()">
 
 		</div> <!-- end of old player container -->
 	</div> <!-- end of main container -->

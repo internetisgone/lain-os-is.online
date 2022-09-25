@@ -18,7 +18,7 @@ body
 	background-image: url("img/lain_extended_m.png");
 	background-repeat: no-repeat;
 /*	background-size: 100%;
-*/	background-color: rgb(226, 233, 236);
+*/	background-color: #e1e4eb; 
 	margin: 0px;
 
 	--mono-font: "Input-Mono", "Courier New", monospace;
@@ -517,11 +517,12 @@ so that texts of variable lengths can be scrolled*/
 }
 
 /*play/pause/stop icons*/
-#cur-track-state {position: absolute; margin: 0; margin-left: 4px; margin-top: 1px;} 
+#cur-track-state {position: absolute; margin: 0; margin-left: 5px; margin-top: 3px;} 
 
 .cur-time
 {
-	color: whitesmoke; margin: 0; font-family: var(--mono-font);
+	font-family: var(--mono-font);
+	margin: 0; margin-left: 24%; margin-top: 3px; 
 }
 
 #visualiser-container
@@ -775,7 +776,7 @@ so that texts of variable lengths can be scrolled*/
 
 #biquad-tips {
 	position: absolute; right: 120%;
-	margin: 7px; padding: 5px; width: 144px;
+	margin: 7px; padding: 5px; width: 200px;
 	font-size: small; word-wrap:break-word;
 	background-color: darkgray; color: black; 
 	opacity: 0;
@@ -800,22 +801,22 @@ so that texts of variable lengths can be scrolled*/
 	font-size: 13px;
 }
 
-#old-play-pause-btn {width: 120px;}
+#old-play-pause-btn {width: 150px;}
 
-.long-slider {width: 300px;}
+.long-slider {width: 330px;}
 
 #old-progress-bar-container
 {
 	position: relative;
-	margin: 8px; 
-	width: 210px;
+	margin-left: 9px; margin-right: 9px; 
+	width: 240px;
 	height: 10px;
 }
 
 #old-progress-bar-fill
 {
 	position: absolute;
-	max-width: 210px;
+	max-width: 240px;
 	width: 0px;
 	height: 10px;
 	background-color: violet;
@@ -837,9 +838,12 @@ so that texts of variable lengths can be scrolled*/
 
 #credits 
 {
+	position: relative; top: -3%;
 	width: 50vw; height: auto; padding: 5%;
-	font-family: var(--mono-font); font-size: 14px;
+	font-family: var(--mono-font); font-size: 14px; 
 	text-align: center;
+	/* color: #f1f1f1;
+	text-shadow: 0 0 5px #ffffff, 0 0 15px #ffffff; */
 }
 
 /***************** credits end *****************/
