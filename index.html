@@ -303,7 +303,7 @@ c:;;;;,,,,'''.....         ..';:::::::::::;:;....................,::::::::::::::
 			<br>
 
 			<div style="display: flex;"> 
-				<span class="cur-time" id="old-cur-time" style="color: black;">00:00</span>
+				<span class="cur-time" id="old-cur-time" style="color: black; font-size: 13px;">00:00</span>
 				<div id ="old-progress-bar-container">
 					<img src="img/music-player-components/progress_bar.png" style="position: absolute; width: 100%">
 					<div id="old-progress-bar-fill"></div>
@@ -311,8 +311,7 @@ c:;;;;,,,,'''.....         ..';:::::::::::;:;....................,::::::::::::::
 				<span id="old-total-time" style="color: black;">00:00</span>
 			</div>
 			
-			
-			
+				
 			<hr>
 			<p id="biquad-prompt" style="width: 100%;">choose a filter:
 				<span id = biquad-tips>gain adjustment is available for lowshelf, highshelf, peaking. <br><br> q factor adjustment is available for lowpass, highpass, bandpass, peaking, notch, allpasss. <br><br> search "biquad filter MDN" for more info.</span> 
@@ -329,14 +328,17 @@ c:;;;;,,,,'''.....         ..';:::::::::::;:;....................,::::::::::::::
 				<option value="8">allpass</option>
 			</select>
 
-			<p id="cur-frequency" style="color: grey;">frequency: 1000</p>
-			<input class="long-slider" type="range" min="20" max="15000" value="1000" id="frequency-slider" onchange="setFrequency()">
+			<p id="cur-frequency" style="color: grey;">frequency: 350</p>
+			<input class="long-slider" type="range" min="20" max="15000" value="350" step="5" id="frequency-slider" onchange="setFrequency()">
 
-			<p id="cur-gain" style="color: grey;">gain: 25</p>
-			<input class="long-slider" type="range" min="-40" max="40" value="25" id="gain-slider" onchange="setGain()">
+			<p id="cur-gain" style="color: grey;">gain: 0</p>
+			<input class="long-slider" type="range" min="-40" max="40" value="0" step="1" id="gain-slider" onchange="setGain()">
 
 			<p id="cur-q" style="color: grey;">Q factor: 1</p>
-			<input class="long-slider" type="range" min="0.01" max="33" value="1" step="0.2" id="q-slider" onchange="setQ()">
+			<input class="long-slider" type="range" min="0.01" max="20" value="1" step="0.2" id="q-slider" onchange="setQ()">
+
+			<p id="cur-detine" style="color: grey;">detune: 0</p>
+			<input class="long-slider" type="range" min="-2400" max="2400" value="0" step="10" id="detune-slider" onchange="setDetune()">
 
 			<br>
 			<hr>
@@ -345,9 +347,9 @@ c:;;;;,,,,'''.....         ..';:::::::::::;:;....................,::::::::::::::
 			<button id="reverb-toggle" onclick="toggleReverb()">turn on reverb</button>
 			<br>
 			<p id="cur-reverb-duration" style="color: grey;">duration: 100</p>
-			<input class="long-slider" type="range" min="0.1" max="150" value="15" id="reverb-duration" step="0.2" onchange="setReverb()">
-			<p id="cur-reverb-decay" style="color: grey;">decay: 15</p>
-			<input class="long-slider" type="range" min="0.1" max="80" value="15" id="reverb-decay" step="0.2" onchange="setReverb()">
+			<input class="long-slider" type="range" min="0.1" max="150" value="100" id="reverb-duration" step="0.2" onchange="setReverb()">
+			<p id="cur-reverb-decay" style="color: grey;">decay: 10</p>
+			<input class="long-slider" type="range" min="0.1" max="80" value="10" id="reverb-decay" step="0.2" onchange="setReverb()">
 
 		</div> <!-- end of old player container -->
 	</div> <!-- end of main container -->

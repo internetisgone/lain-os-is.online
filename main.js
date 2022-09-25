@@ -809,6 +809,8 @@ let gainSlider = document.getElementById("gain-slider")
 let gainEl = document.getElementById("cur-gain")
 let qSlider = document.getElementById("q-slider")
 let qEl = document.getElementById("cur-q")
+let detuneSlider = document.getElementById("detune-slider")
+let detuneEl = document.getElementById("cur-detine")
 
 let reverbToggle = document.getElementById("reverb-toggle")
 let reverbDurationSlider = document.getElementById("reverb-duration")
@@ -894,10 +896,11 @@ function switchBiquad(index)
 		biquadFilter.gain.setValueAtTime(gainSlider.value, audioContext.currentTime)
 		biquadFilter.frequency.setValueAtTime(frequencySlider.value, audioContext.currentTime)
 		biquadFilter.Q.setValueAtTime(qSlider.value, audioContext.currentTime)
+		biquadFilter.detune.setValueAtTime(detuneSlider.value, audioContext.currentTime)
 		if (hasReverb)
 		{
-			convolver.buffer = null;
-			convolver.disconnect();
+			// convolver.buffer = null;
+			// convolver.disconnect();
 			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(analyser).connect(audioContext.destination)
 		}
 		else 
@@ -906,7 +909,8 @@ function switchBiquad(index)
 		}
 		frequencyEl.style.color = "black";
 		gainEl.style.color = "black";
-		qEl.style.color = "black"
+		qEl.style.color = "black";
+		detuneEl.style.color = "black";
 		console.log(biquadIndex + ", biquad type = " + biquadTypes[biquadIndex - 1] + "frequency  = " + biquadFilter.frequency)
 	}
 	else //turn off biquad 
@@ -944,6 +948,12 @@ function setQ()
 {
 	biquadFilter.Q.value = qSlider.value
 	qEl.textContent = "Q factor: " + qSlider.value
+}
+
+function setDetune()
+{
+	biquadFilter.detune.value = detuneSlider.value;
+	detuneEl.textContent = "detune: " + detuneSlider.value;
 }
 
 function setReverb() 

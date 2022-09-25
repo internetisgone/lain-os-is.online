@@ -519,7 +519,7 @@ so that texts of variable lengths can be scrolled*/
 /*play/pause/stop icons*/
 #cur-track-state {position: absolute; margin: 0; margin-left: 4px; margin-top: 1px;} 
 
-.cur-time, #old-total-time
+.cur-time
 {
 	color: whitesmoke; margin: 0; font-family: var(--mono-font);
 }
@@ -789,14 +789,16 @@ so that texts of variable lengths can be scrolled*/
 	width: 444px;
 	height: 400px;
 	background-color: darkgray;
-	opacity: 0.7;
 	overflow: auto;
 }
 
 #old-playlist-content{list-style-type: none;}
 
 #old-player-container 
-{position: absolute; top: 0; display: none; color: black !important;}
+{
+	position: absolute; top: 0; display: none; color: black !important;
+	font-size: 13px;
+}
 
 #old-play-pause-btn {width: 120px;}
 
@@ -836,7 +838,7 @@ so that texts of variable lengths can be scrolled*/
 #credits 
 {
 	width: 50vw; height: auto; padding: 5%;
-	font-family: var(--mono-font);
+	font-family: var(--mono-font); font-size: 14px;
 	text-align: center;
 }
 
