@@ -723,7 +723,9 @@ let helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤�
 							+ "&emsp;&emsp;<span style='color:lime'>next </span><br>"
 							+ "&emsp;&emsp;<span style='color:lime'>random </span>&nbsp;play a random song<br><br>"
 							+ "audio filters<br>"
-							+ "&emsp;&emsp;<span style='color:lime'>toilet </span>&nbsp;pay a visit to the toilet<br>"
+							+ "&emsp;&emsp;<span style='color:lime'>toilet </span>&nbsp;test filter 1 (pay a visit to the toilet)<br>"
+							+ "&emsp;&emsp;<span style='color:lime'>test2 </span>&nbsp;&nbsp;test filter 2<br>"
+							+ "&emsp;&emsp;<span style='color:lime'>test3 </span>&nbsp;&nbsp;test filter 3<br>"
 							+ "&emsp;&emsp;<span style='color:lime'>leave </span>&nbsp; clear all audio filters<br><br>"
 							+ "¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨<br>"
 function checkCommand(input) 
@@ -746,8 +748,8 @@ function checkCommand(input)
 		//filters
 		case "leave": applyFilter(0); break;
 		case "toilet": applyFilter(1); break;
-		case "test1": applyFilter(2); break;
-		case "test2": applyFilter(3); break;
+		case "test2": applyFilter(2); break;
+		case "test3": applyFilter(3); break;
 
 		default: terminalDisplay.innerHTML += "idk that word!</br>"
 	}
@@ -821,6 +823,8 @@ let impulse = impulseResponse(reverbDurationSlider.value, reverbDecaySlider.valu
 const convolver = new ConvolverNode(audioContext, {buffer:impulse})
 const gainNode = new GainNode(audioContext, {gain:initialGain}) 
 
+let currentFilter = 0 // filter preset index in filterPresetsArray. 0 means none
+
 /////// frequency visualiser ///////
 const analyser = new AnalyserNode(audioContext, {
 													fftSize: 32,
@@ -892,7 +896,8 @@ function switchBiquad(index)
 		biquadFilter.Q.setValueAtTime(qSlider.value, audioContext.currentTime)
 		if (hasReverb)
 		{
-			convolver.disconnect()
+			convolver.buffer = null;
+			convolver.disconnect();
 			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(analyser).connect(audioContext.destination)
 		}
 		else 
@@ -1002,8 +1007,11 @@ function turnOnReverb()
 		}
 		hasReverb = true
 	}
-	
 }
+
+// function clearReverbBuffer()
+// {
+// }
 
 ////////////// end of audio filter //////////////
 
@@ -1019,14 +1027,14 @@ function clearAllFilters()
     switchBiquad(0);
 }
 
-function gotoToilet() //test filter 0
+function gotoToilet() //test filter 1
 {
 	//lowshelf
 	switchBiquad(4);
 	biquadFilter.gain.value = 40;
 }
 
-function TestFilter1()
+function TestFilter2()
 //lowpass + reverb
 {
 	switchBiquad(1); //["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch", "allpass"]
@@ -1040,7 +1048,7 @@ function TestFilter1()
 	turnOnReverb();
 }
 
-function TestFilter2()
+function TestFilter3()
 //reverb
 {
 	switchBiquad(0);
@@ -1054,46 +1062,54 @@ function TestFilter2()
 let filterPresetsArray = [
 	clearAllFilters, 
 	gotoToilet,
-	TestFilter1, 
-	TestFilter2]
+	TestFilter2, 
+	TestFilter3]
 
 function applyFilter(index)
 {
 	volumeSlider.disabled = true;
 	let initialVolume = gainNode.gain.value;
 
-	let fadeOut = setInterval(function(){
-		if (gainNode.gain.value > crossfadeGainDelta)
-		//gradually decrease volume 
-		{
-			gainNode.gain.setValueAtTime((gainNode.gain.value - crossfadeGainDelta), audioContext.currentTime);
-			console.log("fading out, current volume " + gainNode.gain.value)
-		}	
-		else 
-		//set filter and gradually increase volume 
-		{
-			clearInterval(fadeOut);
-
-			//apply filter 
-			gainNode.gain.setValueAtTime(0, audioContext.currentTime);
-			filterPresetsArray[index]();
-			console.log("applied audio filter at index " + index)
-			
-			//fade in
-			let fadeIn = setInterval(function(){
-				if (gainNode.gain.value < (initialVolume - crossfadeGainDelta))
-				{
-					gainNode.gain.setValueAtTime((gainNode.gain.value + crossfadeGainDelta), audioContext.currentTime);
-					console.log("fading in, current volume " + gainNode.gain.value)
-				}
-				else 
-				{
-					clearInterval(fadeIn)
-					volumeSlider.disabled = false
-				}
-			}, crossfadeStep)
-		}
-	}, crossfadeStep)
+	if (index != currentFilter) 
+	{
+		currentFilter = index;
+		let fadeOut = setInterval(function(){
+			if (gainNode.gain.value > crossfadeGainDelta)
+			//gradually decrease volume 
+			{
+				gainNode.gain.setValueAtTime((gainNode.gain.value - crossfadeGainDelta), audioContext.currentTime);
+				console.log("fading out, current volume " + gainNode.gain.value)
+			}	
+			else 
+			//set filter and gradually increase volume 
+			{
+				clearInterval(fadeOut);
+	
+				//apply filter 
+				gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+				filterPresetsArray[index]();
+				console.log("applied audio filter at index " + index)
+				
+				//fade in
+				let fadeIn = setInterval(function(){
+					if (gainNode.gain.value < (initialVolume - crossfadeGainDelta))
+					{
+						gainNode.gain.setValueAtTime((gainNode.gain.value + crossfadeGainDelta), audioContext.currentTime);
+						console.log("fading in, current volume " + gainNode.gain.value)
+					}
+					else 
+					{
+						clearInterval(fadeIn)
+						volumeSlider.disabled = false
+					}
+				}, crossfadeStep)
+			}
+		}, crossfadeStep)
+	}
+	else 
+	{
+		terminalDisplay.innerHTML += "filter " + index + " has already been applied<br>";
+	}	
 }
 
 ////////////// audio filter presets //////////////
