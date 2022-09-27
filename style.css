@@ -446,8 +446,8 @@ hr /*temp*/
 	width: auto; height: 100%;
 
 	animation: scrollText 7s linear infinite;
-	-webkit-animation: webkitScrollText 7s linear infinite;
-}
+	/* -webkit-animation: webkitScrollText 7s linear infinite;*/
+} 
 /* 
  #now-playing-clone 
  {
@@ -467,7 +467,7 @@ hr /*temp*/
 	background-color: transparent;
 
 	animation: scrollText 7s linear infinite;
-	-webkit-animation: webkitScrollText 7s linear infinite;
+	/* -webkit-animation: webkitScrollText 7s linear infinite; */
 }
 
 /* #now-playing-marquee-clone
@@ -485,17 +485,24 @@ hr /*temp*/
 so that texts of variable lengths can be scrolled*/
 @keyframes scrollText
 {
-	from {transform: translateX(100%);}
-	to {transform: translateX(0);}
+	/*translate() doesn't work on safari - 
+	the animated element only shows up on window resize.
+	change "left" instead of using translateX()*/
+
+	/* from {transform: translateX(100%);}
+	to {transform: translateX(0);} */
+	from {left: 100%;}
+    to {left: 0%;}
 }
 
-/*todoooooo*/
-@-webkit-keyframes webkitScrollText
+/* @-webkit-keyframes webkitScrollText
 {
 	0% 	{-webkit-transform: translateX(100%);}
 	50%	{-webkit-transform: translateX(50%);}
 	100% {-webkit-transform: translateX(0);}
-}
+	from {left: 100%;}
+    to {left: 0%;}
+} */
 
 /* @-webkit-keyframes scrollText
 {
