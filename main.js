@@ -79,6 +79,10 @@ const totalTime = "68:21" //calculated with totalLengthTest() in onload()
 //initial audio node params
 //gain node
 const initialGain = 0.77;
+let currentFilter = 0 // filter preset index in filterPresetsArray. 0 means none
+
+// colors
+let plEntryBgColor = "rgba(255, 255, 255, 0.7)" //bg highlight color for current song in playlist
 
 ////////////// entry page //////////////
 
@@ -391,7 +395,7 @@ function loadTrack()
 	//set playlist entry bg color 
 	for (let i = 0; i < trackList.length; i++)
 	{
-		if (i === curIndex) playlistEntries.item(i).style.backgroundColor = "white";
+		if (i === curIndex) playlistEntries.item(i).style.backgroundColor = plEntryBgColor;
 		else playlistEntries.item(i).style.backgroundColor = "transparent";
 	}
 }
@@ -717,7 +721,7 @@ function validateInput(e)
 terminalTxtContainer.onscroll = function()
 {
 	//prevent scrolling past the ascii art. since the ascii art is scaled down there's blank space above it
-	if (terminalTxtContainer.scrollTop < 570) terminalTxtContainer.scrollTop = 570;
+	if (terminalTxtContainer.scrollTop < 580) terminalTxtContainer.scrollTop = 580;
 	//console.log("terminal scroll pos " + terminalTxtContainer.scrollTop + ", scroll height = " + terminalTxtContainer.scrollHeight)
 }
 
@@ -831,8 +835,6 @@ const biquadFilter = new BiquadFilterNode(audioContext, {frequency:1000});
 let impulse = impulseResponse(reverbDurationSlider.value, reverbDecaySlider.value)
 const convolver = new ConvolverNode(audioContext, {buffer:impulse})
 const gainNode = new GainNode(audioContext, {gain:initialGain}) 
-
-let currentFilter = 0 // filter preset index in filterPresetsArray. 0 means none
 
 /////// frequency visualiser ///////
 const analyser = new AnalyserNode(audioContext, {

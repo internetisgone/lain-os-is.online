@@ -17,8 +17,9 @@ body
 {
 	background-image: url("img/lain_extended_m.png");
 	background-repeat: no-repeat;
-/*	background-size: 100%;
-*/	background-color: #e1e4eb; 
+/*	background-size: 100%;*/	
+	--bg-color: #e1e4eb;
+	background-color: var(--bg-color); 
 	margin: 0px;
 
 	--mono-font: "Input-Mono", "Courier New", monospace;
@@ -79,7 +80,7 @@ p, label, button, option, ul
 	#dock-container {left: 0; top: 0; bottom: 0; width: 60px; height: 100%;}
 	#dock-bg 
 	{
-		width: 160px; height: 900px; left: 0; 
+		width: 150px; height: 100%; left: 0; 
 		/*background-image: url("img/test-dock50-vertical.png"); */
 		background-image: none;
 	}
@@ -324,7 +325,7 @@ hr /*temp*/
 	/*when browser's preferred language is set to chinese, */
 	/*the min font-size is restricted to 12px. */
 	/*transform:scale() can be used to counter this browser limitation*/
-	transform: scale(0.3) translate(-115%, 110%);
+	transform: scale(0.30) translate(-120%, 110%);
 }
 
 #terminal-display /*shows submitted texts*/
@@ -408,16 +409,16 @@ hr /*temp*/
 	color: black; 
 	background-color: transparent;
 	box-shadow: none;
-	background-image: url("img/player-mockup-w-bg.png");  /*bg fill colour e1e4eb*/
+	background-image: url("img/soft_marble_vhs.png");  
 	background-repeat: no-repeat;
 	background-size: 100%; 
 	/*width n height are set separately, responsive to screen size*/
 	top: 3%;
 	left: 20%;
 	z-index: 7;
-
-	--music-player-bg: ghostwhite;
-	--music-player-bg-opacity: 1;
+ 
+/*	--music-player-bg: ghostwhite;
+	--music-player-bg-opacity: 1; */
 }
 
 #music-player-drag {width: 93%; right: 0;}
@@ -675,7 +676,7 @@ so that texts of variable lengths can be scrolled*/
 }
 
 .playlist-entry:hover{
-	background-color: lavender !important;
+	background-color: white !important;
 	box-shadow: 3px 2px 2px black;
 }
 
