@@ -76,6 +76,9 @@ const bitrateStereoPlaceholder = "&nbsp;&nbsp;&nbsp;&nbsp;KBPS&nbsp;&nbsp;&nbsp;
 const loadingTrackString = "loading metadata..."; 
 const totalTime = "68:21" //calculated with totalLengthTest() in onload()
 
+//terminal texts
+const invalidInputString = "idk that word!"
+
 //initial audio node params
 //gain node
 const initialGain = 0.77;
@@ -83,6 +86,8 @@ let currentFilter = 0 // filter preset index in filterPresetsArray. 0 means none
 
 // colors
 let plEntryBgColor = "rgba(255, 255, 255, 0.7)" //bg highlight color for current song in playlist
+
+//bg color #e1e4eb
 
 ////////////// entry page //////////////
 
@@ -290,6 +295,116 @@ function dragEnd()
 ////////////// mini windows //////////////
 
 
+
+////////////// terminal //////////////
+
+let terminalTxtContainer = document.getElementById("terminal-txt-container")
+let terminalDisplay = document.getElementById("terminal-display") //pre
+let fakeCaret = document.getElementById("fake-caret")
+let inputEl = document.getElementById("terminal-input")
+
+let initialIndent = 111 //need to get from element tbh
+let fontWidth = 8 //subject to changee
+let caretOffest
+
+let inputPattern = /^[a-zA-Z\d\s]*$/; //letters, digits, and whitespace
+let invalidCount = 0 //todo
+inputEl.onkeydown = validateInput
+
+function validateInput(e)
+{	
+	let inputLength = (e.key == "Backspace")? (inputEl.value.length - 1) : (inputEl.value.length + 1);
+	if (inputLength < 0) inputLength = 0;
+	caretOffest =  inputLength * fontWidth + initialIndent
+	fakeCaret.style.marginLeft = caretOffest + "px"
+
+	//console.log(e)
+	//console.log("input length " + inputLength + " caret offest" + caretOffest)
+
+	if (e.key == "Enter")
+	{
+		terminalDisplay.innerHTML += "lain@navi ~ % " + inputEl.value + "</br>";
+		//easter egg
+		if (inputEl.value.toLowerCase().includes("lain"))
+		{
+			terminalDisplay.innerHTML += "let's all love lain (づ◡﹏◡)づ</br>"; //todo add more lines n choose one at random
+		}
+		//valid input
+		else if (inputEl.value.match(inputPattern))	
+		{
+			checkCommand(inputEl.value);
+		}
+		else //invalid input
+		{
+			//terminalDisplay.innerHTML += "invalid input (´;ω;`) letters, numbers, and spaces only pls</br>";
+			terminalDisplay.innerHTML += invalidInputString + "<br>"
+		}
+		inputEl.value = "";
+		fakeCaret.style.marginLeft = initialIndent + "px";
+		caretOffest = 0;
+		//auto scrolls to the bottom
+		terminalTxtContainer.scrollTop = terminalTxtContainer.scrollHeight; 
+	}
+}
+
+terminalTxtContainer.onscroll = function()
+{
+	//prevent scrolling past the ascii art. since the ascii art is scaled down there's blank space above it
+	if (terminalTxtContainer.scrollTop < 580) terminalTxtContainer.scrollTop = 580;
+	//console.log("terminal scroll pos " + terminalTxtContainer.scrollTop + ", scroll height = " + terminalTxtContainer.scrollHeight)
+}
+
+//for non user input 
+function appendTerminalOutput(output) 
+{
+	terminalDisplay.innerHTML += output + "<br>";
+	terminalTxtContainer.scrollTop = terminalTxtContainer.scrollHeight; 
+}
+
+let helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸<br><br>available commands:<br><br>"
+							+ "playback controls<br>"
+							+ "&emsp;&emsp;<span style='color:lime'>play </span> &emsp;&emsp; play the currently loaded song<br>"
+							+ "&emsp;&emsp;<span style='color:lime'>pause </span><br>"
+							+ "&emsp;&emsp;<span style='color:lime'>stop </span><br>"
+							+ "&emsp;&emsp;<span style='color:lime'>prev </span><br>"
+							+ "&emsp;&emsp;<span style='color:lime'>next </span><br>"
+							+ "&emsp;&emsp;<span style='color:lime'>random </span>&nbsp;play a random song<br><br>"
+							+ "audio filters<br>"
+							+ "&emsp;&emsp;<span style='color:lime'>toilet </span>&nbsp;test filter 1 (pay a visit to the toilet)<br>"
+							+ "&emsp;&emsp;<span style='color:lime'>test2 </span>&nbsp;&nbsp;test filter 2<br>"
+							+ "&emsp;&emsp;<span style='color:lime'>test3 </span>&nbsp;&nbsp;test filter 3<br>"
+							+ "&emsp;&emsp;<span style='color:lime'>leave </span>&nbsp; clear all audio filters<br><br>"
+							+ "¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨<br>"
+function checkCommand(input) 
+{
+	switch (input.trim().toLowerCase()) 
+	{
+		//playback
+		case "play": playTrack(); break;
+		case "pause": pauseTrack(); break;
+		case "stop": stopTrack(); break;
+		case "prev": prevTrack(); break;
+		case "next": nextTrack(); break;
+		case "random": 
+			curIndex = Math.round(Math.random() * (trackList.length - 1));
+			loadTrack(); playTrack();
+			break;
+
+		case "help": terminalDisplay.innerHTML += helpText; break;
+
+		//filters
+		case "leave": applyFilter(0); break;
+		case "toilet": applyFilter(1); break;
+		case "test2": applyFilter(2); break;
+		case "test3": applyFilter(3); break;
+
+		default: terminalDisplay.innerHTML += invalidInputString + "</br>"
+	}
+}
+
+////////////// terminal //////////////
+
+
 ////////////// music player //////////////
 
 let playPauseBtn = document.getElementById("old-play-pause-btn")
@@ -370,7 +485,7 @@ loadTrack();
 stopTrack(); //stop icon, no bitrate display
 
 let loopIndex = 2 //0 no loop, 1 loop album, 2 loop one song
-switchLoop() //no loop
+switchLoop() //no loop 
 
 //todo new progress barrrr
 //progressBar.addEventListener("click", setProgress)
@@ -429,9 +544,7 @@ curTrack.onloadedmetadata = function()
 
 		//console.log("nowPlayingWidth = " + nowPlayingWidth + ", nowPlayingContainer width = " + nowPlayingContainer.offsetWidth)
 
-		//terminal 
-		terminalDisplay.innerHTML += "now playing " + trackList[curIndex].name + "<br>"
-		terminalTxtContainer.scrollTop = terminalTxtContainer.scrollHeight; 
+		appendTerminalOutput("now playing " + trackList[curIndex].name)
 	}
 
 function parseTime(duration)
@@ -575,11 +688,11 @@ function toggleShuffle()
 {
 	if (isShuffle == false) 
 	{
-		isShuffle = true; shuffleBtn.textContent = "shuffle on"
+		isShuffle = true; appendTerminalOutput("shuffle on")
 	}
 	else 
 	{
-		isShuffle = false; shuffleBtn.textContent = "shuffle off"
+		isShuffle = false; appendTerminalOutput("shuffle off")
 	}
 }
 
@@ -588,20 +701,20 @@ function switchLoop()
 	if (loopIndex == 0) 
 	{
 		loopIndex++ // 1 loop album
-		loopBtn.textContent = "loop album"
+		appendTerminalOutput("loop album")
 		curTrack.addEventListener("ended", nextTrack); //handled in nextTrack()
 	}
 	else if (loopIndex == 1) 
 	{
 		loopIndex++ // 2 loop song 
-		loopBtn.textContent = "loop song"
+		appendTerminalOutput("loop song")
 		curTrack.removeEventListener("ended", nextTrack)
 		curTrack.addEventListener("ended", loopSong)
 	}
 	else 
 	{
 		loopIndex = 0 // 0 no loop
-		loopBtn.textContent = "loop off"
+		appendTerminalOutput("loop off")
 		curTrack.removeEventListener("ended", loopSong)
 		curTrack.addEventListener("ended", nextTrack); //handled in nextTrack()
 	}
@@ -668,106 +781,6 @@ function setProgress(el)
 let oldPlaylist = document.getElementById("old-playlist-content")
 fillPlaylist(oldPlaylist);
 ////////////// old music player //////////////
-
-
-////////////// terminal //////////////
-
-let terminalTxtContainer = document.getElementById("terminal-txt-container")
-let terminalDisplay = document.getElementById("terminal-display") //pre
-let fakeCaret = document.getElementById("fake-caret")
-let inputEl = document.getElementById("terminal-input")
-let initialIndent = 111 //need to get from element tbh
-let fontWidth = 8 //subject to changee
-let caretOffest
-inputEl.onkeydown = validateInput
-
-function validateInput(e)
-{	
-	let letters = /^[a-zA-Z\d\s]*$/;
-	
-	let inputLength = (e.key == "Backspace")? (inputEl.value.length - 1) : (inputEl.value.length + 1);
-	if(inputLength < 0) inputLength = 0;
-	caretOffest =  inputLength * fontWidth + initialIndent
-	fakeCaret.style.marginLeft = caretOffest + "px"
-
-	//console.log(e)
-	//console.log("input length " + inputLength + " caret offest" + caretOffest)
-
-	if (e.key == "Enter")
-	{
-		if (inputEl.value.match(letters))	//valid input
-		{
-			terminalDisplay.innerHTML += "lain@navi ~ % " + inputEl.value + "</br>";	
-
-			//easter egg
-			if (inputEl.value.toLowerCase().includes("lain"))
-			{
-				terminalDisplay.innerHTML += "let's all love lain (づ◡﹏◡)づ</br>";
-			}
-			else checkCommand(inputEl.value);
-		}
-		else //invalid input
-		{
-			terminalDisplay.innerHTML += "invalid input (´;ω;`) letters, numbers, and spaces only pls</br>";
-		}
-		inputEl.value = "";
-		fakeCaret.style.marginLeft = initialIndent + "px";
-		caretOffest = 0;
-		//auto scrolls to the bottom
-		terminalTxtContainer.scrollTop = terminalTxtContainer.scrollHeight; 
-	}
-}
-
-terminalTxtContainer.onscroll = function()
-{
-	//prevent scrolling past the ascii art. since the ascii art is scaled down there's blank space above it
-	if (terminalTxtContainer.scrollTop < 580) terminalTxtContainer.scrollTop = 580;
-	//console.log("terminal scroll pos " + terminalTxtContainer.scrollTop + ", scroll height = " + terminalTxtContainer.scrollHeight)
-}
-
-let helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸<br><br>available commands:<br><br>"
-							+ "playback controls<br>"
-							+ "&emsp;&emsp;<span style='color:lime'>play </span> &emsp;&emsp; play the currently loaded song<br>"
-							+ "&emsp;&emsp;<span style='color:lime'>pause </span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>stop </span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>prev </span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>next </span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>random </span>&nbsp;play a random song<br><br>"
-							+ "audio filters<br>"
-							+ "&emsp;&emsp;<span style='color:lime'>toilet </span>&nbsp;test filter 1 (pay a visit to the toilet)<br>"
-							+ "&emsp;&emsp;<span style='color:lime'>test2 </span>&nbsp;&nbsp;test filter 2<br>"
-							+ "&emsp;&emsp;<span style='color:lime'>test3 </span>&nbsp;&nbsp;test filter 3<br>"
-							+ "&emsp;&emsp;<span style='color:lime'>leave </span>&nbsp; clear all audio filters<br><br>"
-							+ "¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨<br>"
-function checkCommand(input) 
-{
-	switch (input.trim().toLowerCase()) 
-	{
-		//playback
-		case "play": playTrack(); break;
-		case "pause": pauseTrack(); break;
-		case "stop": stopTrack(); break;
-		case "prev": prevTrack(); break;
-		case "next": nextTrack(); break;
-		case "random": 
-			curIndex = Math.round(Math.random() * (trackList.length - 1));
-			loadTrack(); playTrack();
-			break;
-
-		case "help": terminalDisplay.innerHTML += helpText; break;
-
-		//filters
-		case "leave": applyFilter(0); break;
-		case "toilet": applyFilter(1); break;
-		case "test2": applyFilter(2); break;
-		case "test3": applyFilter(3); break;
-
-		default: terminalDisplay.innerHTML += "idk that word!</br>"
-	}
-}
-
-////////////// terminal //////////////
-
 
 //////temppppp switch  view
 let tempToggle = document.getElementById("temp-toggle")

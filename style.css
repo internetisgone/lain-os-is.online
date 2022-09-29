@@ -24,6 +24,8 @@ body
 
 	--mono-font: "Input-Mono", "Courier New", monospace;
 	--lain-font: "LoveLetter", "Courier New", monospace;
+
+	--music-player-body: url("img/marble_frame.png");
 }
 
 p, label, button, option, ul
@@ -295,7 +297,7 @@ hr /*temp*/
 	z-index: 7; /*in case it gets occluded by input are*/
 
 	-ms-overflow-style: none;  /* hide scroll bar in IE and edge */
-  scrollbar-width: none;  /* hide scroll bar in firefox */
+  	scrollbar-width: none;  /* hide scroll bar in firefox */
 }
 /*hide scroll bar inside terminal but still scrollable*/
 #terminal-txt-container::-webkit-scrollbar {display: none;}
@@ -372,9 +374,7 @@ hr /*temp*/
 }
 
 /*hide input box border when selected*/
-#terminal-input:focus {
-    outline: none !important;
-}
+#terminal-input:focus {outline: none !important;}
 /******* terminallllllll end *******/
 
 #dock-container
@@ -403,13 +403,14 @@ hr /*temp*/
 	cursor: pointer;
 }
 
+.icon img {width: 100%;}
 /******* music player *******/
 #music-player
 {
 	color: black; 
 	background-color: transparent;
 	box-shadow: none;
-	background-image: url("img/soft_marble_vhs.png");  
+	background-image: var(--music-player-body);  
 	background-repeat: no-repeat;
 	background-size: 100%; 
 	/*width n height are set separately, responsive to screen size*/
@@ -593,29 +594,18 @@ so that texts of variable lengths can be scrolled*/
 #shuffle-loop-container
 {
 	position: absolute;
-	left: 13%; right: 77%; top: 19%; bottom: 66%;
+	left: 14%; right: 77%; top: 20%; bottom: 64%;
 }
 
 #shuffle-loop-container button 
 {
 	outline: none; background: transparent;	border: none; 
 	margin: 0; padding: 0; border: 0;
-	width: 39px; height: 39px; font-size: small;
+	width: 39px; height: 39px; 
 	cursor: pointer; 
 }
 
-#shuffle-btn /*todo*/
-{
-	background-image: url('img/music-player-components/shuffle.png');
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
-#loop-btn
-{
-	background-image: url('img/music-player-components/loop.png');
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
+#shuffle-loop-container img {width: 100%; height: auto;}
 
 #playback-controls
 {
