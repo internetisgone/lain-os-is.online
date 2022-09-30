@@ -182,6 +182,17 @@ let offset = [0,0];
 let isMoving = false;
 let maxZ = 10;
 
+//mini wondows closing animation
+const closeAnimation = [
+	{clipPath: "polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%)"}, //display the whole window
+	{clipPath: "polygon(0% 0%, 0% 10%, 100% 10%, 100% 0%)"}    //display the top 10% rect area of window
+]
+const closeAnimDuration = 500 //ms
+const closeTiming = {duration: closeAnimDuration, iterations: 1}
+
+// const closePlayer = miniWindows.item(0).animate(closeAnimation, closeTiming)
+// closePlayer.pause()
+
 console.log("mini windows count " + miniWindows.length + " icon count " + icons.length)
 
 for (let i = 0; i < miniWindows.length; i++)
@@ -191,10 +202,18 @@ for (let i = 0; i < miniWindows.length; i++)
 	let closeBtn = miniWindow.querySelector(".mini-window-close")
 	console.log("mini windows " + miniWindows.item(i).id)
 
+	let closeCurWindow = miniWindow.animate(closeAnimation, closeTiming)
+	closeCurWindow.pause()
+
 	//hide / show window n corresponding icon
 	closeBtn.addEventListener("click", function(){
-		miniWindow.style.display = "none"
-		icon.style.display = "block"
+		closeCurWindow.play(); 
+		
+		//hide window n show icon when the animation finishes 
+		setTimeout(() => {
+			miniWindow.style.display = "none"
+			icon.style.display = "block"
+		}, closeAnimDuration);
 	})
 	icon.addEventListener("click", function(){
 		if(miniWindow.id == "chat-window") miniWindow.style.display = "flex";

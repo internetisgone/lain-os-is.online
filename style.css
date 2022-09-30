@@ -416,8 +416,7 @@ hr /*temp*/
 	/*width n height are set separately, responsive to screen size*/
 	top: 3%;
 	left: 20%;
-	z-index: 7;
- 
+	z-index: 7; 
 /*	--music-player-bg: ghostwhite;
 	--music-player-bg-opacity: 1; */
 }
@@ -594,18 +593,18 @@ so that texts of variable lengths can be scrolled*/
 #shuffle-loop-container
 {
 	position: absolute;
-	left: 14%; right: 77%; top: 20%; bottom: 64%;
+	left: 14%; right: 77%; top: 20%; bottom: 69%;
 }
 
 #shuffle-loop-container button 
 {
 	outline: none; background: transparent;	border: none; 
 	margin: 0; padding: 0; border: 0;
-	width: 39px; height: 39px; 
+	width: 100%; height: 41%; 
 	cursor: pointer; 
 }
 
-#shuffle-loop-container img {width: 100%; height: auto;}
+#shuffle-loop-container img {width: auto; height: 100%;}
 
 #playback-controls
 {
