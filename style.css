@@ -421,7 +421,7 @@ hr /*temp*/
 	--music-player-bg-opacity: 1; */
 }
 
-#music-player-drag {width: 93%; right: 0;}
+#music-player .mini-window-draggable {width: 93%; right: 0;}
 
 #music-player .mini-window-header {display: none;}
 
@@ -638,6 +638,22 @@ so that texts of variable lengths can be scrolled*/
 	position: absolute;
 	left: 85%; right: 7%; top: 22%; bottom: 69%;
 }
+
+#artist-link-container
+{
+	position: absolute;
+	left: 27%; right: 20%; top: 40%; bottom: 54%;
+	background-color: #e1e4eb; border-radius: 10px;
+}
+
+#artist-link-container a 
+{
+	display: block; 
+	width: 100%; height: 100%; text-decoration: none;
+	display: flex; align-items: center; justify-content: center;
+}
+
+#artist-link-container p {font-size: 13px;}
 
 #playlist-container
 {

@@ -1,67 +1,99 @@
 const trackList = [
   {
-  	name: "afalfl - just some kick noyze",
-		path: "/21sept-master-mp3/afalfl - just some kick noyze [master 20220921].mp3"
+	name: "afalfl - just some kick noyze",
+	path: "/21sept-master-mp3/afalfl - just some kick noyze [master 20220921].mp3",
+	linkName: "artist link",
+	link: "credits.html"
   },
   {
   	name: "Fetus - Footprints",
-		path: "/21sept-master-mp3/Fetus - Footprints [master 20220921].mp3"
+	path: "/21sept-master-mp3/Fetus - Footprints [master 20220921].mp3",
+	linkName: "artist link",
+	link: "credits.html"
   },
   {
   	name: "GRASPS X NERDIE - I AM HURTING",
-		path: "/21sept-master-mp3/GRASPS X NERDIE - I AM HURTING [master 20220921].mp3"
+	path: "/21sept-master-mp3/GRASPS X NERDIE - I AM HURTING [master 20220921].mp3",
+	linkName: "artist link",
+	link: "credits.html"
   },
   {
   	name: "Imryll - Family Portrait (Imryll Reimagined)",
-		path: "/21sept-master-mp3/Imryll - Family Portrait (Imryll Reimagined) [master 20220921].mp3"
+	path: "/21sept-master-mp3/Imryll - Family Portrait (Imryll Reimagined) [master 20220921].mp3",
+	linkName: "artist link",
+	link: "credits.html"
   },
   {
   	name: "Jennifer Walton - At Last, Lain Is Free",
-		path: "/21sept-master-mp3/Jennifer Walton - At Last, Lain Is Free [master 20220921].mp3"
+	path: "/21sept-master-mp3/Jennifer Walton - At Last, Lain Is Free [master 20220921].mp3",
+	linkName: "artist link",
+	link: "credits.html"
   },
   {
   	name: "Kagami Smile -  Acts of Betrayal",
-		path: "/21sept-master-mp3/Kagami Smile -  Acts of Betrayal [master 20220921].mp3"
+	path: "/21sept-master-mp3/Kagami Smile -  Acts of Betrayal [master 20220921].mp3",
+	linkName: "artist link",
+	link: "credits.html"
   },
   {
   	name: "lovefear - SEL compilation track final",
-  	path: "/21sept-master-mp3/lovefear - SEL compilation track final  [master 20220921].mp3"
+  	path: "/21sept-master-mp3/lovefear - SEL compilation track final  [master 20220921].mp3",
+	linkName: "artist link",
+	link: "credits.html"
   },
   {
   	name: "Nerve - I_m Gonna Diss You",
-  	path: "/21sept-master-mp3/Nerve - I_m Gonna Diss You [master 20220921].mp3"
+  	path: "/21sept-master-mp3/Nerve - I_m Gonna Diss You [master 20220921].mp3",
+	linkName: "artist link",
+	link: "credits.html"
   },
   {
   	name: "Sour Gout - Transmigration",
-		path: "/21sept-master-mp3/Sour Gout - Transmigration [master 20220921].mp3"
+	path: "/21sept-master-mp3/Sour Gout - Transmigration [master 20220921].mp3",
+	linkName: "artist link",
+	link: "credits.html"
   },
   {
   	name: "thegn ft. vrain - phantoma",
-		path: "/21sept-master-mp3/thegn ft. vrain - phantoma [master 20220921].mp3"
+	path: "/21sept-master-mp3/thegn ft. vrain - phantoma [master 20220921].mp3",
+	linkName: "artist link",
+	link: "credits.html"
   },
   {
   	name: "Wa_ste - cyberia texture 5a x professed intention and real intention",
-		path: "/21sept-master-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention [master 20220921].mp3"
+	path: "/21sept-master-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention [master 20220921].mp3",
+	linkName: "artist link",
+	link: "credits.html"
   },
   {
   	name: "xo - 200529-DuvetBoa8",
-		path: "/21sept-master-mp3/xo - 200529-DuvetBoa8  [master 20220921].mp3"
+	path: "/21sept-master-mp3/xo - 200529-DuvetBoa8  [master 20220921].mp3",
+	linkName: "artist link",
+	link: "credits.html"
   },
   {
   	name: "Yikii - Ancient Scanner",
-  	path: "/21sept-master-mp3/Yikii - Ancient Scanner [master 20220921].mp3"
+  	path: "/21sept-master-mp3/Yikii - Ancient Scanner [master 20220921].mp3",
+	linkName: "artist link",
+	link: "credits.html"
   },
   {
   	name: "Yraki - Lights Down",
-		path: "/21sept-master-mp3/Yraki - Lights Down [master 20220921].mp3"
+	path: "/21sept-master-mp3/Yraki - Lights Down [master 20220921].mp3",
+	linkName: "artist link",
+	link: "credits.html"
   },
   {
   	name: "Yumea Horiike - lain",
-		path: "/21sept-master-mp3/Yumea Horiike - lain [master 20220921].mp3"
+	path: "/21sept-master-mp3/Yumea Horiike - lain [master 20220921].mp3",
+	linkName: "artist link",
+	link: "credits.html"
   },
   {
   	name: "Yuting Wu - Help me to Breathe",
-		path: "/21sept-master-mp3/Yuting Wu - Help me to Breathe [master 20220921].mp3"
+	path: "/21sept-master-mp3/Yuting Wu - Help me to Breathe [master 20220921].mp3",
+	linkName: "artist link",
+	link: "credits.html"
   },
 ]; 
 
@@ -88,6 +120,9 @@ let currentFilter = 0 // filter preset index in filterPresetsArray. 0 means none
 let plEntryBgColor = "rgba(255, 255, 255, 0.7)" //bg highlight color for current song in playlist
 
 //bg color #e1e4eb
+
+//media queries
+let isLandscape = window.matchMedia("(min-aspect-ratio: 4/3)").matches
 
 ////////////// entry page //////////////
 
@@ -184,14 +219,20 @@ let maxZ = 10;
 
 //mini wondows closing animation
 const closeAnimation = [
-	{clipPath: "polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%)"}, //display the whole window
-	{clipPath: "polygon(0% 0%, 0% 10%, 100% 10%, 100% 0%)"}    //display the top 10% rect area of window
-]
-const closeAnimDuration = 500 //ms
-const closeTiming = {duration: closeAnimDuration, iterations: 1}
+	//display the whole window
+	{clipPath: "polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%)"}, 
 
-// const closePlayer = miniWindows.item(0).animate(closeAnimation, closeTiming)
-// closePlayer.pause()
+	{clipPath: "polygon(0% 0%, 0% 70%, 100% 70%, 100% 0%)", opacity: "1"},
+	{clipPath: "polygon(0% 0%, 0% 20%, 100% 20%, 100% 0%)", transform: "translate(0%, 0%)", opacity: "0.8"},
+
+	//display the top 5% rect area of window, shift left (landscape) or down (portrait)
+	{clipPath: "polygon(0% 0%, 0% 5%, 100% 5%, 100% 0%)", 
+	transform: isLandscape? ("translate(-20%, 10%)"):("translate(0%, 40%)"), 
+	opacity: "0.3"}    
+]
+const closeAnimDuration = 333 //ms
+const closeTiming = {duration: closeAnimDuration, iterations: 1}
+//const windowAnimationArr = new Array()
 
 console.log("mini windows count " + miniWindows.length + " icon count " + icons.length)
 
@@ -204,22 +245,33 @@ for (let i = 0; i < miniWindows.length; i++)
 
 	let closeCurWindow = miniWindow.animate(closeAnimation, closeTiming)
 	closeCurWindow.pause()
+	//windowAnimationArr.push(closeCurWindow)
 
 	//hide / show window n corresponding icon
+	// todo animation only plays once in safari
 	closeBtn.addEventListener("click", function(){
-		closeCurWindow.play(); 
+		//windowAnimationArr[i].play(); 
+		closeCurWindow.play()
 		
 		//hide window n show icon when the animation finishes 
 		setTimeout(() => {
 			miniWindow.style.display = "none"
 			icon.style.display = "block"
-		}, closeAnimDuration);
+		}, closeAnimDuration * 0.95);
 	})
 	icon.addEventListener("click", function(){
-		if(miniWindow.id == "chat-window") miniWindow.style.display = "flex";
-		else miniWindow.style.display = "block";
 		miniWindow.style.zIndex = maxZ; maxZ++;
-		icon.style.display = "none"
+
+		//open animation??
+		// windowAnimationArr[i].reverse()
+		// windowAnimationArr[i].play(); 
+
+		setTimeout(() => {
+			if(miniWindow.id == "chat-window") miniWindow.style.display = "flex";
+			else miniWindow.style.display = "block";
+		
+			icon.style.display = "none"
+		}, closeAnimDuration);
 	})
 
 	// click to bring to front
@@ -536,6 +588,8 @@ function loadTrack()
 
 //curTrack.addEventListener("ended", nextTrack)
 
+let artistLink = document.getElementById("artist-link-container").querySelector("a")
+
 curTrack.onloadedmetadata = function() 
 	{
 		console.log("loaded track metadata " + trackList[curIndex].name)
@@ -564,6 +618,9 @@ curTrack.onloadedmetadata = function()
 		//console.log("nowPlayingWidth = " + nowPlayingWidth + ", nowPlayingContainer width = " + nowPlayingContainer.offsetWidth)
 
 		appendTerminalOutput("now playing " + trackList[curIndex].name)
+
+		artistLink.querySelector("p").textContent = trackList[curIndex].linkName
+		artistLink.href = trackList[curIndex].link 
 	}
 
 function parseTime(duration)
@@ -1221,4 +1278,3 @@ function applyFilter(index)
 // }
 
 ////////////// utilities //////////////
-
