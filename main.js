@@ -261,17 +261,20 @@ for (let i = 0; i < miniWindows.length; i++)
 	})
 	icon.addEventListener("click", function(){
 		miniWindow.style.zIndex = maxZ; maxZ++;
+		if(miniWindow.id == "chat-window") miniWindow.style.display = "flex";
+		else miniWindow.style.display = "block";
+		icon.style.display = "none"
 
 		//open animation??
 		// windowAnimationArr[i].reverse()
 		// windowAnimationArr[i].play(); 
 
-		setTimeout(() => {
-			if(miniWindow.id == "chat-window") miniWindow.style.display = "flex";
-			else miniWindow.style.display = "block";
+		// setTimeout(() => {
+		// 	if(miniWindow.id == "chat-window") miniWindow.style.display = "flex";
+		// 	else miniWindow.style.display = "block";
 		
-			icon.style.display = "none"
-		}, closeAnimDuration);
+		// 	icon.style.display = "none"
+		// }, closeAnimDuration);
 	})
 
 	// click to bring to front
@@ -505,8 +508,10 @@ let curBitrate = document.getElementById("cur-track-bitrate") //320kbps 44khz //
 let monoStereo = document.getElementById("mono-stereo") //toggle its opacity
 
 let shuffleBtn = document.getElementById("shuffle-btn")
+let shuffleImg = shuffleBtn.querySelector("img")
 let isShuffle = false
 let loopBtn = document.getElementById("loop-btn")
+let loopImg = loopBtn.querySelector("img")
 
 let miniTotalTime = document.getElementById("mini-total-time")
 let miniCurTime = document.getElementById("mini-cur-time")
@@ -515,6 +520,8 @@ let miniCurTime = document.getElementById("mini-cur-time")
 let visualiserCanvas = document.getElementById("visualiser")
 let canvasContext = visualiserCanvas.getContext("2d")
 canvasContext.fillStyle = "black"
+
+let artistLink = document.getElementById("artist-link-container").querySelector("a")
 
 let playlistUl = document.getElementById("playlist-content")
 
@@ -584,11 +591,12 @@ function loadTrack()
 		if (i === curIndex) playlistEntries.item(i).style.backgroundColor = plEntryBgColor;
 		else playlistEntries.item(i).style.backgroundColor = "transparent";
 	}
+
+	artistLink.querySelector("p").textContent = trackList[curIndex].linkName
+	artistLink.href = trackList[curIndex].link 
 }
 
 //curTrack.addEventListener("ended", nextTrack)
-
-let artistLink = document.getElementById("artist-link-container").querySelector("a")
 
 curTrack.onloadedmetadata = function() 
 	{
@@ -618,9 +626,6 @@ curTrack.onloadedmetadata = function()
 		//console.log("nowPlayingWidth = " + nowPlayingWidth + ", nowPlayingContainer width = " + nowPlayingContainer.offsetWidth)
 
 		appendTerminalOutput("now playing " + trackList[curIndex].name)
-
-		artistLink.querySelector("p").textContent = trackList[curIndex].linkName
-		artistLink.href = trackList[curIndex].link 
 	}
 
 function parseTime(duration)
@@ -765,10 +770,12 @@ function toggleShuffle()
 	if (isShuffle == false) 
 	{
 		isShuffle = true; appendTerminalOutput("shuffle on")
+		shuffleImg.src = "img/music-player-components/shuffle_on.png"
 	}
 	else 
 	{
 		isShuffle = false; appendTerminalOutput("shuffle off")
+		shuffleImg.src = "img/music-player-components/shuffle_off.png"
 	}
 }
 
@@ -778,12 +785,16 @@ function switchLoop()
 	{
 		loopIndex++ // 1 loop album
 		appendTerminalOutput("loop album")
+		loopImg.src = "img/music-player-components/loop_album.png"
+
 		curTrack.addEventListener("ended", nextTrack); //handled in nextTrack()
 	}
 	else if (loopIndex == 1) 
 	{
 		loopIndex++ // 2 loop song 
 		appendTerminalOutput("loop song")
+		loopImg.src = "img/music-player-components/loop_song_inverted.png"
+
 		curTrack.removeEventListener("ended", nextTrack)
 		curTrack.addEventListener("ended", loopSong)
 	}
@@ -791,6 +802,8 @@ function switchLoop()
 	{
 		loopIndex = 0 // 0 no loop
 		appendTerminalOutput("loop off")
+		loopImg.src = "img/music-player-components/loop_off.png"
+
 		curTrack.removeEventListener("ended", loopSong)
 		curTrack.addEventListener("ended", nextTrack); //handled in nextTrack()
 	}

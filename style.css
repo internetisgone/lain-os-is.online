@@ -107,6 +107,7 @@ p, label, button, option, ul
 	#entry-bottom-text {font-size: 11px;}
 
 	.mini-window-header {height: 30px; font-size: 11px;}
+	.mini-window-close {height: 25px; width: 25px;}
 
 	#music-player{width: 100vw; height: 133vw;}				/*100x133*/
 	#terminal {width: 352px; height: 264px;} 				/*640x480 x0.55*/
@@ -139,6 +140,7 @@ p, label, button, option, ul
 	#entry-bottom-text {font-size: 13px;}
 
 	.mini-window-header {height: 40px; font-size: 13px;}
+	.mini-window-close {height: 30px; width: 30px;}
 
 	#music-player {width: 520px;height: 685px;}
 	#terminal {width: 493px; height: 369px;}				/*640x480 x0.77*/
@@ -244,10 +246,14 @@ hr /*temp*/
 .mini-window-close
 {
 	position: absolute;
-	right: 0; top: 0;
-	height: 30px; width: 40px;
-	background-color: black; opacity: 0.1;
+	right: 5px; top: 3px;
+	/*background-color: black; opacity: 0.1;*/
+	background: 0% 0% url("img/minimise.png") no-repeat;
+	background-size: 100% 100%;
+	opacity: 0.3;
 }
+
+#music-player .mini-window-close {opacity: 0;}
 
 /******* chat *******/
 #chat-window
@@ -593,14 +599,14 @@ so that texts of variable lengths can be scrolled*/
 #shuffle-loop-container
 {
 	position: absolute;
-	left: 14%; right: 77%; top: 20%; bottom: 69%;
+	left: 14%; right: 77%; top: 20%; bottom: 71%;
 }
 
 #shuffle-loop-container button 
 {
 	outline: none; background: transparent;	border: none; 
 	margin: 0; padding: 0; border: 0;
-	width: 100%; height: 41%; 
+	width: 100%; height: 52%; 
 	cursor: pointer; 
 }
 
@@ -627,7 +633,8 @@ so that texts of variable lengths can be scrolled*/
 {width: 100%; height: auto;}
 
 /*pressed down animation*/
-#playback-controls button:active 
+#playback-controls button:active,
+#shuffle-loop-container button:active
 {
 	transform: translate(1px, 2px);
 	/*box-shadow:  -1px -2px 2px dimgray;*/
