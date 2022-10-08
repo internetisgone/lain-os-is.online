@@ -54,7 +54,8 @@
 			</div>
 
 			<div id="progress-bar-container">
-				<img src="img/music-player-components/progress_bar.png" style="width: 100%">
+				<img src="img/music-player-components/progress_bar.png" style="position: absolute; width: 100%;">
+				<img id="progress-bar-fill" src="img/music-player-components/progress_bar_fill.png" style="position: absolute; width: 10%; z-index: -1;">
 			</div>
 
 			<div id="shuffle-loop-container">
@@ -63,11 +64,6 @@
 			</div>
 
 			<div id="playback-controls">
-				<!-- <button onclick="prevTrack()"><img src="img/music-player-components/prev.png"></button>
-				<button onclick="playTrack()"><img src="img/music-player-components/play.png"></button>
-				<button onclick="pauseTrack()"><img src="img/music-player-components/pause.png"></button>
-				<button onclick="stopTrack()"><img src="img/music-player-components/stop.png"></button>
-				<button onclick="nextTrack()"><img src="img/music-player-components/next.png"></button> -->
 				<button onclick="prevTrack()"><img src="img/btns-shaded/prev2.png"></button>
 				<button onclick="playTrack()"><img src="img/btns-shaded/play2.png"></button>
 				<button onclick="pauseTrack()"><img src="img/btns-shaded/pause2.png"></button>
@@ -77,15 +73,14 @@
 
 			<div id="dl-button-container">
 				<a href="https://www.mediafire.com" target="_blank">
-					<img src="img/music-player-components/dl_button.png">
+					<button id="dl-btn"><img src="img/music-player-components/dl_button.png"></button>
 				</a>
 			</div>
 
 			<div id="artist-link-container">
-				<a target="_blank">
-					<!-- <img src="img/music-player-components/volume_bar.png"> -->
-					<p></p>
-				</a>
+				<!-- <p><a href="https://grasps.bandcamp.com/" target="_blank">grasps.bandcamp.com</a> <a href="https://soundcloud.com/nerdiecuzz" target="_blank">soundcloud.com/nerdiecuzz</a></p> -->
+				<p><a href="https://soundcloud.com/nerdiecuzz" target="_blank">soundcloud.com/nerdiecuzz</a></p>
+
 			</div>
 
 			<div id="playlist-container">

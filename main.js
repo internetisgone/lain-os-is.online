@@ -484,9 +484,8 @@ function checkCommand(input)
 let playPauseBtn = document.getElementById("old-play-pause-btn")
 let volumeSlider = document.getElementById("volume-slider")
 
-let progressBar = document.getElementById("progress-bar-container")
 let oldProgressBar = document.getElementById("old-progress-bar-container")
-let progressFill = document.getElementById("old-progress-bar-fill")
+let oldProgressFill = document.getElementById("old-progress-bar-fill")
 let curTrackText = document.getElementById("cur-track-info")
 
 //load a random song
@@ -521,7 +520,7 @@ let visualiserCanvas = document.getElementById("visualiser")
 let canvasContext = visualiserCanvas.getContext("2d")
 canvasContext.fillStyle = "black"
 
-let artistLink = document.getElementById("artist-link-container").querySelector("a")
+//let artistLink = document.getElementById("artist-link-container").querySelector("a")
 
 let playlistUl = document.getElementById("playlist-content")
 
@@ -592,8 +591,8 @@ function loadTrack()
 		else playlistEntries.item(i).style.backgroundColor = "transparent";
 	}
 
-	artistLink.querySelector("p").textContent = trackList[curIndex].linkName
-	artistLink.href = trackList[curIndex].link 
+	// artistLink.querySelector("p").textContent = trackList[curIndex].linkName
+	// artistLink.href = trackList[curIndex].link 
 }
 
 //curTrack.addEventListener("ended", nextTrack)
@@ -847,7 +846,7 @@ function onFinishSettingVolume()
 function updateProgress()
 {
 	let progress = curTrack.currentTime / curTrack.duration;
-	progressFill.style.width = progress * oldProgressBar.offsetWidth + "px";
+	oldProgressFill.style.width = progress * oldProgressBar.offsetWidth + "px";
 
 	//set time
 	let timeStrings = parseTime(curTrack.currentTime)
@@ -855,7 +854,7 @@ function updateProgress()
 
 	curTimeEl.textContent = timeStrings.min + ":" + timeStrings.sec;
 	miniCurTime.textContent = timeStrings.min + ":" + timeStrings.sec;
-	//console.log("updated progress, progress = " + progress + ", width = " + progressFill.style.width)
+	//console.log("updated progress, progress = " + progress + ", width = " + oldPprogressFill.style.width)
 }
 
 function setProgress(el)
