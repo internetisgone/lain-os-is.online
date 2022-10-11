@@ -663,21 +663,11 @@ so that texts of variable lengths can be scrolled*/
 #artist-link-container
 {
 	position: absolute;
-	left: 27%; right: 20%; top: 40%; bottom: 54%;
+	left: 28%; right: 22%; top: 40%; bottom: 54%;
 	/* background-color: #e1e4eb; border-radius: 10px; */
-
 	display: flex; align-items: center; justify-content: center; font-size: 13px; text-align: center;
 }
-
-#artist-link-container a {color: black;}
-/* #artist-link-container a 
-{
-	display: block; 
-	width: 100%; height: 100%; text-decoration: none;
-	display: flex; align-items: center; justify-content: center;
-}
-
-#artist-link-container p {font-size: 13px;} */
+#artist-link-container p, #artist-link-container a {word-break: break-all; color: black;}
 
 #playlist-container
 {
@@ -867,8 +857,9 @@ so that texts of variable lengths can be scrolled*/
 #credits-btn 
 {
 	position: absolute;
-	right: 5%; bottom: 0;
-	width: 120px; height: 200px; /*temp sizes*/
+	right: 5%; bottom: 5%;
+	/* width: 120px; height: 200px;  */
+	width: 150px; height: 150px;
 }
 
 #credits-btn img {position: absolute; top: 0; right: 0; width: 100%; height: auto;}

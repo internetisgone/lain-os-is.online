@@ -1,100 +1,85 @@
 const trackList = [
-  {
-	name: "afalfl - just some kick noyze",
-	path: "/21sept-master-mp3/afalfl - just some kick noyze [master 20220921].mp3",
-	linkName: "artist link",
-	link: "credits.html"
-  },
-  {
-  	name: "Fetus - Footprints",
-	path: "/21sept-master-mp3/Fetus - Footprints [master 20220921].mp3",
-	linkName: "artist link",
-	link: "credits.html"
-  },
-  {
-  	name: "GRASPS X NERDIE - I AM HURTING",
-	path: "/21sept-master-mp3/GRASPS X NERDIE - I AM HURTING [master 20220921].mp3",
-	linkName: "artist link",
-	link: "credits.html"
-  },
-  {
-  	name: "Imryll - Family Portrait (Imryll Reimagined)",
-	path: "/21sept-master-mp3/Imryll - Family Portrait (Imryll Reimagined) [master 20220921].mp3",
-	linkName: "artist link",
-	link: "credits.html"
-  },
-  {
-  	name: "Jennifer Walton - At Last, Lain Is Free",
-	path: "/21sept-master-mp3/Jennifer Walton - At Last, Lain Is Free [master 20220921].mp3",
-	linkName: "artist link",
-	link: "credits.html"
-  },
-  {
-  	name: "Kagami Smile -  Acts of Betrayal",
-	path: "/21sept-master-mp3/Kagami Smile -  Acts of Betrayal [master 20220921].mp3",
-	linkName: "artist link",
-	link: "credits.html"
-  },
-  {
-  	name: "lovefear - SEL compilation track final",
-  	path: "/21sept-master-mp3/lovefear - SEL compilation track final  [master 20220921].mp3",
-	linkName: "artist link",
-	link: "credits.html"
-  },
-  {
-  	name: "Nerve - I_m Gonna Diss You",
-  	path: "/21sept-master-mp3/Nerve - I_m Gonna Diss You [master 20220921].mp3",
-	linkName: "artist link",
-	link: "credits.html"
-  },
-  {
-  	name: "Sour Gout - Transmigration",
-	path: "/21sept-master-mp3/Sour Gout - Transmigration [master 20220921].mp3",
-	linkName: "artist link",
-	link: "credits.html"
-  },
-  {
-  	name: "thegn ft. vrain - phantoma",
-	path: "/21sept-master-mp3/thegn ft. vrain - phantoma [master 20220921].mp3",
-	linkName: "artist link",
-	link: "credits.html"
-  },
-  {
-  	name: "Wa_ste - cyberia texture 5a x professed intention and real intention",
-	path: "/21sept-master-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention [master 20220921].mp3",
-	linkName: "artist link",
-	link: "credits.html"
-  },
-  {
-  	name: "xo - 200529-DuvetBoa8",
-	path: "/21sept-master-mp3/xo - 200529-DuvetBoa8  [master 20220921].mp3",
-	linkName: "artist link",
-	link: "credits.html"
-  },
-  {
-  	name: "Yikii - Ancient Scanner",
-  	path: "/21sept-master-mp3/Yikii - Ancient Scanner [master 20220921].mp3",
-	linkName: "artist link",
-	link: "credits.html"
-  },
-  {
-  	name: "Yraki - Lights Down",
-	path: "/21sept-master-mp3/Yraki - Lights Down [master 20220921].mp3",
-	linkName: "artist link",
-	link: "credits.html"
-  },
-  {
-  	name: "Yumea Horiike - lain",
-	path: "/21sept-master-mp3/Yumea Horiike - lain [master 20220921].mp3",
-	linkName: "artist link",
-	link: "credits.html"
-  },
-  {
-  	name: "Yuting Wu - Help me to Breathe",
-	path: "/21sept-master-mp3/Yuting Wu - Help me to Breathe [master 20220921].mp3",
-	linkName: "artist link",
-	link: "credits.html"
-  },
+	{
+		name: "x/o - Duvet cyberia re-chopped & screwed-MiX",
+		path: "/21sept-master-mp3/xo - 200529-DuvetBoa8  [master 20220921].mp3",
+		link: "https://x-o-xio.bandcamp.com"
+	},
+	{
+		name: "Wa?ste - cyberia texture 5a x professed intention and real intention",
+		path: "/21sept-master-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention [master 20221005].mp3",
+		link: "https://wa-ste222.bandcamp.com"
+	},
+	{
+		name: "Thegn ft. Vrain - phantoma_-_track04.wav",
+		path: "/21sept-master-mp3/thegn ft. vrain - phantoma [master 20220921].mp3",
+		link: "https://thegn.bandcamp.com"
+	},
+	{
+		name: "Nerve - I'm Gonna Diss You",
+		path: "/21sept-master-mp3/Nerve - I_m Gonna Diss You [master 20220921].mp3",
+		link: "https://www.lo4nerve.com"
+	},
+	{
+		name: "Fetus - Footprints",
+		path: "/21sept-master-mp3/Fetus - Footprints [master 20220921].mp3",
+		link: "https://fetusmusic.bandcamp.com"
+	},
+	{
+		name: "GRASPS X NERDIE - I AM HURTING",
+		path: "/21sept-master-mp3/GRASPS X NERDIE - I AM HURTING [master 20220921].mp3",
+		link: "" //handled in loadTrack()
+	},
+	{
+		name: "Yraki - Lights Down",
+		path: "/21sept-master-mp3/Yraki - Lights Down [master 20220921].mp3",
+		link: "https://yraki.bandcamp.com"
+	},
+	{
+		name: "Sour Gout - Transmigration",
+		path: "/21sept-master-mp3/Sour Gout - Transmigration [master 20220921].mp3",
+		link: "https://sourgout.bandcamp.com/"
+	},
+	{
+		name: "lovefear - Breathe",
+		path: "/21sept-master-mp3/lovefear - SEL compilation track final  [master 20220921].mp3",
+		link: "https://lovefear.bandcamp.com/"
+	},
+	{
+		name: "堀池ゆめぁ - lain ",
+		path: "/21sept-master-mp3/Yumea Horiike - lain [master 20220921].mp3",
+		linkName: "artist link",
+		link: "https://soundcloud.com/d9cfng8occoi"
+	},
+	{
+		name: "Yuting Wu - Help me to Breathe",
+		path: "/21sept-master-mp3/Yuting Wu - Help me to Breathe [master 20220921].mp3",
+		link: "https://yutingwu.bandcamp.com"
+	},
+	{
+		name: "ΛFΛLFL - just some kick noyze",
+		path: "/21sept-master-mp3/afalfl - just some kick noyze [master 20220921].mp3",
+		link: "https://afalfl.bandcamp.com/"
+	  },
+	  {
+		name: "Yikii - Ancient Scanner",
+		path: "/21sept-master-mp3/Yikii - Ancient Scanner [master 20220921].mp3",
+		link: "https://yikii.bandcamp.com"
+	},
+	{
+		name: "Kagami Smile -  Acts of Betrayal",
+		path: "/21sept-master-mp3/Kagami Smile -  Acts of Betrayal [master 20220921].mp3",
+		link: "https://kagamismile.bandcamp.com/"
+	},
+	{
+		name: "Imryll - Family Portrait (Imryll Reimagined)",
+		path: "/21sept-master-mp3/Imryll - Family Portrait (Imryll Reimagined) [master 20220921].mp3",
+		link: "https://phantomlimblabel.bandcamp.com/album/psalm008-mortal"
+	},
+	{
+		name: "Jennifer Walton - At Last, Lain Is Free",
+		path: "/21sept-master-mp3/Jennifer Walton - At Last, Lain Is Free [master 20220921].mp3",
+		link: "https://allcentre.bandcamp.com/album/flash-on"
+	},
 ]; 
 
 //entry page texts
@@ -520,7 +505,7 @@ let visualiserCanvas = document.getElementById("visualiser")
 let canvasContext = visualiserCanvas.getContext("2d")
 canvasContext.fillStyle = "black"
 
-//let artistLink = document.getElementById("artist-link-container").querySelector("a")
+let artistLink = document.getElementById("artist-link-container").querySelector("p")
 
 let playlistUl = document.getElementById("playlist-content")
 
@@ -591,11 +576,14 @@ function loadTrack()
 		else playlistEntries.item(i).style.backgroundColor = "transparent";
 	}
 
-	// artistLink.querySelector("p").textContent = trackList[curIndex].linkName
-	// artistLink.href = trackList[curIndex].link 
-}
+	//artist link. remove the "https://" in link text 
+	artistLink.innerHTML = `<a href=${trackList[curIndex].link} target="_blank">${trackList[curIndex].link.substring(8)}</a>` 
 
-//curTrack.addEventListener("ended", nextTrack)
+	if (trackList[curIndex].name == "GRASPS X NERDIE - I AM HURTING")
+	{
+		artistLink.innerHTML = '<a href="https://grasps.bandcamp.com/" target="_blank">grasps.bandcamp.com</a><br><a href="https://soundcloud.com/nerdiecuzz" target="_blank">soundcloud.com/nerdiecuzz</a>'
+	}
+}
 
 curTrack.onloadedmetadata = function() 
 	{
