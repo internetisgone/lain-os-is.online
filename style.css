@@ -139,6 +139,7 @@ p, label, button, option, ul
 	#mini-total-time, #mini-cur-time {font-size: 9px;}
 	/*music player end*/
 
+	#terminal-ascii-art {transform: scale(0.20) translate(-195%, 195%);}
 	#credits-btn {width: 100px; height: 100px;}
 }
 
@@ -177,6 +178,7 @@ p, label, button, option, ul
 	#mini-total-time, #mini-cur-time {font-size: 12px;}
 	/*music player end*/
 
+	#terminal-ascii-art {transform: scale(0.30) translate(-120%, 110%);}
 	#credits-btn {width: 150px; height: 150px;}
 }
 
@@ -686,7 +688,7 @@ so that texts of variable lengths can be scrolled*/
 	/*when browser's preferred language is set to chinese, */
 	/*the min font-size is restricted to 12px. */
 	/*transform:scale() can be used to counter this browser limitation*/
-	transform: scale(0.30) translate(-120%, 110%);
+	/* transform: scale(0.30) translate(-120%, 110%); */ /*moved to media tag*/
 }
 
 #terminal-display /*shows submitted texts*/

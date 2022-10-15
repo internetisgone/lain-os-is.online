@@ -5,3 +5,4 @@
 /bg-mp3/*
 /img/discarded/*
 .DS_Store
+.vscode/launch.json
