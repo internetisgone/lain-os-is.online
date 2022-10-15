@@ -62,6 +62,8 @@ p, label, button, option, ul
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	}
 	.icon {margin: 2px;}
+
+	#credits-btn {top: 0; left: 0;}
 }
 
 /*desktop / landscape display*/
@@ -98,6 +100,8 @@ p, label, button, option, ul
 		backdrop-filter: blur(20px) brightness(95%);
 		-webkit-backdrop-filter: blur(20px) brightness(95%); /*safari*/
 	}
+
+	#credits-btn {right: 5%; bottom: 5%;}
 }
 
 /* mobile mini window sizes (screens with width < 500px)*/
@@ -107,12 +111,18 @@ p, label, button, option, ul
 	#entry-bottom-text {font-size: 11px;}
 
 	.mini-window-header {height: 30px; font-size: 11px;}
-	.mini-window-close {height: 25px; width: 25px;}
+	.mini-window-close 
+	{
+		height: 25px; width: 25px;
+		background: 0% 0% url("img/minimise4.png") no-repeat;
+		background-size: 21px 21px;
+		right: 4px; top: 5px;
+	}
 
-	#music-player{width: 100vw; height: 133vw;}				/*100x133*/
-	#terminal {width: 352px; height: 264px;} 				/*640x480 x0.55*/
-	#chat-window {width: 240px; height: 320px;} 			/*480x640 x0.5*/
-	#version-history-window {width: 320px; height: 240px;} 	/*640x480 x0.5*/
+	#music-player{width: 100vw; height: 133vw; top:7%; left: 0;} /*100x133*/
+	#terminal {width: 352px; height: 264px;} 					  /*640x480 x0.55*/
+	#chat-window {width: 240px; height: 320px;} 				  /*480x640 x0.5*/
+	#version-history-window {width: 320px; height: 240px;} 		  /*640x480 x0.5*/
 
 	/*music player*/
 	#cur-track-state {width: 18px;}
@@ -121,16 +131,15 @@ p, label, button, option, ul
 	#now-playing-static {font-size: 11px;}
 	#changing-volume {font-size: 11px;} /*same as now-playing-static*/
 	#cur-track-bitrate, #mono-stereo {font-size: 9px;}
+	#artist-link-container {font-size: 11px;}
 
 /*	#playback-controls button {width: 29px !important;}
 */
-	.playlist-entry {font-size: 11px; margin: 4px;}
+	.playlist-entry {font-size: 11px; margin: 3px;}
 	#mini-total-time, #mini-cur-time {font-size: 9px;}
 	/*music player end*/
 
-	/*terminal*/
-	/*#terminal-ascii-art {font-size: 1.5px !important;}*/
-	/*terminal end*/
+	#credits-btn {width: 100px; height: 100px;}
 }
 
 /* desktop n tablets mini window sizes (screens with width > 500px)*/
@@ -140,9 +149,15 @@ p, label, button, option, ul
 	#entry-bottom-text {font-size: 13px;}
 
 	.mini-window-header {height: 40px; font-size: 13px;}
-	.mini-window-close {height: 30px; width: 30px;}
+	.mini-window-close 
+	{
+		height: 30px; width: 30px;
+		background: 0% 0% url("img/minimise4.png") no-repeat;
+		background-size: 27px 27px;
+		right: 8px; top: 6px;
+	}
 
-	#music-player {width: 520px;height: 685px;}
+	#music-player {width: 520px; height: 685px; top: 3%; left: 25%;}
 	#terminal {width: 493px; height: 369px;}				/*640x480 x0.77*/
 	#chat-window {width: 317px; height: 422px;} 			/*480x640 x0.66*/
 	#version-history-window {width: 422px; height: 317px;} 	/*640x480 x0.66*/
@@ -154,6 +169,7 @@ p, label, button, option, ul
 	#now-playing-static {font-size: 13px;}
 	#changing-volume {font-size: 13px;} /*same as now-playing-static*/
 	#cur-track-bitrate, #mono-stereo {font-size: 11px;}
+	#artist-link-container {font-size: 13px;}
 
 /*	#playback-controls button {width: 12vw;}
 */
@@ -161,9 +177,7 @@ p, label, button, option, ul
 	#mini-total-time, #mini-cur-time {font-size: 12px;}
 	/*music player end*/
 
-	/*terminal*/
-	/*#terminal-ascii-art {font-size: 2px !important;}*/
-	/*terminal end*/
+	#credits-btn {width: 150px; height: 150px;}
 }
 
 hr /*temp*/
@@ -218,15 +232,18 @@ hr /*temp*/
 .mini-window
 {
 	position: absolute;
-	top: 33%; left: 50%;
 	background-color: gainsboro;
-	z-index: 5;
-
 	border-radius: 10px;
 	box-shadow:  -3px -3px 6px dimgray inset, 3px 3px 6px dimgray inset;
 
 	--inner-container-shadow: -1px -1px 1px dimgray, 1px 1px 1px dimgray;
 }
+
+/*mini windows initial position & z-index*/
+#music-player {z-index: 7;} /*pos set in media tags*/
+#terminal {top: 11%; left: 7%; z-index: 6;}
+#chat-window {top: 13%; right: 13%; z-index: 4;}
+#version-history-window {top: 30%; right: 4%; z-index: 5;}
 
 .mini-window-draggable
 {
@@ -246,170 +263,11 @@ hr /*temp*/
 .mini-window-close
 {
 	position: absolute;
-	right: 5px; top: 3px;
-	/*background-color: black; opacity: 0.1;*/
-	background: 0% 0% url("img/minimise.png") no-repeat;
-	background-size: 100% 100%;
 	opacity: 0.3;
 }
 
 #music-player .mini-window-close {opacity: 0;}
 
-/******* chat *******/
-#chat-window
-{
-	display: flex; justify-content: center; align-items: center;
-	/*width n height are set separately, responsive to screen size*/
-	top: 5%; right: 13%;
-	z-index: 5;
-}
-
-#chat-container
-{
-	font-size: 13px; 
-	position: absolute;
-	width: 90%;
-	top: 9%; bottom: 4%;
-	box-shadow: var(--inner-container-shadow);
-}
-/******* chat *******/
-
-/******* terminallllllll *******/
-#terminal
-{
-	font-size: 13px; color: whitesmoke !important;  
-	top: 13%; left: 7%;
-	/*width n height are set separately, responsive to screen size*/
-	z-index: 6;
-}
-
-#terminal-inner-container
-{
-	position: absolute;
-	width: 94%; height: 85%;
-	left: 3%; right: 3%; top: 11%;
-	background-color: black;
-
-	box-shadow: var(--inner-container-shadow);
-}
-
-#terminal-txt-container
-{
-	position: absolute;
-	left: 1%; right: 1%; top: 0; bottom: 7%;
-	width: 98%;
-	background-color: black;
-	overflow-y: scroll;
-	z-index: 7; /*in case it gets occluded by input are*/
-
-	-ms-overflow-style: none;  /* hide scroll bar in IE and edge */
-  	scrollbar-width: none;  /* hide scroll bar in firefox */
-}
-/*hide scroll bar inside terminal but still scrollable*/
-#terminal-txt-container::-webkit-scrollbar {display: none;}
-
-#terminal-input-container
-{
-	position: absolute; 
-	width: 98%;
-	left: 1%; right: 1%; bottom: 1%;
-	background-color: transparent; /*in case it gets occluded by input are*/
-}
-
-/*todoooooo hide the scrollable blank space above the ascii art*/
-/*#terminal-ascii-art-container
-{
-	top: 0; left: 0;
-	width: 100%;
-}*/
-
-#terminal-ascii-art
-{
-	font-size: 12px;
-	font-family: Consolas, monospace; 
-	/*line-height: normal !important; */
-	padding: 0; margin: 0; border: 0;	
-
-	/*when browser's preferred language is set to chinese, */
-	/*the min font-size is restricted to 12px. */
-	/*transform:scale() can be used to counter this browser limitation*/
-	transform: scale(0.30) translate(-120%, 110%);
-}
-
-#terminal-display /*shows submitted texts*/
-{
-	color: whitesmoke;
-	font-size: 13px; 
-	margin: 0px;	
-}
-
-#terminal-prompt 
-{
-	font-size: 13px; 
-	position: absolute; 
-	margin-top: 4px; /*so it aligns with the fake caret*/
-	/*margin-left: 4px;*/
-}
-
-#fake-caret 
-{
-	position: absolute;
-	margin-left: 111px; /* prompt length */
-	width: 11px;
-	animation: blink 1s step-end infinite;
-  	border-bottom: 2px solid whitesmoke;
-}
-
-@keyframes blink {
-	from,
-	to {border-color: transparent;}
-  	50% {border-color: whitesmoke;}
-}
-
-#terminal-input
-{
-	font-family: var(--mono-font);
-	font-size: 13px; 
-	color: whitesmoke;
-	background-color: black; width: 100%;
-	padding: 0px;
-	border-width: 0px;
-	text-indent: 111px; /* prompt length + prompt left margin */
-	margin-top: 4px; /*so it aligns with the fake caret*/
-	caret-color: transparent;
-}
-
-/*hide input box border when selected*/
-#terminal-input:focus {outline: none !important;}
-/******* terminallllllll end *******/
-
-#dock-container
-{
-	position: absolute;
-	display: flex;
-	justify-content: center; align-items: center;
-}
-
-#dock-bg 
-{
-	position: absolute;	display: flex; 
-	justify-content: center; align-items: center;
-	background-size: 100%; background-position: 0;
-	background-repeat: no-repeat;
-}
-
-#icons-container 
-{
-	position: absolute; 
-	display: grid;
-}
-.icon 
-{
-	display: none;
-	cursor: pointer;
-}
-
-.icon img {width: 100%;}
 /******* music player *******/
 #music-player
 {
@@ -420,10 +278,6 @@ hr /*temp*/
 	background-repeat: no-repeat;
 	background-size: 100%; 
 	/*width n height are set separately, responsive to screen size*/
-	top: 3%;
-	left: 20%;
-	z-index: 7; 
-
 	text-shadow: 0 0 5px #e1e4eb, 0 0 15px #e1e4eb; 
 /*	--music-player-bg: ghostwhite;
 	--music-player-bg-opacity: 1; */
@@ -671,7 +525,7 @@ so that texts of variable lengths can be scrolled*/
 	position: absolute;
 	left: 28%; right: 22%; top: 40%; bottom: 54%;
 	/* background-color: #e1e4eb; border-radius: 10px; */
-	display: flex; align-items: center; justify-content: center; font-size: 13px; text-align: center;
+	display: flex; align-items: center; justify-content: center; text-align: center;
 }
 #artist-link-container p, #artist-link-container a {word-break: break-all; color: black;}
 
@@ -757,11 +611,160 @@ so that texts of variable lengths can be scrolled*/
 	color: black;
 	bottom: 0; right: 5%;
 }
-/******* music player *******/
+/******* music player end *******/
+
+/******* chat *******/
+#chat-window
+{
+	display: flex; justify-content: center; align-items: center;
+	/*width n height are set separately, responsive to screen size*/
+}
+
+#chat-container
+{
+	font-size: 13px; 
+	position: absolute;
+	width: 90%;
+	top: 9%; bottom: 4%;
+	box-shadow: var(--inner-container-shadow);
+}
+/******* chat *******/
+
+/******* terminallllllll *******/
+#terminal
+{
+	font-size: 13px; color: whitesmoke !important;  
+}
+
+#terminal-inner-container
+{
+	position: absolute;
+	width: 94%; height: 85%;
+	left: 3%; right: 3%; top: 11%;
+	background-color: black;
+
+	box-shadow: var(--inner-container-shadow);
+}
+
+#terminal-txt-container
+{
+	position: absolute;
+	left: 1%; right: 1%; top: 0; bottom: 7%;
+	width: 98%;
+	background-color: black;
+	overflow-y: scroll;
+	z-index: 7; /*in case it gets occluded by input are*/
+
+	-ms-overflow-style: none;  /* hide scroll bar in IE and edge */
+  	scrollbar-width: none;  /* hide scroll bar in firefox */
+}
+/*hide scroll bar inside terminal but still scrollable*/
+#terminal-txt-container::-webkit-scrollbar {display: none;}
+
+#terminal-input-container
+{
+	position: absolute; 
+	width: 98%;
+	left: 1%; right: 1%; bottom: 1%;
+	background-color: transparent; /*in case it gets occluded by input are*/
+}
+
+/*todoooooo hide the scrollable blank space above the ascii art*/
+/*#terminal-ascii-art-container
+{
+	top: 0; left: 0;
+	width: 100%;
+}*/
+
+#terminal-ascii-art
+{
+	font-size: 12px;
+	font-family: Consolas, monospace; 
+	/*line-height: normal !important; */
+	padding: 0; margin: 0; border: 0;	
+
+	/*when browser's preferred language is set to chinese, */
+	/*the min font-size is restricted to 12px. */
+	/*transform:scale() can be used to counter this browser limitation*/
+	transform: scale(0.30) translate(-120%, 110%);
+}
+
+#terminal-display /*shows submitted texts*/
+{
+	color: whitesmoke;
+	font-size: 13px; 
+	margin: 0px;	
+}
+
+#terminal-prompt 
+{
+	font-size: 13px; 
+	position: absolute; 
+	margin-top: 4px; /*so it aligns with the fake caret*/
+	/*margin-left: 4px;*/
+}
+
+#fake-caret 
+{
+	position: absolute;
+	margin-left: 111px; /* prompt length */
+	width: 11px;
+	animation: blink 1s step-end infinite;
+  	border-bottom: 2px solid whitesmoke;
+}
+
+@keyframes blink {
+	from,
+	to {border-color: transparent;}
+  	50% {border-color: whitesmoke;}
+}
+
+#terminal-input
+{
+	font-family: var(--mono-font);
+	font-size: 13px; 
+	color: whitesmoke;
+	background-color: black; width: 100%;
+	padding: 0px;
+	border-width: 0px;
+	text-indent: 111px; /* prompt length + prompt left margin */
+	margin-top: 4px; /*so it aligns with the fake caret*/
+	caret-color: transparent;
+}
+
+/*hide input box border when selected*/
+#terminal-input:focus {outline: none !important;}
+/******* terminallllllll end *******/
+
+#dock-container
+{
+	position: absolute;
+	display: flex;
+	justify-content: center; align-items: center;
+}
+
+#dock-bg 
+{
+	position: absolute;	display: flex; 
+	justify-content: center; align-items: center;
+	background-size: 100%; background-position: 0;
+	background-repeat: no-repeat;
+}
+
+#icons-container 
+{
+	position: absolute; 
+	display: grid;
+}
+.icon 
+{
+	display: none;
+	cursor: pointer;
+}
+
+.icon img {width: 100%;}
 
 /******* version history *******/
-/* #version-history-window{} */
-
 #version-history-container
 {
 	position: absolute;
@@ -863,9 +866,6 @@ so that texts of variable lengths can be scrolled*/
 #credits-btn 
 {
 	position: absolute;
-	right: 5%; bottom: 5%;
-	/* width: 120px; height: 200px;  */
-	width: 150px; height: 150px;
 }
 
 #credits-btn img {position: absolute; top: 0; right: 0; width: 100%; height: auto;}

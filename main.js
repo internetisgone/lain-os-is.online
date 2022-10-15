@@ -98,10 +98,8 @@ const lainStrings = [
 	"let's all love lain (づ◡﹏◡)づ",
 	"you're a web 3 developer, i'm a web :3 developer",
 	"suicide by CIA",
-	"",
-	"",
-	"",
-	"Virtuality features highly accelerated cultural evolution, giving it extreme susceptibility to manipulation and high hyperstitional potentiation. Technodieties will proliferate in the form of egregores, directly bending reality to their will. Humanity will be twisted"
+	"Virtuality features highly accelerated cultural evolution, giving it extreme susceptibility to manipulation and high hyperstitional potentiation. Technodieties will proliferate in the form of egregores, directly bending reality to their will. Humanity will be twisted",
+	"logging off"
 ]
 const invalidInputStr = "idk that word!"
 
@@ -403,18 +401,21 @@ function validateInput(e)
 			}
 			else
 			{
-				// todo add weight based on lainCount
-				// normal distribution centered around lainCount, range +- rangeDelta
+				// let lowerBound = (lainCount > rangeDelta)? (lainCount - rangeDelta) : 0
+				// let upperBound = (lainCount > lainStrings.length - 1 - rangeDelta)? (lainStrings.length - 1) : (lainCount + rangeDelta)
+				// if (lowerBound > upperBound) lowerBound = upperBound;
 
-				let lowerBound = (lainCount > rangeDelta)? (lainCount - rangeDelta) : 0
-				let upperBound = (lainCount > lainStrings.length - 1 - rangeDelta)? (lainStrings.length - 1) : (lainCount + rangeDelta)
-				if (lowerBound > upperBound) lowerBound = upperBound;
+				//method 1 random int w range
+				//let outputIndex = getRandomInt(lowerBound, upperBound)
 
-				let outputIndex = getRandomInt(lowerBound, upperBound)
+				//method 2 normally distributed int w range 
+				//let outputIndex = getIntNormallyDistributed(lowerBound, upperBound)
 
-				terminalDisplay.innerHTML += lainStrings[outputIndex] + "<br>"
+				//method 3 use input count directly
+				let outputIndex = (lainCount > lainStrings.length - 1)? (lainStrings.length - 1) : lainCount;
+				terminalDisplay.innerHTML += lainStrings[outputIndex] + "<br>";
 
-				console.log(`range ${lowerBound} to ${upperBound}, input count ${lainCount}, output ${outputIndex}`)
+				//console.log(`range ${lowerBound} to ${upperBound}, input count ${lainCount}, output ${outputIndex}`)
 			}
 			lainCount++;
 		}
@@ -1270,11 +1271,42 @@ function applyFilter(index)
 
 ////////////// utilities //////////////
 
+//min inclusive, max exclusive
 function getRandomInt(min, max)
 {
-	//min inclusive, max exclusive
 	return Math.floor(Math.random() * (max - min) + min);
 }
+
+// based on this answer, converted to int and minus skew 
+// stackoverflow.com/questions/25582882/javascript-math-random-normal-distribution-gaussian-bell-curve/49434653#49434653
+function getIntNormallyDistributed(min, max) 
+{
+	let u = 0, v = 0;
+	while(u === 0) u = Math.random() //Converting [0,1) to (0,1)
+	while(v === 0) v = Math.random()
+	let num = Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v )
+	
+	num = num / 10.0 + 0.5 // Translate to 0 -> 1
+	if (num > 1 || num < 0) 
+		num = getIntNormallyDistributed(min, max); // resample between 0 and 1 if out of range
+	else
+		num = Math.floor(num * (max - min) + min); //convert to int
+	return num
+	//todo upper limit - 1 not inclusive??
+  }
+
+//testing getIntNormallyDistributed
+function testRandInt(min, max)
+{
+	// let randomNumArr = new Array()
+	for (let i = 0; i < 100; i++)
+	{
+		let num = getIntNormallyDistributed(min, max)
+		// randomNumArr.push(num)
+		console.log(num)
+	}
+}
+//testRandInt(0, 6);
 
 //get total length of album
 // let testIndex = 0;
