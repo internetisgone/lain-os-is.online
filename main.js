@@ -160,7 +160,7 @@ let isLandscape = window.matchMedia("(min-aspect-ratio: 4/3)").matches
 // 	entryBottomTexts.textContent = ""
 // 	for (let i = 0; i < BottomTextLength; i++)
 // 	{
-// 		randIndex = Math.round(Math.random() * chars.length)
+// 		randIndex = getRandomInt(0, chars.length)
 // 		entryBottomTexts.textContent += chars[randIndex]
 // 	}
 // }
@@ -373,8 +373,8 @@ let fontWidth = 8 //subject to changee
 let caretOffest
 
 let inputPattern = /^[a-zA-Z\d\s]*$/; //letters, digits, and whitespace
-let lainCount = 0 //todo
-let totalLain = 100 //temp 
+let lainCount = 0 
+let rangeDelta = 2  // output index range lainCount +- rangeDelta
 
 inputEl.onkeydown = validateInput
 
@@ -401,15 +401,17 @@ function validateInput(e)
 			else
 			{
 				// todo add weight based on lainCount
-				// normal distribution centered around lainCount, range let's say +- 3
+				// normal distribution centered around lainCount, range +- rangeDelta
 
-				// testNum = random num ranging from lainCount - 3 to lainCount + 3
-				// if lainCount +- 3 is out of bounds then re calculate range 
+				let lowerBound = (lainCount > rangeDelta)? (lainCount - rangeDelta) : 0
+				let upperBound = (lainCount > lainStrings.length - rangeDelta)? lainStrings.length : (lainCount + rangeDelta)
+				if (lowerBound > upperBound) lowerBound = upperBound;
 
-				//terminalDisplay.innerHTML += testNum + "<br>"
+				let testNum = getRandomInt(lowerBound, upperBound)
 
-				let randomLain = Math.round(Math.random() * (lainStrings.length - 1))
-				terminalDisplay.innerHTML += lainStrings[randomLain] + "<br>"
+				terminalDisplay.innerHTML += testNum + "<br>"
+
+				console.log(`range ${lowerBound} to ${upperBound}, input count ${lainCount}, output ${testNum}`)
 			}
 			lainCount++;
 		}
@@ -470,7 +472,7 @@ function checkCommand(input)
 		case "prev": prevTrack(); break;
 		case "next": nextTrack(); break;
 		case "random": 
-			curIndex = Math.round(Math.random() * (trackList.length - 1));
+			curIndex = getRandomInt(0, trackList.length)
 			loadTrack(); playTrack();
 			break;
 
@@ -502,7 +504,6 @@ let progressFill = document.getElementById("progress-bar-fill")
 
 let curTrackText = document.getElementById("cur-track-info")
 
-// let curIndex = Math.round(Math.random() * (trackList.length - 1))
 let curIndex = 0
 let curTrack = document.getElementById("cur-track")
 let isPlaying = false
@@ -616,7 +617,7 @@ function loadTrack()
 
 curTrack.onloadedmetadata = function() 
 	{
-		console.log("loaded track metadata " + trackList[curIndex].name)
+		console.log("loaded track metadata at " + curIndex + " " + trackList[curIndex].name)
 		let timeStrings = parseTime(curTrack.duration)
 
 		oldTotalTimeEl.textContent = timeStrings.min + ":" + timeStrings.sec;
@@ -740,7 +741,7 @@ function nextTrack()
 {
 	if (isShuffle) // always play a random song 
 	{
-		curIndex = Math.round(Math.random() * (trackList.length - 1));
+		curIndex = getRandomInt(0, trackList.length)
 	} 
 	else 
 	{
@@ -1265,6 +1266,12 @@ function applyFilter(index)
 
 
 ////////////// utilities //////////////
+
+function getRandomInt(min, max)
+{
+	//min inclusive, max exclusive
+	return Math.floor(Math.random() * (max - min) + min);
+}
 
 //get total length of album
 // let testIndex = 0;
