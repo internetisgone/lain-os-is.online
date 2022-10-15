@@ -98,6 +98,9 @@ const lainStrings = [
 	"let's all love lain (づ◡﹏◡)づ",
 	"you're a web 3 developer, i'm a web :3 developer",
 	"suicide by CIA",
+	"",
+	"",
+	"",
 	"Virtuality features highly accelerated cultural evolution, giving it extreme susceptibility to manipulation and high hyperstitional potentiation. Technodieties will proliferate in the form of egregores, directly bending reality to their will. Humanity will be twisted"
 ]
 const invalidInputStr = "idk that word!"
@@ -404,14 +407,14 @@ function validateInput(e)
 				// normal distribution centered around lainCount, range +- rangeDelta
 
 				let lowerBound = (lainCount > rangeDelta)? (lainCount - rangeDelta) : 0
-				let upperBound = (lainCount > lainStrings.length - rangeDelta)? lainStrings.length : (lainCount + rangeDelta)
+				let upperBound = (lainCount > lainStrings.length - 1 - rangeDelta)? (lainStrings.length - 1) : (lainCount + rangeDelta)
 				if (lowerBound > upperBound) lowerBound = upperBound;
 
-				let testNum = getRandomInt(lowerBound, upperBound)
+				let outputIndex = getRandomInt(lowerBound, upperBound)
 
-				terminalDisplay.innerHTML += testNum + "<br>"
+				terminalDisplay.innerHTML += lainStrings[outputIndex] + "<br>"
 
-				console.log(`range ${lowerBound} to ${upperBound}, input count ${lainCount}, output ${testNum}`)
+				console.log(`range ${lowerBound} to ${upperBound}, input count ${lainCount}, output ${outputIndex}`)
 			}
 			lainCount++;
 		}
