@@ -25,7 +25,7 @@ body
 	--mono-font: "Input-Mono", "Courier New", monospace;
 	--lain-font: "LoveLetter", "Courier New", monospace;
 
-	--music-player-body: url("img/player_marble_artistlink.png");
+	--music-player-body: url("img/player_marble_artistlink1.png");
 }
 
 p, label, button, option, ul
@@ -594,8 +594,14 @@ so that texts of variable lengths can be scrolled*/
 #progress-bar-container
 {
 	position: absolute;
-	left:14%; right:6%; top: 17%; bottom: 81%;
+	left:14%; right:6%; top: 17%; bottom: 80%;
 	cursor: pointer;
+}
+
+#progress-bar-fill
+{
+	position: absolute; width: 100%; z-index: -1;
+	overflow: hidden; 
 }
 
 #shuffle-loop-container

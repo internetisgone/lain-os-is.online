@@ -48,7 +48,7 @@ const trackList = [
 		name: "堀池ゆめぁ - lain ",
 		path: "/21sept-master-mp3/Yumea Horiike - lain [master 20220921].mp3",
 		linkName: "artist link",
-		link: "https://soundcloud.com/d9cfng8occoi"
+		link: "https://uuumea.bandcamp.com"
 	},
 	{
 		name: "Yuting Wu - Help me to Breathe",
@@ -83,18 +83,24 @@ const trackList = [
 ]; 
 
 //entry page texts
-const entryInitString = "initialising";
-const entryOnloadString = "log in";
-const entryBottomString = "public domain operating system"
+const entryInitStr = "initialising";
+const entryOnloadStr = "log in";
+const entryBottomStr = "public domain operating system"
 
 //music player texts
-const bitrateStereoString = "320 KBPS 44.1 KHZ";  
+const bitrateStereoStr = "320 KBPS 44.1 KHZ";  
 const bitrateStereoPlaceholder = "&nbsp;&nbsp;&nbsp;&nbsp;KBPS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KHZ"
-const loadingTrackString = "loading metadata..."; 
+const loadingTrackStr = "loading metadata..."; 
 const totalTime = "68:21" //calculated with totalLengthTest() in onload()
 
 //terminal texts
-const invalidInputString = "idk that word!"
+const lainStrings = [
+	"let's all love lain (づ◡﹏◡)づ",
+	"you're a web 3 developer, i'm a web :3 developer",
+	"suicide by CIA",
+	"Virtuality features highly accelerated cultural evolution, giving it extreme susceptibility to manipulation and high hyperstitional potentiation. Technodieties will proliferate in the form of egregores, directly bending reality to their will. Humanity will be twisted"
+]
+const invalidInputStr = "idk that word!"
 
 //initial audio node params
 //gain node
@@ -139,7 +145,7 @@ let isLandscape = window.matchMedia("(min-aspect-ratio: 4/3)").matches
 // 	}
 // 	else 
 // 	{
-// 		entryTextsEl.textContent = entryInitString;
+// 		entryTextsEl.textContent = entryInitStr;
 // 		loadingIndex = 0;
 // 	}
 // }
@@ -167,9 +173,9 @@ let isLandscape = window.matchMedia("(min-aspect-ratio: 4/3)").matches
 // 	entryTextsEl.parentElement.style.justifyContent = "center"
 // 	entryTextsEl.style.left = "auto"
 
-// 	entryTextsEl.textContent = entryOnloadString
+// 	entryTextsEl.textContent = entryOnloadStr
 // 	entryBottomTexts.style.fontFamily = "LoveLetter"
-// 	entryBottomTexts.textContent = entryBottomString
+// 	entryBottomTexts.textContent = entryBottomStr
 
 // 	entryPage.addEventListener("click", function(){
 // 		entryPage.style.opacity = "0"
@@ -367,7 +373,9 @@ let fontWidth = 8 //subject to changee
 let caretOffest
 
 let inputPattern = /^[a-zA-Z\d\s]*$/; //letters, digits, and whitespace
-let invalidCount = 0 //todo
+let lainCount = 0 //todo
+let totalLain = 100 //temp 
+
 inputEl.onkeydown = validateInput
 
 function validateInput(e)
@@ -386,7 +394,24 @@ function validateInput(e)
 		//easter egg
 		if (inputEl.value.toLowerCase().includes("lain"))
 		{
-			terminalDisplay.innerHTML += "let's all love lain (づ◡﹏◡)づ</br>"; //todo add more lines n choose one at random
+			if (lainCount == 0) 
+			{
+				terminalDisplay.innerHTML += lainStrings[0] + "</br>"; 
+			}
+			else
+			{
+				// todo add weight based on lainCount
+				// normal distribution centered around lainCount, range let's say +- 3
+
+				// testNum = random num ranging from lainCount - 3 to lainCount + 3
+				// if lainCount +- 3 is out of bounds then re calculate range 
+
+				//terminalDisplay.innerHTML += testNum + "<br>"
+
+				let randomLain = Math.round(Math.random() * (lainStrings.length - 1))
+				terminalDisplay.innerHTML += lainStrings[randomLain] + "<br>"
+			}
+			lainCount++;
 		}
 		//valid input
 		else if (inputEl.value.match(inputPattern))	
@@ -396,7 +421,7 @@ function validateInput(e)
 		else //invalid input
 		{
 			//terminalDisplay.innerHTML += "invalid input (´;ω;`) letters, numbers, and spaces only pls</br>";
-			terminalDisplay.innerHTML += invalidInputString + "<br>"
+			terminalDisplay.innerHTML += invalidInputStr + "<br>"
 		}
 		inputEl.value = "";
 		fakeCaret.style.marginLeft = initialIndent + "px";
@@ -457,7 +482,7 @@ function checkCommand(input)
 		case "test2": applyFilter(2); break;
 		case "test3": applyFilter(3); break;
 
-		default: terminalDisplay.innerHTML += invalidInputString + "</br>"
+		default: terminalDisplay.innerHTML += invalidInputStr + "</br>"
 	}
 }
 
@@ -471,10 +496,14 @@ let volumeSlider = document.getElementById("volume-slider")
 
 let oldProgressBar = document.getElementById("old-progress-bar-container")
 let oldProgressFill = document.getElementById("old-progress-bar-fill")
+
+let progressBar = document.getElementById("progress-bar-container")
+let progressFill = document.getElementById("progress-bar-fill")
+
 let curTrackText = document.getElementById("cur-track-info")
 
-//load a random song
-let curIndex = Math.round(Math.random() * (trackList.length - 1))
+// let curIndex = Math.round(Math.random() * (trackList.length - 1))
+let curIndex = 0
 let curTrack = document.getElementById("cur-track")
 let isPlaying = false
 let progressTimer = null
@@ -549,9 +578,8 @@ stopTrack(); //stop icon, no bitrate display
 let loopIndex = 2 //0 no loop, 1 loop album, 2 loop one song
 switchLoop() //no loop 
 
-//todo new progress barrrr
-//progressBar.addEventListener("click", setProgress)
-oldProgressBar.addEventListener("click", setProgress);
+progressBar.addEventListener("click", setProgress)
+oldProgressBar.addEventListener("click", oldSetProgress);
 
 ///////initial state///////
 
@@ -559,11 +587,11 @@ function loadTrack()
 {
 	if (progressTimer != null) 	{clearInterval(progressTimer)}
 	curTrack.src = trackList[curIndex].path;
-	curTrackText.textContent = loadingTrackString //old music player
+	curTrackText.textContent = loadingTrackStr //old music player
 
 	setNowPlayingAnim(false)
-	nowPlayingStatic.textContent = loadingTrackString
-	curBitrate.innerHTML = bitrateStereoString
+	nowPlayingStatic.textContent = loadingTrackStr
+	curBitrate.innerHTML = bitrateStereoStr
 	monoStereo.style.opacity = "1"
 
 	curTrack.load();
@@ -579,7 +607,8 @@ function loadTrack()
 	//artist link. remove the "https://" in link text 
 	artistLink.innerHTML = `<a href=${trackList[curIndex].link} target="_blank">${trackList[curIndex].link.substring(8)}</a>` 
 
-	if (trackList[curIndex].name == "GRASPS X NERDIE - I AM HURTING")
+	//if (trackList[curIndex].name == "GRASPS X NERDIE - I AM HURTING")
+	if (curIndex == 5)
 	{
 		artistLink.innerHTML = '<a href="https://grasps.bandcamp.com/" target="_blank">grasps.bandcamp.com</a><br><a href="https://soundcloud.com/nerdiecuzz" target="_blank">soundcloud.com/nerdiecuzz</a>'
 	}
@@ -640,7 +669,7 @@ function playTrack()
 	curTrack.play();
 	isPlaying = true;
 	curTrackStateIcon.src = "img/test-play.png"
-	curBitrate.innerHTML = bitrateStereoString
+	curBitrate.innerHTML = bitrateStereoStr
 	monoStereo.style.opacity = "1"
 
 	//visualiser
@@ -834,6 +863,8 @@ function onFinishSettingVolume()
 function updateProgress()
 {
 	let progress = curTrack.currentTime / curTrack.duration;
+
+	progressFill.style.clipPath = `polygon(0% 0%, ${progress*100}% 0%, ${progress*100}% 100%, 0% 100%)`
 	oldProgressFill.style.width = progress * oldProgressBar.offsetWidth + "px";
 
 	//set time
@@ -845,13 +876,22 @@ function updateProgress()
 	//console.log("updated progress, progress = " + progress + ", width = " + oldPprogressFill.style.width)
 }
 
+function oldSetProgress(el)
+{
+	let oldJumpTo = curTrack.duration * (el.offsetX / oldProgressBar.offsetWidth);
+	curTrack.currentTime = oldJumpTo;
+	updateProgress()
+	console.log("progressss " + el)
+	console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + oldProgressBar.offsetWidth + ", oldJumpTo = " + oldJumpTo)
+}
+
 function setProgress(el)
 {
-	let jumpTo = curTrack.duration * (el.offsetX / oldProgressBar.offsetWidth);
+	let jumpTo = curTrack.duration * (el.offsetX / progressBar.offsetWidth);
 	curTrack.currentTime = jumpTo;
 	updateProgress()
 	console.log("progressss " + el)
-	console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + oldProgressBar.offsetWidth + ", jumpTo = " + jumpTo)
+	console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + progressBar.offsetWidth + ", jumpTo = " + jumpTo)
 }
 
 let oldPlaylist = document.getElementById("old-playlist-content")
