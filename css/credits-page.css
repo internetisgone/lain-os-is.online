@@ -1,40 +1,15 @@
-body
+#main-container
 {
-    background-image: url('/img/credits-bg4-small.png');
+    /* background-image: url('/img/credits-bg4-small.png'); */
     display: flex; justify-content: center; align-items: center;
-}
-
-/*mobile / portrait display*/
-@media (max-aspect-ratio: 4/3) 
-{
-	body
-	{
-		background-size: auto 100vh;
-		background-position: 50% 0%;
-	}
-}
-
-/*desktop / landscape display*/
-@media (min-aspect-ratio: 4/3) 
-{
-	body
-	{
-		background-size: 100vw auto;
-		background-position: 0% 45%;
-	}
-}
-
-#credits-main-container 
-{
-	display: flex; justify-content: center; align-items: center;
-	font-family: var(--mono-font);
+	transition: var(--fade-in);
 }
 
 #credits 
 {
 	position: relative; top: -3%;
 	width: 50vw; height: auto; padding: 5%;
-	font-family: var(--mono-font); font-size: 14px; 
+	font-size: 14px; 
 	text-align: center;
 	/* color: #f1f1f1;
 	text-shadow: 0 0 5px #ffffff, 0 0 15px #ffffff; */

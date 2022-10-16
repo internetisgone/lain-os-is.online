@@ -1,3 +1,5 @@
+/*properties shared by both main page and credits page*/
+
 @font-face 
 {
 	font-family: "LoveLetter";
@@ -12,13 +14,41 @@
 
 body 
 {
-	background-repeat: no-repeat;
 	--bg-color: #e1e4eb;
 	background-color: var(--bg-color); 
 	margin: 0px;
 
 	--mono-font: "Input-Mono", "Courier New", monospace;
 	--lain-font: "LoveLetter", "Courier New", monospace;
+
+	--fade-in: opacity 0.7s ease-out; /*used by entry div and credits page*/
+}
+
+#main-container
+{
+	width: 100vw; height: 100vh;
+	font-family: var(--mono-font); 
+    background-repeat: no-repeat;
+}
+
+/*mobile / portrait display*/
+@media (max-aspect-ratio: 4/3) 
+{
+	#main-container
+	{
+		background-size: auto 100vh;
+		background-position: 50% 0%;
+	}
+}
+
+/*desktop / landscape display*/
+@media (min-aspect-ratio: 4/3) 
+{
+	#main-container
+	{
+		background-size: 100vw auto;
+		background-position: 0% 55%;
+	}
 }
 
 p, label, button, option, ul
