@@ -440,7 +440,7 @@ function validateInput(e)
 terminalTxtContainer.onscroll = function()
 {
 	//prevent scrolling past the ascii art. since the ascii art is scaled down there's blank space above it
-	if (terminalTxtContainer.scrollTop < 580) terminalTxtContainer.scrollTop = 580;
+	if (terminalTxtContainer.scrollTop < 620) terminalTxtContainer.scrollTop = 620;
 	//console.log("terminal scroll pos " + terminalTxtContainer.scrollTop + ", scroll height = " + terminalTxtContainer.scrollHeight)
 }
 

@@ -1,0 +1,28 @@
+@font-face 
+{
+	font-family: "LoveLetter";
+	src: url("/fonts/LoveLetter.TTF") format("truetype");
+}
+
+@font-face
+{
+	font-family: "Input-Mono";
+	src: url("/fonts/Input-Regular_(InputMonoNarrow-Regular).ttf") format("truetype");
+}
+
+body 
+{
+	background-repeat: no-repeat;
+	--bg-color: #e1e4eb;
+	background-color: var(--bg-color); 
+	margin: 0px;
+
+	--mono-font: "Input-Mono", "Courier New", monospace;
+	--lain-font: "LoveLetter", "Courier New", monospace;
+}
+
+p, label, button, option, ul
+{
+	font-family: var(--mono-font);
+	color: black;
+}
