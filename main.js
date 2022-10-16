@@ -673,7 +673,7 @@ function playTrack()
 
 	curTrack.play();
 	isPlaying = true;
-	curTrackStateIcon.src = "img/test-play.png"
+	curTrackStateIcon.src = "/img/test-play.png"
 	curBitrate.innerHTML = bitrateStereoStr
 	monoStereo.style.opacity = "1"
 
@@ -689,7 +689,7 @@ function pauseTrack()
 	{
 		curTrack.pause();
 		isPlaying = false;
-		curTrackStateIcon.src = "img/test-pause.png"
+		curTrackStateIcon.src = "/img/test-pause.png"
 
 		playPauseBtn.textContent = "play";//to be deleted
 	}
@@ -776,7 +776,7 @@ function stopTrack()
 	isPlaying = false;
 	curTrack.currentTime = 0; 
 	updateProgress();
-	curTrackStateIcon.src = "img/test-stop.png";
+	curTrackStateIcon.src = "/img/test-stop.png";
 
 	curBitrate.innerHTML = bitrateStereoPlaceholder
 	monoStereo.style.opacity = "0"
@@ -791,12 +791,12 @@ function toggleShuffle()
 	if (isShuffle == false) 
 	{
 		isShuffle = true; appendTerminalOutput("shuffle on")
-		shuffleImg.src = "img/music-player-components/shuffle_on.png"
+		shuffleImg.src = "/img/music-player-components/shuffle_on.png"
 	}
 	else 
 	{
 		isShuffle = false; appendTerminalOutput("shuffle off")
-		shuffleImg.src = "img/music-player-components/shuffle_off.png"
+		shuffleImg.src = "/img/music-player-components/shuffle_off.png"
 	}
 }
 
@@ -806,7 +806,7 @@ function switchLoop()
 	{
 		loopIndex++ // 1 loop album
 		appendTerminalOutput("loop album")
-		loopImg.src = "img/music-player-components/loop_album.png"
+		loopImg.src = "/img/music-player-components/loop_album.png"
 
 		curTrack.addEventListener("ended", nextTrack); //handled in nextTrack()
 	}
@@ -814,7 +814,7 @@ function switchLoop()
 	{
 		loopIndex++ // 2 loop song 
 		appendTerminalOutput("loop song")
-		loopImg.src = "img/music-player-components/loop_song_inverted.png"
+		loopImg.src = "/img/music-player-components/loop_song_inverted.png"
 
 		curTrack.removeEventListener("ended", nextTrack)
 		curTrack.addEventListener("ended", loopSong)
@@ -823,7 +823,7 @@ function switchLoop()
 	{
 		loopIndex = 0 // 0 no loop
 		appendTerminalOutput("loop off")
-		loopImg.src = "img/music-player-components/loop_off.png"
+		loopImg.src = "/img/music-player-components/loop_off.png"
 
 		curTrack.removeEventListener("ended", loopSong)
 		curTrack.addEventListener("ended", nextTrack); //handled in nextTrack()
@@ -913,7 +913,7 @@ let showingOldUI = false
 tempToggle.addEventListener("click", function(){
 	if (showingOldUI)
 	{
-		document.body.style.backgroundImage = 'url("img/lain_extended_m.png")'
+		document.body.style.backgroundImage = 'url("/img/lain_extended_m.png")'
 		oldPlayerContainer.style.display = "none"
 		playlistEl.style.display = "none"
 		dockContainer.style.display = "flex"

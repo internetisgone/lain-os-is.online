@@ -4,12 +4,6 @@ body
     --music-player-body: url("/img/player_marble_artistlink1.png");
 }
 
-p, label, button, option, ul
-{
-	font-family: var(--mono-font);
-	color: black;
-}
-
 /*mobile / portrait display*/
 /*bg lain pic, entry frame, and icon dock*/
 @media (max-aspect-ratio: 4/3) {
@@ -151,6 +145,12 @@ p, label, button, option, ul
 
 	#terminal-ascii-art {transform: scale(0.30) translate(-120%, 110%);}
 	#credits-btn {width: 150px; height: 150px;}
+}
+
+p, label, button, option, ul
+{
+	font-family: var(--mono-font);
+	color: black;
 }
 
 hr /*temp*/
