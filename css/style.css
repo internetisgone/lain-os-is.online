@@ -51,7 +51,7 @@ body
 	}
 }
 
-p, label, button, option, ul
+p, label, button, option, ul, a
 {
 	font-family: var(--mono-font);
 	color: black;

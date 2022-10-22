@@ -92,15 +92,6 @@ const bitrateStereoStr = "320 KBPS 48 KHZ";
 const bitrateStereoPlaceholder = "&nbsp;&nbsp;&nbsp;&nbsp;KBPS&nbsp;&nbsp;&nbsp;&nbsp;KHZ"
 const loadingTrackStr = "loading metadata..."; 
 const totalTime = "68:21" //calculated with totalLengthTest() in onload()
-const shuffleImages = [
-	"/img/music-player-components/shuffle_off.png",
-	"/img/music-player-components/shuffle_on.png",
-]
-const loopImages = [
-	"/img/music-player-components/loop_off.png", 
-	"/img/music-player-components/loop_album.png", 
-	"/img/music-player-components/loop_song_inverted.png"
-]
 
 //terminal texts
 const lainStrings = [
@@ -457,9 +448,9 @@ let helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤�
 							+ "&emsp;&emsp;<span style='color:lime'>next </span><br>"
 							+ "&emsp;&emsp;<span style='color:lime'>random </span>&nbsp;play a random song<br><br>"
 							+ "audio filters<br>"
-							+ "&emsp;&emsp;<span style='color:lime'>toilet </span>&nbsp;test filter 1 (pay a visit to the toilet)<br>"
-							+ "&emsp;&emsp;<span style='color:lime'>test2 </span>&nbsp;&nbsp;test filter 2<br>"
-							+ "&emsp;&emsp;<span style='color:lime'>test3 </span>&nbsp;&nbsp;test filter 3<br>"
+							+ "&emsp;&emsp;<span style='color:lime'>server room</span><br>"
+							+ "&emsp;&emsp;<span style='color:lime'>smoking area</span><br>"
+							+ "&emsp;&emsp;<span style='color:lime'>toilet</span><br>"
 							+ "&emsp;&emsp;<span style='color:lime'>leave </span>&nbsp; clear all audio filters<br><br>"
 							+ "¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨<br>"
 function checkCommand(input) 
@@ -481,9 +472,9 @@ function checkCommand(input)
 
 		//filters
 		case "leave": applyFilter(0); break;
-		case "toilet": applyFilter(1); break;
-		case "test2": applyFilter(2); break;
-		case "test3": applyFilter(3); break;
+		case "server room": applyFilter(1); break;
+		case "smoking area": applyFilter(2); break;
+		case "toilet": applyFilter(3); break;
 
 		default: terminalDisplay.innerHTML += invalidInputStr + "</br>"
 	}
@@ -790,12 +781,12 @@ function toggleShuffle()
 	if (isShuffle == false) 
 	{
 		isShuffle = true; appendTerminalOutput("shuffle on")
-		shuffleImg.src = shuffleImages[1]
+		shuffleImg.src = "/img/music-player-components/shuffle_on.png"
 	}
 	else 
 	{
 		isShuffle = false; appendTerminalOutput("shuffle off")
-		shuffleImg.src = shuffleImages[0]
+		shuffleImg.src = "/img/music-player-components/shuffle_off.png"
 	}
 }
 
@@ -805,7 +796,7 @@ function switchLoop()
 	{
 		loopIndex++ // 1 loop album
 		appendTerminalOutput("loop album")
-		loopImg.src = loopImages[1]
+		loopImg.src = "/img/music-player-components/loop_album.png"
 
 		curTrack.addEventListener("ended", nextTrack); //handled in nextTrack()
 	}
@@ -813,8 +804,7 @@ function switchLoop()
 	{
 		loopIndex++ // 2 loop song 
 		appendTerminalOutput("loop song")
-		loopImg.src = loopImages[2]
-
+		loopImg.src = "/img/music-player-components/loop_song_inverted.png"
 		curTrack.removeEventListener("ended", nextTrack)
 		curTrack.addEventListener("ended", loopSong)
 	}
@@ -822,7 +812,7 @@ function switchLoop()
 	{
 		loopIndex = 0 // 0 no loop
 		appendTerminalOutput("loop off")
-		loopImg.src = loopImages[0]
+		loopImg.src = "/img/music-player-components/loop_off.png"
 
 		curTrack.removeEventListener("ended", loopSong)
 		curTrack.addEventListener("ended", nextTrack); //handled in nextTrack()
@@ -1181,14 +1171,7 @@ function clearAllFilters()
     switchBiquad(0);
 }
 
-function gotoToilet() //test filter 1
-{
-	//lowshelf
-	switchBiquad(4);
-	biquadFilter.gain.value = 40;
-}
-
-function TestFilter2()
+function gotoServerRoom()
 //lowpass + reverb
 {
 	switchBiquad(1); //["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch", "allpass"]
@@ -1202,22 +1185,42 @@ function TestFilter2()
 	turnOnReverb();
 }
 
-function TestFilter3()
-//reverb
+function gotoSmokingArea()
 {
-	switchBiquad(0);
+	switchBiquad(8); //allpass
+	biquadFilter.frequency.value = 2000;
+	biquadFilter.Q.value = 0.01;
 
 	turnOffReverb(); //clear convolver buffer 
-	impulse = impulseResponse(100, 15) //duration, decay
+	impulse = impulseResponse(10, 60) //duration, decay
+	convolver.buffer = impulse
+	turnOnReverb();
+}
+
+function gotoToilet() //test filter 1
+{
+	switchBiquad(4); //lowshelf
+	biquadFilter.gain.value = 0;
+
+	turnOffReverb(); //clear convolver buffer 
+	impulse = impulseResponse(7, 13) //duration, decay
 	convolver.buffer = impulse
 	turnOnReverb();
 }
 
 let filterPresetsArray = [
 	clearAllFilters, 
-	gotoToilet,
-	TestFilter2, 
-	TestFilter3]
+	gotoServerRoom,
+	gotoSmokingArea, 
+	gotoToilet
+]
+
+let filterNames = [
+	"nowhere",
+	"server room",
+	"smoking area",
+	"toilet"
+]
 
 function applyFilter(index)
 {
@@ -1226,6 +1229,7 @@ function applyFilter(index)
 
 	if (index != currentFilter) 
 	{
+		let prevFilter = currentFilter;
 		currentFilter = index;
 		let fadeOut = setInterval(function(){
 			if (gainNode.gain.value > crossfadeGainDelta)
@@ -1243,6 +1247,10 @@ function applyFilter(index)
 				gainNode.gain.setValueAtTime(0, audioContext.currentTime);
 				filterPresetsArray[index]();
 				console.log("applied audio filter at index " + index)
+
+				if (index === 0)
+					appendTerminalOutput("you've left " + filterNames[prevFilter]);
+				else appendTerminalOutput("you are now in " + filterNames[index]);
 				
 				//fade in
 				let fadeIn = setInterval(function(){
@@ -1262,7 +1270,7 @@ function applyFilter(index)
 	}
 	else 
 	{
-		terminalDisplay.innerHTML += "filter " + index + " has already been applied<br>";
+		appendTerminalOutput("you are already in " + filterNames[index])
 	}	
 }
 

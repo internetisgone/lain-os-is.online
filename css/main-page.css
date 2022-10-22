@@ -212,7 +212,7 @@ hr /*temp*/
 
 .mini-window-close 
 {
-	position: absolute;	z-index: 11;
+	position: absolute;	z-index: 11111;
 	right: 3%; top: 13%;
 	background: center/85% url("/img/music-player-components/minimise4.png") no-repeat;
 	opacity: 0.2;
@@ -230,8 +230,6 @@ hr /*temp*/
 	background-size: 100%; 
 	/*width n height are set separately, responsive to screen size*/
 	text-shadow: 0 0 5px #e1e4eb, 0 0 15px #e1e4eb; 
-/*	--music-player-bg: ghostwhite;
-	--music-player-bg-opacity: 1; */
 }
 
 #music-player .mini-window-draggable {width: 93%; right: 0;}
@@ -811,7 +809,7 @@ so that texts of variable lengths can be scrolled*/
 	max-width: 240px;
 	width: 0px;
 	height: 10px;
-	background-color: violet;
+	background-color: dimgray;
 	z-index: -1;
 }
 /***************** old music player *****************/
