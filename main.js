@@ -88,8 +88,8 @@ const entryOnloadStr = "log in";
 const entryBottomStr = "public domain operating system"
 
 //music player texts
-const bitrateStereoStr = "320 KBPS 44.1 KHZ";  
-const bitrateStereoPlaceholder = "&nbsp;&nbsp;&nbsp;&nbsp;KBPS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KHZ"
+const bitrateStereoStr = "320 KBPS 48 KHZ";  
+const bitrateStereoPlaceholder = "&nbsp;&nbsp;&nbsp;&nbsp;KBPS&nbsp;&nbsp;&nbsp;&nbsp;KHZ"
 const loadingTrackStr = "loading metadata..."; 
 const totalTime = "68:21" //calculated with totalLengthTest() in onload()
 
@@ -405,13 +405,14 @@ function validateInput(e)
 				// let upperBound = (lainCount > lainStrings.length - 1 - rangeDelta)? (lainStrings.length - 1) : (lainCount + rangeDelta)
 				// if (lowerBound > upperBound) lowerBound = upperBound;
 
-				//method 1 random int w range
-				//let outputIndex = getRandomInt(lowerBound, upperBound)
+				// method 1 random int w range
+				// let outputIndex = getRandomInt(lowerBound, upperBound)
 
-				//method 2 normally distributed int w range 
-				//let outputIndex = getIntNormallyDistributed(lowerBound, upperBound)
+				// method 2 normally distributed int w range 
+				// let outputIndex = getIntNormallyDistributed(lowerBound, upperBound)
 
-				//method 3 use input count directly
+				// method 3 use input count directly
+				// prob gonna go with this method cuz lainStrings has a rather small size and this way the user can go thru every string element
 				let outputIndex = (lainCount > lainStrings.length - 1)? (lainStrings.length - 1) : lainCount;
 				terminalDisplay.innerHTML += lainStrings[outputIndex] + "<br>";
 
@@ -511,7 +512,7 @@ let curTrackText = document.getElementById("cur-track-info")
 let curIndex = 0
 let curTrack = document.getElementById("cur-track")
 let isPlaying = false
-let progressTimer = null
+let progressTimer
 
 let nowPlayingContainer = document.getElementById("now-playing-container")
 let nowPlayingWrapper = document.getElementById("now-playing")
@@ -590,7 +591,8 @@ oldProgressBar.addEventListener("click", oldSetProgress);
 
 function loadTrack()
 {
-	if (progressTimer != null) 	{clearInterval(progressTimer)}
+	// if (progressTimer != null) 	{}
+	clearInterval(progressTimer);
 	curTrack.src = trackList[curIndex].path;
 	curTrackText.textContent = loadingTrackStr //old music player
 
@@ -622,6 +624,7 @@ function loadTrack()
 curTrack.onloadedmetadata = function() 
 	{
 		console.log("loaded track metadata at " + curIndex + " " + trackList[curIndex].name)
+		console.log(curTrack.duration)
 		let timeStrings = parseTime(curTrack.duration)
 
 		oldTotalTimeEl.textContent = timeStrings.min + ":" + timeStrings.sec;
@@ -673,7 +676,7 @@ function playTrack()
 
 	curTrack.play();
 	isPlaying = true;
-	curTrackStateIcon.src = "/img/test-play.png"
+	curTrackStateIcon.src = "/img/music-player-components/test-play.png"
 	curBitrate.innerHTML = bitrateStereoStr
 	monoStereo.style.opacity = "1"
 
@@ -689,7 +692,7 @@ function pauseTrack()
 	{
 		curTrack.pause();
 		isPlaying = false;
-		curTrackStateIcon.src = "/img/test-pause.png"
+		curTrackStateIcon.src = "/img/music-player-components/test-pause.png"
 
 		playPauseBtn.textContent = "play";//to be deleted
 	}
@@ -776,7 +779,7 @@ function stopTrack()
 	isPlaying = false;
 	curTrack.currentTime = 0; 
 	updateProgress();
-	curTrackStateIcon.src = "/img/test-stop.png";
+	curTrackStateIcon.src = "/img/music-player-components/test-stop.png";
 
 	curBitrate.innerHTML = bitrateStereoPlaceholder
 	monoStereo.style.opacity = "0"
@@ -908,12 +911,13 @@ let tempToggle = document.getElementById("temp-toggle")
 let oldPlayerContainer = document.getElementById("old-player-container")
 let playlistEl = document.getElementById("old-playlist-container")
 let playlistToggle = document.getElementById("pl-toggle")
+let mainContainer = document.getElementById("main-container")
 
 let showingOldUI = false
 tempToggle.addEventListener("click", function(){
 	if (showingOldUI)
 	{
-		document.body.style.backgroundImage = 'url("/img/lain_extended_m.png")'
+		mainContainer.style.backgroundImage = 'url("/img/lain_extended_m.png")'
 		oldPlayerContainer.style.display = "none"
 		playlistEl.style.display = "none"
 		dockContainer.style.display = "flex"
@@ -926,7 +930,7 @@ tempToggle.addEventListener("click", function(){
 	}
 	else 
 	{
-		document.body.style.backgroundImage = "none"
+		mainContainer.style.backgroundImage = "none"
 		oldPlayerContainer.style.display = "block"
 		dockContainer.style.display = "none"
 		//playlistEl.style.display = "block"

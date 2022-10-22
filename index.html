@@ -28,10 +28,11 @@
 		<div class="mini-window" id="music-player">
 			<audio preload="auto" id="cur-track"></audio>
 <!-- 			<audio preload="auto" id="bg-track" loop src="/bg-mp3/server_room_188.mp3"></audio>  -->
-			<div class="mini-window-header"></div>
+			<div class="mini-window-header">player
+				<div class="mini-window-close"></div>
+			</div>
 			<div class="mini-window-draggable"></div>
-			<div class="mini-window-close"></div>
-
+			
 			<div id="now-playing-container">
 				<p id="now-playing-static"></p>
 				<p id="changing-volume"></p>
@@ -92,7 +93,7 @@
 			<div id="mini-display-container">
 				<div id="mini-total-time">00:00 / 00:00</div>
 				<div id="mini-controls">
-					<img src="/img/music-player-components/icons_all_g.png">
+					<img src="/img/music-player-components/icons_all_c.png">
 					<div id="mini-controls-btns-container">
 						<button onclick="prevTrack()"></button>
 						<button onclick="playTrack()"></button>
@@ -108,10 +109,11 @@
 
 		<!-------------- terminal -------------->
 		<div class="mini-window" id="terminal">
-			<div class="mini-window-header">terminal</div>
+			<div class="mini-window-header">terminal
+				<div class="mini-window-close"></div>
+			</div>
 			<div class="mini-window-draggable"></div>
-			<div class="mini-window-close"></div>
-
+			
 			<div id="terminal-inner-container">
 				<div id="terminal-txt-container">
 <!-- 				<pre style="color: whitesmoke;">
@@ -212,10 +214,11 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 
 		<!-------------- chat -------------->
 		<div class="mini-window" id="chat-window">
-			<div class="mini-window-header">chat</div>
+			<div class="mini-window-header">chat
+				<div class="mini-window-close"></div>
+			</div>
 			<div class="mini-window-draggable"></div>
-			<div class="mini-window-close"></div>
-
+	
 			<div id="chat-container">
 				<p style="position: absolute; width: 100%; text-align: center; color: black; z-index: -1;">loading chat...</p>
 				<script id="cid0020000321473420645" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%; height: 100%;">{"handle":"lain-os-test","arch":"js","styles":{"b":100,"c":"000000","d":"000000","l":"FFFFFF","m":"FFFFFF","p":"11","r":100,"t":0,"surl":0,"cnrs":"0.35","showx":0}}</script>
@@ -225,9 +228,10 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 
 		<!-------------- version history -------------->
 		<div class="mini-window" id="version-history-window">
-			<div class="mini-window-header">version history</div>
-			<div class="mini-window-draggable"></div>
-			<div class="mini-window-close"></div>
+			<div class="mini-window-header">version history
+				<div class="mini-window-close"></div>
+			</div>
+			<div class="mini-window-draggable"></div>		
 
 			<div id="version-history-container">
 				<pre id="version-history-texts">
@@ -282,7 +286,7 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 					</div>
 					<div class="icon" style="display: block;"> 
 						<a href="https://isitbandcampfriday.com/" target="_blank">
-							<img src="/img/window-icons/hmmm.jpeg"></img> 
+							<img src="/img/window-icons/bandcamp37.png"></img> 
 						</a>
 					</div>
 				</div>
