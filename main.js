@@ -87,11 +87,20 @@ const entryInitStr = "initialising";
 const entryOnloadStr = "log in";
 const entryBottomStr = "public domain operating system"
 
-//music player texts
+//music player 
 const bitrateStereoStr = "320 KBPS 48 KHZ";  
 const bitrateStereoPlaceholder = "&nbsp;&nbsp;&nbsp;&nbsp;KBPS&nbsp;&nbsp;&nbsp;&nbsp;KHZ"
 const loadingTrackStr = "loading metadata..."; 
 const totalTime = "68:21" //calculated with totalLengthTest() in onload()
+const shuffleImages = [
+	"/img/music-player-components/shuffle_off.png",
+	"/img/music-player-components/shuffle_on.png",
+]
+const loopImages = [
+	"/img/music-player-components/loop_off.png", 
+	"/img/music-player-components/loop_album.png", 
+	"/img/music-player-components/loop_song_inverted.png"
+]
 
 //terminal texts
 const lainStrings = [
@@ -123,13 +132,6 @@ let isLandscape = window.matchMedia("(min-aspect-ratio: 4/3)").matches
 // let entryBottomTexts = document.getElementById("entry-bottom-text")
 
 // // let bgAudio = document.getElementById("bg-track")
-// // let bgAudioToggle = document.getElementById("temp-bg-audio-toggle")
-// // let hasBgAudio = false
-
-// // bgAudioToggle.addEventListener("click", function(){
-// // 	if (hasBgAudio) {bgAudio.pause(); hasBgAudio = false}
-// // 	else {bgAudio.play(); hasBgAudio = true}
-// // })
 
 // // manually center the loading text so its position is fixed while adding the "..."
 // let initialLeft = entryTextsEl.parentElement.offsetWidth/2 - entryTextsEl.offsetWidth/2
@@ -181,12 +183,6 @@ let isLandscape = window.matchMedia("(min-aspect-ratio: 4/3)").matches
 // 	entryPage.addEventListener("click", function(){
 // 		entryPage.style.opacity = "0"
 // 		if (audioContext.state === 'suspended') {audioContext.resume();}
-
-// 		// bgAudio.load();
-// 		// bgAudio.addEventListener("canplaythrough", function(){bgAudio.play();})
-// 		// hasBgAudio = true;
-// 		// bgAudio.volume = 0.2;
-
 // 		//setInterval(totalLengthTest, 3000);
 // 	})
 
@@ -794,12 +790,12 @@ function toggleShuffle()
 	if (isShuffle == false) 
 	{
 		isShuffle = true; appendTerminalOutput("shuffle on")
-		shuffleImg.src = "/img/music-player-components/shuffle_on.png"
+		shuffleImg.src = shuffleImages[1]
 	}
 	else 
 	{
 		isShuffle = false; appendTerminalOutput("shuffle off")
-		shuffleImg.src = "/img/music-player-components/shuffle_off.png"
+		shuffleImg.src = shuffleImages[0]
 	}
 }
 
@@ -809,7 +805,7 @@ function switchLoop()
 	{
 		loopIndex++ // 1 loop album
 		appendTerminalOutput("loop album")
-		loopImg.src = "/img/music-player-components/loop_album.png"
+		loopImg.src = loopImages[1]
 
 		curTrack.addEventListener("ended", nextTrack); //handled in nextTrack()
 	}
@@ -817,7 +813,7 @@ function switchLoop()
 	{
 		loopIndex++ // 2 loop song 
 		appendTerminalOutput("loop song")
-		loopImg.src = "/img/music-player-components/loop_song_inverted.png"
+		loopImg.src = loopImages[2]
 
 		curTrack.removeEventListener("ended", nextTrack)
 		curTrack.addEventListener("ended", loopSong)
@@ -826,7 +822,7 @@ function switchLoop()
 	{
 		loopIndex = 0 // 0 no loop
 		appendTerminalOutput("loop off")
-		loopImg.src = "/img/music-player-components/loop_off.png"
+		loopImg.src = loopImages[0]
 
 		curTrack.removeEventListener("ended", loopSong)
 		curTrack.addEventListener("ended", nextTrack); //handled in nextTrack()
