@@ -18,10 +18,10 @@ load(bgImgPath).then(() =>
     mainContainer.style.opacity = "1";
 });
 
-//open all links in new tab
+//all links will open in new tab
 let links = document.getElementsByTagName("a")
 for (let i = 0; i < links.length; i++)
 {
-    console.log(links.item(i))
+    // console.log(links.item(i))
     links.item(i).target = "_blank";
 }

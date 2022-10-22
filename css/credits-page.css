@@ -1,11 +1,15 @@
-#main-container
+#main-container /*holds the bg image which is set in js*/
 {
-    /* background-image: url('/img/credits-bg4-small.png'); */
-	/*bg is set in js*/
-    display: flex; justify-content: center; align-items: center;
+	position: absolute;
 	transition: var(--fade-in);
-	overflow-y: scroll;
+}
 
+#credits-container
+{
+	position: absolute; z-index: 11;
+	width: 100vw; height: 100vh;
+	display: flex; justify-content: center; align-items: center;
+	overflow-y: scroll;
 	--text-glow-color: #f1f1f1;
 	--text-glow-shadow: 0 0 5px #ffffff, 0 0 15px #ffffff;
 }

@@ -410,7 +410,8 @@ function validateInput(e)
 		//valid input
 		else if (inputEl.value.match(inputPattern))	
 		{
-			checkCommand(inputEl.value);
+			// only look at the first 4 chars
+			checkCommand(inputEl.value.trim().toLowerCase().substring(0, 4));
 		}
 		else //invalid input
 		{
@@ -452,18 +453,20 @@ let helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤�
 							+ "&emsp;&emsp;<span style='color:lime'>smoking area</span><br>"
 							+ "&emsp;&emsp;<span style='color:lime'>toilet</span><br>"
 							+ "&emsp;&emsp;<span style='color:lime'>leave </span>&nbsp; clear all audio filters<br><br>"
+							+ "note: only the first 4 letters are processed. <span style='color:lime'>serv</span> is equivalent to <span style='color:lime'>server room</span><br><br>"
 							+ "¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨<br>"
 function checkCommand(input) 
 {
-	switch (input.trim().toLowerCase()) 
+	// console.log("trimmed command " + input)
+	switch (input) 
 	{
 		//playback
 		case "play": playTrack(); break;
-		case "pause": pauseTrack(); break;
+		case "paus": pauseTrack(); break;
 		case "stop": stopTrack(); break;
 		case "prev": prevTrack(); break;
 		case "next": nextTrack(); break;
-		case "random": 
+		case "rand": 
 			curIndex = getRandomInt(0, trackList.length)
 			loadTrack(); playTrack();
 			break;
@@ -471,10 +474,10 @@ function checkCommand(input)
 		case "help": terminalDisplay.innerHTML += helpText; break;
 
 		//filters
-		case "leave": applyFilter(0); break;
-		case "server room": applyFilter(1); break;
-		case "smoking area": applyFilter(2); break;
-		case "toilet": applyFilter(3); break;
+		case "leav": applyFilter(0); break;
+		case "serv": applyFilter(1); break;
+		case "smok": applyFilter(2); break;
+		case "toil": applyFilter(3); break;
 
 		default: terminalDisplay.innerHTML += invalidInputStr + "</br>"
 	}
@@ -611,7 +614,7 @@ function loadTrack()
 curTrack.onloadedmetadata = function() 
 	{
 		console.log("loaded track metadata at " + curIndex + " " + trackList[curIndex].name)
-		console.log(curTrack.duration)
+		// console.log(curTrack.duration)
 		let timeStrings = parseTime(curTrack.duration)
 
 		oldTotalTimeEl.textContent = timeStrings.min + ":" + timeStrings.sec;
