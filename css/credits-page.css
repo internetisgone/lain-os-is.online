@@ -24,13 +24,13 @@
 /*desktop / landscape display*/
 @media (min-aspect-ratio: 4/3) 
 {
-	#credits {font-size: 14px; margin-top: 30%;}
+	#credits {font-size: 14px; margin-top: 35%;}
 	#artist-list {width: 37%;}
 }
 
 #credits 
 {
-	width: 100%;
+	width: 100%; 
 	display: flex; justify-content: center; align-items: center; flex-direction: column;
 }
 

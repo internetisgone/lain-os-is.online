@@ -1,86 +1,100 @@
+// const trackList = [
+// 	{
+// 		name: "x/o - Duvet cyberia re-chopped & screwed-MiX",
+// 		path: "/21sept-master-mp3/xo - 200529-DuvetBoa8  [master 20220921].mp3",
+// 		link: "https://x-o-xio.bandcamp.com"
+// 	},
+// 	{
+// 		name: "Wa?ste - cyberia texture 5a x professed intention and real intention",
+// 		path: "/21sept-master-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention [master 20221005].mp3",
+// 		link: "https://wa-ste222.bandcamp.com"
+// 	},
+// 	{
+// 		name: "Thegn ft. Vrain - phantoma_-_track04.wav",
+// 		path: "/21sept-master-mp3/thegn ft. vrain - phantoma [master 20220921].mp3",
+// 		link: "https://thegn.bandcamp.com"
+// 	},
+// 	{
+// 		name: "Nerve - I'm Gonna Diss You",
+// 		path: "/21sept-master-mp3/Nerve - I_m Gonna Diss You [master 20220921].mp3",
+// 		link: "https://www.lo4nerve.com"
+// 	},
+// 	{
+// 		name: "Fetus - Footprints",
+// 		path: "/21sept-master-mp3/Fetus - Footprints [master 20220921].mp3",
+// 		link: "https://fetusmusic.bandcamp.com"
+// 	},
+// 	{
+// 		name: "GRASPS X NERDIE - I AM HURTING",
+// 		path: "/21sept-master-mp3/GRASPS X NERDIE - I AM HURTING [master 20220921].mp3",
+// 		link: "" //handled in loadTrack()
+// 	},
+// 	{
+// 		name: "Yraki - Lights Down",
+// 		path: "/21sept-master-mp3/Yraki - Lights Down [master 20220921].mp3",
+// 		link: "https://yraki.bandcamp.com"
+// 	},
+// 	{
+// 		name: "Sour Gout - Transmigration",
+// 		path: "/21sept-master-mp3/Sour Gout - Transmigration [master 20220921].mp3",
+// 		link: "https://sourgout.bandcamp.com/"
+// 	},
+// 	{
+// 		name: "lovefear - Breathe",
+// 		path: "/21sept-master-mp3/lovefear - SEL compilation track final  [master 20220921].mp3",
+// 		link: "https://lovefear.bandcamp.com/"
+// 	},
+// 	{
+// 		name: "堀池ゆめぁ - lain ",
+// 		path: "/21sept-master-mp3/Yumea Horiike - lain [master 20220921].mp3",
+// 		linkName: "artist link",
+// 		link: "https://uuumea.bandcamp.com"
+// 	},
+// 	{
+// 		name: "Yuting Wu - Help me to Breathe",
+// 		path: "/21sept-master-mp3/Yuting Wu - Help me to Breathe [master 20220921].mp3",
+// 		link: "https://yutingwu.bandcamp.com"
+// 	},
+// 	{
+// 		name: "ΛFΛLFL - just some kick noyze",
+// 		path: "/21sept-master-mp3/afalfl - just some kick noyze [master 20220921].mp3",
+// 		link: "https://afalfl.bandcamp.com/"
+// 	  },
+// 	  {
+// 		name: "Yikii - Ancient Scanner",
+// 		path: "/21sept-master-mp3/Yikii - Ancient Scanner [master 20220921].mp3",
+// 		link: "https://yikii.bandcamp.com"
+// 	},
+// 	{
+// 		name: "Kagami Smile -  Acts of Betrayal",
+// 		path: "/21sept-master-mp3/Kagami Smile -  Acts of Betrayal [master 20220921].mp3",
+// 		link: "https://kagamismile.bandcamp.com/"
+// 	},
+// 	{
+// 		name: "Imryll - Family Portrait (Imryll Reimagined)",
+// 		path: "/21sept-master-mp3/Imryll - Family Portrait (Imryll Reimagined) [master 20220921].mp3",
+// 		link: "https://phantomlimblabel.bandcamp.com/album/psalm008-mortal"
+// 	},
+// 	{
+// 		name: "Jennifer Walton - At Last, Lain Is Free",
+// 		path: "/21sept-master-mp3/Jennifer Walton - At Last, Lain Is Free [master 20220921].mp3",
+// 		link: "https://allcentre.bandcamp.com/album/flash-on"
+// 	},
+// ]; 
+
+// test tracks
 const trackList = [
 	{
-		name: "x/o - Duvet cyberia re-chopped & screwed-MiX",
-		path: "/21sept-master-mp3/xo - 200529-DuvetBoa8  [master 20220921].mp3",
-		link: "https://x-o-xio.bandcamp.com"
+		name: "boa - duvet",
+		path: "/mp3/boa_duvet.mp3",
+		link: "https://bandcamp.com"
 	},
 	{
-		name: "Wa?ste - cyberia texture 5a x professed intention and real intention",
-		path: "/21sept-master-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention [master 20221005].mp3",
-		link: "https://wa-ste222.bandcamp.com"
+		name: "exxy4_TWICE 트와이스 TT 3XXY EDIT",
+		path: "/mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3",
+		link: "https://bandcamp.com"
 	},
-	{
-		name: "Thegn ft. Vrain - phantoma_-_track04.wav",
-		path: "/21sept-master-mp3/thegn ft. vrain - phantoma [master 20220921].mp3",
-		link: "https://thegn.bandcamp.com"
-	},
-	{
-		name: "Nerve - I'm Gonna Diss You",
-		path: "/21sept-master-mp3/Nerve - I_m Gonna Diss You [master 20220921].mp3",
-		link: "https://www.lo4nerve.com"
-	},
-	{
-		name: "Fetus - Footprints",
-		path: "/21sept-master-mp3/Fetus - Footprints [master 20220921].mp3",
-		link: "https://fetusmusic.bandcamp.com"
-	},
-	{
-		name: "GRASPS X NERDIE - I AM HURTING",
-		path: "/21sept-master-mp3/GRASPS X NERDIE - I AM HURTING [master 20220921].mp3",
-		link: "" //handled in loadTrack()
-	},
-	{
-		name: "Yraki - Lights Down",
-		path: "/21sept-master-mp3/Yraki - Lights Down [master 20220921].mp3",
-		link: "https://yraki.bandcamp.com"
-	},
-	{
-		name: "Sour Gout - Transmigration",
-		path: "/21sept-master-mp3/Sour Gout - Transmigration [master 20220921].mp3",
-		link: "https://sourgout.bandcamp.com/"
-	},
-	{
-		name: "lovefear - Breathe",
-		path: "/21sept-master-mp3/lovefear - SEL compilation track final  [master 20220921].mp3",
-		link: "https://lovefear.bandcamp.com/"
-	},
-	{
-		name: "堀池ゆめぁ - lain ",
-		path: "/21sept-master-mp3/Yumea Horiike - lain [master 20220921].mp3",
-		linkName: "artist link",
-		link: "https://uuumea.bandcamp.com"
-	},
-	{
-		name: "Yuting Wu - Help me to Breathe",
-		path: "/21sept-master-mp3/Yuting Wu - Help me to Breathe [master 20220921].mp3",
-		link: "https://yutingwu.bandcamp.com"
-	},
-	{
-		name: "ΛFΛLFL - just some kick noyze",
-		path: "/21sept-master-mp3/afalfl - just some kick noyze [master 20220921].mp3",
-		link: "https://afalfl.bandcamp.com/"
-	  },
-	  {
-		name: "Yikii - Ancient Scanner",
-		path: "/21sept-master-mp3/Yikii - Ancient Scanner [master 20220921].mp3",
-		link: "https://yikii.bandcamp.com"
-	},
-	{
-		name: "Kagami Smile -  Acts of Betrayal",
-		path: "/21sept-master-mp3/Kagami Smile -  Acts of Betrayal [master 20220921].mp3",
-		link: "https://kagamismile.bandcamp.com/"
-	},
-	{
-		name: "Imryll - Family Portrait (Imryll Reimagined)",
-		path: "/21sept-master-mp3/Imryll - Family Portrait (Imryll Reimagined) [master 20220921].mp3",
-		link: "https://phantomlimblabel.bandcamp.com/album/psalm008-mortal"
-	},
-	{
-		name: "Jennifer Walton - At Last, Lain Is Free",
-		path: "/21sept-master-mp3/Jennifer Walton - At Last, Lain Is Free [master 20220921].mp3",
-		link: "https://allcentre.bandcamp.com/album/flash-on"
-	},
-]; 
+]
 
 //entry page texts
 const entryInitStr = "initialising";
@@ -118,70 +132,69 @@ let isLandscape = window.matchMedia("(min-aspect-ratio: 4/3)").matches
 
 ////////////// entry page //////////////
 
-// let entryPage = document.getElementById("entry-page")
-// let entryTextsEl = document.getElementById("entry-texts")
-// let entryBottomTexts = document.getElementById("entry-bottom-text")
+let entryPage = document.getElementById("entry-page")
+let entryTextsEl = document.getElementById("entry-texts")
+let entryBottomTexts = document.getElementById("entry-bottom-text")
 
-// // let bgAudio = document.getElementById("bg-track")
+// let bgAudio = document.getElementById("bg-track")
 
-// // manually center the loading text so its position is fixed while adding the "..."
-// let initialLeft = entryTextsEl.parentElement.offsetWidth/2 - entryTextsEl.offsetWidth/2
-// entryTextsEl.style.left = initialLeft + "px"
-// let loadingTimer = setInterval(loadingText, 777)
-// let loadingIndex = 0
+// manually center the loading text so its position is fixed while adding the "..."
+let initialLeft = entryTextsEl.parentElement.offsetWidth/2 - entryTextsEl.offsetWidth/2
+entryTextsEl.style.left = initialLeft + "px"
+let loadingTimer = setInterval(loadingText, 777)
+let loadingIndex = 0
 
-// function loadingText()
-// {
-// 	if (loadingIndex < 3)
-// 	{
-// 		entryTextsEl.textContent += ".";
-// 		loadingIndex++;
-// 	}
-// 	else 
-// 	{
-// 		entryTextsEl.textContent = entryInitStr;
-// 		loadingIndex = 0;
-// 	}
-// }
+function loadingText()
+{
+	if (loadingIndex < 3)
+	{
+		entryTextsEl.textContent += ".";
+		loadingIndex++;
+	}
+	else 
+	{
+		entryTextsEl.textContent = entryInitStr;
+		loadingIndex = 0;
+	}
+}
 
-// //unicode chars 33-122, 161-404. see getUnicodeChars() in utilities
-// let chars = ["!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","¡","¢","£","¤","¥","¦","§","¨","©","ª","«","¬","­","®","¯","°","±","²","³","´","µ","¶","·","¸","¹","º","»","¼","½","¾","¿","À","Á","Â","Ã","Ä","Å","Æ","Ç","È","É","Ê","Ë","Ì","Í","Î","Ï","Ð","Ñ","Ò","Ó","Ô","Õ","Ö","×","Ø","Ù","Ú","Û","Ü","Ý","Þ","ß","à","á","â","ã","ä","å","æ","ç","è","é","ê","ë","ì","í","î","ï","ð","ñ","ò","ó","ô","õ","ö","÷","ø","ù","ú","û","ü","ý","þ","ÿ","Ā","ā","Ă","ă","Ą","ą","Ć","ć","Ĉ","ĉ","Ċ","ċ","Č","č","Ď","ď","Đ","đ","Ē","ē","Ĕ","ĕ","Ė","ė","Ę","ę","Ě","ě","Ĝ","ĝ","Ğ","ğ","Ġ","ġ","Ģ","ģ","Ĥ","ĥ","Ħ","ħ","Ĩ","ĩ","Ī","ī","Ĭ","ĭ","Į","į","İ","ı","Ĳ","ĳ","Ĵ","ĵ","Ķ","ķ","ĸ","Ĺ","ĺ","Ļ","ļ","Ľ","ľ","Ŀ","ŀ","Ł","ł","Ń","ń","Ņ","ņ","Ň","ň","ŉ","Ŋ","ŋ","Ō","ō","Ŏ","ŏ","Ő","ő","Œ","œ","Ŕ","ŕ","Ŗ","ŗ","Ř","ř","Ś","ś","Ŝ","ŝ","Ş","ş","Š","š","Ţ","ţ","Ť","ť","Ŧ","ŧ","Ũ","ũ","Ū","ū","Ŭ","ŭ","Ů","ů","Ű","ű","Ų","ų","Ŵ","ŵ","Ŷ","ŷ","Ÿ","Ź","ź","Ż","ż","Ž","ž","ſ","ƀ","Ɓ","Ƃ","ƃ","Ƅ","ƅ","Ɔ","Ƈ","ƈ","Ɖ","Ɗ","Ƌ","ƌ","ƍ","Ǝ","Ə","Ɛ","Ƒ","ƒ","Ɠ","Ɣ"]
-// let BottomTextLength = 33
-// let bottomTextTimer = setInterval(scrambleBottomText, 100)
+//unicode chars 33-122, 161-404. see getUnicodeChars() in utilities
+let chars = ["!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","¡","¢","£","¤","¥","¦","§","¨","©","ª","«","¬","­","®","¯","°","±","²","³","´","µ","¶","·","¸","¹","º","»","¼","½","¾","¿","À","Á","Â","Ã","Ä","Å","Æ","Ç","È","É","Ê","Ë","Ì","Í","Î","Ï","Ð","Ñ","Ò","Ó","Ô","Õ","Ö","×","Ø","Ù","Ú","Û","Ü","Ý","Þ","ß","à","á","â","ã","ä","å","æ","ç","è","é","ê","ë","ì","í","î","ï","ð","ñ","ò","ó","ô","õ","ö","÷","ø","ù","ú","û","ü","ý","þ","ÿ","Ā","ā","Ă","ă","Ą","ą","Ć","ć","Ĉ","ĉ","Ċ","ċ","Č","č","Ď","ď","Đ","đ","Ē","ē","Ĕ","ĕ","Ė","ė","Ę","ę","Ě","ě","Ĝ","ĝ","Ğ","ğ","Ġ","ġ","Ģ","ģ","Ĥ","ĥ","Ħ","ħ","Ĩ","ĩ","Ī","ī","Ĭ","ĭ","Į","į","İ","ı","Ĳ","ĳ","Ĵ","ĵ","Ķ","ķ","ĸ","Ĺ","ĺ","Ļ","ļ","Ľ","ľ","Ŀ","ŀ","Ł","ł","Ń","ń","Ņ","ņ","Ň","ň","ŉ","Ŋ","ŋ","Ō","ō","Ŏ","ŏ","Ő","ő","Œ","œ","Ŕ","ŕ","Ŗ","ŗ","Ř","ř","Ś","ś","Ŝ","ŝ","Ş","ş","Š","š","Ţ","ţ","Ť","ť","Ŧ","ŧ","Ũ","ũ","Ū","ū","Ŭ","ŭ","Ů","ů","Ű","ű","Ų","ų","Ŵ","ŵ","Ŷ","ŷ","Ÿ","Ź","ź","Ż","ż","Ž","ž","ſ","ƀ","Ɓ","Ƃ","ƃ","Ƅ","ƅ","Ɔ","Ƈ","ƈ","Ɖ","Ɗ","Ƌ","ƌ","ƍ","Ǝ","Ə","Ɛ","Ƒ","ƒ","Ɠ","Ɣ"]
+let BottomTextLength = 33
+let bottomTextTimer = setInterval(scrambleBottomText, 100)
 
-// function scrambleBottomText()
-// {
-// 	entryBottomTexts.textContent = ""
-// 	for (let i = 0; i < BottomTextLength; i++)
-// 	{
-// 		randIndex = getRandomInt(0, chars.length)
-// 		entryBottomTexts.textContent += chars[randIndex]
-// 	}
-// }
+function scrambleBottomText()
+{
+	entryBottomTexts.textContent = ""
+	for (let i = 0; i < BottomTextLength; i++)
+	{
+		randIndex = getRandomInt(0, chars.length)
+		entryBottomTexts.textContent += chars[randIndex]
+	}
+}
 
-// window.onload = function() {
-// 	clearInterval(loadingTimer)
-// 	clearInterval(bottomTextTimer)
+window.onload = function() {
+	clearInterval(loadingTimer)
+	clearInterval(bottomTextTimer)
 
-// 	entryTextsEl.parentElement.style.display = "flex"
-// 	entryTextsEl.parentElement.style.justifyContent = "center"
-// 	entryTextsEl.style.left = "auto"
+	entryTextsEl.parentElement.style.display = "flex"
+	entryTextsEl.parentElement.style.justifyContent = "center"
+	entryTextsEl.style.left = "auto"
 
-// 	entryTextsEl.textContent = entryOnloadStr
-// 	entryBottomTexts.style.fontFamily = "LoveLetter"
-// 	entryBottomTexts.textContent = entryBottomStr
+	entryTextsEl.textContent = entryOnloadStr
+	entryBottomTexts.style.fontFamily = "LoveLetter"
+	entryBottomTexts.textContent = entryBottomStr
 
-// 	entryPage.addEventListener("click", function(){
-// 		entryPage.style.opacity = "0"
-// 		if (audioContext.state === 'suspended') {audioContext.resume();}
-// 		//setInterval(totalLengthTest, 3000);
-// 	})
+	entryPage.addEventListener("click", function(){
+		entryPage.style.opacity = "0"
+		if (audioContext.state === 'suspended') {audioContext.resume();}
+		//setInterval(totalLengthTest, 3000);
+	})
 
-// 	entryPage.addEventListener('transitionend', function() {
-// 		entryPage.parentNode.removeChild(entryPage)
-// 	})
-// }//end of onload
-
+	entryPage.addEventListener('transitionend', function() {
+		entryPage.parentNode.removeChild(entryPage)
+	})
+}//end of onload
 
 ////////////// entry page //////////////
 
@@ -382,30 +395,33 @@ function validateInput(e)
 		//easter egg
 		if (inputEl.value.toLowerCase().includes("lain"))
 		{
-			if (lainCount == 0) 
-			{
-				terminalDisplay.innerHTML += lainStrings[0] + "</br>"; 
-			}
-			else
-			{
-				// let lowerBound = (lainCount > rangeDelta)? (lainCount - rangeDelta) : 0
-				// let upperBound = (lainCount > lainStrings.length - 1 - rangeDelta)? (lainStrings.length - 1) : (lainCount + rangeDelta)
-				// if (lowerBound > upperBound) lowerBound = upperBound;
+			terminalDisplay.innerHTML += lainStrings[0] + "</br>"; 
 
-				// method 1 random int w range
-				// let outputIndex = getRandomInt(lowerBound, upperBound)
+			// sad to see it go >:(
+			// if (lainCount == 0) 
+			// {
+			// 	terminalDisplay.innerHTML += lainStrings[0] + "</br>"; 
+			// }
+			// else
+			// {
+			// 	// let lowerBound = (lainCount > rangeDelta)? (lainCount - rangeDelta) : 0
+			// 	// let upperBound = (lainCount > lainStrings.length - 1 - rangeDelta)? (lainStrings.length - 1) : (lainCount + rangeDelta)
+			// 	// if (lowerBound > upperBound) lowerBound = upperBound;
 
-				// method 2 normally distributed int w range 
-				// let outputIndex = getIntNormallyDistributed(lowerBound, upperBound)
+			// 	// method 1 random int w range
+			// 	// let outputIndex = getRandomInt(lowerBound, upperBound)
 
-				// method 3 use input count directly
-				// prob gonna go with this method cuz lainStrings has a rather small size and this way the user can go thru every string element
-				let outputIndex = (lainCount > lainStrings.length - 1)? (lainStrings.length - 1) : lainCount;
-				terminalDisplay.innerHTML += lainStrings[outputIndex] + "<br>";
+			// 	// method 2 normally distributed int w range 
+			// 	// let outputIndex = getIntNormallyDistributed(lowerBound, upperBound)
 
-				//console.log(`range ${lowerBound} to ${upperBound}, input count ${lainCount}, output ${outputIndex}`)
-			}
-			lainCount++;
+			// 	// method 3 use input count directly
+			// 	// prob gonna go with this method cuz lainStrings has a rather small size and this way the user can go thru every string element
+			// 	let outputIndex = (lainCount > lainStrings.length - 1)? (lainStrings.length - 1) : lainCount;
+			// 	terminalDisplay.innerHTML += lainStrings[outputIndex] + "<br>";
+
+			// 	//console.log(`range ${lowerBound} to ${upperBound}, input count ${lainCount}, output ${outputIndex}`)
+			// }
+			// lainCount++;
 		}
 		//valid input
 		else if (inputEl.value.match(inputPattern))	
