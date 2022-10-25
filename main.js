@@ -1,100 +1,100 @@
-// const trackList = [
-// 	{
-// 		name: "x/o - Duvet cyberia re-chopped & screwed-MiX",
-// 		path: "/21sept-master-mp3/xo - 200529-DuvetBoa8  [master 20220921].mp3",
-// 		link: "https://x-o-xio.bandcamp.com"
-// 	},
-// 	{
-// 		name: "Wa?ste - cyberia texture 5a x professed intention and real intention",
-// 		path: "/21sept-master-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention [master 20221005].mp3",
-// 		link: "https://wa-ste222.bandcamp.com"
-// 	},
-// 	{
-// 		name: "Thegn ft. Vrain - phantoma_-_track04.wav",
-// 		path: "/21sept-master-mp3/thegn ft. vrain - phantoma [master 20220921].mp3",
-// 		link: "https://thegn.bandcamp.com"
-// 	},
-// 	{
-// 		name: "Nerve - I'm Gonna Diss You",
-// 		path: "/21sept-master-mp3/Nerve - I_m Gonna Diss You [master 20220921].mp3",
-// 		link: "https://www.lo4nerve.com"
-// 	},
-// 	{
-// 		name: "Fetus - Footprints",
-// 		path: "/21sept-master-mp3/Fetus - Footprints [master 20220921].mp3",
-// 		link: "https://fetusmusic.bandcamp.com"
-// 	},
-// 	{
-// 		name: "GRASPS X NERDIE - I AM HURTING",
-// 		path: "/21sept-master-mp3/GRASPS X NERDIE - I AM HURTING [master 20220921].mp3",
-// 		link: "" //handled in loadTrack()
-// 	},
-// 	{
-// 		name: "Yraki - Lights Down",
-// 		path: "/21sept-master-mp3/Yraki - Lights Down [master 20220921].mp3",
-// 		link: "https://yraki.bandcamp.com"
-// 	},
-// 	{
-// 		name: "Sour Gout - Transmigration",
-// 		path: "/21sept-master-mp3/Sour Gout - Transmigration [master 20220921].mp3",
-// 		link: "https://sourgout.bandcamp.com/"
-// 	},
-// 	{
-// 		name: "lovefear - Breathe",
-// 		path: "/21sept-master-mp3/lovefear - SEL compilation track final  [master 20220921].mp3",
-// 		link: "https://lovefear.bandcamp.com/"
-// 	},
-// 	{
-// 		name: "堀池ゆめぁ - lain ",
-// 		path: "/21sept-master-mp3/Yumea Horiike - lain [master 20220921].mp3",
-// 		linkName: "artist link",
-// 		link: "https://uuumea.bandcamp.com"
-// 	},
-// 	{
-// 		name: "Yuting Wu - Help me to Breathe",
-// 		path: "/21sept-master-mp3/Yuting Wu - Help me to Breathe [master 20220921].mp3",
-// 		link: "https://yutingwu.bandcamp.com"
-// 	},
-// 	{
-// 		name: "ΛFΛLFL - just some kick noyze",
-// 		path: "/21sept-master-mp3/afalfl - just some kick noyze [master 20220921].mp3",
-// 		link: "https://afalfl.bandcamp.com/"
-// 	  },
-// 	  {
-// 		name: "Yikii - Ancient Scanner",
-// 		path: "/21sept-master-mp3/Yikii - Ancient Scanner [master 20220921].mp3",
-// 		link: "https://yikii.bandcamp.com"
-// 	},
-// 	{
-// 		name: "Kagami Smile -  Acts of Betrayal",
-// 		path: "/21sept-master-mp3/Kagami Smile -  Acts of Betrayal [master 20220921].mp3",
-// 		link: "https://kagamismile.bandcamp.com/"
-// 	},
-// 	{
-// 		name: "Imryll - Family Portrait (Imryll Reimagined)",
-// 		path: "/21sept-master-mp3/Imryll - Family Portrait (Imryll Reimagined) [master 20220921].mp3",
-// 		link: "https://phantomlimblabel.bandcamp.com/album/psalm008-mortal"
-// 	},
-// 	{
-// 		name: "Jennifer Walton - At Last, Lain Is Free",
-// 		path: "/21sept-master-mp3/Jennifer Walton - At Last, Lain Is Free [master 20220921].mp3",
-// 		link: "https://allcentre.bandcamp.com/album/flash-on"
-// 	},
-// ]; 
-
-// test tracks
 const trackList = [
 	{
-		name: "boa - duvet",
-		path: "/mp3/boa_duvet.mp3",
-		link: "https://bandcamp.com"
+		name: "x/o - Duvet cyberia re-chopped & screwed-MiX",
+		path: "/21sept-master-mp3/xo - 200529-DuvetBoa8  [master 20220921].mp3",
+		link: "https://x-o-xio.bandcamp.com"
 	},
 	{
-		name: "exxy4_TWICE 트와이스 TT 3XXY EDIT",
-		path: "/mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3",
-		link: "https://bandcamp.com"
+		name: "Wa?ste - cyberia texture 5a x professed intention and real intention",
+		path: "/21sept-master-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention [master 20221005].mp3",
+		link: "https://wa-ste222.bandcamp.com"
 	},
-]
+	{
+		name: "Thegn ft. Vrain - phantoma_-_track04.wav",
+		path: "/21sept-master-mp3/thegn ft. vrain - phantoma [master 20220921].mp3",
+		link: "https://thegn.bandcamp.com"
+	},
+	{
+		name: "Nerve - I'm Gonna Diss You",
+		path: "/21sept-master-mp3/Nerve - I_m Gonna Diss You [master 20220921].mp3",
+		link: "https://www.lo4nerve.com"
+	},
+	{
+		name: "Fetus - Footprints",
+		path: "/21sept-master-mp3/Fetus - Footprints [master 20220921].mp3",
+		link: "https://fetusmusic.bandcamp.com"
+	},
+	{
+		name: "GRASPS X NERDIE - I AM HURTING",
+		path: "/21sept-master-mp3/GRASPS X NERDIE - I AM HURTING [master 20220921].mp3",
+		link: "" //handled in loadTrack()
+	},
+	{
+		name: "Yraki - Lights Down",
+		path: "/21sept-master-mp3/Yraki - Lights Down [master 20220921].mp3",
+		link: "https://yraki.bandcamp.com"
+	},
+	{
+		name: "Sour Gout - Transmigration",
+		path: "/21sept-master-mp3/Sour Gout - Transmigration [master 20220921].mp3",
+		link: "https://sourgout.bandcamp.com/"
+	},
+	{
+		name: "lovefear - Breathe",
+		path: "/21sept-master-mp3/lovefear - SEL compilation track final  [master 20220921].mp3",
+		link: "https://lovefear.bandcamp.com/"
+	},
+	{
+		name: "堀池ゆめぁ - lain ",
+		path: "/21sept-master-mp3/Yumea Horiike - lain [master 20220921].mp3",
+		linkName: "artist link",
+		link: "https://uuumea.bandcamp.com"
+	},
+	{
+		name: "Yuting Wu - Help me to Breathe",
+		path: "/21sept-master-mp3/Yuting Wu - Help me to Breathe [master 20220921].mp3",
+		link: "https://yutingwu.bandcamp.com"
+	},
+	{
+		name: "ΛFΛLFL - just some kick noyze",
+		path: "/21sept-master-mp3/afalfl - just some kick noyze [master 20220921].mp3",
+		link: "https://afalfl.bandcamp.com/"
+	  },
+	  {
+		name: "Yikii - Ancient Scanner",
+		path: "/21sept-master-mp3/Yikii - Ancient Scanner [master 20220921].mp3",
+		link: "https://yikii.bandcamp.com"
+	},
+	{
+		name: "Kagami Smile -  Acts of Betrayal",
+		path: "/21sept-master-mp3/Kagami Smile -  Acts of Betrayal [master 20220921].mp3",
+		link: "https://kagamismile.bandcamp.com/"
+	},
+	{
+		name: "Imryll - Family Portrait (Imryll Reimagined)",
+		path: "/21sept-master-mp3/Imryll - Family Portrait (Imryll Reimagined) [master 20220921].mp3",
+		link: "https://phantomlimblabel.bandcamp.com/album/psalm008-mortal"
+	},
+	{
+		name: "Jennifer Walton - At Last, Lain Is Free",
+		path: "/21sept-master-mp3/Jennifer Walton - At Last, Lain Is Free [master 20220921].mp3",
+		link: "https://allcentre.bandcamp.com/album/flash-on"
+	},
+]; 
+
+// test tracks
+// const trackList = [
+// 	{
+// 		name: "boa - duvet",
+// 		path: "/mp3/boa_duvet.mp3",
+// 		link: "https://bandcamp.com"
+// 	},
+// 	{
+// 		name: "exxy4_TWICE 트와이스 TT 3XXY EDIT",
+// 		path: "/mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3",
+// 		link: "https://bandcamp.com"
+// 	},
+// ]
 
 //entry page texts
 const entryInitStr = "initialising";
@@ -136,7 +136,7 @@ let entryPage = document.getElementById("entry-page")
 let entryTextsEl = document.getElementById("entry-texts")
 let entryBottomTexts = document.getElementById("entry-bottom-text")
 
-// let bgAudio = document.getElementById("bg-track")
+let servBgTrack = document.getElementById("server-room-bg-track")
 
 // manually center the loading text so its position is fixed while adding the "..."
 let initialLeft = entryTextsEl.parentElement.offsetWidth/2 - entryTextsEl.offsetWidth/2
@@ -188,6 +188,13 @@ window.onload = function() {
 	entryPage.addEventListener("click", function(){
 		entryPage.style.opacity = "0"
 		if (audioContext.state === 'suspended') {audioContext.resume();}
+
+		// server room bg 
+		servBgTrack.load();
+		servBgTrack.addEventListener("ended", function(){
+			servBgTrack.currentTime = 0;
+			servBgTrack.play()
+		})
 		//setInterval(totalLengthTest, 3000);
 	})
 
@@ -469,7 +476,7 @@ let helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤�
 							+ "&emsp;&emsp;<span style='color:lime'>smoking area</span><br>"
 							+ "&emsp;&emsp;<span style='color:lime'>toilet</span><br>"
 							+ "&emsp;&emsp;<span style='color:lime'>leave </span>&nbsp; clear all audio filters<br><br>"
-							+ "note: only the first 4 letters are processed. <span style='color:lime'>serv</span> is equivalent to <span style='color:lime'>server room</span><br><br>"
+							+ "note: only the first 4 letters are processed. <span style='color:lime'>smok</span> is equivalent to <span style='color:lime'>smoking area</span><br><br>"
 							+ "¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨<br>"
 function checkCommand(input) 
 {
@@ -977,7 +984,8 @@ const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 const biquadFilter = new BiquadFilterNode(audioContext, {frequency:1000});
 let impulse = impulseResponse(reverbDurationSlider.value, reverbDecaySlider.value)
 const convolver = new ConvolverNode(audioContext, {buffer:impulse})
-const gainNode = new GainNode(audioContext, {gain:initialGain}) 
+const gainNode = new GainNode(audioContext, {gain:initialGain})  // can be adjusted by the user 
+const masterGainNode = new GainNode(audioContext, {gain: 1})     // specific to filter presets
 
 /////// frequency visualiser ///////
 const analyser = new AnalyserNode(audioContext, {
@@ -1021,7 +1029,7 @@ let biquadTypes = ["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "
 let hasReverb = false
 
 let source = audioContext.createMediaElementSource(curTrack);
-source.connect(gainNode).connect(analyser).connect(audioContext.destination)
+source.connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 
 biquadSelectionEl.addEventListener("change", function(){switchBiquad(biquadSelectionEl.value);}) 
 
@@ -1053,11 +1061,11 @@ function switchBiquad(index)
 		{
 			// convolver.buffer = null;
 			// convolver.disconnect();
-			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
 		else 
 		{	
-			source.connect(biquadFilter).connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(biquadFilter).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
 		frequencyEl.style.color = "black";
 		gainEl.style.color = "black";
@@ -1070,11 +1078,11 @@ function switchBiquad(index)
 		biquadFilter.disconnect()
 		if (hasReverb)
 		{
-			source.connect(convolver).connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
 		else 
 		{
-			source.connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
 		frequencyEl.style.color = "grey";
 		gainEl.style.color = "grey";
@@ -1123,7 +1131,7 @@ function toggleReverb() //to be deleted
 	{
 		convolver.disconnect()
 		convolver.buffer = null
-		reverbToggle.textContent = "turn on reverb "
+		reverbToggle.textContent = "turn on reverb"
 		reverbDurationText.style.color = "grey"
 		reverbDecayText.style.color = "grey"
 		hasReverb = false
@@ -1133,11 +1141,11 @@ function toggleReverb() //to be deleted
 		setReverb();
 		if (biquadIndex > 0) 
 		{
-			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
 		else 
 		{
-			source.connect(convolver).connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
 		reverbToggle.textContent = "turn off reverb"
 		reverbDurationText.style.color = "black"
@@ -1153,6 +1161,10 @@ function turnOffReverb()
 		convolver.buffer = null;
 		convolver.disconnect();
 		hasReverb = false;
+
+		reverbToggle.textContent = "turn on reverb"
+		reverbDurationText.style.color = "grey"
+		reverbDecayText.style.color = "grey"
 	}
 }
 
@@ -1162,12 +1174,15 @@ function turnOnReverb()
 	{	
 		if (biquadIndex > 0) 
 		{
-			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
 		else 
 		{
-			source.connect(convolver).connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
+		reverbToggle.textContent = "turn off reverb"
+		reverbDurationText.style.color = "black"
+		reverbDecayText.style.color = "black"
 		hasReverb = true
 	}
 }
@@ -1184,28 +1199,52 @@ function turnOnReverb()
 const crossfadeGainDelta = 0.05;
 const crossfadeStep = 20; //in ms
 
+// for "leave" command
 function clearAllFilters()
 {
+	masterGainNode.gain.value = 1;
 	turnOffReverb();
     switchBiquad(0);
 }
 
-function gotoServerRoom()
-//lowpass + reverb
+// for reset btn in old player
+function resetAllFilters()
 {
-	switchBiquad(1); //["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch", "allpass"]
+	biquadSelectionEl.value = 0; //none
+	frequencySlider.value = 350;
+	gainSlider.value = 0;
+	qSlider.value = 1;
+	detuneSlider.value = 0;
+
+	reverbDurationSlider.value = 15;
+	reverbDecaySlider.value = 5;
+
+	clearAllFilters();
+}
+
+function gotoServerRoom()
+{
+	servBgTrack.volume = 0.7;
+
+	masterGainNode.gain.value = 0.3;
+
+	switchBiquad(0); //["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch", "allpass"]
 	// biquadFilter.frequency.value = 1000;
 	// biquadFilter.gain.value = 20;
 	// biquadFilter.Q.value = 1;
+	// detune
 	
 	turnOffReverb(); //clear convolver buffer 
-	impulse = impulseResponse(100, 15) //duration, decay
-	convolver.buffer = impulse
-	turnOnReverb();
+	// impulse = impulseResponse(100, 15) //duration, decay
+	// convolver.buffer = impulse
+	// turnOnReverb();
+	servBgTrack.play();
 }
 
 function gotoSmokingArea()
 {
+	masterGainNode.gain.value = 0.3;
+
 	switchBiquad(8); //allpass
 	biquadFilter.frequency.value = 2000;
 	biquadFilter.Q.value = 0.01;
@@ -1218,6 +1257,8 @@ function gotoSmokingArea()
 
 function gotoToilet() //test filter 1
 {
+	masterGainNode.gain.value = 0.1;
+
 	switchBiquad(4); //lowshelf
 	biquadFilter.gain.value = 0;
 
@@ -1250,6 +1291,10 @@ function applyFilter(index)
 	{
 		let prevFilter = currentFilter;
 		currentFilter = index;
+
+		if (prevFilter === 1) //server room
+			servBgTrack.pause();
+
 		let fadeOut = setInterval(function(){
 			if (gainNode.gain.value > crossfadeGainDelta)
 			//gradually decrease volume 

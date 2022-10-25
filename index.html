@@ -27,7 +27,7 @@
 		<!---------- music player ---------->
 		<div class="mini-window" id="music-player">
 			<audio preload="auto" id="cur-track"></audio>
-<!-- 			<audio preload="auto" id="bg-track" loop src="/bg-mp3/server_room_188.mp3"></audio>  -->
+			<audio preload="auto" id="server-room-bg-track" src="/bg-mp3/serv188-210.mp3"></audio> 
 			<div class="mini-window-header">player
 				<div class="mini-window-close"></div>
 			</div>
@@ -374,7 +374,10 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 			<input class="long-slider" type="range" min="0.1" max="120" value="15" id="reverb-duration" step="1" onchange="setReverb()">
 			<p id="cur-reverb-decay" style="color: grey;">decay: 5</p>
 			<input class="long-slider" type="range" min="0.1" max="80" value="5" id="reverb-decay" step="0.2" onchange="setReverb()">
-
+			<br>
+			<hr>
+			<br>
+			<button onclick="resetAllFilters()">reset to default</button>
 		</div> <!-- end of old player container -->
 	</div> <!-- end of main container -->
 	<script type="text/javascript" src="main.js"></script>
