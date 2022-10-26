@@ -938,7 +938,7 @@ let showingOldUI = false
 tempToggle.addEventListener("click", function(){
 	if (showingOldUI)
 	{
-		mainContainer.style.backgroundImage = 'url("/img/lain_extended_m.png")'
+		mainContainer.style.backgroundImage = 'url("/img/lain_extended_3k.png")'
 		creditsBtn.style.display = "block"
 		oldPlayerContainer.style.display = "none"
 		playlistEl.style.display = "none"
