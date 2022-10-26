@@ -419,6 +419,7 @@ function validateInput(e)
 			let outputIndex = (lainCount > lainStrings.length - 1)? (lainStrings.length - 1) : lainCount;
 			terminalDisplay.innerHTML += lainStrings[outputIndex] + "<br>";
 			// unhide audio filter setting toggle 
+			// if lainCount == lainStrings.length - 2
 			// tempToggle.style.display = "block"
 
 			// method 4 generate random numbers 6 times and take the avr (central limit theorem)
