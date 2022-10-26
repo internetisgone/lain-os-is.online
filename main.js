@@ -110,12 +110,11 @@ const totalTime = "68:21" //calculated with totalLengthTest() in onload()
 //terminal texts
 const lainStrings = [
 	"let's all love lain (づ◡﹏◡)づ",
-	"you're a web 3 developer, i'm a web :3 developer",
-	"suicide by CIA",
-	"Virtuality features highly accelerated cultural evolution, giving it extreme susceptibility to manipulation and high hyperstitional potentiation. Technodieties will proliferate in the form of egregores, directly bending reality to their will. Humanity will be twisted",
-	"logging off"
+	"schumann resonance accelerator",
+	"root access granted<br>audio filter debug mode enabled",
+	"you're already a developer"
 ]
-const invalidInputStr = "idk that word!"
+const invalidInputStr = "idk that word (´;ω;`)" // + " did u mean to type <span style='color:lime'>help</span>?"
 
 //initial audio node params
 //gain node
@@ -123,7 +122,7 @@ const initialGain = 0.77;
 let currentFilter = 0 // filter preset index in filterPresetsArray. 0 means none
 
 // colors
-let plEntryBgColor = "rgba(255, 255, 255, 0.7)" //bg highlight color for current song in playlist
+let plEntryBgColor = "rgba(0, 0, 0, 0.9)" //bg highlight color for current song in playlist
 
 //bg color #e1e4eb
 
@@ -159,7 +158,10 @@ function loadingText()
 }
 
 //unicode chars 33-122, 161-404. see getUnicodeChars() in utilities
-let chars = ["!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","¡","¢","£","¤","¥","¦","§","¨","©","ª","«","¬","­","®","¯","°","±","²","³","´","µ","¶","·","¸","¹","º","»","¼","½","¾","¿","À","Á","Â","Ã","Ä","Å","Æ","Ç","È","É","Ê","Ë","Ì","Í","Î","Ï","Ð","Ñ","Ò","Ó","Ô","Õ","Ö","×","Ø","Ù","Ú","Û","Ü","Ý","Þ","ß","à","á","â","ã","ä","å","æ","ç","è","é","ê","ë","ì","í","î","ï","ð","ñ","ò","ó","ô","õ","ö","÷","ø","ù","ú","û","ü","ý","þ","ÿ","Ā","ā","Ă","ă","Ą","ą","Ć","ć","Ĉ","ĉ","Ċ","ċ","Č","č","Ď","ď","Đ","đ","Ē","ē","Ĕ","ĕ","Ė","ė","Ę","ę","Ě","ě","Ĝ","ĝ","Ğ","ğ","Ġ","ġ","Ģ","ģ","Ĥ","ĥ","Ħ","ħ","Ĩ","ĩ","Ī","ī","Ĭ","ĭ","Į","į","İ","ı","Ĳ","ĳ","Ĵ","ĵ","Ķ","ķ","ĸ","Ĺ","ĺ","Ļ","ļ","Ľ","ľ","Ŀ","ŀ","Ł","ł","Ń","ń","Ņ","ņ","Ň","ň","ŉ","Ŋ","ŋ","Ō","ō","Ŏ","ŏ","Ő","ő","Œ","œ","Ŕ","ŕ","Ŗ","ŗ","Ř","ř","Ś","ś","Ŝ","ŝ","Ş","ş","Š","š","Ţ","ţ","Ť","ť","Ŧ","ŧ","Ũ","ũ","Ū","ū","Ŭ","ŭ","Ů","ů","Ű","ű","Ų","ų","Ŵ","ŵ","Ŷ","ŷ","Ÿ","Ź","ź","Ż","ż","Ž","ž","ſ","ƀ","Ɓ","Ƃ","ƃ","Ƅ","ƅ","Ɔ","Ƈ","ƈ","Ɖ","Ɗ","Ƌ","ƌ","ƍ","Ǝ","Ə","Ɛ","Ƒ","ƒ","Ɠ","Ɣ"]
+//let chars = ["!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","¡","¢","£","¤","¥","¦","§","¨","©","ª","«","¬","­","®","¯","°","±","²","³","´","µ","¶","·","¸","¹","º","»","¼","½","¾","¿","À","Á","Â","Ã","Ä","Å","Æ","Ç","È","É","Ê","Ë","Ì","Í","Î","Ï","Ð","Ñ","Ò","Ó","Ô","Õ","Ö","×","Ø","Ù","Ú","Û","Ü","Ý","Þ","ß","à","á","â","ã","ä","å","æ","ç","è","é","ê","ë","ì","í","î","ï","ð","ñ","ò","ó","ô","õ","ö","÷","ø","ù","ú","û","ü","ý","þ","ÿ","Ā","ā","Ă","ă","Ą","ą","Ć","ć","Ĉ","ĉ","Ċ","ċ","Č","č","Ď","ď","Đ","đ","Ē","ē","Ĕ","ĕ","Ė","ė","Ę","ę","Ě","ě","Ĝ","ĝ","Ğ","ğ","Ġ","ġ","Ģ","ģ","Ĥ","ĥ","Ħ","ħ","Ĩ","ĩ","Ī","ī","Ĭ","ĭ","Į","į","İ","ı","Ĳ","ĳ","Ĵ","ĵ","Ķ","ķ","ĸ","Ĺ","ĺ","Ļ","ļ","Ľ","ľ","Ŀ","ŀ","Ł","ł","Ń","ń","Ņ","ņ","Ň","ň","ŉ","Ŋ","ŋ","Ō","ō","Ŏ","ŏ","Ő","ő","Œ","œ","Ŕ","ŕ","Ŗ","ŗ","Ř","ř","Ś","ś","Ŝ","ŝ","Ş","ş","Š","š","Ţ","ţ","Ť","ť","Ŧ","ŧ","Ũ","ũ","Ū","ū","Ŭ","ŭ","Ů","ů","Ű","ű","Ų","ų","Ŵ","ŵ","Ŷ","ŷ","Ÿ","Ź","ź","Ż","ż","Ž","ž","ſ","ƀ","Ɓ","Ƃ","ƃ","Ƅ","ƅ","Ɔ","Ƈ","ƈ","Ɖ","Ɗ","Ƌ","ƌ","ƍ","Ǝ","Ə","Ɛ","Ƒ","ƒ","Ɠ","Ɣ"]
+
+// 33-122
+let chars = ["!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
 let BottomTextLength = 33
 let bottomTextTimer = setInterval(scrambleBottomText, 100)
 
@@ -401,34 +403,30 @@ function validateInput(e)
 		terminalDisplay.innerHTML += "lain@navi ~ % " + inputEl.value + "</br>";
 		//easter egg
 		if (inputEl.value.toLowerCase().includes("lain"))
-		{
-			terminalDisplay.innerHTML += lainStrings[0] + "</br>"; 
+		{			
+			// let lowerBound = (lainCount > rangeDelta)? (lainCount - rangeDelta) : 0
+			// let upperBound = (lainCount > lainStrings.length - 1 - rangeDelta)? (lainStrings.length - 1) : (lainCount + rangeDelta)
+			// if (lowerBound > upperBound) lowerBound = upperBound;
 
-			// sad to see it go >:(
-			// if (lainCount == 0) 
-			// {
-			// 	terminalDisplay.innerHTML += lainStrings[0] + "</br>"; 
-			// }
-			// else
-			// {
-			// 	// let lowerBound = (lainCount > rangeDelta)? (lainCount - rangeDelta) : 0
-			// 	// let upperBound = (lainCount > lainStrings.length - 1 - rangeDelta)? (lainStrings.length - 1) : (lainCount + rangeDelta)
-			// 	// if (lowerBound > upperBound) lowerBound = upperBound;
+			// method 1 random int w range
+			// let outputIndex = getRandomInt(lowerBound, upperBound)
 
-			// 	// method 1 random int w range
-			// 	// let outputIndex = getRandomInt(lowerBound, upperBound)
+			// method 2 normally distributed int w range 
+			// let outputIndex = getIntNormallyDistributed(lowerBound, upperBound)
 
-			// 	// method 2 normally distributed int w range 
-			// 	// let outputIndex = getIntNormallyDistributed(lowerBound, upperBound)
+			// method 3 use input count directly
+			// prob gonna go with this method cuz lainStrings has a rather small size and this way the user can go thru every string element
+			let outputIndex = (lainCount > lainStrings.length - 1)? (lainStrings.length - 1) : lainCount;
+			terminalDisplay.innerHTML += lainStrings[outputIndex] + "<br>";
+			// unhide audio filter setting toggle 
+			// tempToggle.style.display = "block"
 
-			// 	// method 3 use input count directly
-			// 	// prob gonna go with this method cuz lainStrings has a rather small size and this way the user can go thru every string element
-			// 	let outputIndex = (lainCount > lainStrings.length - 1)? (lainStrings.length - 1) : lainCount;
-			// 	terminalDisplay.innerHTML += lainStrings[outputIndex] + "<br>";
+			// method 4 generate random numbers 6 times and take the avr (central limit theorem)
+			// todo
 
-			// 	//console.log(`range ${lowerBound} to ${upperBound}, input count ${lainCount}, output ${outputIndex}`)
-			// }
-			// lainCount++;
+			//console.log(`range ${lowerBound} to ${upperBound}, input count ${lainCount}, output ${outputIndex}`)
+		
+			lainCount++;
 		}
 		//valid input
 		else if (inputEl.value.match(inputPattern))	
@@ -620,8 +618,17 @@ function loadTrack()
 	//set playlist entry bg color 
 	for (let i = 0; i < trackList.length; i++)
 	{
-		if (i === curIndex) playlistEntries.item(i).style.backgroundColor = plEntryBgColor;
-		else playlistEntries.item(i).style.backgroundColor = "transparent";
+		let curEntry = playlistEntries.item(i)
+		if (i === curIndex) 
+		{
+			curEntry.style.backgroundColor = plEntryBgColor;
+			curEntry.style.color = "white";
+		}
+		else 
+		{
+			curEntry.style.backgroundColor = "transparent";
+			curEntry.style.color = "black";
+		}
 	}
 
 	//artist link. remove the "https://" in link text 
@@ -924,12 +931,14 @@ let oldPlayerContainer = document.getElementById("old-player-container")
 let playlistEl = document.getElementById("old-playlist-container")
 let playlistToggle = document.getElementById("pl-toggle")
 let mainContainer = document.getElementById("main-container")
+let creditsBtn = document.getElementById("credits-btn")
 
 let showingOldUI = false
 tempToggle.addEventListener("click", function(){
 	if (showingOldUI)
 	{
 		mainContainer.style.backgroundImage = 'url("/img/lain_extended_m.png")'
+		creditsBtn.style.display = "block"
 		oldPlayerContainer.style.display = "none"
 		playlistEl.style.display = "none"
 		dockContainer.style.display = "flex"
@@ -943,6 +952,7 @@ tempToggle.addEventListener("click", function(){
 	else 
 	{
 		mainContainer.style.backgroundImage = "none"
+		creditsBtn.style.display = "none"
 		oldPlayerContainer.style.display = "block"
 		dockContainer.style.display = "none"
 		//playlistEl.style.display = "block"
@@ -1210,16 +1220,21 @@ function clearAllFilters()
 // for reset btn in old player
 function resetAllFilters()
 {
+	clearAllFilters();
+
 	biquadSelectionEl.value = 0; //none
 	frequencySlider.value = 350;
 	gainSlider.value = 0;
 	qSlider.value = 1;
 	detuneSlider.value = 0;
+	setFrequency();
+	setGain();
+	setQ();
+	setDetune();
 
 	reverbDurationSlider.value = 15;
 	reverbDecaySlider.value = 5;
-
-	clearAllFilters();
+	setReverb();
 }
 
 function gotoServerRoom()
@@ -1334,7 +1349,7 @@ function applyFilter(index)
 	}
 	else 
 	{
-		appendTerminalOutput("you are already in " + filterNames[index])
+		appendTerminalOutput("you are already in " + filterNames[index] +"!")
 	}	
 }
 
@@ -1411,24 +1426,25 @@ function testRandInt(min, max)
 // }
 
 //prints unicode char array in console
-// function getUnicodeChars()
-// {
-// 	let chars = new Array()
-// 	let unicodeIndex
-// 	let charArrayIndex = 0
+//getUnicodeChars()
+function getUnicodeChars()
+{
+	let chars = new Array()
+	let unicodeIndex
+	let charArrayIndex = 0
 
-// 	// 33-122, 161-404
-// 	for (unicodeIndex = 33; unicodeIndex <= 404; unicodeIndex++)
-// 	{
-// 		if (unicodeIndex <= 122 | unicodeIndex >= 161)
-// 		{
-// 			currentChar = String.fromCharCode(unicodeIndex)
-// 			chars.push(currentChar)
-// 			//console.log(unicodeIndex + " " + chars[charArrayIndex])
-// 			charArrayIndex++;
-// 		}
-// 	}
-// 	console.log(JSON.stringify(chars)) // prints the full array 
-// }
+	// 33-122, 161-404
+	for (unicodeIndex = 33; unicodeIndex <= 404; unicodeIndex++)
+	{
+		if (unicodeIndex <= 122 | unicodeIndex >= 161)
+		{
+			currentChar = String.fromCharCode(unicodeIndex)
+			chars.push(currentChar)
+			//console.log(unicodeIndex + " " + chars[charArrayIndex])
+			charArrayIndex++;
+		}
+	}
+	console.log(JSON.stringify(chars)) // prints the full array 
+}
 
 ////////////// utilities //////////////
