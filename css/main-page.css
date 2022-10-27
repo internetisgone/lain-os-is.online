@@ -383,9 +383,7 @@ so that texts of variable lengths can be scrolled*/
 #volume-slider::-webkit-slider-thumb 
 {
 	-webkit-appearance: none;
-	appearance: none;
-	width: 25px;
-	height: 25px;
+	appearance: none; width: 23px; height: 23px;
 	background: url("/img/music-player-components/volume_slider_thumb.png") no-repeat;
 	background-size: auto 100%;
 	cursor: pointer;

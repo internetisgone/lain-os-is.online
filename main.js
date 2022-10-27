@@ -6,7 +6,7 @@ const trackList = [
 	},
 	{
 		name: "Wa?ste - cyberia texture 5a x professed intention and real intention",
-		path: "/21sept-master-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention [master 20221005].mp3",
+		path: "/21sept-master-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention [master 20220929].mp3",
 		link: "https://wa-ste222.bandcamp.com"
 	},
 	{
@@ -108,14 +108,35 @@ const loadingTrackStr = "loading metadata...";
 const totalTime = "68:21" //calculated with totalLengthTest() in onload()
 
 //terminal texts
+const helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸<br><br>available commands:<br><br>"
+				+ "playback controls<br>"
+				+ "&emsp;&emsp;<span style='color:lime'>play </span> &emsp;&emsp; play the currently loaded song<br>"
+				+ "&emsp;&emsp;<span style='color:lime'>pause </span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>stop </span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>prev </span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>next </span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>random </span>&nbsp;play a random song<br><br>"
+				+ "audio filters<br>"
+				+ "&emsp;&emsp;<span style='color:lime'>server room</span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>smoking area</span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>toilet</span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>leave </span>&nbsp; clear all audio filters<br><br>"
+				+ "note: only the first 4 letters are processed. <span style='color:lime'>smok</span> is equivalent to <span style='color:lime'>smoking area</span><br><br>"
+				+ "¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨<br>"
+
 const lainStrings = [
 	"let's all love lain (づ◡﹏◡)づ",
-	"schumann resonance accelerator",
-	"root access granted<br>audio filter debug mode enabled",
+	"7.83Hz",
+	"<span style='color:#AAA4FF'>root access granted<br>audio filter debug mode enabled</span>",
 	"you're already a developer"
 ]
-const invalidInputStr = "idk that word (´;ω;`)" // + " did u mean to type <span style='color:lime'>help</span>?"
+const invalidInputStr = "idk that word (´;ω;`)" 
 
+randCommandStrings = [
+	" did u mean to type <span style='color:lime'>help</span>?",
+	" imma head to the <span style='color:lime'>smok</span>ing area do u wanna come with me?",
+	" listen to a <span style='color:lime'>random</span> song with me!"
+]
 //initial audio node params
 //gain node
 const initialGain = 0.77;
@@ -123,7 +144,6 @@ let currentFilter = 0 // filter preset index in filterPresetsArray. 0 means none
 
 // colors
 let plEntryBgColor = "rgba(0, 0, 0, 0.9)" //bg highlight color for current song in playlist
-
 //bg color #e1e4eb
 
 //media queries
@@ -157,10 +177,7 @@ function loadingText()
 	}
 }
 
-//unicode chars 33-122, 161-404. see getUnicodeChars() in utilities
-//let chars = ["!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","¡","¢","£","¤","¥","¦","§","¨","©","ª","«","¬","­","®","¯","°","±","²","³","´","µ","¶","·","¸","¹","º","»","¼","½","¾","¿","À","Á","Â","Ã","Ä","Å","Æ","Ç","È","É","Ê","Ë","Ì","Í","Î","Ï","Ð","Ñ","Ò","Ó","Ô","Õ","Ö","×","Ø","Ù","Ú","Û","Ü","Ý","Þ","ß","à","á","â","ã","ä","å","æ","ç","è","é","ê","ë","ì","í","î","ï","ð","ñ","ò","ó","ô","õ","ö","÷","ø","ù","ú","û","ü","ý","þ","ÿ","Ā","ā","Ă","ă","Ą","ą","Ć","ć","Ĉ","ĉ","Ċ","ċ","Č","č","Ď","ď","Đ","đ","Ē","ē","Ĕ","ĕ","Ė","ė","Ę","ę","Ě","ě","Ĝ","ĝ","Ğ","ğ","Ġ","ġ","Ģ","ģ","Ĥ","ĥ","Ħ","ħ","Ĩ","ĩ","Ī","ī","Ĭ","ĭ","Į","į","İ","ı","Ĳ","ĳ","Ĵ","ĵ","Ķ","ķ","ĸ","Ĺ","ĺ","Ļ","ļ","Ľ","ľ","Ŀ","ŀ","Ł","ł","Ń","ń","Ņ","ņ","Ň","ň","ŉ","Ŋ","ŋ","Ō","ō","Ŏ","ŏ","Ő","ő","Œ","œ","Ŕ","ŕ","Ŗ","ŗ","Ř","ř","Ś","ś","Ŝ","ŝ","Ş","ş","Š","š","Ţ","ţ","Ť","ť","Ŧ","ŧ","Ũ","ũ","Ū","ū","Ŭ","ŭ","Ů","ů","Ű","ű","Ų","ų","Ŵ","ŵ","Ŷ","ŷ","Ÿ","Ź","ź","Ż","ż","Ž","ž","ſ","ƀ","Ɓ","Ƃ","ƃ","Ƅ","ƅ","Ɔ","Ƈ","ƈ","Ɖ","Ɗ","Ƌ","ƌ","ƍ","Ǝ","Ə","Ɛ","Ƒ","ƒ","Ɠ","Ɣ"]
-
-// 33-122
+//unicode chars 33-122. see getUnicodeChars() in utilities
 let chars = ["!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
 let BottomTextLength = 33
 let bottomTextTimer = setInterval(scrambleBottomText, 100)
@@ -262,7 +279,7 @@ for (let i = 0; i < miniWindows.length; i++)
 	})
 	icon.addEventListener("click", function(){
 		miniWindow.style.zIndex = maxZ; maxZ++;
-		if(miniWindow.id == "chat-window") miniWindow.style.display = "flex";
+		if (miniWindow.id == "chat-window") miniWindow.style.display = "flex";
 		else miniWindow.style.display = "block";
 		icon.style.display = "none"
 
@@ -362,13 +379,7 @@ function dragEnd()
 	document.removeEventListener("touchend", dragEnd)
 }
 
-// windowDock.addEventListener("click", function(){
-// 	if (miniWindow.style.display === "none")
-// 		miniWindow.style.display = "block";
-// })
-
 ////////////// mini windows //////////////
-
 
 
 ////////////// terminal //////////////
@@ -384,6 +395,7 @@ let caretOffest
 
 let inputPattern = /^[a-zA-Z\d\s]*$/; //letters, digits, and whitespace
 let lainCount = 0 
+let invalidCount = 0
 let rangeDelta = 2  // output index range lainCount +- rangeDelta
 
 inputEl.onkeydown = validateInput
@@ -437,8 +449,7 @@ function validateInput(e)
 		}
 		else //invalid input
 		{
-			//terminalDisplay.innerHTML += "invalid input (´;ω;`) letters, numbers, and spaces only pls</br>";
-			terminalDisplay.innerHTML += invalidInputStr + "<br>"
+			appendInvalidResponse()
 		}
 		inputEl.value = "";
 		fakeCaret.style.marginLeft = initialIndent + "px";
@@ -462,21 +473,20 @@ function appendTerminalOutput(output)
 	terminalTxtContainer.scrollTop = terminalTxtContainer.scrollHeight; 
 }
 
-let helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸<br><br>available commands:<br><br>"
-							+ "playback controls<br>"
-							+ "&emsp;&emsp;<span style='color:lime'>play </span> &emsp;&emsp; play the currently loaded song<br>"
-							+ "&emsp;&emsp;<span style='color:lime'>pause </span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>stop </span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>prev </span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>next </span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>random </span>&nbsp;play a random song<br><br>"
-							+ "audio filters<br>"
-							+ "&emsp;&emsp;<span style='color:lime'>server room</span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>smoking area</span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>toilet</span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>leave </span>&nbsp; clear all audio filters<br><br>"
-							+ "note: only the first 4 letters are processed. <span style='color:lime'>smok</span> is equivalent to <span style='color:lime'>smoking area</span><br><br>"
-							+ "¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨<br>"
+function appendInvalidResponse()
+{
+	if (invalidCount > 1) 
+	{
+		let rand = getRandomInt(0, randCommandStrings.length)
+		terminalDisplay.innerHTML += invalidInputStr + randCommandStrings[rand] + "<br>";
+	}
+	else
+	{
+		terminalDisplay.innerHTML += invalidInputStr + "<br>";	
+		invalidCount++;	
+	}	
+}
+
 function checkCommand(input) 
 {
 	// console.log("trimmed command " + input)
@@ -490,7 +500,8 @@ function checkCommand(input)
 		case "next": nextTrack(); break;
 		case "rand": 
 			curIndex = getRandomInt(0, trackList.length)
-			loadTrack(); playTrack();
+			loadTrack(); 
+			playTrack();
 			break;
 
 		case "help": terminalDisplay.innerHTML += helpText; break;
@@ -501,7 +512,7 @@ function checkCommand(input)
 		case "smok": applyFilter(2); break;
 		case "toil": applyFilter(3); break;
 
-		default: terminalDisplay.innerHTML += invalidInputStr + "</br>"
+		default: appendInvalidResponse();
 	}
 }
 
@@ -829,7 +840,7 @@ function switchLoop()
 	if (loopIndex == 0) 
 	{
 		loopIndex++ // 1 loop album
-		appendTerminalOutput("loop album")
+		// appendTerminalOutput("loop album")
 		loopImg.src = "/img/music-player-components/loop_album.png"
 
 		curTrack.addEventListener("ended", nextTrack); //handled in nextTrack()
@@ -837,7 +848,7 @@ function switchLoop()
 	else if (loopIndex == 1) 
 	{
 		loopIndex++ // 2 loop song 
-		appendTerminalOutput("loop song")
+		// appendTerminalOutput("loop song")
 		loopImg.src = "/img/music-player-components/loop_song_inverted.png"
 		curTrack.removeEventListener("ended", nextTrack)
 		curTrack.addEventListener("ended", loopSong)
@@ -845,7 +856,7 @@ function switchLoop()
 	else 
 	{
 		loopIndex = 0 // 0 no loop
-		appendTerminalOutput("loop off")
+		// appendTerminalOutput("loop off")
 		loopImg.src = "/img/music-player-components/loop_off.png"
 
 		curTrack.removeEventListener("ended", loopSong)
