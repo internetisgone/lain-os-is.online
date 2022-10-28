@@ -82,20 +82,6 @@ const trackList = [
 	},
 ]; 
 
-// test tracks
-// const trackList = [
-// 	{
-// 		name: "boa - duvet",
-// 		path: "/mp3/boa_duvet.mp3",
-// 		link: "https://bandcamp.com"
-// 	},
-// 	{
-// 		name: "exxy4_TWICE 트와이스 TT 3XXY EDIT",
-// 		path: "/mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3",
-// 		link: "https://bandcamp.com"
-// 	},
-// ]
-
 //entry page texts
 const entryInitStr = "initialising";
 const entryOnloadStr = "log in";
@@ -155,11 +141,6 @@ let entryPage = document.getElementById("entry-page")
 let entryTextsEl = document.getElementById("entry-texts")
 let entryBottomTexts = document.getElementById("entry-bottom-text")
 
-let servBgTrack = document.getElementById("server-room-bg-track")
-
-// manually center the loading text so its position is fixed while adding the "..."
-let initialLeft = entryTextsEl.parentElement.offsetWidth/2 - entryTextsEl.offsetWidth/2
-entryTextsEl.style.left = initialLeft + "px"
 let loadingTimer = setInterval(loadingText, 777)
 let loadingIndex = 0
 
@@ -207,13 +188,6 @@ window.onload = function() {
 	entryPage.addEventListener("click", function(){
 		entryPage.style.opacity = "0"
 		if (audioContext.state === 'suspended') {audioContext.resume();}
-
-		// server room bg 
-		servBgTrack.load();
-		servBgTrack.addEventListener("ended", function(){
-			servBgTrack.currentTime = 0;
-			servBgTrack.play()
-		})
 		//setInterval(totalLengthTest, 3000);
 	})
 
@@ -1248,6 +1222,13 @@ function resetAllFilters()
 	reverbDecaySlider.value = 5;
 	setReverb();
 }
+
+let servBgTrack = document.getElementById("server-room-bg-track")
+
+servBgTrack.addEventListener("ended", function(){
+	servBgTrack.currentTime = 0;
+	servBgTrack.play()
+})
 
 function gotoServerRoom()
 {

@@ -168,7 +168,7 @@ hr /*temp*/
 {
 	position: absolute; white-space: nowrap;
 	font-family: var(--mono-font); /*font is changed later in js*/
-	color: darkgray; 
+	color: dimgray; 
 }
 #main-container
 {
