@@ -1,97 +1,13 @@
-// const trackList = [
-// 	{
-// 		name: "x/o - Duvet cyberia re-chopped & screwed-MiX",
-// 		path: "/21sept-master-mp3/xo - 200529-DuvetBoa8  [master 20220921].mp3",
-// 		link: "https://x-o-xio.bandcamp.com"
-// 	},
-// 	{
-// 		name: "Wa?ste - cyberia texture 5a x professed intention and real intention",
-// 		path: "/21sept-master-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention [master 20220929].mp3",
-// 		link: "https://wa-ste222.bandcamp.com"
-// 	},
-// 	{
-// 		name: "Thegn ft. Vrain - phantoma_-_track04.wav",
-// 		path: "/21sept-master-mp3/thegn ft. vrain - phantoma [master 20220921].mp3",
-// 		link: "https://thegn.bandcamp.com"
-// 	},
-// 	{
-// 		name: "Nerve - I'm Gonna Diss You",
-// 		path: "/21sept-master-mp3/Nerve - I_m Gonna Diss You [master 20220921].mp3",
-// 		link: "https://www.lo4nerve.com"
-// 	},
-// 	{
-// 		name: "Fetus - Footprints",
-// 		path: "/21sept-master-mp3/Fetus - Footprints [master 20220921].mp3",
-// 		link: "https://fetusmusic.bandcamp.com"
-// 	},
-// 	{
-// 		name: "GRASPS X NERDIE - I AM HURTING",
-// 		path: "/21sept-master-mp3/GRASPS X NERDIE - I AM HURTING [master 20220921].mp3",
-// 		link: "" //handled in loadTrack()
-// 	},
-// 	{
-// 		name: "Yraki - Lights Down",
-// 		path: "/21sept-master-mp3/Yraki - Lights Down [master 20220921].mp3",
-// 		link: "https://yraki.bandcamp.com"
-// 	},
-// 	{
-// 		name: "Sour Gout - Transmigration",
-// 		path: "/21sept-master-mp3/Sour Gout - Transmigration [master 20220921].mp3",
-// 		link: "https://sourgout.bandcamp.com/"
-// 	},
-// 	{
-// 		name: "lovefear - Breathe",
-// 		path: "/21sept-master-mp3/lovefear - SEL compilation track final  [master 20220921].mp3",
-// 		link: "https://lovefear.bandcamp.com/"
-// 	},
-// 	{
-// 		name: "堀池ゆめぁ - lain ",
-// 		path: "/21sept-master-mp3/Yumea Horiike - lain [master 20220921].mp3",
-// 		linkName: "artist link",
-// 		link: "https://uuumea.bandcamp.com"
-// 	},
-// 	{
-// 		name: "Yuting Wu - Help me to Breathe",
-// 		path: "/21sept-master-mp3/Yuting Wu - Help me to Breathe [master 20220921].mp3",
-// 		link: "https://yutingwu.bandcamp.com"
-// 	},
-// 	{
-// 		name: "ΛFΛLFL - just some kick noyze",
-// 		path: "/21sept-master-mp3/afalfl - just some kick noyze [master 20220921].mp3",
-// 		link: "https://afalfl.bandcamp.com/"
-// 	  },
-// 	  {
-// 		name: "Yikii - Ancient Scanner",
-// 		path: "/21sept-master-mp3/Yikii - Ancient Scanner [master 20220921].mp3",
-// 		link: "https://yikii.bandcamp.com"
-// 	},
-// 	{
-// 		name: "Kagami Smile -  Acts of Betrayal",
-// 		path: "/21sept-master-mp3/Kagami Smile -  Acts of Betrayal [master 20220921].mp3",
-// 		link: "https://kagamismile.bandcamp.com/"
-// 	},
-// 	{
-// 		name: "Imryll - Family Portrait (Imryll Reimagined)",
-// 		path: "/21sept-master-mp3/Imryll - Family Portrait (Imryll Reimagined) [master 20220921].mp3",
-// 		link: "https://phantomlimblabel.bandcamp.com/album/psalm008-mortal"
-// 	},
-// 	{
-// 		name: "Jennifer Walton - At Last, Lain Is Free",
-// 		path: "/21sept-master-mp3/Jennifer Walton - At Last, Lain Is Free [master 20220921].mp3",
-// 		link: "https://allcentre.bandcamp.com/album/flash-on"
-// 	},
-// ]; 
-
 // test tracks
 const trackList = [
 	{
 		name: "boa - duvet",
-		path: "/mp3/boa_duvet.mp3",
+		path: "mp3/boa_duvet.mp3",
 		link: "https://bandcamp.com"
 	},
 	{
 		name: "exxy4_TWICE 트와이스 TT 3XXY EDIT",
-		path: "/mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3",
+		path: "mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3",
 		link: "https://bandcamp.com"
 	},
 ]

@@ -1,7 +1,7 @@
 #main-container
 {
-    background-image: url("./img/lain_extended_3k.png");
-    --music-player-body: url("./img/player-final77-small.png");
+    background-image: url("../img/lain_extended_3k.png");
+    --music-player-body: url("../img/player-final77-small.png");
 }
 
 /*mobile / portrait display*/
@@ -16,7 +16,7 @@
 	#dock-bg 
 	{
 		width: 400px; height: 90px; bottom: 0; 
-		background-image: url("./img/test-dock50.png"); 
+		background-image: url("../img/test-dock50.png"); 
 	}
 	#icons-container 
 	{
@@ -42,7 +42,7 @@
 	#dock-bg 
 	{
 		width: 150px; height: 100%; left: 0; 
-		/*background-image: url("./img/test-dock50-vertical.png"); */
+		/*background-image: url("../img/test-dock50-vertical.png"); */
 		background-image: none;
 	}
 	#icons-container 
@@ -214,7 +214,7 @@ hr /*temp*/
 {
 	position: absolute;	z-index: 11111;
 	right: 3%; top: 13%;
-	background: center/85% url("./img/music-player-components/minimise4.png") no-repeat;
+	background: center/85% url("../img/music-player-components/minimise4.png") no-repeat;
 	opacity: 0.3;
 }
 .mini-window-close:hover {opacity: 0.5;}
@@ -237,7 +237,7 @@ hr /*temp*/
 #music-player .mini-window-close 
 {
 	top: 21%; right: 4%;
-	background: center/90% url("./img/music-player-components/player-minimise3.png") no-repeat;
+	background: center/90% url("../img/music-player-components/player-minimise3.png") no-repeat;
 	opacity: 0.7;
 }
 #music-player .mini-window-close:hover {opacity: 1;}
@@ -369,7 +369,7 @@ so that texts of variable lengths can be scrolled*/
 {
 	position: absolute; margin: 0;
 	left: 46%; right: 29%; top: 15%; bottom: 82%;
-	background-image: url("./img/music-player-components/volume_bar.png");
+	background-image: url("../img/music-player-components/volume_bar.png");
 	background-repeat: no-repeat;
 	background-size: 90% auto;
 }
@@ -384,7 +384,7 @@ so that texts of variable lengths can be scrolled*/
 {
 	-webkit-appearance: none;
 	appearance: none; width: 23px; height: 23px;
-	background: url("./img/music-player-components/volume_slider_thumb.png") no-repeat;
+	background: url("../img/music-player-components/volume_slider_thumb.png") no-repeat;
 	background-size: auto 100%;
 	cursor: pointer;
 }
@@ -392,7 +392,7 @@ so that texts of variable lengths can be scrolled*/
 #volume-slider::-moz-range-thumb {
 	width: 25px;
 	height: 25px;
-	background: url("./img/music-player-components/volume_slider_thumb.png") no-repeat;
+	background: url("../img/music-player-components/volume_slider_thumb.png") no-repeat;
 	background-size: auto 100%;
 	cursor: pointer;
 }
@@ -498,7 +498,6 @@ so that texts of variable lengths can be scrolled*/
 	border-radius: 10px;
 	background-color: gainsboro;
 	box-shadow:  -2px -2px 2px dimgray inset, 2px 2px 2px dimgray inset;
-	/* background: url("./img/music-player-components/playlist_scrollbar_thumb.png") center no-repeat;*/
 }
 
 #playlist-content 
