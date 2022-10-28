@@ -841,7 +841,7 @@ function switchLoop()
 	{
 		loopIndex++ // 1 loop album
 		// appendTerminalOutput("loop album")
-		loopImg.src = "/img/music-player-components/loop_album.png"
+		loopImg.src = "img/music-player-components/loop_album.png"
 
 		curTrack.addEventListener("ended", nextTrack); //handled in nextTrack()
 	}
@@ -849,7 +849,7 @@ function switchLoop()
 	{
 		loopIndex++ // 2 loop song 
 		// appendTerminalOutput("loop song")
-		loopImg.src = "/img/music-player-components/loop_song_inverted.png"
+		loopImg.src = "img/music-player-components/loop_song_inverted.png"
 		curTrack.removeEventListener("ended", nextTrack)
 		curTrack.addEventListener("ended", loopSong)
 	}
@@ -857,7 +857,7 @@ function switchLoop()
 	{
 		loopIndex = 0 // 0 no loop
 		appendTerminalOutput("loop off")
-		loopImg.src = "/img/music-player-components/loop_off.png"
+		loopImg.src = "img/music-player-components/loop_off.png"
 
 		curTrack.removeEventListener("ended", loopSong)
 		curTrack.addEventListener("ended", nextTrack); //handled in nextTrack()
@@ -949,7 +949,7 @@ let showingOldUI = false
 tempToggle.addEventListener("click", function(){
 	if (showingOldUI)
 	{
-		mainContainer.style.backgroundImage = 'url("/img/lain_extended_3k.png")'
+		mainContainer.style.backgroundImage = 'url("img/lain_extended_3k.png")'
 		creditsBtn.style.display = "block"
 		oldPlayerContainer.style.display = "none"
 		playlistEl.style.display = "none"
