@@ -10,32 +10,28 @@
 	width: 100vw; height: 100vh;
 	display: flex; justify-content: center; align-items: center;
 	overflow-y: scroll;
-	--text-glow-color: #f1f1f1;
-	--text-glow-shadow: 0 0 5px #ffffff, 0 0 15px #ffffff;
 }
 
 /*mobile / portrait display*/
 @media (max-aspect-ratio: 4/3) 
 {
-	#credits {font-size: 12px; margin-top: 50%;}
-	#artist-list {width: 85%;}
+	#credits {font-size: 12px; margin-top: 50%; width: 85%;}
 }
 
 /*desktop / landscape display*/
 @media (min-aspect-ratio: 4/3) 
 {
-	#credits {font-size: 14px; margin-top: 35%;}
-	#artist-list {width: 37%;}
+	#credits {font-size: 14px; margin-top: 20%; width: 40%;}
 }
 
 #credits 
 {
-	width: 100%; 
 	display: flex; justify-content: center; align-items: center; flex-direction: column;
 }
 
 #artist-list
 {
+	width: 100%;
 	list-style-type: none; 
 	margin: 0; padding: 0;
 	text-align: left;
@@ -45,15 +41,20 @@
 
 #artist-list li:hover
 {
-	background-color: #383896 !important;
+	background-color: var(--purple-highlight-color) !important;
 	box-shadow: 3px 2px 2px black;
 }
 
 #artist-list li:hover, #artist-list li:hover a{
-	color: var(--text-glow-color);
+	color: white;
 	text-shadow: var(--text-glow-shadow);
 }
 
 #artist-list li span {float: right;}
+
+/* #credits p
+{
+	
+} */
 
 /***************** credits end *****************/

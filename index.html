@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div id="entry-page"> 
-		<img src="img/frame.png" id="entry-img">
+		<img src="/img/frame_c.png" id="entry-img">
  		<div id="entry-texts-container">
 			<div id="entry-texts">initialising</div>
 		</div>
@@ -27,7 +27,7 @@
 		<!---------- music player ---------->
 		<div class="mini-window" id="music-player">
 			<audio preload="auto" id="cur-track"></audio>
-<!-- 			<audio preload="auto" id="bg-track" loop src="/bg-mp3/server_room_188.mp3"></audio>  -->
+			<audio preload="auto" id="server-room-bg-track" src="/bg-mp3/serv188-210.mp3"></audio> 
 			<div class="mini-window-header">player
 				<div class="mini-window-close"></div>
 			</div>
@@ -236,35 +236,42 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 			<div id="version-history-container">
 				<pre id="version-history-texts">
 
+ 0.3.3<span>26 oct 2022 </span>
+ added developer mode
+
  0.3.2<span>09 oct 2022 </span>
- added artist link section in music player
- spinning navi logo as credits page entrance
- added window minimise animation
+ window minimise animation
+ spinning navi logo for credits page
 
  0.3.1<span>25 sep 2022 </span>
- added easter egg command
- fixed issue where volume can't be set in safari
- scale down ascii art to counter browser font size limitation
+ added credits page
+ fixed ascii art display issue
+ fixed safari volume issue
 
  0.3.0<span>21 sep 2022 </span>
  uploaded lain comp vol 1 master
+ music player visualiser
 
- 0.2.0<span>14 aug 2022 </span>
- added mini windows that can be dragged around
- added terminal window with a fake caret
+ 0.2.2<span>13 sep 2022 </span>
+ mobile optimisation
 
- 0.1.0<span>9 aug 2022 </span>
+ 0.2.1<span>01 sep 2022 </span>
+ audio filter commands
+
+ 0.2.0<span>28 aug 2022 </span>
+ added terminal window
+ added version history window
+
+ 0.1.0<span>09 aug 2022 </span>
  uploaded lain comp vol 1 demo
- music player with biquad filters and reverb
+ music player with audio filters
 </pre>
 			</div>
 		</div>
 		<!-------------- version history end -------------->
 
-		<div id="temp-toggle">(temp) switch view</div>
-<!-- 		<div id="temp-bg-audio-toggle">(temp) toggle bg ambiance</div>
- -->
-
+		<div id="temp-toggle">audio filter settings</div>
+		
  		<div id="credits-btn">
 			<a href="credits.html" target="_blank">
 				<img src="img/navi-logo.gif">
@@ -374,7 +381,10 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 			<input class="long-slider" type="range" min="0.1" max="120" value="15" id="reverb-duration" step="1" onchange="setReverb()">
 			<p id="cur-reverb-decay" style="color: grey;">decay: 5</p>
 			<input class="long-slider" type="range" min="0.1" max="80" value="5" id="reverb-decay" step="0.2" onchange="setReverb()">
-
+			<br>
+			<hr>
+			<br>
+			<button onclick="resetAllFilters()">reset to default</button>
 		</div> <!-- end of old player container -->
 	</div> <!-- end of main container -->
 	<script type="text/javascript" src="main.js"></script>

@@ -1,7 +1,7 @@
 #main-container
 {
-    background-image: url("/img/lain_extended_m.png");
-    --music-player-body: url("/img/player-final7.png");
+    background-image: url("/img/lain_extended_3k.png");
+    --music-player-body: url("/img/player-final77-small.png");
 }
 
 /*mobile / portrait display*/
@@ -215,9 +215,9 @@ hr /*temp*/
 	position: absolute;	z-index: 11111;
 	right: 3%; top: 13%;
 	background: center/85% url("/img/music-player-components/minimise4.png") no-repeat;
-	opacity: 0.2;
+	opacity: 0.3;
 }
-.mini-window-close:hover {opacity: 0.4;}
+.mini-window-close:hover {opacity: 0.5;}
 
 /******* music player *******/
 #music-player
@@ -229,7 +229,7 @@ hr /*temp*/
 	background-repeat: no-repeat;
 	background-size: 100%; 
 	/*width n height are set separately, responsive to screen size*/
-	text-shadow: 0 0 5px #e1e4eb, 0 0 15px #e1e4eb; 
+	text-shadow: var(--text-glow-shadow); 
 }
 
 #music-player .mini-window-draggable {width: 93%; right: 0;}
@@ -334,7 +334,7 @@ so that texts of variable lengths can be scrolled*/
 #cur-time-container
 {
 	position: absolute;
-	left: 18%; right: 59%; top: 6%; bottom: 83%;
+	left: 18%; right: 59%; top: 6%; bottom: 84%;
 	width: auto; height: auto;
 	/* background-color: var(--music-player-bg); 
 	opacity: var(--music-player-bg-opacity); */
@@ -353,7 +353,7 @@ so that texts of variable lengths can be scrolled*/
 {
 	position: absolute;
 	margin: 0; 
-	bottom: 0; top: 40%; left: 2%; right: 2%;
+	bottom: 0; top: 33%; left: 2%; right: 2%;
 }
 
 #visualiser 
@@ -383,9 +383,7 @@ so that texts of variable lengths can be scrolled*/
 #volume-slider::-webkit-slider-thumb 
 {
 	-webkit-appearance: none;
-	appearance: none;
-	width: 25px;
-	height: 25px;
+	appearance: none; width: 23px; height: 23px;
 	background: url("/img/music-player-components/volume_slider_thumb.png") no-repeat;
 	background-size: auto 100%;
 	cursor: pointer;
@@ -516,8 +514,9 @@ so that texts of variable lengths can be scrolled*/
 }
 
 .playlist-entry:hover{
-	background-color: white !important;
-	box-shadow: 3px 2px 2px black;
+	/* background-color: white !important;
+	color: black; */
+	box-shadow: 4px 3px 3px black;
 }
 
 #mini-display-container
@@ -751,13 +750,11 @@ so that texts of variable lengths can be scrolled*/
 #temp-toggle
 {
 	position: absolute;
-	left: 0%;
-	bottom: 0;
-	width: 200px;
-	height: 50px;
-	font-size: small; color: black; text-align: center;
-	background-color: gainsboro;
-	opacity: 0.4; 
+	right: 5%; top: 0;
+	width: 50px; height: 120px;
+	font-size: small; color: white; text-align: center;
+	writing-mode: vertical-rl; text-orientation: mixed;
+	background-color: var(--purple-highlight-color);
 	z-index: 1000;
 	cursor: pointer;
 }

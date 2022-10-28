@@ -6,7 +6,7 @@
 // 	},
 // 	{
 // 		name: "Wa?ste - cyberia texture 5a x professed intention and real intention",
-// 		path: "/21sept-master-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention [master 20221005].mp3",
+// 		path: "/21sept-master-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention [master 20220929].mp3",
 // 		link: "https://wa-ste222.bandcamp.com"
 // 	},
 // 	{
@@ -86,12 +86,12 @@
 const trackList = [
 	{
 		name: "boa - duvet",
-		path: "mp3/boa_duvet.mp3",
+		path: "/mp3/boa_duvet.mp3",
 		link: "https://bandcamp.com"
 	},
 	{
 		name: "exxy4_TWICE 트와이스 TT 3XXY EDIT",
-		path: "mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3",
+		path: "/mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3",
 		link: "https://bandcamp.com"
 	},
 ]
@@ -108,23 +108,42 @@ const loadingTrackStr = "loading metadata...";
 const totalTime = "68:21" //calculated with totalLengthTest() in onload()
 
 //terminal texts
+const helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸<br><br>available commands:<br><br>"
+				+ "playback controls<br>"
+				+ "&emsp;&emsp;<span style='color:lime'>play </span> &emsp;&emsp; play the currently loaded song<br>"
+				+ "&emsp;&emsp;<span style='color:lime'>pause </span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>stop </span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>prev </span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>next </span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>random </span>&nbsp;play a random song<br><br>"
+				+ "audio filters<br>"
+				+ "&emsp;&emsp;<span style='color:lime'>server room</span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>smoking area</span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>toilet</span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>leave </span>&nbsp; clear all audio filters<br><br>"
+				+ "note: only the first 4 letters are processed. <span style='color:lime'>smok</span> is equivalent to <span style='color:lime'>smoking area</span><br><br>"
+				+ "¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨<br>"
+
 const lainStrings = [
 	"let's all love lain (づ◡﹏◡)づ",
-	"you're a web 3 developer, i'm a web :3 developer",
-	"suicide by CIA",
-	"Virtuality features highly accelerated cultural evolution, giving it extreme susceptibility to manipulation and high hyperstitional potentiation. Technodieties will proliferate in the form of egregores, directly bending reality to their will. Humanity will be twisted",
-	"logging off"
+	"7.83Hz",
+	"<span style='color:#AAA4FF'>root access granted<br>audio filter debug mode enabled</span>",
+	"you're already a developer"
 ]
-const invalidInputStr = "idk that word!"
+const invalidInputStr = "idk that word (´;ω;`)" 
 
+randCommandStrings = [
+	" did u mean to type <span style='color:lime'>help</span>?",
+	" imma head to the <span style='color:lime'>smok</span>ing area do u wanna come with me?",
+	" listen to a <span style='color:lime'>random</span> song with me!"
+]
 //initial audio node params
 //gain node
 const initialGain = 0.77;
 let currentFilter = 0 // filter preset index in filterPresetsArray. 0 means none
 
 // colors
-let plEntryBgColor = "rgba(255, 255, 255, 0.7)" //bg highlight color for current song in playlist
-
+let plEntryBgColor = "rgba(0, 0, 0, 0.9)" //bg highlight color for current song in playlist
 //bg color #e1e4eb
 
 //media queries
@@ -136,7 +155,7 @@ let entryPage = document.getElementById("entry-page")
 let entryTextsEl = document.getElementById("entry-texts")
 let entryBottomTexts = document.getElementById("entry-bottom-text")
 
-// let bgAudio = document.getElementById("bg-track")
+let servBgTrack = document.getElementById("server-room-bg-track")
 
 // manually center the loading text so its position is fixed while adding the "..."
 let initialLeft = entryTextsEl.parentElement.offsetWidth/2 - entryTextsEl.offsetWidth/2
@@ -158,8 +177,8 @@ function loadingText()
 	}
 }
 
-//unicode chars 33-122, 161-404. see getUnicodeChars() in utilities
-let chars = ["!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","¡","¢","£","¤","¥","¦","§","¨","©","ª","«","¬","­","®","¯","°","±","²","³","´","µ","¶","·","¸","¹","º","»","¼","½","¾","¿","À","Á","Â","Ã","Ä","Å","Æ","Ç","È","É","Ê","Ë","Ì","Í","Î","Ï","Ð","Ñ","Ò","Ó","Ô","Õ","Ö","×","Ø","Ù","Ú","Û","Ü","Ý","Þ","ß","à","á","â","ã","ä","å","æ","ç","è","é","ê","ë","ì","í","î","ï","ð","ñ","ò","ó","ô","õ","ö","÷","ø","ù","ú","û","ü","ý","þ","ÿ","Ā","ā","Ă","ă","Ą","ą","Ć","ć","Ĉ","ĉ","Ċ","ċ","Č","č","Ď","ď","Đ","đ","Ē","ē","Ĕ","ĕ","Ė","ė","Ę","ę","Ě","ě","Ĝ","ĝ","Ğ","ğ","Ġ","ġ","Ģ","ģ","Ĥ","ĥ","Ħ","ħ","Ĩ","ĩ","Ī","ī","Ĭ","ĭ","Į","į","İ","ı","Ĳ","ĳ","Ĵ","ĵ","Ķ","ķ","ĸ","Ĺ","ĺ","Ļ","ļ","Ľ","ľ","Ŀ","ŀ","Ł","ł","Ń","ń","Ņ","ņ","Ň","ň","ŉ","Ŋ","ŋ","Ō","ō","Ŏ","ŏ","Ő","ő","Œ","œ","Ŕ","ŕ","Ŗ","ŗ","Ř","ř","Ś","ś","Ŝ","ŝ","Ş","ş","Š","š","Ţ","ţ","Ť","ť","Ŧ","ŧ","Ũ","ũ","Ū","ū","Ŭ","ŭ","Ů","ů","Ű","ű","Ų","ų","Ŵ","ŵ","Ŷ","ŷ","Ÿ","Ź","ź","Ż","ż","Ž","ž","ſ","ƀ","Ɓ","Ƃ","ƃ","Ƅ","ƅ","Ɔ","Ƈ","ƈ","Ɖ","Ɗ","Ƌ","ƌ","ƍ","Ǝ","Ə","Ɛ","Ƒ","ƒ","Ɠ","Ɣ"]
+//unicode chars 33-122. see getUnicodeChars() in utilities
+let chars = ["!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
 let BottomTextLength = 33
 let bottomTextTimer = setInterval(scrambleBottomText, 100)
 
@@ -188,6 +207,13 @@ window.onload = function() {
 	entryPage.addEventListener("click", function(){
 		entryPage.style.opacity = "0"
 		if (audioContext.state === 'suspended') {audioContext.resume();}
+
+		// server room bg 
+		servBgTrack.load();
+		servBgTrack.addEventListener("ended", function(){
+			servBgTrack.currentTime = 0;
+			servBgTrack.play()
+		})
 		//setInterval(totalLengthTest, 3000);
 	})
 
@@ -253,7 +279,7 @@ for (let i = 0; i < miniWindows.length; i++)
 	})
 	icon.addEventListener("click", function(){
 		miniWindow.style.zIndex = maxZ; maxZ++;
-		if(miniWindow.id == "chat-window") miniWindow.style.display = "flex";
+		if (miniWindow.id == "chat-window") miniWindow.style.display = "flex";
 		else miniWindow.style.display = "block";
 		icon.style.display = "none"
 
@@ -353,13 +379,7 @@ function dragEnd()
 	document.removeEventListener("touchend", dragEnd)
 }
 
-// windowDock.addEventListener("click", function(){
-// 	if (miniWindow.style.display === "none")
-// 		miniWindow.style.display = "block";
-// })
-
 ////////////// mini windows //////////////
-
 
 
 ////////////// terminal //////////////
@@ -375,6 +395,7 @@ let caretOffest
 
 let inputPattern = /^[a-zA-Z\d\s]*$/; //letters, digits, and whitespace
 let lainCount = 0 
+let invalidCount = 0
 let rangeDelta = 2  // output index range lainCount +- rangeDelta
 
 inputEl.onkeydown = validateInput
@@ -394,34 +415,31 @@ function validateInput(e)
 		terminalDisplay.innerHTML += "lain@navi ~ % " + inputEl.value + "</br>";
 		//easter egg
 		if (inputEl.value.toLowerCase().includes("lain"))
-		{
-			terminalDisplay.innerHTML += lainStrings[0] + "</br>"; 
+		{			
+			// let lowerBound = (lainCount > rangeDelta)? (lainCount - rangeDelta) : 0
+			// let upperBound = (lainCount > lainStrings.length - 1 - rangeDelta)? (lainStrings.length - 1) : (lainCount + rangeDelta)
+			// if (lowerBound > upperBound) lowerBound = upperBound;
 
-			// sad to see it go >:(
-			// if (lainCount == 0) 
-			// {
-			// 	terminalDisplay.innerHTML += lainStrings[0] + "</br>"; 
-			// }
-			// else
-			// {
-			// 	// let lowerBound = (lainCount > rangeDelta)? (lainCount - rangeDelta) : 0
-			// 	// let upperBound = (lainCount > lainStrings.length - 1 - rangeDelta)? (lainStrings.length - 1) : (lainCount + rangeDelta)
-			// 	// if (lowerBound > upperBound) lowerBound = upperBound;
+			// method 1 random int w range
+			// let outputIndex = getRandomInt(lowerBound, upperBound)
 
-			// 	// method 1 random int w range
-			// 	// let outputIndex = getRandomInt(lowerBound, upperBound)
+			// method 2 normally distributed int w range 
+			// let outputIndex = getIntNormallyDistributed(lowerBound, upperBound)
 
-			// 	// method 2 normally distributed int w range 
-			// 	// let outputIndex = getIntNormallyDistributed(lowerBound, upperBound)
+			// method 3 use input count directly
+			// prob gonna go with this method cuz lainStrings has a rather small size and this way the user can go thru every string element
+			let outputIndex = (lainCount > lainStrings.length - 1)? (lainStrings.length - 1) : lainCount;
+			terminalDisplay.innerHTML += lainStrings[outputIndex] + "<br>";
+			// unhide audio filter setting toggle 
+			// if lainCount == lainStrings.length - 2
+			// tempToggle.style.display = "block"
 
-			// 	// method 3 use input count directly
-			// 	// prob gonna go with this method cuz lainStrings has a rather small size and this way the user can go thru every string element
-			// 	let outputIndex = (lainCount > lainStrings.length - 1)? (lainStrings.length - 1) : lainCount;
-			// 	terminalDisplay.innerHTML += lainStrings[outputIndex] + "<br>";
+			// method 4 generate random numbers 6 times and take the avr (central limit theorem)
+			// todo
 
-			// 	//console.log(`range ${lowerBound} to ${upperBound}, input count ${lainCount}, output ${outputIndex}`)
-			// }
-			// lainCount++;
+			//console.log(`range ${lowerBound} to ${upperBound}, input count ${lainCount}, output ${outputIndex}`)
+		
+			lainCount++;
 		}
 		//valid input
 		else if (inputEl.value.match(inputPattern))	
@@ -431,8 +449,7 @@ function validateInput(e)
 		}
 		else //invalid input
 		{
-			//terminalDisplay.innerHTML += "invalid input (´;ω;`) letters, numbers, and spaces only pls</br>";
-			terminalDisplay.innerHTML += invalidInputStr + "<br>"
+			appendInvalidResponse()
 		}
 		inputEl.value = "";
 		fakeCaret.style.marginLeft = initialIndent + "px";
@@ -456,21 +473,20 @@ function appendTerminalOutput(output)
 	terminalTxtContainer.scrollTop = terminalTxtContainer.scrollHeight; 
 }
 
-let helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸<br><br>available commands:<br><br>"
-							+ "playback controls<br>"
-							+ "&emsp;&emsp;<span style='color:lime'>play </span> &emsp;&emsp; play the currently loaded song<br>"
-							+ "&emsp;&emsp;<span style='color:lime'>pause </span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>stop </span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>prev </span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>next </span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>random </span>&nbsp;play a random song<br><br>"
-							+ "audio filters<br>"
-							+ "&emsp;&emsp;<span style='color:lime'>server room</span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>smoking area</span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>toilet</span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>leave </span>&nbsp; clear all audio filters<br><br>"
-							+ "note: only the first 4 letters are processed. <span style='color:lime'>serv</span> is equivalent to <span style='color:lime'>server room</span><br><br>"
-							+ "¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨<br>"
+function appendInvalidResponse()
+{
+	invalidCount++;	
+	if (invalidCount > 2) 
+	{
+		let rand = getRandomInt(0, randCommandStrings.length)
+		terminalDisplay.innerHTML += invalidInputStr + randCommandStrings[rand] + "<br>";
+	}
+	else
+	{
+		terminalDisplay.innerHTML += invalidInputStr + "<br>";	
+	}	
+}
+
 function checkCommand(input) 
 {
 	// console.log("trimmed command " + input)
@@ -484,7 +500,8 @@ function checkCommand(input)
 		case "next": nextTrack(); break;
 		case "rand": 
 			curIndex = getRandomInt(0, trackList.length)
-			loadTrack(); playTrack();
+			loadTrack(); 
+			playTrack();
 			break;
 
 		case "help": terminalDisplay.innerHTML += helpText; break;
@@ -495,7 +512,7 @@ function checkCommand(input)
 		case "smok": applyFilter(2); break;
 		case "toil": applyFilter(3); break;
 
-		default: terminalDisplay.innerHTML += invalidInputStr + "</br>"
+		default: appendInvalidResponse();
 	}
 }
 
@@ -613,8 +630,17 @@ function loadTrack()
 	//set playlist entry bg color 
 	for (let i = 0; i < trackList.length; i++)
 	{
-		if (i === curIndex) playlistEntries.item(i).style.backgroundColor = plEntryBgColor;
-		else playlistEntries.item(i).style.backgroundColor = "transparent";
+		let curEntry = playlistEntries.item(i)
+		if (i === curIndex) 
+		{
+			curEntry.style.backgroundColor = plEntryBgColor;
+			curEntry.style.color = "white";
+		}
+		else 
+		{
+			curEntry.style.backgroundColor = "transparent";
+			curEntry.style.color = "black";
+		}
 	}
 
 	//artist link. remove the "https://" in link text 
@@ -814,16 +840,16 @@ function switchLoop()
 	if (loopIndex == 0) 
 	{
 		loopIndex++ // 1 loop album
-		appendTerminalOutput("loop album")
-		loopImg.src = "img/music-player-components/loop_album.png"
+		// appendTerminalOutput("loop album")
+		loopImg.src = "/img/music-player-components/loop_album.png"
 
 		curTrack.addEventListener("ended", nextTrack); //handled in nextTrack()
 	}
 	else if (loopIndex == 1) 
 	{
 		loopIndex++ // 2 loop song 
-		appendTerminalOutput("loop song")
-		loopImg.src = "img/music-player-components/loop_song_inverted.png"
+		// appendTerminalOutput("loop song")
+		loopImg.src = "/img/music-player-components/loop_song_inverted.png"
 		curTrack.removeEventListener("ended", nextTrack)
 		curTrack.addEventListener("ended", loopSong)
 	}
@@ -831,7 +857,7 @@ function switchLoop()
 	{
 		loopIndex = 0 // 0 no loop
 		appendTerminalOutput("loop off")
-		loopImg.src = "img/music-player-components/loop_off.png"
+		loopImg.src = "/img/music-player-components/loop_off.png"
 
 		curTrack.removeEventListener("ended", loopSong)
 		curTrack.addEventListener("ended", nextTrack); //handled in nextTrack()
@@ -917,12 +943,14 @@ let oldPlayerContainer = document.getElementById("old-player-container")
 let playlistEl = document.getElementById("old-playlist-container")
 let playlistToggle = document.getElementById("pl-toggle")
 let mainContainer = document.getElementById("main-container")
+let creditsBtn = document.getElementById("credits-btn")
 
 let showingOldUI = false
 tempToggle.addEventListener("click", function(){
 	if (showingOldUI)
 	{
-		mainContainer.style.backgroundImage = 'url("img/lain_extended_m.png")'
+		mainContainer.style.backgroundImage = 'url("/img/lain_extended_3k.png")'
+		creditsBtn.style.display = "block"
 		oldPlayerContainer.style.display = "none"
 		playlistEl.style.display = "none"
 		dockContainer.style.display = "flex"
@@ -936,6 +964,7 @@ tempToggle.addEventListener("click", function(){
 	else 
 	{
 		mainContainer.style.backgroundImage = "none"
+		creditsBtn.style.display = "none"
 		oldPlayerContainer.style.display = "block"
 		dockContainer.style.display = "none"
 		//playlistEl.style.display = "block"
@@ -977,7 +1006,8 @@ const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 const biquadFilter = new BiquadFilterNode(audioContext, {frequency:1000});
 let impulse = impulseResponse(reverbDurationSlider.value, reverbDecaySlider.value)
 const convolver = new ConvolverNode(audioContext, {buffer:impulse})
-const gainNode = new GainNode(audioContext, {gain:initialGain}) 
+const gainNode = new GainNode(audioContext, {gain:initialGain})  // can be adjusted by the user 
+const masterGainNode = new GainNode(audioContext, {gain: 1})     // specific to filter presets
 
 /////// frequency visualiser ///////
 const analyser = new AnalyserNode(audioContext, {
@@ -1021,7 +1051,7 @@ let biquadTypes = ["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "
 let hasReverb = false
 
 let source = audioContext.createMediaElementSource(curTrack);
-source.connect(gainNode).connect(analyser).connect(audioContext.destination)
+source.connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 
 biquadSelectionEl.addEventListener("change", function(){switchBiquad(biquadSelectionEl.value);}) 
 
@@ -1053,11 +1083,11 @@ function switchBiquad(index)
 		{
 			// convolver.buffer = null;
 			// convolver.disconnect();
-			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
 		else 
 		{	
-			source.connect(biquadFilter).connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(biquadFilter).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
 		frequencyEl.style.color = "black";
 		gainEl.style.color = "black";
@@ -1070,11 +1100,11 @@ function switchBiquad(index)
 		biquadFilter.disconnect()
 		if (hasReverb)
 		{
-			source.connect(convolver).connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
 		else 
 		{
-			source.connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
 		frequencyEl.style.color = "grey";
 		gainEl.style.color = "grey";
@@ -1123,7 +1153,7 @@ function toggleReverb() //to be deleted
 	{
 		convolver.disconnect()
 		convolver.buffer = null
-		reverbToggle.textContent = "turn on reverb "
+		reverbToggle.textContent = "turn on reverb"
 		reverbDurationText.style.color = "grey"
 		reverbDecayText.style.color = "grey"
 		hasReverb = false
@@ -1133,11 +1163,11 @@ function toggleReverb() //to be deleted
 		setReverb();
 		if (biquadIndex > 0) 
 		{
-			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
 		else 
 		{
-			source.connect(convolver).connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
 		reverbToggle.textContent = "turn off reverb"
 		reverbDurationText.style.color = "black"
@@ -1153,6 +1183,10 @@ function turnOffReverb()
 		convolver.buffer = null;
 		convolver.disconnect();
 		hasReverb = false;
+
+		reverbToggle.textContent = "turn on reverb"
+		reverbDurationText.style.color = "grey"
+		reverbDecayText.style.color = "grey"
 	}
 }
 
@@ -1162,12 +1196,15 @@ function turnOnReverb()
 	{	
 		if (biquadIndex > 0) 
 		{
-			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
 		else 
 		{
-			source.connect(convolver).connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
+		reverbToggle.textContent = "turn off reverb"
+		reverbDurationText.style.color = "black"
+		reverbDecayText.style.color = "black"
 		hasReverb = true
 	}
 }
@@ -1184,28 +1221,57 @@ function turnOnReverb()
 const crossfadeGainDelta = 0.05;
 const crossfadeStep = 20; //in ms
 
+// for "leave" command
 function clearAllFilters()
 {
+	masterGainNode.gain.value = 1;
 	turnOffReverb();
     switchBiquad(0);
 }
 
-function gotoServerRoom()
-//lowpass + reverb
+// for reset btn in old player
+function resetAllFilters()
 {
-	switchBiquad(1); //["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch", "allpass"]
+	clearAllFilters();
+
+	biquadSelectionEl.value = 0; //none
+	frequencySlider.value = 350;
+	gainSlider.value = 0;
+	qSlider.value = 1;
+	detuneSlider.value = 0;
+	setFrequency();
+	setGain();
+	setQ();
+	setDetune();
+
+	reverbDurationSlider.value = 15;
+	reverbDecaySlider.value = 5;
+	setReverb();
+}
+
+function gotoServerRoom()
+{
+	servBgTrack.volume = 0.7;
+
+	masterGainNode.gain.value = 0.3;
+
+	switchBiquad(0); //["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch", "allpass"]
 	// biquadFilter.frequency.value = 1000;
 	// biquadFilter.gain.value = 20;
 	// biquadFilter.Q.value = 1;
+	// detune
 	
 	turnOffReverb(); //clear convolver buffer 
-	impulse = impulseResponse(100, 15) //duration, decay
-	convolver.buffer = impulse
-	turnOnReverb();
+	// impulse = impulseResponse(100, 15) //duration, decay
+	// convolver.buffer = impulse
+	// turnOnReverb();
+	servBgTrack.play();
 }
 
 function gotoSmokingArea()
 {
+	masterGainNode.gain.value = 0.3;
+
 	switchBiquad(8); //allpass
 	biquadFilter.frequency.value = 2000;
 	biquadFilter.Q.value = 0.01;
@@ -1218,6 +1284,8 @@ function gotoSmokingArea()
 
 function gotoToilet() //test filter 1
 {
+	masterGainNode.gain.value = 0.1;
+
 	switchBiquad(4); //lowshelf
 	biquadFilter.gain.value = 0;
 
@@ -1250,6 +1318,10 @@ function applyFilter(index)
 	{
 		let prevFilter = currentFilter;
 		currentFilter = index;
+
+		if (prevFilter === 1) //server room
+			servBgTrack.pause();
+
 		let fadeOut = setInterval(function(){
 			if (gainNode.gain.value > crossfadeGainDelta)
 			//gradually decrease volume 
@@ -1289,7 +1361,7 @@ function applyFilter(index)
 	}
 	else 
 	{
-		appendTerminalOutput("you are already in " + filterNames[index])
+		appendTerminalOutput("you are already in " + filterNames[index] +"!")
 	}	
 }
 
@@ -1366,24 +1438,25 @@ function testRandInt(min, max)
 // }
 
 //prints unicode char array in console
-// function getUnicodeChars()
-// {
-// 	let chars = new Array()
-// 	let unicodeIndex
-// 	let charArrayIndex = 0
+//getUnicodeChars()
+function getUnicodeChars()
+{
+	let chars = new Array()
+	let unicodeIndex
+	let charArrayIndex = 0
 
-// 	// 33-122, 161-404
-// 	for (unicodeIndex = 33; unicodeIndex <= 404; unicodeIndex++)
-// 	{
-// 		if (unicodeIndex <= 122 | unicodeIndex >= 161)
-// 		{
-// 			currentChar = String.fromCharCode(unicodeIndex)
-// 			chars.push(currentChar)
-// 			//console.log(unicodeIndex + " " + chars[charArrayIndex])
-// 			charArrayIndex++;
-// 		}
-// 	}
-// 	console.log(JSON.stringify(chars)) // prints the full array 
-// }
+	// 33-122, 161-404
+	for (unicodeIndex = 33; unicodeIndex <= 404; unicodeIndex++)
+	{
+		if (unicodeIndex <= 122 | unicodeIndex >= 161)
+		{
+			currentChar = String.fromCharCode(unicodeIndex)
+			chars.push(currentChar)
+			//console.log(unicodeIndex + " " + chars[charArrayIndex])
+			charArrayIndex++;
+		}
+	}
+	console.log(JSON.stringify(chars)) // prints the full array 
+}
 
 ////////////// utilities //////////////
