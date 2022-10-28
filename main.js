@@ -141,6 +141,9 @@ let entryPage = document.getElementById("entry-page")
 let entryTextsEl = document.getElementById("entry-texts")
 let entryBottomTexts = document.getElementById("entry-bottom-text")
 
+// manually center the loading text so its position is fixed while adding the "..."
+let initialLeft = (entryTextsEl.parentElement.offsetWidth - entryTextsEl.offsetWidth)/2
+entryTextsEl.style.left = initialLeft + "px"
 let loadingTimer = setInterval(loadingText, 777)
 let loadingIndex = 0
 
