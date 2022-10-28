@@ -475,7 +475,8 @@ function appendTerminalOutput(output)
 
 function appendInvalidResponse()
 {
-	if (invalidCount > 1) 
+	invalidCount++;	
+	if (invalidCount > 2) 
 	{
 		let rand = getRandomInt(0, randCommandStrings.length)
 		terminalDisplay.innerHTML += invalidInputStr + randCommandStrings[rand] + "<br>";
@@ -483,7 +484,6 @@ function appendInvalidResponse()
 	else
 	{
 		terminalDisplay.innerHTML += invalidInputStr + "<br>";	
-		invalidCount++;	
 	}	
 }
 
