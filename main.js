@@ -6,7 +6,7 @@ const trackList = [
 		link: "https://bandcamp.com"
 	},
 	{
-		name: "exxy4_TWICE 트와이스 TT 3XXY EDIT",
+		name: "exxy44 - TWICE 트와이스 TT 3XXY EDIT",
 		path: "mp3/exxy44_twice_TT.mp3",
 		link: "https://bandcamp.com"
 	},
