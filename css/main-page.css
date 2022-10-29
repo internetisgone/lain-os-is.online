@@ -69,7 +69,7 @@
 	.mini-window-header {height: 30px; font-size: 12px;}
 	.mini-window-close {height: 24px; width: 24px;}
 
-	#music-player{width: 100vw; height: 136vw; top: 7%; left: 0;}  /*147x200*/ 
+	#music-player{width: 100vw; height: 136vw; top: 13%; left: 0;}/*147x200*/ 
 	#terminal {width: 352px; height: 264px;} 					  /*640x480 x0.55*/
 	#chat-window {width: 240px; height: 320px;} 				  /*480x640 x0.5*/
 	#version-history-window {width: 320px; height: 240px;} 		  /*640x480 x0.5*/
@@ -102,7 +102,7 @@
 	.mini-window-header {height: 40px; font-size: 13px;}
 	.mini-window-close {height: 30px; width: 30px;}
 
-	#music-player {width: 500px; height: 680px; top: 3%; left: 25%;} /*147x200 x3.4*/ 
+	#music-player {width: 500px; height: 680px; top: 6%; left: 30%;} /*147x200 x3.4*/ 
 	#terminal {width: 493px; height: 369px;}						 /*640x480 x0.77*/
 	#chat-window {width: 317px; height: 422px;} 					 /*480x640 x0.66*/
 	#version-history-window {width: 422px; height: 317px;} 		 	 /*640x480 x0.66*/
@@ -190,9 +190,9 @@ hr /*temp*/
 
 /*mini windows initial position & z-index*/
 #music-player {z-index: 7;} /*pos set in media tags*/
-#terminal {top: 11%; left: 7%; z-index: 6;}
-#chat-window {top: 13%; right: 13%; z-index: 4;}
-#version-history-window {top: 30%; right: 4%; z-index: 5;}
+#terminal {top: 3%; left: 7%; z-index: 6;}
+#chat-window {top: 15%; right: 17%; z-index: 4;}
+#version-history-window {top: 37%; right: 4%; z-index: 5;}
 
 .mini-window-draggable
 {
