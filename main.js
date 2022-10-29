@@ -398,7 +398,7 @@ function validateInput(e)
 	//console.log(e)
 	//console.log("input length " + inputLength + " caret offest" + caretOffest)
 
-	if (e.key == "Enter")
+	if (e.keyCode === 13) // “enter”
 	{
 		terminalDisplay.innerHTML += "lain@navi ~ % " + inputEl.value + "</br>";
 		//easter egg
