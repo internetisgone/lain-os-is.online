@@ -24,19 +24,20 @@ const loadingTrackStr = "loading metadata...";
 const totalTime = "68:21" //calculated with totalLengthTest() in onload()
 
 //terminal texts
-const helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸<br><br>available commands:<br><br>"
+const helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸<br><br>"
+				//+ "available commands:<br><br>"
 				+ "playback controls<br>"
-				+ "&emsp;&emsp;<span style='color:lime'>play </span> &emsp;&emsp; play the currently loaded song<br>"
+				+ "&emsp;&emsp;<span style='color:lime'>play </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; play the currently loaded song<br>"
 				+ "&emsp;&emsp;<span style='color:lime'>pause </span><br>"
 				+ "&emsp;&emsp;<span style='color:lime'>stop </span><br>"
 				+ "&emsp;&emsp;<span style='color:lime'>prev </span><br>"
 				+ "&emsp;&emsp;<span style='color:lime'>next </span><br>"
-				+ "&emsp;&emsp;<span style='color:lime'>random </span>&nbsp;play a random song<br><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>random </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; play a random song<br><br>"
 				+ "audio filters<br>"
 				+ "&emsp;&emsp;<span style='color:lime'>server room</span><br>"
 				+ "&emsp;&emsp;<span style='color:lime'>smoking area</span><br>"
-				+ "&emsp;&emsp;<span style='color:lime'>toilet</span><br>"
-				+ "&emsp;&emsp;<span style='color:lime'>leave </span>&nbsp; clear all audio filters<br><br>"
+				// + "&emsp;&emsp;<span style='color:lime'>toilet</span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>leave </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clear all audio filters<br><br>"
 				+ "note: only the first 4 letters are processed. <span style='color:lime'>smok</span> is equivalent to <span style='color:lime'>smoking area</span><br><br>"
 				+ "¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨<br>"
 
@@ -421,7 +422,7 @@ function checkCommand(input)
 		case "leav": applyFilter(0); break;
 		case "serv": applyFilter(1); break;
 		case "smok": applyFilter(2); break;
-		case "toil": applyFilter(3); break;
+		// case "toil": applyFilter(3); break;
 
 		default: appendInvalidResponse();
 	}
@@ -506,7 +507,7 @@ let oldCurTimeEl = document.getElementById("old-cur-time")
 let curTimeEl = document.getElementById("cur-time")
 let oldTotalTimeEl = document.getElementById("old-total-time")
 
-let wrapperClone
+// let wrapperClone
 let playlistEntries = playlistUl.getElementsByClassName("playlist-entry")
 
 ///////initial state///////
@@ -554,13 +555,15 @@ function loadTrack()
 		}
 	}
 
-	//artist link. remove the "https://" in link text 
-	artistLink.innerHTML = `<a href=${trackList[curIndex].link} target="_blank">${trackList[curIndex].link.substring(8)}</a>` 
-
-	//if (trackList[curIndex].name == "GRASPS X NERDIE - I AM HURTING")
+	//artist link
 	if (curIndex == 5)
 	{
 		artistLink.innerHTML = '<a href="https://grasps.bandcamp.com/" target="_blank">grasps.bandcamp.com</a><br><a href="https://soundcloud.com/nerdiecuzz" target="_blank">soundcloud.com/nerdiecuzz</a>'
+	}
+	else
+	{
+		//remove the "https://" in link text 
+		artistLink.innerHTML = `<a href=${trackList[curIndex].link} target="_blank">${trackList[curIndex].link.substring(8)}</a>` 
 	}
 }
 
@@ -592,7 +595,7 @@ curTrack.onloadedmetadata = function()
 
 		//console.log("nowPlayingWidth = " + nowPlayingWidth + ", nowPlayingContainer width = " + nowPlayingContainer.offsetWidth)
 
-		appendTerminalOutput("now playing " + trackList[curIndex].name)
+		appendTerminalOutput("loaded track " + trackList[curIndex].name)
 	}
 
 function parseTime(duration)
@@ -643,11 +646,11 @@ function pauseTrack()
 
 function setNowPlayingAnim(playAnim)
 {
-	if (wrapperClone)	
-	{
-		nowPlayingContainer.removeChild(wrapperClone)
-		wrapperClone = null;
-	}
+	// if (wrapperClone)	
+	// {
+	// 	nowPlayingContainer.removeChild(wrapperClone)
+	// 	wrapperClone = null;
+	// }
 
 	if (playAnim) //show the scrolling divs
 	{
@@ -783,11 +786,6 @@ function loopSong()
 	curTrack.play()
 }
 
-// function onBeforeSettingVolume()
-// {
-// 	console.log("onBeforeSettingVolume")
-// }
-
 function setVolume()
 {
 	changingVolumeText.style.opacity = "1"
@@ -799,7 +797,7 @@ function setVolume()
 	else  			  nowPlayingStatic.style.opacity = "0";
 
 	//in case it gets stuck
-	setTimeout(onFinishSettingVolume, "2000")
+	setTimeout(onFinishSettingVolume, "3000")
 }
 
 function onFinishSettingVolume()
@@ -833,8 +831,8 @@ function oldSetProgress(el)
 	let oldJumpTo = curTrack.duration * (el.offsetX / oldProgressBar.offsetWidth);
 	curTrack.currentTime = oldJumpTo;
 	updateProgress()
-	console.log("progressss " + el)
-	console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + oldProgressBar.offsetWidth + ", oldJumpTo = " + oldJumpTo)
+	// console.log("progressss " + el)
+	// console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + oldProgressBar.offsetWidth + ", oldJumpTo = " + oldJumpTo)
 }
 
 function setProgress(el)
@@ -842,19 +840,16 @@ function setProgress(el)
 	let jumpTo = curTrack.duration * (el.offsetX / progressBar.offsetWidth);
 	curTrack.currentTime = jumpTo;
 	updateProgress()
-	console.log("progressss " + el)
-	console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + progressBar.offsetWidth + ", jumpTo = " + jumpTo)
+	// console.log("progressss " + el)
+	// console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + progressBar.offsetWidth + ", jumpTo = " + jumpTo)
 }
 
 let oldPlaylist = document.getElementById("old-playlist-content")
 fillPlaylist(oldPlaylist);
 ////////////// old music player //////////////
 
-////// audio filter settings view
-// function initSettingsView()
-// {
-	
-// }
+////// audio filter settings view //////
+
 let oldPlayerContainer = document.getElementById("old-player-container")
 let playlistEl = document.getElementById("old-playlist-container")
 let playlistToggle = document.getElementById("pl-toggle")
@@ -897,7 +892,8 @@ playlistToggle.addEventListener("click", function(){
 	if (playlistEl.style.display == "none") {playlistEl.style.display = "block";}
 	else {playlistEl.style.display = "none";}	
 })
-//////audio filter settings view
+////// audio filter settings view //////
+
 
 ////////////// audio filter //////////////
 
@@ -919,7 +915,7 @@ let reverbDurationText = document.getElementById("cur-reverb-duration")
 let reverbDecayText = document.getElementById("cur-reverb-decay")
 
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-const biquadFilter = new BiquadFilterNode(audioContext, {frequency:1000});
+const biquadFilter = new BiquadFilterNode(audioContext, {frequency:350});
 let impulse = impulseResponse(reverbDurationSlider.value, reverbDecaySlider.value)
 const convolver = new ConvolverNode(audioContext, {buffer:impulse})
 const gainNode = new GainNode(audioContext, {gain:initialGain})  // can be adjusted by the user 
@@ -1063,7 +1059,7 @@ function setReverb()
 	convolver.buffer = impulse
 }
 
-function toggleReverb() //to be deleted
+function toggleReverb() 
 {
 	if (hasReverb)
 	{
@@ -1165,20 +1161,54 @@ function resetAllFilters()
 	setReverb();
 }
 
-let servBgTrack = document.getElementById("server-room-bg-track")
+let servBgBufferData
+let servBgBufferNode
+let servBgGain
 
-servBgTrack.addEventListener("ended", function(){
-	servBgTrack.currentTime = 0;
-	servBgTrack.play()
-})
+fetch("/bg-mp3/serv188-210.mp3")
+.then(function(response) {return response.arrayBuffer()})
+.then(decode);
+
+function decode(buffer) 
+{
+	audioContext.decodeAudioData(buffer, success);
+}
+
+function success(buffer)
+{
+	servBgBufferData = buffer;
+	console.log("decoded server room bg");
+}
+
+function playServerRoomBg()
+{
+	servBgBufferNode = audioContext.createBufferSource();
+	servBgBufferNode.buffer = servBgBufferData;
+	servBgGain = new GainNode(audioContext, {gain: 0.7});
+
+	servBgBufferNode.connect(servBgGain).connect(masterGainNode).connect(audioContext.destination);
+	servBgBufferNode.loop = true;
+	servBgBufferNode.start();
+}
+
+// servBgTrack = document.getElementById("server-room-bg-track")
+// servBgTrack.addEventListener("ended", function(){
+// 	servBgTrack.currentTime = 0;
+// 	servBgTrack.play()
+// })
+
+function stopServerRoomBg()
+{
+	servBgBufferNode.stop();
+	servBgBufferNode = null; // reset node, cannot start() the same node twice
+}
 
 function gotoServerRoom()
 {
-	servBgTrack.volume = 0.7;
-
 	masterGainNode.gain.value = 0.3;
 
-	switchBiquad(0); //["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch", "allpass"]
+	switchBiquad(0); 
+	//["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch", "allpass"]
 	// biquadFilter.frequency.value = 1000;
 	// biquadFilter.gain.value = 20;
 	// biquadFilter.Q.value = 1;
@@ -1188,7 +1218,9 @@ function gotoServerRoom()
 	// impulse = impulseResponse(100, 15) //duration, decay
 	// convolver.buffer = impulse
 	// turnOnReverb();
-	servBgTrack.play();
+	// servBgTrack.play();
+
+	playServerRoomBg();
 }
 
 function gotoSmokingArea()
@@ -1205,31 +1237,31 @@ function gotoSmokingArea()
 	turnOnReverb();
 }
 
-function gotoToilet() //test filter 1
-{
-	masterGainNode.gain.value = 0.1;
+// function gotoToilet() //test filter 1
+// {
+// 	masterGainNode.gain.value = 0.1;
 
-	switchBiquad(4); //lowshelf
-	biquadFilter.gain.value = 0;
+// 	switchBiquad(4); //lowshelf
+// 	biquadFilter.gain.value = 0;
 
-	turnOffReverb(); //clear convolver buffer 
-	impulse = impulseResponse(7, 13) //duration, decay
-	convolver.buffer = impulse
-	turnOnReverb();
-}
+// 	turnOffReverb(); //clear convolver buffer 
+// 	impulse = impulseResponse(7, 13) //duration, decay
+// 	convolver.buffer = impulse
+// 	turnOnReverb();
+// }
 
 let filterPresetsArray = [
 	clearAllFilters, 
 	gotoServerRoom,
 	gotoSmokingArea, 
-	gotoToilet
+	// gotoToilet
 ]
 
 let filterNames = [
 	"nowhere",
 	"server room",
 	"smoking area",
-	"toilet"
+	// "toilet"
 ]
 
 function applyFilter(index)
@@ -1243,14 +1275,14 @@ function applyFilter(index)
 		currentFilter = index;
 
 		if (prevFilter === 1) //server room
-			servBgTrack.pause();
+			stopServerRoomBg();
 
 		let fadeOut = setInterval(function(){
 			if (gainNode.gain.value > crossfadeGainDelta)
 			//gradually decrease volume 
 			{
 				gainNode.gain.setValueAtTime((gainNode.gain.value - crossfadeGainDelta), audioContext.currentTime);
-				console.log("fading out, current volume " + gainNode.gain.value)
+				// console.log("fading out, current volume " + gainNode.gain.value)
 			}	
 			else 
 			//set filter and gradually increase volume 
@@ -1260,7 +1292,7 @@ function applyFilter(index)
 				//apply filter 
 				gainNode.gain.setValueAtTime(0, audioContext.currentTime);
 				filterPresetsArray[index]();
-				console.log("applied audio filter at index " + index)
+				// console.log("applied audio filter at index " + index)
 
 				if (index === 0)
 					appendTerminalOutput("you've left " + filterNames[prevFilter]);
@@ -1271,7 +1303,7 @@ function applyFilter(index)
 					if (gainNode.gain.value < (initialVolume - crossfadeGainDelta))
 					{
 						gainNode.gain.setValueAtTime((gainNode.gain.value + crossfadeGainDelta), audioContext.currentTime);
-						console.log("fading in, current volume " + gainNode.gain.value)
+						// console.log("fading in, current volume " + gainNode.gain.value)
 					}
 					else 
 					{
