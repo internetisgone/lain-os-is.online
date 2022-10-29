@@ -200,6 +200,14 @@ window.onload = function() {
 	entryPage.addEventListener('transitionend', function() {
 		entryPage.parentNode.removeChild(entryPage)
 	})
+
+	loadTrack();
+	stopTrack(); //stop icon, no bitrate display
+
+	// server room bg
+	fetch("/bg-mp3/serv188-210.mp3")
+	.then(function(response) {return response.arrayBuffer()})
+	.then(decode);
 }//end of onload
 
 ////////////// entry page //////////////
@@ -567,10 +575,6 @@ function fillPlaylist(playlist)
 		})
 	}
 }
-////////////// music player //////////////
-
-
-////////////// old music player //////////////
 
 let oldCurTimeEl = document.getElementById("old-cur-time")
 let curTimeEl = document.getElementById("cur-time")
@@ -579,19 +583,12 @@ let oldTotalTimeEl = document.getElementById("old-total-time")
 // let wrapperClone
 let playlistEntries = playlistUl.getElementsByClassName("playlist-entry")
 
-///////initial state///////
-
-//function initAudio()
-loadTrack();
-stopTrack(); //stop icon, no bitrate display
-
+///////initial state
 let loopIndex = 2 //0 no loop, 1 loop album, 2 loop one song
 switchLoop() //no loop 
 
 progressBar.addEventListener("click", setProgress)
 oldProgressBar.addEventListener("click", oldSetProgress);
-
-///////initial state///////
 
 function loadTrack()
 {
@@ -915,7 +912,7 @@ function setProgress(el)
 
 let oldPlaylist = document.getElementById("old-playlist-content")
 fillPlaylist(oldPlaylist);
-////////////// old music player //////////////
+////////////// music player //////////////
 
 ////// audio filter settings view //////
 
@@ -1234,9 +1231,10 @@ let servBgBufferData
 let servBgBufferNode
 let servBgGain
 
-fetch("/bg-mp3/serv188-210.mp3")
-.then(function(response) {return response.arrayBuffer()})
-.then(decode);
+// moved to window.onload
+// fetch("/bg-mp3/serv188-210.mp3")
+// .then(function(response) {return response.arrayBuffer()})
+// .then(decode);
 
 function decode(buffer) 
 {
