@@ -1128,7 +1128,7 @@ function setReverb()
 	convolver.buffer = impulse
 }
 
-function toggleReverb() //to be deleted
+function toggleReverb() 
 {
 	if (hasReverb)
 	{
@@ -1230,20 +1230,54 @@ function resetAllFilters()
 	setReverb();
 }
 
-let servBgTrack = document.getElementById("server-room-bg-track")
+let servBgBufferData
+let servBgBufferNode
+let servBgGain
 
-servBgTrack.addEventListener("ended", function(){
-	servBgTrack.currentTime = 0;
-	servBgTrack.play()
-})
+fetch("/bg-mp3/serv188-210.mp3")
+.then(function(response) {return response.arrayBuffer()})
+.then(decode);
+
+function decode(buffer) 
+{
+	audioContext.decodeAudioData(buffer, success);
+}
+
+function success(buffer)
+{
+	servBgBufferData = buffer;
+	console.log("decoded server room bg");
+}
+
+function playServerRoomBg()
+{
+	servBgBufferNode = audioContext.createBufferSource();
+	servBgBufferNode.buffer = servBgBufferData;
+	servBgGain = new GainNode(audioContext, {gain: 0.7});
+
+	servBgBufferNode.connect(servBgGain).connect(masterGainNode).connect(audioContext.destination);
+	servBgBufferNode.loop = true;
+	servBgBufferNode.start();
+}
+
+// servBgTrack = document.getElementById("server-room-bg-track")
+// servBgTrack.addEventListener("ended", function(){
+// 	servBgTrack.currentTime = 0;
+// 	servBgTrack.play()
+// })
+
+function stopServerRoomBg()
+{
+	servBgBufferNode.stop();
+	servBgBufferNode = null; // reset node, cannot start() the same node twice
+}
 
 function gotoServerRoom()
 {
-	servBgTrack.volume = 0.7;
-
 	masterGainNode.gain.value = 0.3;
 
-	switchBiquad(0); //["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch", "allpass"]
+	switchBiquad(0); 
+	//["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch", "allpass"]
 	// biquadFilter.frequency.value = 1000;
 	// biquadFilter.gain.value = 20;
 	// biquadFilter.Q.value = 1;
@@ -1253,7 +1287,9 @@ function gotoServerRoom()
 	// impulse = impulseResponse(100, 15) //duration, decay
 	// convolver.buffer = impulse
 	// turnOnReverb();
-	servBgTrack.play();
+	// servBgTrack.play();
+
+	playServerRoomBg();
 }
 
 function gotoSmokingArea()
@@ -1308,14 +1344,14 @@ function applyFilter(index)
 		currentFilter = index;
 
 		if (prevFilter === 1) //server room
-			servBgTrack.pause();
+			stopServerRoomBg();
 
 		let fadeOut = setInterval(function(){
 			if (gainNode.gain.value > crossfadeGainDelta)
 			//gradually decrease volume 
 			{
 				gainNode.gain.setValueAtTime((gainNode.gain.value - crossfadeGainDelta), audioContext.currentTime);
-				console.log("fading out, current volume " + gainNode.gain.value)
+				// console.log("fading out, current volume " + gainNode.gain.value)
 			}	
 			else 
 			//set filter and gradually increase volume 
@@ -1325,7 +1361,7 @@ function applyFilter(index)
 				//apply filter 
 				gainNode.gain.setValueAtTime(0, audioContext.currentTime);
 				filterPresetsArray[index]();
-				console.log("applied audio filter at index " + index)
+				// console.log("applied audio filter at index " + index)
 
 				if (index === 0)
 					appendTerminalOutput("you've left " + filterNames[prevFilter]);
@@ -1336,7 +1372,7 @@ function applyFilter(index)
 					if (gainNode.gain.value < (initialVolume - crossfadeGainDelta))
 					{
 						gainNode.gain.setValueAtTime((gainNode.gain.value + crossfadeGainDelta), audioContext.currentTime);
-						console.log("fading in, current volume " + gainNode.gain.value)
+						// console.log("fading in, current volume " + gainNode.gain.value)
 					}
 					else 
 					{
