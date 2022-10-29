@@ -65,16 +65,17 @@ let plEntryBgColor = "rgba(0, 0, 0, 0.9)" //bg highlight color for current song 
 //media queries
 let isLandscape = window.matchMedia("(min-aspect-ratio: 4/3)").matches
 
+// audio filter settings aka developer mode toggle
+let settingsViewToggle = document.getElementById("temp-toggle")
+
 ////////////// entry page //////////////
 
 let entryPage = document.getElementById("entry-page")
 let entryTextsEl = document.getElementById("entry-texts")
 let entryBottomTexts = document.getElementById("entry-bottom-text")
 
-let servBgTrack = document.getElementById("server-room-bg-track")
-
 // manually center the loading text so its position is fixed while adding the "..."
-let initialLeft = entryTextsEl.parentElement.offsetWidth/2 - entryTextsEl.offsetWidth/2
+let initialLeft = (entryTextsEl.parentElement.offsetWidth - entryTextsEl.offsetWidth)/2
 entryTextsEl.style.left = initialLeft + "px"
 let loadingTimer = setInterval(loadingText, 777)
 let loadingIndex = 0
@@ -123,13 +124,6 @@ window.onload = function() {
 	entryPage.addEventListener("click", function(){
 		entryPage.style.opacity = "0"
 		if (audioContext.state === 'suspended') {audioContext.resume();}
-
-		// server room bg 
-		servBgTrack.load();
-		servBgTrack.addEventListener("ended", function(){
-			servBgTrack.currentTime = 0;
-			servBgTrack.play()
-		})
 		//setInterval(totalLengthTest, 3000);
 	})
 
@@ -346,9 +340,10 @@ function validateInput(e)
 			// prob gonna go with this method cuz lainStrings has a rather small size and this way the user can go thru every string element
 			let outputIndex = (lainCount > lainStrings.length - 1)? (lainStrings.length - 1) : lainCount;
 			terminalDisplay.innerHTML += lainStrings[outputIndex] + "<br>";
+			
 			// unhide audio filter setting toggle 
-			// if lainCount == lainStrings.length - 2
-			// tempToggle.style.display = "block"
+			if (lainCount == lainStrings.length - 2)
+				settingsViewToggle.style.display = "block";
 
 			// method 4 generate random numbers 6 times and take the avr (central limit theorem)
 			// todo
@@ -741,12 +736,12 @@ function toggleShuffle()
 {
 	if (isShuffle == false) 
 	{
-		isShuffle = true; appendTerminalOutput("shuffle on")
+		// isShuffle = true; appendTerminalOutput("shuffle on")
 		shuffleImg.src = "img/music-player-components/shuffle_on.png"
 	}
 	else 
 	{
-		isShuffle = false; appendTerminalOutput("shuffle off")
+		// isShuffle = false; appendTerminalOutput("shuffle off")
 		shuffleImg.src = "img/music-player-components/shuffle_off.png"
 	}
 }
@@ -853,8 +848,11 @@ let oldPlaylist = document.getElementById("old-playlist-content")
 fillPlaylist(oldPlaylist);
 ////////////// old music player //////////////
 
-//////temppppp switch  view
-let tempToggle = document.getElementById("temp-toggle")
+////// audio filter settings view
+// function initSettingsView()
+// {
+	
+// }
 let oldPlayerContainer = document.getElementById("old-player-container")
 let playlistEl = document.getElementById("old-playlist-container")
 let playlistToggle = document.getElementById("pl-toggle")
@@ -862,7 +860,7 @@ let mainContainer = document.getElementById("main-container")
 let creditsBtn = document.getElementById("credits-btn")
 
 let showingOldUI = false
-tempToggle.addEventListener("click", function(){
+settingsViewToggle.addEventListener("click", function(){
 	if (showingOldUI)
 	{
 		mainContainer.style.backgroundImage = 'url("img/lain_extended_3k.png")'
@@ -897,7 +895,7 @@ playlistToggle.addEventListener("click", function(){
 	if (playlistEl.style.display == "none") {playlistEl.style.display = "block";}
 	else {playlistEl.style.display = "none";}	
 })
-//////tempppppppppppppppp
+//////audio filter settings view
 
 ////////////// audio filter //////////////
 
@@ -1164,6 +1162,13 @@ function resetAllFilters()
 	reverbDecaySlider.value = 5;
 	setReverb();
 }
+
+let servBgTrack = document.getElementById("server-room-bg-track")
+
+servBgTrack.addEventListener("ended", function(){
+	servBgTrack.currentTime = 0;
+	servBgTrack.play()
+})
 
 function gotoServerRoom()
 {
