@@ -736,12 +736,14 @@ function toggleShuffle()
 {
 	if (isShuffle == false) 
 	{
-		// isShuffle = true; appendTerminalOutput("shuffle on")
+		isShuffle = true; 
+		// appendTerminalOutput("shuffle on")
 		shuffleImg.src = "img/music-player-components/shuffle_on.png"
 	}
 	else 
 	{
-		// isShuffle = false; appendTerminalOutput("shuffle off")
+		isShuffle = false; 
+		// appendTerminalOutput("shuffle off")
 		shuffleImg.src = "img/music-player-components/shuffle_off.png"
 	}
 }
