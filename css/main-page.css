@@ -7,7 +7,17 @@
 /*bg lain pic, entry frame, and icon dock*/
 @media (max-aspect-ratio: 4/3) 
 {
-	#entry-img {width: 50vw; height: auto;}
+	#entry-img 
+	{
+		width: 50vw; height: auto;
+		animation: zoom 3s linear 1;
+	}
+	@keyframes zoom 
+	{
+		from {width: 5vw; height: auto;}
+		to {width: 50vw; height: auto;}
+	}
+
 	#entry-bottom-text {bottom: 9%;}
 	#login-click-area {width: 40vw; height: 40vw;}
 
@@ -29,12 +39,33 @@
 }
 
 /*narrow screens*/
-@media (max-aspect-ratio: 4/5) {#entry-img {width: 70vw; height: auto;}}
+@media (max-aspect-ratio: 4/5) 
+{
+	#entry-img 
+	{
+		width: 70vw; height: auto;
+		animation: zoom 3s linear 1;
+	}
+	@keyframes zoom 
+	{
+		from {width: 5vw; height: auto;}
+		to {width: 70vw; height: auto;}
+	}
+}
 
 /*desktop / landscape display*/
 @media (min-aspect-ratio: 4/3) 
 {
-	#entry-img	{height: 55vh; width: auto;}
+	#entry-img	
+	{
+		height: 55vh; width: auto;
+		animation: zoom 3s linear 1;
+	}
+	@keyframes zoom 
+	{
+		from {height: 5vh; width: auto;}
+		to {height: 55vh; width: auto;}
+	}
 	#entry-bottom-text {bottom: 3.3%;}
 	#login-click-area {height: 33vh; width: 33vh;}
 
@@ -134,23 +165,6 @@ p, label, button, option, ul
 	color: black;
 }
 
-hr /*temp*/
-{
-   display: block;
-   position: relative;
-   padding: 0;
-   margin: 8px auto;
-   height: 0;
-   width: 100%;
-   max-height: 0;
-   font-size: 1px;
-   line-height: 0;
-   clear: both;
-   border: none;
-   border-top: 1px solid darkgray;
-   border-bottom: 1px solid darkgray;
-}
-
 #entry-page
 {
 	width: 100vw; height: 100vh; position: fixed;
@@ -169,6 +183,29 @@ hr /*temp*/
 	position: absolute; cursor: pointer;
 	/* background-color: violet; opacity: 0.3; */
 }
+
+#lain-os-text 
+{
+	position: absolute; 
+	color: var(--bg-color); 
+	font-size: 130px;
+	text-shadow: rgb(211, 211, 211) 9px 9px;
+}
+#version-text
+{
+	position: absolute; 
+	color: var(--bg-color); 
+	bottom: 23%; font-size: 37px;
+}
+
+/*
+#typing
+{
+	position: absolute; color: var(--bg-color);
+	top: 0; left: 0; font-size: 120px; z-index: -1;
+	word-break: break-all;
+} 
+*/
 
 #entry-bottom-text 
 {
@@ -231,7 +268,7 @@ hr /*temp*/
 	color: black; 
 	background-color: transparent;
 	box-shadow: none;
-	background-image: url("/img/player-final77_c.png");
+	background-image: url("/img/player-final77-small.png");
 	background-repeat: no-repeat;
 	background-size: 100%; 
 	/*width n height are set separately, responsive to screen size*/
@@ -814,6 +851,15 @@ so that texts of variable lengths can be scrolled*/
 	height: 10px;
 	background-color: dimgray;
 	z-index: -1;
+}
+
+hr /*temp*/
+{
+   display: block; position: relative; padding: 0; margin: 8px auto; height: 0;
+   width: 100%; max-height: 0; font-size: 1px; line-height: 0; clear: both;
+   border: none;
+   border-top: 1px solid darkgray;
+   border-bottom: 1px solid darkgray;
 }
 /***************** old music player *****************/
 

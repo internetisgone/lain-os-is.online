@@ -143,10 +143,12 @@ let settingsViewToggle = document.getElementById("temp-toggle")
 let entryPage = document.getElementById("entry-page")
 let entryTextsEl = document.getElementById("entry-texts")
 let entryBottomTexts = document.getElementById("entry-bottom-text")
+entryTextsEl.textContent = entryInitStr
 
 // manually center the loading text so its position is fixed while adding the "..."
 let initialLeft = (entryTextsEl.parentElement.offsetWidth - entryTextsEl.offsetWidth)/2
 entryTextsEl.style.left = initialLeft + "px"
+
 let loadingTimer = setInterval(loadingText, 777)
 let loadingIndex = 0
 
@@ -167,7 +169,7 @@ function loadingText()
 //unicode chars 33-122. see getUnicodeChars() in utilities
 let chars = ["!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
 let BottomTextLength = 33
-let bottomTextTimer = setInterval(scrambleBottomText, 100)
+let bottomTextTimer = setInterval(scrambleBottomText, 200)
 
 function scrambleBottomText()
 {
@@ -179,9 +181,30 @@ function scrambleBottomText()
 	}
 }
 
+// typeAll();
+// function typeAll()
+// {
+// 	let iChar = 0;
+// 	let typingEl = document.getElementById("typing");
+// 	let typingContent = "lain OS is online vol. 1: at last, lain is free lain OS is online vol. 1: at last, lain is free lain OS is online vol. 1: at last, lain is free lain OS is online vol. 1: at last, lain is free "
+	
+// 	let delay = 70; 
+// 	typeChar()
+// 	function typeChar() 
+// 	{
+// 		if(iChar < typingContent.length) 
+// 		{
+// 			typingEl.textContent += typingContent.charAt(iChar);
+// 			iChar++;
+// 			setTimeout(typeChar, delay);
+// 		}
+// 	}
+// }
+
 window.onload = function() {
 	clearInterval(loadingTimer)
 	clearInterval(bottomTextTimer)
+	chars = null
 
 	entryTextsEl.parentElement.style.display = "flex"
 	entryTextsEl.parentElement.style.justifyContent = "center"
@@ -190,6 +213,9 @@ window.onload = function() {
 	entryTextsEl.textContent = entryOnloadStr
 	entryBottomTexts.style.fontFamily = "LoveLetter"
 	entryBottomTexts.textContent = entryBottomStr
+
+	document.getElementById("lain-os-text").style.opacity = "1"
+	document.getElementById("version-text").style.opacity = "1"
 
 	let loginClickArea = document.createElement("div")
 	loginClickArea.id = "login-click-area"
@@ -205,8 +231,18 @@ window.onload = function() {
 		entryPage.parentNode.removeChild(entryPage)
 	})
 
-	loadTrack();
-	stopTrack(); //stop icon, no bitrate display
+	// chat embed
+	let chatScript = document.createElement("script")
+	chatScript.id = "cid0020000328095633756"
+	chatScript.setAttribute("data-cfasync", "false")
+	chatScript.async = true;
+	chatScript.src = "//st.chatango.com/js/gz/emb.js"
+	chatScript.style.width = "100%"
+	chatScript.style.height = "100%"
+	chatScript.innerHTML = '{"handle":"lain-os-is-online","arch":"js","styles":{"a":"f5f5f5","b":100,"c":"000000","d":"000000","e":"f5f5f5","h":"f5f5f5","l":"f5f5f5","m":"FFFFFF","p":"12","q":"f5f5f5","r":100,"t":0,"usricon":0,"surl":0,"allowpm":0}}'
+
+	//<script id="cid0020000328095633756" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 100%;">{"handle":"lain-os-is-online","arch":"js","styles":{"a":"f5f5f5","b":100,"c":"000000","d":"000000","e":"f5f5f5","h":"f5f5f5","l":"f5f5f5","m":"FFFFFF","p":"12","q":"f5f5f5","r":100,"t":0,"usricon":0,"surl":0,"allowpm":0}}</script>
+	document.getElementById("chat-container").appendChild(chatScript)
 
 	// server room bg
 	fetch("/bg-mp3/serv188-210.mp3")
@@ -591,6 +627,9 @@ let oldTotalTimeEl = document.getElementById("old-total-time")
 let playlistEntries = playlistUl.getElementsByClassName("playlist-entry")
 
 ///////initial state
+loadTrack();
+stopTrack(); //stop icon, no bitrate display
+
 let loopIndex = 2 //0 no loop, 1 loop album, 2 loop one song
 switchLoop() //no loop 
 
@@ -933,7 +972,7 @@ let showingOldUI = false
 settingsViewToggle.addEventListener("click", function(){
 	if (showingOldUI)
 	{
-		mainContainer.style.backgroundImage = 'url("/img/lain_extended_3k.png")'
+		mainContainer.style.backgroundImage = 'url("/img/lain_extended_3k.jpg")'
 		creditsBtn.style.display = "block"
 		oldPlayerContainer.style.display = "none"
 		playlistEl.style.display = "none"
