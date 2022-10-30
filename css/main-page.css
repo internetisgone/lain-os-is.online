@@ -9,6 +9,7 @@
 {
 	#entry-img {width: 50vw; height: auto;}
 	#entry-bottom-text {bottom: 9%;}
+	#login-click-area {width: 40vw; height: 40vw;}
 
 	/*dock at the bottom*/
 	#dock-container {bottom: 7%; width: 100%; height: 55px;}
@@ -35,6 +36,7 @@
 {
 	#entry-img	{height: 55vh; width: auto;}
 	#entry-bottom-text {bottom: 3.3%;}
+	#login-click-area {height: 33vh; width: 33vh;}
 
 	/*dock at the left*/
 	#dock-container {left: 0; top: 0; bottom: 0; width: 60px; height: 100%;}
@@ -90,7 +92,7 @@
 	/*music player end*/
 
 	#terminal-ascii-art {transform: scale(0.22) translate(-190%, 170%);}
-	#credits-btn {width: 110px; height: 110px;}
+	#credits-btn {width: 150px; height: 150px;}
 }
 
 /* desktop n tablets mini window sizes (screens with width > 500px)*/
@@ -123,7 +125,7 @@
 	/*music player end*/
 
 	#terminal-ascii-art {transform: scale(0.30) translate(-120%, 110%);}
-	#credits-btn {width: 150px; height: 150px;}
+	#credits-btn {width: 200px; height: 200px;}
 }
 
 p, label, button, option, ul
@@ -162,6 +164,11 @@ hr /*temp*/
 
 #entry-texts-container {position: fixed; width: 0; height: 0;}
 #entry-texts {position: absolute; color: black; white-space: nowrap;}
+#login-click-area 
+{
+	position: absolute; cursor: pointer;
+	/* background-color: violet; opacity: 0.3; */
+}
 
 #entry-bottom-text 
 {
