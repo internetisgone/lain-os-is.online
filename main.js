@@ -114,7 +114,7 @@ const lainStrings = [
 	"let's all love lain (づ◡﹏◡)づ",
 	"7.83Hz",
 	"<span style='color:#AAA4FF'>root access granted<br>audio filter debug mode enabled</span>",
-	"you're already a developer"
+	"(づ◡﹏◡)づ you're already a developer (づ◡﹏◡)づ"
 ]
 const invalidInputStr = "idk that word (´;ω;`)" 
 
