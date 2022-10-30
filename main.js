@@ -122,7 +122,11 @@ window.onload = function() {
 	entryBottomTexts.style.fontFamily = "LoveLetter"
 	entryBottomTexts.textContent = entryBottomStr
 
-	entryPage.addEventListener("click", function(){
+	let loginClickArea = document.createElement("div")
+	loginClickArea.setAttribute("id", "login-click-area")
+	entryPage.appendChild(loginClickArea)
+
+	loginClickArea.addEventListener("click", function(){
 		entryPage.style.opacity = "0"
 		if (audioContext.state === 'suspended') {audioContext.resume();}
 		//setInterval(totalLengthTest, 3000);
