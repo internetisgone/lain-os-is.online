@@ -1,6 +1,6 @@
 #main-container
 {
-    background-image: url("/img/lain_extended_3k.png");
+    background-image: url("/img/lain_extended_3k.jpg");
 }
 
 /*mobile / portrait display*/
@@ -105,7 +105,7 @@
 	.mini-window-close {height: 30px; width: 30px;}
 
 	#music-player {width: 500px; height: 680px; top: 6%; left: 30%;} /*147x200 x3.4*/ 
-	#terminal {width: 493px; height: 369px; top: 3%; left: 7%;}	 /*640x480 x0.77*/
+	#terminal {width: 493px; height: 369px; top: 3%; left: 7%;}	 	 /*640x480 x0.77*/
 	#chat-window {width: 317px; height: 422px;} 					 /*480x640 x0.66*/
 	#version-history-window {width: 422px; height: 317px;} 		 	 /*640x480 x0.66*/
 
@@ -231,7 +231,7 @@ hr /*temp*/
 	color: black; 
 	background-color: transparent;
 	box-shadow: none;
-	background-image: url("/img/player-final77-small.png");
+	background-image: url("/img/player-final77_c.png");
 	background-repeat: no-repeat;
 	background-size: 100%; 
 	/*width n height are set separately, responsive to screen size*/
@@ -375,7 +375,7 @@ so that texts of variable lengths can be scrolled*/
 {
 	position: absolute; margin: 0;
 	left: 46%; right: 29%; top: 15%; bottom: 82%;
-	background-image: url("/img/music-player-components/volume_bar.png");
+	background-image: url("/img/music-player-components/volume_bar_c.png");
 	background-repeat: no-repeat;
 	background-size: 90% auto;
 }
