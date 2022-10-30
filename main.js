@@ -192,7 +192,7 @@ window.onload = function() {
 	entryBottomTexts.textContent = entryBottomStr
 
 	let loginClickArea = document.createElement("div")
-	loginClickArea.setAttribute("id", "login-click-area")
+	loginClickArea.id = "login-click-area"
 	entryPage.appendChild(loginClickArea)
 
 	loginClickArea.addEventListener("click", function(){
