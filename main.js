@@ -815,7 +815,7 @@ function switchLoop()
 	else 
 	{
 		loopIndex = 0 // 0 no loop
-		appendTerminalOutput("loop off")
+		// appendTerminalOutput("loop off")
 		loopImg.src = "img/music-player-components/loop_off.png"
 
 		curTrack.removeEventListener("ended", loopSong)
