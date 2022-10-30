@@ -386,21 +386,25 @@ let lainCount = 0
 let invalidCount = 0
 let rangeDelta = 2  // output index range lainCount +- rangeDelta
 
+let linebreakEl = document.createElement("br")
 inputEl.onkeydown = validateInput
 
 function validateInput(e)
 {	
-	let inputLength = (e.key == "Backspace")? (inputEl.value.length - 1) : (inputEl.value.length + 1);
+	//8 is backspace
+	let inputLength = (e.keyCode === 8)? (inputEl.value.length - 1) : (inputEl.value.length + 1); 
 	if (inputLength < 0) inputLength = 0;
 	caretOffest =  inputLength * fontWidth + initialIndent
 	fakeCaret.style.marginLeft = caretOffest + "px"
-
 	//console.log(e)
 	//console.log("input length " + inputLength + " caret offest" + caretOffest)
 
 	if (e.keyCode === 13) // “enter”
 	{
-		terminalDisplay.innerHTML += "lain@navi ~ % " + inputEl.value + "</br>";
+		let userInputEl = document.createElement("span");
+		userInputEl.textContent = "lain@navi ~ % " + inputEl.value;
+		terminalDisplay.appendChild(userInputEl).appendChild(linebreakEl);
+
 		//easter egg
 		if (inputEl.value.toLowerCase().includes("lain"))
 		{			
