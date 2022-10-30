@@ -1,13 +1,23 @@
 #main-container
 {
-    background-image: url("../img/lain_extended_3k.png");
+    background-image: url("../img/lain_extended_3k.jpg");
 }
 
 /*mobile / portrait display*/
 /*bg lain pic, entry frame, and icon dock*/
 @media (max-aspect-ratio: 4/3) 
 {
-	#entry-img {width: 50vw; height: auto;}
+	#entry-img 
+	{
+		width: 50vw; height: auto;
+		animation: zoom 3s linear 1;
+	}
+	@keyframes zoom 
+	{
+		from {width: 5vw; height: auto;}
+		to {width: 50vw; height: auto;}
+	}
+
 	#entry-bottom-text {bottom: 9%;}
 	#login-click-area {width: 40vw; height: 40vw;}
 
@@ -29,12 +39,33 @@
 }
 
 /*narrow screens*/
-@media (max-aspect-ratio: 4/5) {#entry-img {width: 70vw; height: auto;}}
+@media (max-aspect-ratio: 4/5) 
+{
+	#entry-img 
+	{
+		width: 70vw; height: auto;
+		animation: zoom 3s linear 1;
+	}
+	@keyframes zoom 
+	{
+		from {width: 5vw; height: auto;}
+		to {width: 70vw; height: auto;}
+	}
+}
 
 /*desktop / landscape display*/
 @media (min-aspect-ratio: 4/3) 
 {
-	#entry-img	{height: 55vh; width: auto;}
+	#entry-img	
+	{
+		height: 55vh; width: auto;
+		animation: zoom 3s linear 1;
+	}
+	@keyframes zoom 
+	{
+		from {height: 5vh; width: auto;}
+		to {height: 55vh; width: auto;}
+	}
 	#entry-bottom-text {bottom: 3.3%;}
 	#login-click-area {height: 33vh; width: 33vh;}
 
@@ -59,7 +90,7 @@
 		-webkit-backdrop-filter: blur(20px) brightness(95%); /*safari*/
 	}
 
-	#credits-btn {right: 5%; bottom: 5%;}
+	#credits-btn {right: 5%; bottom: 2%;}
 }
 
 /* mobile mini window sizes (screens with width < 500px)*/
@@ -71,8 +102,8 @@
 	.mini-window-header {height: 30px; font-size: 12px;}
 	.mini-window-close {height: 24px; width: 24px;}
 
-	#music-player{width: 100vw; height: 136vw; top: 13%; left: 0;}/*147x200*/ 
-	#terminal {width: 352px; height: 264px;} 					  /*640x480 x0.55*/
+	#music-player{width: 100vw; height: 136vw; top: 14%; left: 0;}/*147x200*/ 
+	#terminal {width: 352px; height: 264px; top: 3%; left: 20%;}  /*640x480 x0.55*/
 	#chat-window {width: 240px; height: 320px;} 				  /*480x640 x0.5*/
 	#version-history-window {width: 320px; height: 240px;} 		  /*640x480 x0.5*/
 
@@ -105,7 +136,7 @@
 	.mini-window-close {height: 30px; width: 30px;}
 
 	#music-player {width: 500px; height: 680px; top: 6%; left: 30%;} /*147x200 x3.4*/ 
-	#terminal {width: 493px; height: 369px;}						 /*640x480 x0.77*/
+	#terminal {width: 493px; height: 369px; top: 3%; left: 7%;}	 	 /*640x480 x0.77*/
 	#chat-window {width: 317px; height: 422px;} 					 /*480x640 x0.66*/
 	#version-history-window {width: 422px; height: 317px;} 		 	 /*640x480 x0.66*/
 
@@ -134,23 +165,6 @@ p, label, button, option, ul
 	color: black;
 }
 
-hr /*temp*/
-{
-   display: block;
-   position: relative;
-   padding: 0;
-   margin: 8px auto;
-   height: 0;
-   width: 100%;
-   max-height: 0;
-   font-size: 1px;
-   line-height: 0;
-   clear: both;
-   border: none;
-   border-top: 1px solid darkgray;
-   border-bottom: 1px solid darkgray;
-}
-
 #entry-page
 {
 	width: 100vw; height: 100vh; position: fixed;
@@ -169,6 +183,29 @@ hr /*temp*/
 	position: absolute; cursor: pointer;
 	/* background-color: violet; opacity: 0.3; */
 }
+
+#lain-os-text 
+{
+	position: absolute; 
+	color: var(--bg-color); 
+	font-size: 130px;
+	text-shadow: rgb(211, 211, 211) 9px 9px;
+}
+#version-text
+{
+	position: absolute; 
+	color: var(--bg-color); 
+	bottom: 23%; font-size: 37px;
+}
+
+/*
+#typing
+{
+	position: absolute; color: var(--bg-color);
+	top: 0; left: 0; font-size: 120px; z-index: -1;
+	word-break: break-all;
+} 
+*/
 
 #entry-bottom-text 
 {
@@ -197,7 +234,7 @@ hr /*temp*/
 
 /*mini windows initial position & z-index*/
 #music-player {z-index: 7;} /*pos set in media tags*/
-#terminal {top: 3%; left: 7%; z-index: 6;}
+#terminal {z-index: 6;} /*pos set in media tags*/
 #chat-window {top: 15%; right: 17%; z-index: 4;}
 #version-history-window {top: 37%; right: 4%; z-index: 5;}
 
@@ -375,7 +412,7 @@ so that texts of variable lengths can be scrolled*/
 {
 	position: absolute; margin: 0;
 	left: 46%; right: 29%; top: 15%; bottom: 82%;
-	background-image: url("../img/music-player-components/volume_bar.png");
+	background-image: url("../img/music-player-components/volume_bar_c.png");
 	background-repeat: no-repeat;
 	background-size: 90% auto;
 }
@@ -813,6 +850,15 @@ so that texts of variable lengths can be scrolled*/
 	height: 10px;
 	background-color: dimgray;
 	z-index: -1;
+}
+
+hr /*temp*/
+{
+   display: block; position: relative; padding: 0; margin: 8px auto; height: 0;
+   width: 100%; max-height: 0; font-size: 1px; line-height: 0; clear: both;
+   border: none;
+   border-top: 1px solid darkgray;
+   border-bottom: 1px solid darkgray;
 }
 /***************** old music player *****************/
 

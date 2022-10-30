@@ -1,5 +1,5 @@
 //fade in bg img when it's fully loaded
-const bgImgPath = "img/credits-bg4-small.png";
+const bgImgPath = "/img/credits-bg4-small.png";
 let mainContainer = document.getElementById("main-container");
 
 function load(src) 

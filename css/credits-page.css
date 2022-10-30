@@ -52,9 +52,9 @@
 
 #artist-list li span {float: right;}
 
-/* #credits p
+#credits p
 {
-	
-} */
+	line-height: 1.5;
+}
 
 /***************** credits end *****************/

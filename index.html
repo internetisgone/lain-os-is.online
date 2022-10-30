@@ -5,19 +5,22 @@
 	<meta charset="utf-8">
 
 	<!-- disable browser caching since the page might get constantly updated -->
-	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0" />
+	<!-- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0" />
 	<meta http-equiv="Pragma" content="no-cache" />
-	<meta http-equiv="Expires" content="0" />
+	<meta http-equiv="Expires" content="0" /> -->
 
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/main-page.css">
-	<title>club cyberia</title>
+	<title>lain OS is online</title>
 </head>
 <body>
 	<div id="entry-page"> 
-		<img src="img/frame_c.png" id="entry-img">
+		<!-- <div id="typing"></div> -->
+		<img src="/img/frame_c.png" id="entry-img">
+		<div id="lain-os-text" style="opacity: 0;">lain OS</div>
+		<div id="version-text" style="opacity: 0;">version 1.0</div>
  		<div id="entry-texts-container">
-			<div id="entry-texts">initialising</div>
+			<div id="entry-texts"></div>
 		</div>
 		<p id="entry-bottom-text"></p>
 	</div>
@@ -221,7 +224,6 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 	
 			<div id="chat-container">
 				<p style="position: absolute; width: 100%; text-align: center; color: black; z-index: -1;">loading chat...</p>
-				<script id="cid0020000328095633756" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 100%;">{"handle":"lain-os-is-online","arch":"js","styles":{"a":"f5f5f5","b":100,"c":"000000","d":"000000","e":"f5f5f5","h":"f5f5f5","l":"f5f5f5","m":"FFFFFF","p":"12","q":"f5f5f5","r":100,"t":0,"usricon":0,"surl":0,"allowpm":0}}</script>
 			</div>
 		</div>
 		<!-------------- chat end -------------->
@@ -277,20 +279,20 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 				<div id="dock-bg-color"></div>
 				<div id="icons-container">
 					<div class="icon" id="icon-music-player">
-						<img src="img/window-icons/player-tr1.png"></img>
+						<img src="img/window-icons/player-tr1_c.png"></img>
 					</div>
 					<div class="icon" id="icon-terminal">
-						<img src="img/window-icons/comp-tr1.png"></img>
+						<img src="img/window-icons/comp-tr1_c.png"></img>
 					</div>
 					<div class="icon" id="icon-chat">
-						<img src="img/window-icons/chat-tr2.png"></img>
+						<img src="img/window-icons/chat-tr2_c.png"></img>
 					</div>
 					<div class="icon" id="icon-version-history">
-						<img src="img/window-icons/vh.png"></img>
+						<img src="img/window-icons/vh_c.png"></img>
 					</div>
 					<div class="icon" style="display: block;"> 
 						<a href="https://isitbandcampfriday.com/" target="_blank">
-							<img src="img/window-icons/bandcamp37.png"></img> 
+							<img src="img/window-icons/bandcamp37_c.png"></img> 
 						</a>
 					</div>
 				</div>
@@ -303,6 +305,7 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 		<link rel="preload" href="fonts/LoveLetter.TTF" as="font" crossorigin />
 		<link rel="preload" href="fonts/Input-Regular_(InputMonoNarrow-Regular).ttf" as="font" crossorigin>
 
+		<link rel="preload" href="img/frame_c.png" as="image">
 		<link rel="preload" href="img/music-player-components/shuffle_off.png" as="image">
 		<link rel="preload" href="img/music-player-components/shuffle_on.png" as="image">
 		<link rel="preload" href="img/music-player-components/loop_off.png" as="image">
