@@ -27,6 +27,8 @@ body
 	--fade-in: opacity 0.7s ease-out; /*used by entry div and credits page*/
 }
 
+pre {font-family: var(--mono-font);}
+
 #main-container
 {
 	width: 100vw; height: 100vh;

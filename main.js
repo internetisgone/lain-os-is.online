@@ -386,7 +386,6 @@ let lainCount = 0
 let invalidCount = 0
 let rangeDelta = 2  // output index range lainCount +- rangeDelta
 
-let linebreakEl = document.createElement("br")
 inputEl.onkeydown = validateInput
 
 function validateInput(e)
@@ -403,7 +402,7 @@ function validateInput(e)
 	{
 		let userInputEl = document.createElement("span");
 		userInputEl.textContent = "lain@navi ~ % " + inputEl.value;
-		terminalDisplay.appendChild(userInputEl).appendChild(linebreakEl);
+		terminalDisplay.appendChild(userInputEl).appendChild(document.createElement("br"));
 
 		//easter egg
 		if (inputEl.value.toLowerCase().includes("lain"))
@@ -434,13 +433,13 @@ function validateInput(e)
 		
 			lainCount++;
 		}
-		//valid input
-		else if (inputEl.value.match(inputPattern))	
+		//valid input. only look at the first 4 chars
+		else if (inputEl.value.trim().substring(0, 4).match(inputPattern))	
 		{
-			// only look at the first 4 chars
-			checkCommand(inputEl.value.trim().toLowerCase().substring(0, 4));
+			checkCommand(inputEl.value.trim().substring(0, 4).toLowerCase());
 		}
-		else //invalid input
+		//invalid input
+		else 
 		{
 			appendInvalidResponse()
 		}
