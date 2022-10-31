@@ -96,8 +96,7 @@ let entryBottomTexts = document.getElementById("entry-bottom-text")
 entryTextsEl.textContent = entryInitStr
 
 // manually center the loading text so its position is fixed while adding the "..."
-let initialLeft = (entryTextsEl.parentElement.offsetWidth - entryTextsEl.offsetWidth)/2
-entryTextsEl.style.left = initialLeft + "px"
+entryTextsEl.style.left = `${(entryTextsEl.parentElement.offsetWidth - entryTextsEl.offsetWidth)/2}px` 
 
 let loadingTimer = setInterval(loadingText, 777)
 let loadingIndex = 0
@@ -145,7 +144,9 @@ fetch(frameImgURL)
 	// show title texts after the frame zoom animation is finished
 	setTimeout(() => {
 		document.getElementById("lain-os-text").style.opacity = "1"
-		document.getElementById("version-text").style.opacity = "1"
+		let versionText = document.getElementById("version-text")
+		versionText.style.bottom = `${((entryPage.offsetHeight - entryFrame.offsetHeight)/2)*1.04}px`
+		versionText.style.opacity = "1"
 	}, 3000);
 })
 
@@ -396,12 +397,12 @@ const helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø�
 				+ "&emsp;&emsp;<span style='color:lime'>smoking area</span><br>"
 				// + "&emsp;&emsp;<span style='color:lime'>toilet</span><br>"
 				+ "&emsp;&emsp;<span style='color:lime'>leave </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clear all audio filters<br><br>"
-				+ "note: only the first 4 letters are processed. <span style='color:lime'>smok</span> is equivalent to <span style='color:lime'>smoking area</span><br><br>"
+				+ "note: i only look at the first 4 letters u type. <span style='color:lime'>smok</span> is equivalent to <span style='color:lime'>smoking area</span><br><br>"
 				+ "¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨<br>"
 
 const lainStrings = [
 	"let's all love lain (づ◡﹏◡)づ",
-	"7.83Hz",
+	"syncing with u at 7.83Hz",
 	"<span style='color:#AAA4FF'>root access granted<br>audio filter debug mode enabled</span>",
 	"(づ◡﹏◡)づ you're already a developer (づ◡﹏◡)づ"
 ]
@@ -562,10 +563,7 @@ let playPauseBtn = document.getElementById("old-play-pause-btn")
 let volumeSlider = document.getElementById("volume-slider")
 
 let oldProgressBar = document.getElementById("old-progress-bar-container")
-// let oldProgressFill = document.getElementById("old-progress-bar-fill")
-
 let progressBar = document.getElementById("progress-bar-container")
-// let progressFill = document.getElementById("progress-bar-fill")
 
 let curTrackText = document.getElementById("cur-track-info")
 

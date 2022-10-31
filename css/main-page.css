@@ -17,6 +17,9 @@
 		from {width: 5vw; height: auto;}
 		to {width: 50vw; height: auto;}
 	}
+	/*same width as entry img. font size scales to viewport width*/
+	#lain-os-text {font-size: 16vw;}
+	#version-text {font-size: 4vw;}
 
 	#entry-bottom-text {bottom: 9%;}
 	#login-click-area {width: 40vw; height: 40vw;}
@@ -51,6 +54,8 @@
 		from {width: 5vw; height: auto;}
 		to {width: 70vw; height: auto;}
 	}
+	#lain-os-text {font-size: 20vw;}
+	#version-text {font-size: 5vw;}
 }
 
 /*desktop / landscape display*/
@@ -58,14 +63,17 @@
 {
 	#entry-img	
 	{
-		height: 55vh; width: auto;
+		height: 60vh; width: auto;
 		animation: zoom 3s linear 1;
 	}
 	@keyframes zoom 
 	{
 		from {height: 5vh; width: auto;}
-		to {height: 55vh; width: auto;}
+		to {height: 60vh; width: auto;}
 	}
+	#lain-os-text {font-size: 10vw;}
+	#version-text {font-size: 2vw;}
+
 	#entry-bottom-text {bottom: 3.3%;}
 	#login-click-area {height: 33vh; width: 33vh;}
 
@@ -188,14 +196,14 @@ p, label, button, option, ul
 {
 	position: absolute; 
 	color: var(--bg-color); 
-	font-size: 130px;
-	text-shadow: rgb(211, 211, 211) 9px 9px;
+	/* font-size: 130px; */
+	text-shadow: rgb(144, 144, 144) 9px 9px;
 }
 #version-text
 {
 	position: absolute; 
 	color: var(--bg-color); 
-	bottom: 23%; font-size: 37px;
+	text-align: center;
 }
 
 /*
@@ -794,7 +802,7 @@ so that texts of variable lengths can be scrolled*/
 {
 	position: absolute;
 	right: 5%; top: 0;
-	width: 50px; height: 120px;
+	width: 50px; height: 110px;
 	font-size: small; color: white; text-align: center;
 	writing-mode: vertical-rl; text-orientation: mixed;
 	background-color: var(--purple-highlight-color);
@@ -841,6 +849,7 @@ so that texts of variable lengths can be scrolled*/
 	margin-left: 9px; margin-right: 9px; 
 	width: 240px;
 	height: 10px;
+	background-color: lightgrey;
 }
 
 #old-progress-bar-fill
@@ -850,7 +859,6 @@ so that texts of variable lengths can be scrolled*/
 	width: 0px;
 	height: 10px;
 	background-color: dimgray;
-	z-index: -1;
 }
 
 hr /*temp*/
