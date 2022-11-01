@@ -1287,7 +1287,7 @@ function playServerRoomBg()
 {
 	servBgBufferNode = audioContext.createBufferSource();
 	servBgBufferNode.buffer = servBgBufferData;
-	servBgGain = new GainNode(audioContext, {gain: 0.7});
+	servBgGain = new GainNode(audioContext, {gain: 1});
 
 	servBgBufferNode.connect(servBgGain).connect(masterGainNode).connect(audioContext.destination);
 	servBgBufferNode.loop = true;
@@ -1308,20 +1308,18 @@ function stopServerRoomBg()
 
 function gotoServerRoom()
 {
-	masterGainNode.gain.value = 0.3;
+	masterGainNode.gain.value = 0.2;
 
-	switchBiquad(0); 
+	switchBiquad(8); 
 	//["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch", "allpass"]
-	// biquadFilter.frequency.value = 1000;
-	// biquadFilter.gain.value = 20;
-	// biquadFilter.Q.value = 1;
-	// detune
-	
+	biquadFilter.frequency.value = 10000;
+	biquadFilter.Q.value = 1.8;
+	biquadFilter.detune.value = 2400
+
 	turnOffReverb(); //clear convolver buffer 
-	// impulse = impulseResponse(100, 15) //duration, decay
-	// convolver.buffer = impulse
-	// turnOnReverb();
-	// servBgTrack.play();
+	impulse = impulseResponse(11, 80) //duration, decay
+	convolver.buffer = impulse
+	turnOnReverb();
 
 	playServerRoomBg();
 }
