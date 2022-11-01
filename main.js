@@ -63,7 +63,7 @@ function scrambleBottomText()
 }
 
 // make sure img is fully loaded b4 showing
-let frameImgURL = "/img/frame_c.png"
+let frameImgURL = "img/frame_c.png"
 // fetch(frameImgURL)
 // .then(function() {
 // 	let entryFrame = document.createElement("img")
@@ -155,7 +155,7 @@ window.onload = function() {
 	//document.getElementById("chat-container").appendChild(chatScript)
 
 	// server room bg
-	fetch("/bg-mp3/serv188-210.mp3")
+	fetch("bg-mp3/serv188-210.mp3")
 	.then(function(response) {return response.arrayBuffer()})
 	.then(decode);
 }//end of onload
