@@ -86,6 +86,7 @@ const entryInitStr = "initialising";
 const entryOnloadStr = "log in";
 // const entryBottomStr = "public domain operating system"
 const entryBottomStr = "at last, lain is free"
+let bgImgPath = "/img/lain_extended_3k.jpg"
 
 //bg color #e1e4eb
 
@@ -134,23 +135,26 @@ function scrambleBottomText()
 // make sure entry frame img is fully loaded b4 showing
 let frameImg = new Image();
 frameImg.src = "/img/frame_c1.png";
-frameImg.onload = function(){
+frameImg.onload = function() {
 	frameImg.id = "entry-img";
 	entryPage.appendChild(frameImg)
 	console.log("loaded entry page frame img")
 
+	// large imgs are loaded after frame img
 	setPlayerAndBgImg()
+
+	// load first song
 	initPlayer()
-	// wait until frame zoom animation finishes
+
+	// text is shown after frame animation finishes
 	setTimeout(() => {
 		document.getElementById("lain-os-text").style.opacity = "1"
 	}, 2500);
 }
 
-let bgImgPath = "/img/lain_extended_3k.jpg"
-let playerImgPath = "/img/player-final77-small.png"
 function setPlayerAndBgImg()
 {
+	let playerImgPath = "/img/player-final77-small.png"
 	loadImg(playerImgPath).then(function() {
 		document.getElementById("music-player").style.backgroundImage = `url(${playerImgPath})`
 		console.log("loaded player img")
@@ -186,10 +190,7 @@ window.onload = function() {
 
 	entryBottomTexts.style.fontFamily = "LoveLetter"
 	entryBottomTexts.textContent = entryBottomStr
-
-	// document.getElementById("lain-os-text").style.opacity = "1"
-	// document.getElementById("version-text").style.opacity = "1"
-
+	
 	let loginClickArea = document.createElement("div")
 	loginClickArea.id = "login-click-area"
 	entryPage.appendChild(loginClickArea)
