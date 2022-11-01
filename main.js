@@ -133,9 +133,26 @@ function scrambleBottomText()
 
 // make sure img is fully loaded b4 showing
 let frameImgURL = "/img/frame_c.png"
-fetch(frameImgURL)
-.then(function() {
-	let entryFrame = document.createElement("img")
+// fetch(frameImgURL)
+// .then(function() {
+// 	let entryFrame = document.createElement("img")
+// 	entryFrame.id = "entry-img"
+// 	entryFrame.src = frameImgURL
+
+// 	entryPage.appendChild(entryFrame)
+// 	console.log("loaded entry page frame img")
+	
+// 	// show title texts after the frame zoom animation is finished
+// 	setTimeout(() => {
+// 		document.getElementById("lain-os-text").style.opacity = "1"
+// 		// let versionText = document.getElementById("version-text")
+// 		// versionText.style.bottom = `${((entryPage.offsetHeight - entryFrame.offsetHeight)/2)*0.8}px`
+// 		// versionText.style.opacity = "1"
+// 	}, 3000);
+// })
+load(frameImgURL).then(() => 
+{
+    let entryFrame = document.createElement("img")
 	entryFrame.id = "entry-img"
 	entryFrame.src = frameImgURL
 
@@ -143,13 +160,22 @@ fetch(frameImgURL)
 	console.log("loaded entry page frame img")
 	
 	// show title texts after the frame zoom animation is finished
-	// setTimeout(() => {
-	// 	document.getElementById("lain-os-text").style.opacity = "1"
-	// 	let versionText = document.getElementById("version-text")
-	// 	versionText.style.bottom = `${((entryPage.offsetHeight - entryFrame.offsetHeight)/2)*0.8}px`
-	// 	versionText.style.opacity = "1"
-	// }, 3000);
-})
+	setTimeout(() => {
+		document.getElementById("lain-os-text").style.opacity = "1"
+		// let versionText = document.getElementById("version-text")
+		// versionText.style.bottom = `${((entryPage.offsetHeight - entryFrame.offsetHeight)/2)*0.8}px`
+		// versionText.style.opacity = "1"
+	}, 3000);
+});
+function load(src) 
+{
+    return new Promise((resolve, reject) => {
+        const image = new Image();
+        image.addEventListener('load', resolve);
+        image.addEventListener('error', reject);
+        image.src = src;
+    });
+}
 
 window.onload = function() {
 	clearInterval(loadingTimer)
@@ -166,7 +192,7 @@ window.onload = function() {
 	entryBottomTexts.style.fontFamily = "LoveLetter"
 	entryBottomTexts.textContent = entryBottomStr
 
-	document.getElementById("lain-os-text").style.opacity = "1"
+	// document.getElementById("lain-os-text").style.opacity = "1"
 	// document.getElementById("version-text").style.opacity = "1"
 
 	let loginClickArea = document.createElement("div")

@@ -137,8 +137,8 @@
 /* desktop n tablets mini window sizes (screens with width > 500px)*/
 @media screen and (min-width: 500px)
 {
-	#entry-texts {font-size: 16px;}
-	#entry-bottom-text {font-size: 14px;}
+	#entry-texts {font-size: 17px;}
+	#entry-bottom-text {font-size: 15px;}
 
 	.mini-window-header {height: 40px; font-size: 13px;}
 	.mini-window-close {height: 30px; width: 30px;}
@@ -197,9 +197,9 @@ p, label, button, option, ul
 #lain-os-text 
 {
 	position: absolute; 
-	color: var(--bg-color); top: 42%;
+	color: var(--bg-color); top: 46%;
 	font-size: 30px;
-	text-shadow: rgb(144, 144, 144) 9px 9px;
+	text-shadow: rgb(157, 157, 157) 7px 7px;
 }
 
 /*
