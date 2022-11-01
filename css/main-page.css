@@ -1,7 +1,8 @@
-#main-container
+/* bg img is set in js after entry img is loaded*/
+/* #main-container
 {
     background-image: url("/img/lain_extended_3k.jpg");
-}
+} */
 
 /*mobile / portrait display*/
 /*bg lain pic, entry frame, and icon dock*/
@@ -10,7 +11,7 @@
 	#entry-img 
 	{
 		width: 50vw; height: auto;
-		animation: zoom 3s linear 1;
+		animation: zoom 2.5s linear 1;
 	}
 	@keyframes zoom 
 	{
@@ -47,7 +48,7 @@
 	#entry-img 
 	{
 		width: 70vw; height: auto;
-		animation: zoom 3s linear 1;
+		animation: zoom 2.5s linear 1;
 	}
 	@keyframes zoom 
 	{
@@ -64,7 +65,7 @@
 	#entry-img	
 	{
 		height: 55vh; width: auto;
-		animation: zoom 3s linear 1;
+		animation: zoom 2.5s linear 1;
 	}
 	@keyframes zoom 
 	{
@@ -283,7 +284,8 @@ p, label, button, option, ul
 	color: black; 
 	background-color: transparent;
 	box-shadow: none;
-	background-image: url("/img/player-final77-small.png");
+	/* bg img is set in js*/
+	/* background-image: url("/img/player-final77-small.png"); */
 	background-repeat: no-repeat;
 	background-size: 100%; 
 	/*width n height are set separately, responsive to screen size*/
