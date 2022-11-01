@@ -15,59 +15,10 @@ const trackList = [
 //entry page texts
 const entryInitStr = "initialising";
 const entryOnloadStr = "log in";
-const entryBottomStr = "public domain operating system"
+// const entryBottomStr = "public domain operating system"
+const entryBottomStr = "online edition 1.0: at last, lain is free" //<br>public domain operating system
 
-//music player 
-const bitrateStereoStr = "320 KBPS 48 KHZ";  
-const bitrateStereoPlaceholder = "&nbsp;&nbsp;&nbsp;&nbsp;KBPS&nbsp;&nbsp;&nbsp;&nbsp;KHZ"
-const loadingTrackStr = "loading metadata..."; 
-const totalTime = "68:21" //calculated with totalLengthTest() in onload()
-
-//terminal texts
-const helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸<br><br>"
-				//+ "available commands:<br><br>"
-				+ "playback controls<br>"
-				+ "&emsp;&emsp;<span style='color:lime'>play </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; play the currently loaded song<br>"
-				+ "&emsp;&emsp;<span style='color:lime'>pause </span><br>"
-				+ "&emsp;&emsp;<span style='color:lime'>stop </span><br>"
-				+ "&emsp;&emsp;<span style='color:lime'>prev </span><br>"
-				+ "&emsp;&emsp;<span style='color:lime'>next </span><br>"
-				+ "&emsp;&emsp;<span style='color:lime'>random </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; play a random song<br><br>"
-				+ "audio filters<br>"
-				+ "&emsp;&emsp;<span style='color:lime'>server room</span><br>"
-				+ "&emsp;&emsp;<span style='color:lime'>smoking area</span><br>"
-				// + "&emsp;&emsp;<span style='color:lime'>toilet</span><br>"
-				+ "&emsp;&emsp;<span style='color:lime'>leave </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clear all audio filters<br><br>"
-				+ "note: only the first 4 letters are processed. <span style='color:lime'>smok</span> is equivalent to <span style='color:lime'>smoking area</span><br><br>"
-				+ "¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨<br>"
-
-const lainStrings = [
-	"let's all love lain (づ◡﹏◡)づ",
-	"7.83Hz",
-	"<span style='color:#AAA4FF'>root access granted<br>audio filter debug mode enabled</span>",
-	"you're already a developer"
-]
-const invalidInputStr = "idk that word (´;ω;`)" 
-
-randCommandStrings = [
-	" did u mean to type <span style='color:lime'>help</span>?",
-	" imma head to the <span style='color:lime'>smok</span>ing area do u wanna come with me?",
-	" listen to a <span style='color:lime'>random</span> song with me!"
-]
-//initial audio node params
-//gain node
-const initialGain = 0.77;
-let currentFilter = 0 // filter preset index in filterPresetsArray. 0 means none
-
-// colors
-let plEntryBgColor = "rgba(0, 0, 0, 0.9)" //bg highlight color for current song in playlist
 //bg color #e1e4eb
-
-//media queries
-let isLandscape = window.matchMedia("(min-aspect-ratio: 4/3)").matches
-
-// audio filter settings aka developer mode toggle
-let settingsViewToggle = document.getElementById("temp-toggle")
 
 ////////////// entry page //////////////
 
@@ -77,8 +28,7 @@ let entryBottomTexts = document.getElementById("entry-bottom-text")
 entryTextsEl.textContent = entryInitStr
 
 // manually center the loading text so its position is fixed while adding the "..."
-let initialLeft = (entryTextsEl.parentElement.offsetWidth - entryTextsEl.offsetWidth)/2
-entryTextsEl.style.left = initialLeft + "px"
+entryTextsEl.style.left = `${(entryTextsEl.parentElement.offsetWidth - entryTextsEl.offsetWidth)/2}px` 
 
 let loadingTimer = setInterval(loadingText, 777)
 let loadingIndex = 0
@@ -99,7 +49,7 @@ function loadingText()
 
 //unicode chars 33-122. see getUnicodeChars() in utilities
 let chars = ["!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-let BottomTextLength = 33
+let BottomTextLength = 40
 let bottomTextTimer = setInterval(scrambleBottomText, 200)
 
 function scrambleBottomText()
@@ -112,25 +62,51 @@ function scrambleBottomText()
 	}
 }
 
-// typeAll();
-// function typeAll()
-// {
-// 	let iChar = 0;
-// 	let typingEl = document.getElementById("typing");
-// 	let typingContent = "lain OS is online vol. 1: at last, lain is free lain OS is online vol. 1: at last, lain is free lain OS is online vol. 1: at last, lain is free lain OS is online vol. 1: at last, lain is free "
+// make sure img is fully loaded b4 showing
+let frameImgURL = "/img/frame_c.png"
+// fetch(frameImgURL)
+// .then(function() {
+// 	let entryFrame = document.createElement("img")
+// 	entryFrame.id = "entry-img"
+// 	entryFrame.src = frameImgURL
+
+// 	entryPage.appendChild(entryFrame)
+// 	console.log("loaded entry page frame img")
 	
-// 	let delay = 70; 
-// 	typeChar()
-// 	function typeChar() 
-// 	{
-// 		if(iChar < typingContent.length) 
-// 		{
-// 			typingEl.textContent += typingContent.charAt(iChar);
-// 			iChar++;
-// 			setTimeout(typeChar, delay);
-// 		}
-// 	}
-// }
+// 	// show title texts after the frame zoom animation is finished
+// 	setTimeout(() => {
+// 		document.getElementById("lain-os-text").style.opacity = "1"
+// 		// let versionText = document.getElementById("version-text")
+// 		// versionText.style.bottom = `${((entryPage.offsetHeight - entryFrame.offsetHeight)/2)*0.8}px`
+// 		// versionText.style.opacity = "1"
+// 	}, 3000);
+// })
+load(frameImgURL).then(() => 
+{
+    let entryFrame = document.createElement("img")
+	entryFrame.id = "entry-img"
+	entryFrame.src = frameImgURL
+
+	entryPage.appendChild(entryFrame)
+	console.log("loaded entry page frame img")
+	
+	// show title texts after the frame zoom animation is finished
+	setTimeout(() => {
+		document.getElementById("lain-os-text").style.opacity = "1"
+		// let versionText = document.getElementById("version-text")
+		// versionText.style.bottom = `${((entryPage.offsetHeight - entryFrame.offsetHeight)/2)*0.8}px`
+		// versionText.style.opacity = "1"
+	}, 3000);
+});
+function load(src) 
+{
+    return new Promise((resolve, reject) => {
+        const image = new Image();
+        image.addEventListener('load', resolve);
+        image.addEventListener('error', reject);
+        image.src = src;
+    });
+}
 
 window.onload = function() {
 	clearInterval(loadingTimer)
@@ -142,11 +118,13 @@ window.onload = function() {
 	entryTextsEl.style.left = "auto"
 
 	entryTextsEl.textContent = entryOnloadStr
+	entryTextsEl.classList.add("entry-text-bg")
+
 	entryBottomTexts.style.fontFamily = "LoveLetter"
 	entryBottomTexts.textContent = entryBottomStr
 
-	document.getElementById("lain-os-text").style.opacity = "1"
-	document.getElementById("version-text").style.opacity = "1"
+	// document.getElementById("lain-os-text").style.opacity = "1"
+	// document.getElementById("version-text").style.opacity = "1"
 
 	let loginClickArea = document.createElement("div")
 	loginClickArea.id = "login-click-area"
@@ -173,7 +151,8 @@ window.onload = function() {
 	chatScript.innerHTML = '{"handle":"lain-os-is-online","arch":"js","styles":{"a":"f5f5f5","b":100,"c":"000000","d":"000000","e":"f5f5f5","h":"f5f5f5","l":"f5f5f5","m":"FFFFFF","p":"12","q":"f5f5f5","r":100,"t":0,"usricon":0,"surl":0,"allowpm":0}}'
 
 	//<script id="cid0020000328095633756" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 100%;">{"handle":"lain-os-is-online","arch":"js","styles":{"a":"f5f5f5","b":100,"c":"000000","d":"000000","e":"f5f5f5","h":"f5f5f5","l":"f5f5f5","m":"FFFFFF","p":"12","q":"f5f5f5","r":100,"t":0,"usricon":0,"surl":0,"allowpm":0}}</script>
-	document.getElementById("chat-container").appendChild(chatScript)
+
+	//document.getElementById("chat-container").appendChild(chatScript)
 
 	// server room bg
 	fetch("/bg-mp3/serv188-210.mp3")
@@ -194,6 +173,8 @@ let offset = [0,0];
 let isMoving = false;
 let maxZ = 10;
 
+let isLandscape = window.matchMedia("(min-aspect-ratio: 4/3)").matches
+
 //mini wondows closing animation
 const closeAnimation = [
 	//display the whole window
@@ -208,9 +189,7 @@ const closeAnimation = [
 	opacity: "0.3"}    
 ]
 const closeAnimDuration = 333 //ms
-const closeTiming = {duration: closeAnimDuration, iterations: 1}
 //const windowAnimationArr = new Array()
-
 console.log("mini windows count " + miniWindows.length + " icon count " + icons.length)
 
 for (let i = 0; i < miniWindows.length; i++)
@@ -220,7 +199,7 @@ for (let i = 0; i < miniWindows.length; i++)
 	let closeBtn = miniWindow.querySelector(".mini-window-close")
 	console.log("mini windows " + miniWindows.item(i).id)
 
-	let closeCurWindow = miniWindow.animate(closeAnimation, closeTiming)
+	let closeCurWindow = miniWindow.animate(closeAnimation, {duration: closeAnimDuration, iterations: 1})
 	closeCurWindow.pause()
 	//windowAnimationArr.push(closeCurWindow)
 
@@ -342,6 +321,38 @@ function dragEnd()
 
 
 ////////////// terminal //////////////
+
+//terminal texts
+const helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸<br><br>"
+				//+ "available commands:<br><br>"
+				+ "playback controls<br>"
+				+ "&emsp;&emsp;<span style='color:lime'>play </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; play the currently loaded song<br>"
+				+ "&emsp;&emsp;<span style='color:lime'>pause </span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>stop </span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>prev </span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>next </span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>random </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; play a random song<br><br>"
+				+ "audio filters<br>"
+				+ "&emsp;&emsp;<span style='color:lime'>server room</span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>smoking area</span><br>"
+				// + "&emsp;&emsp;<span style='color:lime'>toilet</span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>leave </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clear all audio filters<br><br>"
+				+ "note: i only look at the first 4 letters u type. <span style='color:lime'>smok</span> is equivalent to <span style='color:lime'>smoking area</span><br><br>"
+				+ "¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨<br>"
+
+const lainStrings = [
+	"let's all love lain (づ◡﹏◡)づ",
+	"syncing with u at 7.83Hz",
+	"<span style='color:#AAA4FF'>root access granted<br>audio filter debug mode enabled</span>",
+	"(づ◡﹏◡)づ you're already a developer"
+]
+const invalidInputStr = "idk that word (´;ω;`)" 
+
+randCommandStrings = [
+	" did u mean to type <span style='color:lime'>help</span>?",
+	" imma head to the <span style='color:lime'>smok</span>ing area do u wanna come with me?",
+	" listen to a <span style='color:lime'>random</span> song with me!"
+]
 
 let terminalTxtContainer = document.getElementById("terminal-txt-container")
 let terminalDisplay = document.getElementById("terminal-display") //pre
@@ -483,15 +494,16 @@ function checkCommand(input)
 
 
 ////////////// music player //////////////
+const bitrateStereoStr = "320 KBPS 48 KHZ";  
+const bitrateStereoPlaceholder = "&nbsp;&nbsp;&nbsp;&nbsp;KBPS&nbsp;&nbsp;&nbsp;&nbsp;KHZ"
+const loadingTrackStr = "loading metadata..."; 
+const totalTime = "68:21" //calculated with totalLengthTest() in onload()
 
 let playPauseBtn = document.getElementById("old-play-pause-btn")
 let volumeSlider = document.getElementById("volume-slider")
 
 let oldProgressBar = document.getElementById("old-progress-bar-container")
-let oldProgressFill = document.getElementById("old-progress-bar-fill")
-
 let progressBar = document.getElementById("progress-bar-container")
-let progressFill = document.getElementById("progress-bar-fill")
 
 let curTrackText = document.getElementById("cur-track-info")
 
@@ -588,7 +600,7 @@ function loadTrack()
 		let curEntry = playlistEntries.item(i)
 		if (i === curIndex) 
 		{
-			curEntry.style.backgroundColor = plEntryBgColor;
+			curEntry.style.backgroundColor = "rgba(0, 0, 0, 0.9)"
 			curEntry.style.color = "white";
 		}
 		else 
@@ -857,8 +869,8 @@ function updateProgress()
 {
 	let progress = curTrack.currentTime / curTrack.duration;
 
-	progressFill.style.clipPath = `polygon(0% 0%, ${progress*100}% 0%, ${progress*100}% 100%, 0% 100%)`
-	oldProgressFill.style.width = progress * oldProgressBar.offsetWidth + "px";
+	document.getElementById("progress-bar-fill").style.clipPath = `polygon(0% 0%, ${progress*100}% 0%, ${progress*100}% 100%, 0% 100%)`
+	document.getElementById("old-progress-bar-fill").style.width = progress * oldProgressBar.offsetWidth + "px";
 
 	//set time
 	let timeStrings = parseTime(curTrack.currentTime)
@@ -892,6 +904,7 @@ fillPlaylist(oldPlaylist);
 ////////////// music player //////////////
 
 ////// audio filter settings view //////
+let settingsViewToggle = document.getElementById("temp-toggle")
 
 let oldPlayerContainer = document.getElementById("old-player-container")
 let playlistEl = document.getElementById("old-playlist-container")
@@ -939,6 +952,9 @@ playlistToggle.addEventListener("click", function(){
 
 
 ////////////// audio filter //////////////
+//initial audio node params
+const initialGain = 0.77;
+let currentFilter = 0 // filter preset index in filterPresetsArray. 0 means none
 
 let biquadSelectionEl = document.getElementById("switch-biquad")
 let frequencySlider = document.getElementById("frequency-slider")
@@ -1228,7 +1244,7 @@ function playServerRoomBg()
 {
 	servBgBufferNode = audioContext.createBufferSource();
 	servBgBufferNode.buffer = servBgBufferData;
-	servBgGain = new GainNode(audioContext, {gain: 0.7});
+	servBgGain = new GainNode(audioContext, {gain: 1});
 
 	servBgBufferNode.connect(servBgGain).connect(masterGainNode).connect(audioContext.destination);
 	servBgBufferNode.loop = true;
@@ -1249,20 +1265,18 @@ function stopServerRoomBg()
 
 function gotoServerRoom()
 {
-	masterGainNode.gain.value = 0.3;
+	masterGainNode.gain.value = 0.2;
 
-	switchBiquad(0); 
+	switchBiquad(8); 
 	//["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch", "allpass"]
-	// biquadFilter.frequency.value = 1000;
-	// biquadFilter.gain.value = 20;
-	// biquadFilter.Q.value = 1;
-	// detune
-	
+	biquadFilter.frequency.value = 10000;
+	biquadFilter.Q.value = 1.8;
+	biquadFilter.detune.value = 2400
+
 	turnOffReverb(); //clear convolver buffer 
-	// impulse = impulseResponse(100, 15) //duration, decay
-	// convolver.buffer = impulse
-	// turnOnReverb();
-	// servBgTrack.play();
+	impulse = impulseResponse(11, 80) //duration, decay
+	convolver.buffer = impulse
+	turnOnReverb();
 
 	playServerRoomBg();
 }

@@ -17,6 +17,9 @@
 		from {width: 5vw; height: auto;}
 		to {width: 50vw; height: auto;}
 	}
+	/*same width as entry img. font size scales to viewport width*/
+	/* #lain-os-text {font-size: 16vw;} */
+	/* #version-text {font-size: 4vw;} */
 
 	#entry-bottom-text {bottom: 9%;}
 	#login-click-area {width: 40vw; height: 40vw;}
@@ -51,6 +54,8 @@
 		from {width: 5vw; height: auto;}
 		to {width: 70vw; height: auto;}
 	}
+	/* #lain-os-text {font-size: 20vw;} */
+	/* #version-text {font-size: 5vw;} */
 }
 
 /*desktop / landscape display*/
@@ -66,6 +71,9 @@
 		from {height: 5vh; width: auto;}
 		to {height: 55vh; width: auto;}
 	}
+	/* #lain-os-text {font-size: 10vw;} */
+	/* #version-text {font-size: 2vw;} */
+
 	#entry-bottom-text {bottom: 3.3%;}
 	#login-click-area {height: 33vh; width: 33vh;}
 
@@ -129,8 +137,8 @@
 /* desktop n tablets mini window sizes (screens with width > 500px)*/
 @media screen and (min-width: 500px)
 {
-	#entry-texts {font-size: 16px;}
-	#entry-bottom-text {font-size: 13px;}
+	#entry-texts {font-size: 17px;}
+	#entry-bottom-text {font-size: 15px;}
 
 	.mini-window-header {height: 40px; font-size: 13px;}
 	.mini-window-close {height: 30px; width: 30px;}
@@ -178,6 +186,8 @@ p, label, button, option, ul
 
 #entry-texts-container {position: fixed; width: 0; height: 0;}
 #entry-texts {position: absolute; color: black; white-space: nowrap;}
+.entry-text-bg {text-shadow: 0 0 20px var(--purple-highlight-color), 0 0 10px var(--purple-highlight-color);}
+
 #login-click-area 
 {
 	position: absolute; cursor: pointer;
@@ -187,16 +197,19 @@ p, label, button, option, ul
 #lain-os-text 
 {
 	position: absolute; 
-	color: var(--bg-color); 
-	font-size: 130px;
-	text-shadow: rgb(211, 211, 211) 9px 9px;
+	color: var(--bg-color); top: 46%;
+	font-size: 30px;
+	text-shadow: rgb(157, 157, 157) 7px 7px;
 }
+
+/*
 #version-text
 {
 	position: absolute; 
-	color: var(--bg-color); 
-	bottom: 23%; font-size: 37px;
-}
+	top: 57%;
+	color: rgb(144, 144, 144);
+	text-align: center;
+} */
 
 /*
 #typing
@@ -209,9 +222,9 @@ p, label, button, option, ul
 
 #entry-bottom-text 
 {
-	position: absolute; white-space: nowrap;
+	position: absolute; white-space: nowrap; text-align: center;
 	font-family: var(--mono-font); /*font is changed later in js*/
-	color: dimgray; 
+	color: dimgray;
 }
 #main-container
 {
@@ -793,7 +806,7 @@ so that texts of variable lengths can be scrolled*/
 {
 	position: absolute;
 	right: 5%; top: 0;
-	width: 50px; height: 120px;
+	width: 50px; height: 110px;
 	font-size: small; color: white; text-align: center;
 	writing-mode: vertical-rl; text-orientation: mixed;
 	background-color: var(--purple-highlight-color);
@@ -840,6 +853,7 @@ so that texts of variable lengths can be scrolled*/
 	margin-left: 9px; margin-right: 9px; 
 	width: 240px;
 	height: 10px;
+	background-color: lightgrey;
 }
 
 #old-progress-bar-fill
@@ -849,7 +863,6 @@ so that texts of variable lengths can be scrolled*/
 	width: 0px;
 	height: 10px;
 	background-color: dimgray;
-	z-index: -1;
 }
 
 hr /*temp*/
