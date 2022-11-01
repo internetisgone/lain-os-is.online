@@ -84,7 +84,8 @@ const trackList = [
 //entry page texts
 const entryInitStr = "initialising";
 const entryOnloadStr = "log in";
-const entryBottomStr = "public domain operating system"
+// const entryBottomStr = "public domain operating system"
+const entryBottomStr = "online edition 1.0: at last, lain is free" //<br>public domain operating system
 
 //bg color #e1e4eb
 
@@ -117,7 +118,7 @@ function loadingText()
 
 //unicode chars 33-122. see getUnicodeChars() in utilities
 let chars = ["!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-let BottomTextLength = 33
+let BottomTextLength = 40
 let bottomTextTimer = setInterval(scrambleBottomText, 200)
 
 function scrambleBottomText()
@@ -142,33 +143,13 @@ fetch(frameImgURL)
 	console.log("loaded entry page frame img")
 	
 	// show title texts after the frame zoom animation is finished
-	setTimeout(() => {
-		document.getElementById("lain-os-text").style.opacity = "1"
-		let versionText = document.getElementById("version-text")
-		versionText.style.bottom = `${((entryPage.offsetHeight - entryFrame.offsetHeight)/2)*1.04}px`
-		versionText.style.opacity = "1"
-	}, 3000);
+	// setTimeout(() => {
+	// 	document.getElementById("lain-os-text").style.opacity = "1"
+	// 	let versionText = document.getElementById("version-text")
+	// 	versionText.style.bottom = `${((entryPage.offsetHeight - entryFrame.offsetHeight)/2)*0.8}px`
+	// 	versionText.style.opacity = "1"
+	// }, 3000);
 })
-
-// typeAll();
-// function typeAll()
-// {
-// 	let iChar = 0;
-// 	let typingEl = document.getElementById("typing");
-// 	let typingContent = "lain OS is online vol. 1: at last, lain is free lain OS is online vol. 1: at last, lain is free lain OS is online vol. 1: at last, lain is free lain OS is online vol. 1: at last, lain is free "
-	
-// 	let delay = 70; 
-// 	typeChar()
-// 	function typeChar() 
-// 	{
-// 		if(iChar < typingContent.length) 
-// 		{
-// 			typingEl.textContent += typingContent.charAt(iChar);
-// 			iChar++;
-// 			setTimeout(typeChar, delay);
-// 		}
-// 	}
-// }
 
 window.onload = function() {
 	clearInterval(loadingTimer)
@@ -180,10 +161,12 @@ window.onload = function() {
 	entryTextsEl.style.left = "auto"
 
 	entryTextsEl.textContent = entryOnloadStr
+	entryTextsEl.classList.add("entry-text-bg")
+
 	entryBottomTexts.style.fontFamily = "LoveLetter"
 	entryBottomTexts.textContent = entryBottomStr
 
-	// document.getElementById("lain-os-text").style.opacity = "1"
+	document.getElementById("lain-os-text").style.opacity = "1"
 	// document.getElementById("version-text").style.opacity = "1"
 
 	let loginClickArea = document.createElement("div")
@@ -404,7 +387,7 @@ const lainStrings = [
 	"let's all love lain (づ◡﹏◡)づ",
 	"syncing with u at 7.83Hz",
 	"<span style='color:#AAA4FF'>root access granted<br>audio filter debug mode enabled</span>",
-	"(づ◡﹏◡)づ you're already a developer (づ◡﹏◡)づ"
+	"(づ◡﹏◡)づ you're already a developer"
 ]
 const invalidInputStr = "idk that word (´;ω;`)" 
 
