@@ -16,7 +16,8 @@ const trackList = [
 const entryInitStr = "initialising";
 const entryOnloadStr = "log in";
 // const entryBottomStr = "public domain operating system"
-const entryBottomStr = "online edition 1.0: at last, lain is free" //<br>public domain operating system
+const entryBottomStr = "at last, lain is free"
+let bgImgPath = "img/lain_extended_3k.jpg"
 
 //bg color #e1e4eb
 
@@ -49,8 +50,8 @@ function loadingText()
 
 //unicode chars 33-122. see getUnicodeChars() in utilities
 let chars = ["!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-let BottomTextLength = 40
-let bottomTextTimer = setInterval(scrambleBottomText, 200)
+let BottomTextLength = 27
+let bottomTextTimer = setInterval(scrambleBottomText, 100)
 
 function scrambleBottomText()
 {
@@ -62,43 +63,41 @@ function scrambleBottomText()
 	}
 }
 
-// make sure img is fully loaded b4 showing
-let frameImgURL = "img/frame_c.png"
-// fetch(frameImgURL)
-// .then(function() {
-// 	let entryFrame = document.createElement("img")
-// 	entryFrame.id = "entry-img"
-// 	entryFrame.src = frameImgURL
-
-// 	entryPage.appendChild(entryFrame)
-// 	console.log("loaded entry page frame img")
-	
-// 	// show title texts after the frame zoom animation is finished
-// 	setTimeout(() => {
-// 		document.getElementById("lain-os-text").style.opacity = "1"
-// 		// let versionText = document.getElementById("version-text")
-// 		// versionText.style.bottom = `${((entryPage.offsetHeight - entryFrame.offsetHeight)/2)*0.8}px`
-// 		// versionText.style.opacity = "1"
-// 	}, 3000);
-// })
-load(frameImgURL).then(() => 
-{
-    let entryFrame = document.createElement("img")
-	entryFrame.id = "entry-img"
-	entryFrame.src = frameImgURL
-
-	entryPage.appendChild(entryFrame)
+// make sure entry frame img is fully loaded b4 showing
+let frameImg = new Image();
+frameImg.src = "img/frame_c1.png";
+frameImg.onload = function() {
+	frameImg.id = "entry-img";
+	entryPage.appendChild(frameImg)
 	console.log("loaded entry page frame img")
-	
-	// show title texts after the frame zoom animation is finished
+
+	// large imgs are loaded after frame img
+	setPlayerAndBgImg()
+
+	// load first song
+	initPlayer()
+
+	// text is shown after frame animation finishes
 	setTimeout(() => {
 		document.getElementById("lain-os-text").style.opacity = "1"
-		// let versionText = document.getElementById("version-text")
-		// versionText.style.bottom = `${((entryPage.offsetHeight - entryFrame.offsetHeight)/2)*0.8}px`
-		// versionText.style.opacity = "1"
-	}, 3000);
-});
-function load(src) 
+	}, 2500);
+}
+
+function setPlayerAndBgImg()
+{
+	let playerImgPath = "img/player-final77-small.png"
+	loadImg(playerImgPath).then(function() {
+		document.getElementById("music-player").style.backgroundImage = `url(${playerImgPath})`
+		console.log("loaded player img")
+	})
+
+	loadImg(bgImgPath).then(function() {
+		document.getElementById("main-container").style.backgroundImage = `url(${bgImgPath})`
+		console.log("loaded bg img")
+	})
+}
+
+function loadImg(src) 
 {
     return new Promise((resolve, reject) => {
         const image = new Image();
@@ -122,10 +121,7 @@ window.onload = function() {
 
 	entryBottomTexts.style.fontFamily = "LoveLetter"
 	entryBottomTexts.textContent = entryBottomStr
-
-	// document.getElementById("lain-os-text").style.opacity = "1"
-	// document.getElementById("version-text").style.opacity = "1"
-
+	
 	let loginClickArea = document.createElement("div")
 	loginClickArea.id = "login-click-area"
 	entryPage.appendChild(loginClickArea)
@@ -349,7 +345,7 @@ const lainStrings = [
 const invalidInputStr = "idk that word (´;ω;`)" 
 
 randCommandStrings = [
-	" did u mean to type <span style='color:lime'>help</span>?",
+	" type <span style='color:lime'>help</span> if u feel lost!",
 	" imma head to the <span style='color:lime'>smok</span>ing area do u wanna come with me?",
 	" listen to a <span style='color:lime'>random</span> song with me!"
 ]
@@ -570,8 +566,11 @@ let oldTotalTimeEl = document.getElementById("old-total-time")
 let playlistEntries = playlistUl.getElementsByClassName("playlist-entry")
 
 ///////initial state
-loadTrack();
-stopTrack(); //stop icon, no bitrate display
+function initPlayer()
+{
+	loadTrack();
+	stopTrack(); //stop icon, no bitrate display
+}
 
 let loopIndex = 2 //0 no loop, 1 loop album, 2 loop one song
 switchLoop() //no loop 
@@ -916,7 +915,7 @@ let showingOldUI = false
 settingsViewToggle.addEventListener("click", function(){
 	if (showingOldUI)
 	{
-		mainContainer.style.backgroundImage = 'url("img/lain_extended_3k.jpg")'
+		mainContainer.style.backgroundImage = `url(${bgImgPath})`
 		creditsBtn.style.display = "block"
 		oldPlayerContainer.style.display = "none"
 		playlistEl.style.display = "none"
@@ -975,8 +974,7 @@ let reverbDecayText = document.getElementById("cur-reverb-decay")
 
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 const biquadFilter = new BiquadFilterNode(audioContext, {frequency:350});
-let impulse = impulseResponse(reverbDurationSlider.value, reverbDecaySlider.value)
-const convolver = new ConvolverNode(audioContext, {buffer:impulse})
+const convolver = new ConvolverNode(audioContext)
 const gainNode = new GainNode(audioContext, {gain:initialGain})  // can be adjusted by the user 
 const masterGainNode = new GainNode(audioContext, {gain: 1})     // specific to filter presets
 
@@ -1077,6 +1075,7 @@ function switchBiquad(index)
 		{
 			source.connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
+		// todo disable sliders
 		frequencyEl.style.color = "grey";
 		gainEl.style.color = "grey";
 		qEl.style.color = "grey"
@@ -1124,6 +1123,7 @@ function toggleReverb()
 	{
 		convolver.disconnect()
 		convolver.buffer = null
+		// todo disable sliders
 		reverbToggle.textContent = "turn on reverb"
 		reverbDurationText.style.color = "grey"
 		reverbDecayText.style.color = "grey"
@@ -1140,6 +1140,7 @@ function toggleReverb()
 		{
 			source.connect(convolver).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
+		// todo enable sliders 
 		reverbToggle.textContent = "turn off reverb"
 		reverbDurationText.style.color = "black"
 		reverbDecayText.style.color = "black"

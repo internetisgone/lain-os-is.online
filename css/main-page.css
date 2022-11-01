@@ -1,7 +1,8 @@
-#main-container
+/* bg img is set in js after entry img is loaded*/
+/* #main-container
 {
     background-image: url("../img/lain_extended_3k.jpg");
-}
+} */
 
 /*mobile / portrait display*/
 /*bg lain pic, entry frame, and icon dock*/
@@ -10,7 +11,7 @@
 	#entry-img 
 	{
 		width: 50vw; height: auto;
-		animation: zoom 3s linear 1;
+		animation: zoom 2.5s linear 1;
 	}
 	@keyframes zoom 
 	{
@@ -47,7 +48,7 @@
 	#entry-img 
 	{
 		width: 70vw; height: auto;
-		animation: zoom 3s linear 1;
+		animation: zoom 2.5s linear 1;
 	}
 	@keyframes zoom 
 	{
@@ -64,7 +65,7 @@
 	#entry-img	
 	{
 		height: 55vh; width: auto;
-		animation: zoom 3s linear 1;
+		animation: zoom 2.5s linear 1;
 	}
 	@keyframes zoom 
 	{
@@ -105,6 +106,7 @@
 @media screen and (max-width: 500px)
 {
 	#entry-texts {font-size: 14px;}
+	#lain-os-text {font-size: 27px;}
 	#entry-bottom-text {font-size: 12px;}
 
 	.mini-window-header {height: 30px; font-size: 12px;}
@@ -138,6 +140,7 @@
 @media screen and (min-width: 500px)
 {
 	#entry-texts {font-size: 17px;}
+	#lain-os-text {font-size: 34px;}
 	#entry-bottom-text {font-size: 15px;}
 
 	.mini-window-header {height: 40px; font-size: 13px;}
@@ -196,10 +199,10 @@ p, label, button, option, ul
 
 #lain-os-text 
 {
-	position: absolute; 
-	color: var(--bg-color); top: 46%;
-	font-size: 30px;
-	text-shadow: rgb(157, 157, 157) 7px 7px;
+	position: absolute; text-align: center;
+	color: var(--bg-color); 
+	/* color: #e1e4eb; */
+	text-shadow: rgb(187, 187, 187) 7px 7px;
 }
 
 /*
@@ -281,7 +284,8 @@ p, label, button, option, ul
 	color: black; 
 	background-color: transparent;
 	box-shadow: none;
-	background-image: url("../img/player-final77-small.png");
+	/* bg img is set in js*/
+	/* background-image: url("../img/player-final77-small.png"); */
 	background-repeat: no-repeat;
 	background-size: 100%; 
 	/*width n height are set separately, responsive to screen size*/
