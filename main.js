@@ -85,7 +85,7 @@ const trackList = [
 const entryInitStr = "initialising";
 const entryOnloadStr = "log in";
 // const entryBottomStr = "public domain operating system"
-const entryBottomStr = "online edition 1.0: at last, lain is free" //<br>public domain operating system
+const entryBottomStr = "at last, lain is free"
 
 //bg color #e1e4eb
 
@@ -1146,6 +1146,7 @@ function switchBiquad(index)
 		{
 			source.connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
+		// todo disable sliders
 		frequencyEl.style.color = "grey";
 		gainEl.style.color = "grey";
 		qEl.style.color = "grey"
@@ -1193,6 +1194,7 @@ function toggleReverb()
 	{
 		convolver.disconnect()
 		convolver.buffer = null
+		// todo disable sliders
 		reverbToggle.textContent = "turn on reverb"
 		reverbDurationText.style.color = "grey"
 		reverbDecayText.style.color = "grey"
@@ -1209,6 +1211,7 @@ function toggleReverb()
 		{
 			source.connect(convolver).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
+		// todo enable sliders 
 		reverbToggle.textContent = "turn off reverb"
 		reverbDurationText.style.color = "black"
 		reverbDecayText.style.color = "black"

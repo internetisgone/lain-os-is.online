@@ -105,6 +105,7 @@
 @media screen and (max-width: 500px)
 {
 	#entry-texts {font-size: 14px;}
+	#lain-os-text {font-size: 27px;}
 	#entry-bottom-text {font-size: 12px;}
 
 	.mini-window-header {height: 30px; font-size: 12px;}
@@ -138,6 +139,7 @@
 @media screen and (min-width: 500px)
 {
 	#entry-texts {font-size: 17px;}
+	#lain-os-text {font-size: 34px;}
 	#entry-bottom-text {font-size: 15px;}
 
 	.mini-window-header {height: 40px; font-size: 13px;}
@@ -196,10 +198,10 @@ p, label, button, option, ul
 
 #lain-os-text 
 {
-	position: absolute; 
-	color: var(--bg-color); top: 46%;
-	font-size: 30px;
-	text-shadow: rgb(157, 157, 157) 7px 7px;
+	position: absolute; text-align: center;
+	color: var(--bg-color); 
+	/* color: #e1e4eb; */
+	text-shadow: rgb(187, 187, 187) 7px 7px;
 }
 
 /*
