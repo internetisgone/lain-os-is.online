@@ -58,7 +58,7 @@ h1
 	text-shadow: var(--text-glow-shadow);
 }
 
-#artist-list li span {float: right;}
+#artist-list li span, #credits p span {float: right;}
 
 #credits p
 {

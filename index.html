@@ -4,8 +4,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
 
-	<!-- todo -->
-	<!-- <meta name="description" content=""> -->
+	<meta name="description" content="a compilation album released by the hong kong based indepedent music label absurd trax. artists: Fetus, GRASPS, Imryll, Jennifer Walton, Kagami Smile, lovefear, NERDIE, Nerve, Sour Gout, Thegn, Wa?ste, x/o, Yikii, Yraki, Yuting Wu, ΛFΛLFL, 堀池ゆめぁ">
 
 	<!-- disable browser caching since the page might get constantly updated -->
 	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0" />
@@ -56,7 +55,7 @@
 			</div>
 
 			<div id="volume-slider-container">
-				<input type="range" min="0" max="100" value="77" step="1" id="volume-slider" oninput="setVolume()" onchange="onFinishSettingVolume()">
+				<input type="range" min="0" max="100" value="77" step="1" id="volume-slider" oninput="setVolume()" onchange="onFinishSettingVolume()" aria-label="volume slider">
 			</div>
 
 			<div id="progress-bar-container">
@@ -67,21 +66,21 @@
 			</div>
 
 			<div id="shuffle-loop-container">
-				<button id="loop-btn" onclick="switchLoop()" style="margin-left: 13px;"><img src="/img/music-player-components/loop_off.png"></button>
-				<button id="shuffle-btn" onclick="toggleShuffle()"><img src="/img/music-player-components/shuffle_off.png"></button>
+				<button id="loop-btn" onclick="switchLoop()" style="margin-left: 13px;" aria-label="change loop mode"><img src="/img/music-player-components/loop_off.png"></button>
+				<button id="shuffle-btn" onclick="toggleShuffle()" aria-label="change shuffle mode"><img src="/img/music-player-components/shuffle_off.png"></button>
 			</div>
 
 			<div id="playback-controls">
-				<button onclick="prevTrack()"><img src="/img/btns-shaded/prev2.png"></button>
-				<button onclick="playTrack()"><img src="/img/btns-shaded/play2.png"></button>
-				<button onclick="pauseTrack()"><img src="/img/btns-shaded/pause2.png"></button>
-				<button onclick="stopTrack()"><img src="/img/btns-shaded/stop2.png"></button>
-				<button onclick="nextTrack()"><img src="/img/btns-shaded/next2.png"></button>
+				<button onclick="prevTrack()" aria-label="previous"><img src="/img/btns-shaded/prev2.png"></button>
+				<button onclick="playTrack()" aria-label="play"><img src="/img/btns-shaded/play2.png"></button>
+				<button onclick="pauseTrack()" aria-label="pause"><img src="/img/btns-shaded/pause2.png"></button>
+				<button onclick="stopTrack()" aria-label="stop"><img src="/img/btns-shaded/stop2.png"></button>
+				<button onclick="nextTrack()" aria-label="next"><img src="/img/btns-shaded/next2.png"></button>
 			</div>
 
 			<div id="dl-button-container">
 				<a href="https://www.mediafire.com" target="_blank">
-					<button id="dl-btn"><img src="/img/music-player-components/dl_button.png"></button>
+					<button id="dl-btn" aria-label="mediafire download"><img src="/img/music-player-components/dl_button.png"></button>
 				</a>
 			</div>
 
@@ -99,11 +98,11 @@
 				<div id="mini-controls">
 					<img src="/img/music-player-components/icons_all_c.png">
 					<div id="mini-controls-btns-container">
-						<button onclick="prevTrack()"></button>
-						<button onclick="playTrack()"></button>
-						<button onclick="pauseTrack()"></button>
-						<button onclick="stopTrack()"></button>
-						<button onclick="nextTrack()"></button>
+						<button onclick="prevTrack()" aria-label="prev"></button>
+						<button onclick="playTrack()" aria-label="play"></button>
+						<button onclick="pauseTrack()" aria-label="pause"></button>
+						<button onclick="stopTrack()" aria-label="stop"></button>
+						<button onclick="nextTrack()" aria-label="next"></button>
 					</div>
 				</div>
 				<div id = "mini-cur-time">00:00</div>
@@ -210,7 +209,7 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 				</div>
 				<div id="terminal-input-container"> 
 					<span id="terminal-prompt">lain@navi ~ % &nbsp;</span><span id="fake-caret">&nbsp;</span>
-					<input type="text" id="terminal-input" maxlength="33">	
+					<input type="text" id="terminal-input" maxlength="33" aria-label="terminal input field">	
 				</div>
 			</div>
 		</div>
@@ -238,6 +237,9 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 
 			<div id="version-history-container">
 				<pre id="version-history-texts">
+
+ 1.0.0<span>04 nov 2022 </span>
+ vol 1 release
 
  0.3.2<span>26 oct 2022 </span>
  added audio filter developer mode
@@ -327,10 +329,10 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 			<p id="cur-track-info" style="width: 333px;"></p>
 
 			<div>
-				<button onclick="prevTrack()">prev</button>
-				<button id="old-play-pause-btn" onclick="playOrPause()">play</button>
-				<button onclick="nextTrack()">next</button>
-				<button id="pl-toggle" >playlist</button>
+				<button onclick="prevTrack()" aria-label="prev">prev</button>
+				<button id="old-play-pause-btn" onclick="playOrPause()" aria-label="play or pause">play</button>
+				<button onclick="nextTrack()" aria-label="next">next</button>
+				<button id="pl-toggle" aria-label="toggle playlist visibility">playlist</button>
 			</div>
 			<br>
 
@@ -347,7 +349,7 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 			<p id="biquad-prompt" style="width: 100%;">choose a biquad filter:
 				<span id="biquad-tips">gain adjustment is available for lowshelf, highshelf, peaking.<br><br>q factor adjustment is available for lowpass, highpass, bandpass, peaking, notch, allpasss.<br><br>not much info is found about detune but it seems to work with lowpass, highpass, bandpass, allpass.<br><br>search "biquad filter MDN" for more info.</span> 
 			</p>
-			<select id="switch-biquad" size="1">
+			<select id="switch-biquad" size="1" aria-label="select a biquad filter">
 				<option value="0" selected="selected">none</option>
 				<option value="1">lowpass</option>
 				<option value="2">highpass</option>
@@ -360,31 +362,31 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 			</select>
 
 			<p id="cur-frequency" style="color: grey;">frequency: 350</p>
-			<input class="long-slider" type="range" min="20" max="15000" value="350" step="5" id="frequency-slider" onchange="setFrequency()">
+			<input class="long-slider" type="range" min="20" max="15000" value="350" step="5" id="frequency-slider" onchange="setFrequency()" aria-label="frequency">
 
 			<p id="cur-gain" style="color: grey;">gain: 0</p>
-			<input class="long-slider" type="range" min="-40" max="40" value="0" step="1" id="gain-slider" onchange="setGain()">
+			<input class="long-slider" type="range" min="-40" max="40" value="0" step="1" id="gain-slider" onchange="setGain()" aria-label="gain">
 
 			<p id="cur-q" style="color: grey;">Q factor: 1</p>
-			<input class="long-slider" type="range" min="0.01" max="20" value="1" step="0.2" id="q-slider" onchange="setQ()">
+			<input class="long-slider" type="range" min="0.01" max="20" value="1" step="0.2" id="q-slider" onchange="setQ()" aria-label="Q value">
 
 			<p id="cur-detine" style="color: grey;">detune: 0</p>
-			<input class="long-slider" type="range" min="-2400" max="2400" value="0" step="10" id="detune-slider" onchange="setDetune()">
+			<input class="long-slider" type="range" min="-2400" max="2400" value="0" step="10" id="detune-slider" onchange="setDetune()" aria-label="detune">
 
 			<br>
 			<hr>
 			<br>
 
-			<button id="reverb-toggle" onclick="toggleReverb()">turn on reverb</button>
+			<button id="reverb-toggle" onclick="toggleReverb()" aria-label="toggle reverb">turn on reverb</button>
 			<br>
 			<p id="cur-reverb-duration" style="color: grey;">duration: 15</p>
-			<input class="long-slider" type="range" min="0.1" max="120" value="15" id="reverb-duration" step="1" onchange="setReverb()">
+			<input class="long-slider" type="range" min="0.1" max="120" value="15" id="reverb-duration" step="1" onchange="setReverb()" aria-label="reverb duration">
 			<p id="cur-reverb-decay" style="color: grey;">decay: 5</p>
-			<input class="long-slider" type="range" min="0.1" max="80" value="5" id="reverb-decay" step="0.2" onchange="setReverb()">
+			<input class="long-slider" type="range" min="0.1" max="80" value="5" id="reverb-decay" step="0.2" onchange="setReverb()" aria-label="reverb decay">
 			<br>
 			<hr>
 			<br>
-			<button onclick="resetAllFilters()">reset to default</button>
+			<button onclick="resetAllFilters()" aria-label="reset all audio filters">reset to default</button>
 		</div> <!-- end of old player container -->
 	</div> <!-- end of main container -->
 	<script type="text/javascript" src="main.js"></script>

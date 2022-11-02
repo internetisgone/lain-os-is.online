@@ -1316,7 +1316,7 @@ function playServerRoomBg()
 {
 	servBgBufferNode = audioContext.createBufferSource();
 	servBgBufferNode.buffer = servBgBufferData;
-	servBgGain = new GainNode(audioContext, {gain: 1});
+	servBgGain = new GainNode(audioContext, {gain: 0.7});
 
 	servBgBufferNode.connect(servBgGain).connect(masterGainNode).connect(audioContext.destination);
 	servBgBufferNode.loop = true;
@@ -1355,7 +1355,7 @@ function gotoServerRoom()
 
 function gotoSmokingArea()
 {
-	masterGainNode.gain.value = 0.3;
+	masterGainNode.gain.value = 0.4;
 
 	switchBiquad(8); //allpass
 	biquadFilter.frequency.value = 2000;
@@ -1450,7 +1450,7 @@ function applyFilter(index)
 	}	
 }
 
-////////////// audio filter presets //////////////
+////////////// audio filter presets end //////////////
 
 
 ////////////// utilities //////////////
@@ -1463,33 +1463,33 @@ function getRandomInt(min, max)
 
 // based on this answer, converted to int and minus skew 
 // stackoverflow.com/questions/25582882/javascript-math-random-normal-distribution-gaussian-bell-curve/49434653#49434653
-function getIntNormallyDistributed(min, max) 
-{
-	let u = 0, v = 0;
-	while(u === 0) u = Math.random() //Converting [0,1) to (0,1)
-	while(v === 0) v = Math.random()
-	let num = Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v )
+// function getIntNormallyDistributed(min, max) 
+// {
+// 	let u = 0, v = 0;
+// 	while(u === 0) u = Math.random() //Converting [0,1) to (0,1)
+// 	while(v === 0) v = Math.random()
+// 	let num = Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v )
 	
-	num = num / 10.0 + 0.5 // Translate to 0 -> 1
-	if (num > 1 || num < 0) 
-		num = getIntNormallyDistributed(min, max); // resample between 0 and 1 if out of range
-	else
-		num = Math.floor(num * (max - min) + min); //convert to int
-	return num
-	//todo upper limit - 1 not inclusive??
-  }
+// 	num = num / 10.0 + 0.5 // Translate to 0 -> 1
+// 	if (num > 1 || num < 0) 
+// 		num = getIntNormallyDistributed(min, max); // resample between 0 and 1 if out of range
+// 	else
+// 		num = Math.floor(num * (max - min) + min); //convert to int
+// 	return num
+// 	//todo upper limit - 1 not inclusive??
+//   }
 
-//testing getIntNormallyDistributed
-function testRandInt(min, max)
-{
-	// let randomNumArr = new Array()
-	for (let i = 0; i < 100; i++)
-	{
-		let num = getIntNormallyDistributed(min, max)
-		// randomNumArr.push(num)
-		console.log(num)
-	}
-}
+// testing getIntNormallyDistributed
+// function testRandInt(min, max)
+// {
+// 	// let randomNumArr = new Array()
+// 	for (let i = 0; i < 100; i++)
+// 	{
+// 		let num = getIntNormallyDistributed(min, max)
+// 		// randomNumArr.push(num)
+// 		console.log(num)
+// 	}
+// }
 //testRandInt(0, 6);
 
 //get total length of album
@@ -1524,24 +1524,24 @@ function testRandInt(min, max)
 
 //prints unicode char array in console
 //getUnicodeChars()
-function getUnicodeChars()
-{
-	let chars = new Array()
-	let unicodeIndex
-	let charArrayIndex = 0
+// function getUnicodeChars()
+// {
+// 	let chars = new Array()
+// 	let unicodeIndex
+// 	let charArrayIndex = 0
 
-	// 33-122, 161-404
-	for (unicodeIndex = 33; unicodeIndex <= 404; unicodeIndex++)
-	{
-		if (unicodeIndex <= 122 | unicodeIndex >= 161)
-		{
-			currentChar = String.fromCharCode(unicodeIndex)
-			chars.push(currentChar)
-			//console.log(unicodeIndex + " " + chars[charArrayIndex])
-			charArrayIndex++;
-		}
-	}
-	console.log(JSON.stringify(chars)) // prints the full array 
-}
+// 	// 33-122, 161-404
+// 	for (unicodeIndex = 33; unicodeIndex <= 404; unicodeIndex++)
+// 	{
+// 		if (unicodeIndex <= 122 | unicodeIndex >= 161)
+// 		{
+// 			currentChar = String.fromCharCode(unicodeIndex)
+// 			chars.push(currentChar)
+// 			//console.log(unicodeIndex + " " + chars[charArrayIndex])
+// 			charArrayIndex++;
+// 		}
+// 	}
+// 	console.log(JSON.stringify(chars)) // prints the full array 
+// }
 
-////////////// utilities //////////////
+////////////// utilities end //////////////
