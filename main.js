@@ -148,10 +148,15 @@ frameImg.onload = function() {
 
 	// text is shown after frame animation finishes
 	setTimeout(() => {
-		document.getElementById("lain-os-text").style.opacity = "1"
+		clearInterval(bottomTextTimer)
+		chars = null
+		document.getElementById("lain-os-text").style.opacity = "1"		
+		entryBottomTexts.classList.add("entry-bottom-text-loaded")
+		entryBottomTexts.textContent = entryBottomStr
 	}, 2500);
 }
 
+// todo it finishes later than window onload does....
 function setPlayerAndBgImg()
 {
 	let playerImgPath = "/img/player-final77-small.png"
@@ -178,8 +183,6 @@ function loadImg(src)
 
 window.onload = function() {
 	clearInterval(loadingTimer)
-	clearInterval(bottomTextTimer)
-	chars = null
 
 	entryTextsEl.parentElement.style.display = "flex"
 	entryTextsEl.parentElement.style.justifyContent = "center"
@@ -187,9 +190,6 @@ window.onload = function() {
 
 	entryTextsEl.textContent = entryOnloadStr
 	entryTextsEl.classList.add("entry-text-bg")
-
-	entryBottomTexts.style.fontFamily = "LoveLetter"
-	entryBottomTexts.textContent = entryBottomStr
 	
 	let loginClickArea = document.createElement("div")
 	loginClickArea.id = "login-click-area"
@@ -217,7 +217,8 @@ window.onload = function() {
 
 	//<script id="cid0020000328095633756" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 100%;">{"handle":"lain-os-is-online","arch":"js","styles":{"a":"f5f5f5","b":100,"c":"000000","d":"000000","e":"f5f5f5","h":"f5f5f5","l":"f5f5f5","m":"FFFFFF","p":"12","q":"f5f5f5","r":100,"t":0,"usricon":0,"surl":0,"allowpm":0}}</script>
 
-	//document.getElementById("chat-container").appendChild(chatScript)
+	// temp 
+	document.getElementById("chat-container").appendChild(chatScript)
 
 	// server room bg
 	fetch("/bg-mp3/serv188-210.mp3")
@@ -408,6 +409,7 @@ const helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø�
 const lainStrings = [
 	"let's all love lain (づ◡﹏◡)づ",
 	"syncing with u at 7.83Hz",
+	// "public domain operating system",
 	"<span style='color:#AAA4FF'>root access granted<br>audio filter debug mode enabled</span>",
 	"(づ◡﹏◡)づ you're already a developer"
 ]

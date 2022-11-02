@@ -28,7 +28,7 @@ h1
 /*desktop / landscape display*/
 @media (min-aspect-ratio: 4/3) 
 {
-	#credits {font-size: 14px; width: 40%;}
+	#credits {font-size: 14px; width: 39%;}
 }
 
 #credits 

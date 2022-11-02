@@ -108,6 +108,11 @@
 	#entry-texts {font-size: 14px;}
 	#lain-os-text {font-size: 27px;}
 	#entry-bottom-text {font-size: 12px;}
+	.entry-bottom-text-loaded
+	{
+		font-family: var(--lain-font);
+		font-size: 13px;
+	}
 
 	.mini-window-header {height: 30px; font-size: 12px;}
 	.mini-window-close {height: 24px; width: 24px;}
@@ -142,6 +147,11 @@
 	#entry-texts {font-size: 17px;}
 	#lain-os-text {font-size: 34px;}
 	#entry-bottom-text {font-size: 15px;}
+	.entry-bottom-text-loaded
+	{
+		font-family: var(--lain-font) !important;
+		font-size: 16px;
+	}
 
 	.mini-window-header {height: 40px; font-size: 13px;}
 	.mini-window-close {height: 30px; width: 30px;}
@@ -189,7 +199,7 @@ p, label, button, option, ul
 
 #entry-texts-container {position: fixed; width: 0; height: 0;}
 #entry-texts {position: absolute; color: black; white-space: nowrap;}
-.entry-text-bg {text-shadow: 0 0 20px var(--purple-highlight-color), 0 0 10px var(--purple-highlight-color);}
+.entry-text-bg {text-shadow: 0 0 20px var(--purple-highlight-color), 0 0 20px var(--purple-highlight-color);}
 
 #login-click-area 
 {
@@ -205,30 +215,13 @@ p, label, button, option, ul
 	text-shadow: rgb(187, 187, 187) 7px 7px;
 }
 
-/*
-#version-text
-{
-	position: absolute; 
-	top: 57%;
-	color: rgb(144, 144, 144);
-	text-align: center;
-} */
-
-/*
-#typing
-{
-	position: absolute; color: var(--bg-color);
-	top: 0; left: 0; font-size: 120px; z-index: -1;
-	word-break: break-all;
-} 
-*/
-
 #entry-bottom-text 
 {
 	position: absolute; white-space: nowrap; text-align: center;
 	font-family: var(--mono-font); /*font is changed later in js*/
 	color: dimgray;
 }
+
 #main-container
 {
 	position: fixed; width: 100vw; height: 100vh;
@@ -406,7 +399,7 @@ so that texts of variable lengths can be scrolled*/
 .cur-time
 {
 	font-family: var(--mono-font);
-	margin: 0; margin-left: 24%; margin-top: 3px; 
+	margin: 0; margin-left: 25%; margin-top: 3px; 
 }
 
 #visualiser-container
