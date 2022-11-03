@@ -149,7 +149,6 @@ frameImg.onload = function() {
 	// text is shown after frame animation finishes
 	setTimeout(() => {
 		clearInterval(bottomTextTimer)
-		chars = null
 		document.getElementById("lain-os-text").style.opacity = "1"		
 		entryBottomTexts.classList.add("entry-bottom-text-loaded")
 		entryBottomTexts.textContent = entryBottomStr
@@ -404,22 +403,24 @@ const helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø�
 				+ "&emsp;&emsp;<span style='color:lime'>look </span>&nbsp;&nbsp;&nbsp; check where u are<br>"
 				// + "&emsp;&emsp;<span style='color:lime'>toilet</span><br>"
 				+ "&emsp;&emsp;<span style='color:lime'>leave </span>&nbsp;&nbsp; clear all audio filters<br><br>"
-				+ "note: i only look at the first 4 letters u type. <span style='color:lime'>rand</span> is equivalent to <span style='color:lime'>random</span>. currently there's one exception and it's for u to find out (>ᴗ•)<br><br>"
+				+ "note: i only look at the first 4 letters u type, for example <span style='color:lime'>rand</span> is equivalent to <span style='color:lime'>random</span>. there's one exception and it's for u to find out (>ω•)<br><br>"
 				+ "¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨<br>"
 
 const lainStrings = [
 	"let's all love lain (づ◡﹏◡)づ",
 	"syncing with u at 7.83Hz",
-	// "public domain operating system",
 	"<span style='color:#AAA4FF'>root access granted<br>audio filter debug mode enabled</span>",
-	"(づ◡﹏◡)づ you're already a developer"
+	"(づ◡﹏◡)づ you're already a developer",
+	"when i grow up i wanna be smart like gpt-3...",
+	"¨°º¤ø„(☾)ɠℂᴜ̣̣℃↔ɠƒƒϊz<3↕⁷ℂᴜ̣̣℃(^)„ø¤º°¨"
 ]
 const invalidInputStr = "idk that word (´;ω;`)" 
 
 randCommandStrings = [
 	" type <span style='color:lime'>help</span> if u feel lost!",
 	" imma head to the <span style='color:lime'>smok</span>ing area do u wanna come with me?",
-	" listen to a <span style='color:lime'>random</span> song with me!"
+	" listen to a <span style='color:lime'>random</span> song with me!",
+	" i heard there are otherworldly entities lurking in the <span style='color:lime'>serv</span>er room..."
 ]
 
 let terminalTxtContainer = document.getElementById("terminal-txt-container")
@@ -431,7 +432,7 @@ let initialIndent = 111 //need to get from element tbh
 let fontWidth = 8 //subject to changee
 let caretOffest
 
-let inputPattern = /^[a-zA-Z\d\s]*$/; //letters, digits, and whitespace
+let inputPattern = /^[a-zA-Z\d]+$/; //letters and digits
 let lainCount = 0 
 let invalidCount = 0
 //let rangeDelta = 2  // output index range lainCount +- rangeDelta
@@ -450,6 +451,7 @@ function validateInput(e)
 
 	if (e.keyCode === 13) // “enter”
 	{
+		// use textContent instead of innerHTML for user input
 		let userInputEl = document.createElement("span");
 		userInputEl.textContent = "lain@navi ~ % " + inputEl.value;
 		terminalDisplay.appendChild(userInputEl).appendChild(document.createElement("br"));
@@ -469,13 +471,26 @@ function validateInput(e)
 
 			// method 3 use input count directly
 			// prob gonna go with this method cuz lainStrings has a rather small size and this way the user can go thru every string element
-			let outputIndex = (lainCount > lainStrings.length - 1)? (lainStrings.length - 1) : lainCount;
-			terminalDisplay.innerHTML += lainStrings[outputIndex] + "<br>";
 			
-			// unhide audio filter setting toggle 
-			if (lainCount == lainStrings.length - 2)
-				settingsViewToggle.style.display = "block";
+			//let outputIndex = (lainCount > lainStrings.length - 1)? (lainStrings.length - 1) : lainCount;
+			if (lainCount < lainStrings.length) 
+			{
+				// unhide audio filter setting toggle 
+				if (lainCount === 2) settingsViewToggle.style.display = "block";
 
+				terminalDisplay.innerHTML += lainStrings[lainCount] + "<br>";
+			}
+			else
+			{
+				// generate a string of random chars of random length 
+				let randLength = getRandomInt(20, 50)
+				for (let i = 0; i < randLength; i++)
+				{
+					randIndex = getRandomInt(0, chars.length)
+					terminalDisplay.innerHTML += chars[randIndex]
+				}
+				terminalDisplay.innerHTML += "<br>";
+			}
 			// method 4 generate random numbers 6 times and take the avr (central limit theorem)
 			// todo
 
@@ -483,15 +498,14 @@ function validateInput(e)
 		
 			lainCount++;
 		}
-		//valid input. only look at the first 4 chars
-		else if (inputEl.value.trim().substring(0, 4).match(inputPattern))	
-		{
-			checkCommand(inputEl.value.trim().substring(0, 4).toLowerCase());
-		}
-		//invalid input
 		else 
 		{
-			appendInvalidResponse()
+			let trimmedInput = inputEl.value.trim();
+			// only look at the first 4 letters
+			if (trimmedInput.substring(0, 4).match(inputPattern))
+				checkCommand(trimmedInput.substring(0, 4));
+			else if (trimmedInput.length > 0)
+				appendInvalidResponse();
 		}
 		inputEl.value = "";
 		fakeCaret.style.marginLeft = initialIndent + "px";
@@ -518,10 +532,14 @@ function appendTerminalOutput(output)
 function appendInvalidResponse()
 {
 	invalidCount++;	
-	if (invalidCount > 2) 
+	if (invalidCount > 3) 
 	{
 		let rand = getRandomInt(0, randCommandStrings.length)
-		terminalDisplay.innerHTML += invalidInputStr + randCommandStrings[rand] + "<br>";
+		terminalDisplay.innerHTML += randCommandStrings[rand] + "<br>";
+	}
+	else if (invalidCount === 3)
+	{
+		terminalDisplay.innerHTML += randCommandStrings[0] + "<br>";
 	}
 	else
 	{
@@ -554,7 +572,7 @@ function checkCommand(input)
 		case "smok": applyFilter(2); break;
 		// case "toil": applyFilter(3); break;
 		case "look": 
-			appendTerminalOutput("you are in " + filterNames[currentFilter]);
+			appendTerminalOutput("you are in " + filterNames[currentFilter].name + ". " + filterNames[currentFilter].desc);
 			break;
 
 		default: appendInvalidResponse();
@@ -1395,10 +1413,20 @@ let filterPresetsArray = [
 	// gotoToilet
 ]
 
-let filterNames = [
-	"nowhere",
-	"server room",
-	"smoking area",
+// todo more desc
+const filterNames = [
+	{
+		name: "nowhere",
+		desc: ""
+	},
+	{
+		name: "server room",
+		desc: "machines humming"
+	},
+	{
+		name: "smoking area",
+		desc: "faint music"
+	}
 	// "toilet"
 ]
 
@@ -1433,8 +1461,8 @@ function applyFilter(index)
 				// console.log("applied audio filter at index " + index)
 
 				if (index === 0)
-					appendTerminalOutput("you've left " + filterNames[prevFilter]);
-				else appendTerminalOutput("you are now in " + filterNames[index]);
+					appendTerminalOutput("you've left " + filterNames[prevFilter].name);
+				else appendTerminalOutput("you are now in " + filterNames[index].name + ". " + filterNames[index].desc);
 				
 				//fade in
 				let fadeIn = setInterval(function(){
@@ -1454,7 +1482,7 @@ function applyFilter(index)
 	}
 	else 
 	{
-		appendTerminalOutput("you are already in " + filterNames[index] +"!")
+		appendTerminalOutput("you are already in " + filterNames[index].name +"!")
 	}	
 }
 

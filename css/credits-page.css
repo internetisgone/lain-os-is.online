@@ -5,6 +5,12 @@
 	/* display: flex; justify-content: center; align-items: center; */
 }
 
+@font-face 
+{
+	font-family: "Verzierte_Favorite";
+	src: url("/fonts/Verzierte_Favorite.ttf");
+}
+
 #credits-container
 {
 	position: absolute; z-index: 11;
@@ -14,34 +20,23 @@
 	overflow-y: scroll;
 }
 
-h1 
+.title 
 {
-	font-family: var(--mono-font);
-	padding: 4%;
+	font-family: "Verzierte_Favorite", "Courier New", monospace;
+	font-size: 87px;
+	padding: 6%;
 }
 
 /*mobile / portrait display*/
 @media (max-aspect-ratio: 4/3) 
 {
 	#credits {font-size: 12px; width: 85%;}
-
-	/* #navi-logo-container
-	{
-		position: absolute;
-		width: 85%; height: auto;
-	} */
 }
 
 /*desktop / landscape display*/
 @media (min-aspect-ratio: 4/3) 
 {
 	#credits {font-size: 14px; width: 39%;}
-	
-	/* #navi-logo-container
-	{
-		position: absolute; 
-		width: 39%; height: auto;
-	} */
 }
 
 #credits 
@@ -77,7 +72,7 @@ h1
 	text-shadow: var(--text-glow-shadow);
 }
 
-#artist-list li span, #credits p span {float: right;}
+#artist-list li span, .float-right {float: right;}
 
 #credits p
 {
