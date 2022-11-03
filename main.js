@@ -416,10 +416,11 @@ const lainStrings = [
 ]
 const invalidInputStr = "idk that word (´;ω;`)" 
 
-randCommandStrings = [
+const randCommandStrings = [
 	" type <span style='color:lime'>help</span> if u feel lost!",
 	" imma head to the <span style='color:lime'>smok</span>ing area do u wanna come with me?",
-	" listen to a <span style='color:lime'>random</span> song with me!",
+	" listen to a <span style='color:lime'>rand</span>om song with me!",
+	invalidInputStr,
 	" i heard there are otherworldly entities lurking in the <span style='color:lime'>serv</span>er room..."
 ]
 
@@ -1413,19 +1414,18 @@ let filterPresetsArray = [
 	// gotoToilet
 ]
 
-// todo more desc
 const filterNames = [
 	{
 		name: "nowhere",
-		desc: ""
+		desc: "it feels like being in a white room"
 	},
 	{
 		name: "server room",
-		desc: "machines humming"
+		desc: "you can hear machines humming and occasional beeps. it's warm in here"
 	},
 	{
 		name: "smoking area",
-		desc: "faint music"
+		desc: "you hear faint music oozing through the brick wall"
 	}
 	// "toilet"
 ]
