@@ -392,18 +392,19 @@ function dragEnd()
 const helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸<br><br>"
 				//+ "available commands:<br><br>"
 				+ "playback controls<br>"
-				+ "&emsp;&emsp;<span style='color:lime'>play </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; play the currently loaded song<br>"
+				+ "&emsp;&emsp;<span style='color:lime'>play </span>&nbsp;&nbsp;&nbsp; play the currently loaded song<br>"
 				+ "&emsp;&emsp;<span style='color:lime'>pause </span><br>"
 				+ "&emsp;&emsp;<span style='color:lime'>stop </span><br>"
 				+ "&emsp;&emsp;<span style='color:lime'>prev </span><br>"
 				+ "&emsp;&emsp;<span style='color:lime'>next </span><br>"
-				+ "&emsp;&emsp;<span style='color:lime'>random </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; play a random song<br><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>random </span>&nbsp;&nbsp;play a random song<br><br>"
 				+ "audio filters<br>"
-				+ "&emsp;&emsp;<span style='color:lime'>server room</span><br>"
-				+ "&emsp;&emsp;<span style='color:lime'>smoking area</span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>serv </span>&nbsp;&nbsp;&nbsp; go to server room<br>"
+				+ "&emsp;&emsp;<span style='color:lime'>smok </span>&nbsp;&nbsp;&nbsp; go to smoking area<br>"
+				+ "&emsp;&emsp;<span style='color:lime'>look </span>&nbsp;&nbsp;&nbsp; check where u are<br>"
 				// + "&emsp;&emsp;<span style='color:lime'>toilet</span><br>"
-				+ "&emsp;&emsp;<span style='color:lime'>leave </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clear all audio filters<br><br>"
-				+ "note: i only look at the first 4 letters u type. <span style='color:lime'>smok</span> is equivalent to <span style='color:lime'>smoking area</span><br><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>leave </span>&nbsp;&nbsp; clear all audio filters<br><br>"
+				+ "note: i only look at the first 4 letters u type. <span style='color:lime'>rand</span> is equivalent to <span style='color:lime'>random</span>. currently there's one exception and it's for u to find out (>ᴗ•)<br><br>"
 				+ "¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨<br>"
 
 const lainStrings = [
@@ -433,7 +434,7 @@ let caretOffest
 let inputPattern = /^[a-zA-Z\d\s]*$/; //letters, digits, and whitespace
 let lainCount = 0 
 let invalidCount = 0
-let rangeDelta = 2  // output index range lainCount +- rangeDelta
+//let rangeDelta = 2  // output index range lainCount +- rangeDelta
 
 inputEl.onkeydown = validateInput
 
@@ -552,6 +553,9 @@ function checkCommand(input)
 		case "serv": applyFilter(1); break;
 		case "smok": applyFilter(2); break;
 		// case "toil": applyFilter(3); break;
+		case "look": 
+			appendTerminalOutput("you are in " + filterNames[currentFilter]);
+			break;
 
 		default: appendInvalidResponse();
 	}
@@ -704,7 +708,8 @@ curTrack.onloadedmetadata = function()
 		curTrackText.textContent = trackList[curIndex].name	
 
 		nowPlayingText.textContent = trackList[curIndex].name	+ " " + timeStrings.min + ":" + timeStrings.sec;
-		//only scroll if track name + length is longer than the container 
+
+		// only scroll if track name + length is longer than the container 
 		nowPlayingWidth = nowPlayingWrapper.offsetWidth
 		isScrolling = nowPlayingWidth > nowPlayingContainer.offsetWidth
 		if (!isScrolling) 
@@ -718,7 +723,10 @@ curTrack.onloadedmetadata = function()
 			nowPlayingStatic.textContent = "";		
 		}
 
-		//console.log("nowPlayingWidth = " + nowPlayingWidth + ", nowPlayingContainer width = " + nowPlayingContainer.offsetWidth)
+		// todo can't get width when player window is hidden... 
+		// maybe calc the width using font width * char count?
+		// console.log(`nowPlayingWidth = ${nowPlayingWidth}, nowPlayingContainer width = ${nowPlayingContainer.offsetWidth}`)
+		// console.log(`nowPlayingWrapper computed width ${window.getComputedStyle(nowPlayingWrapper).getPropertyValue("width")}`)
 
 		appendTerminalOutput("loaded track " + trackList[curIndex].name)
 	}
@@ -1133,7 +1141,7 @@ function switchBiquad(index)
 		gainEl.style.color = "black";
 		qEl.style.color = "black";
 		detuneEl.style.color = "black";
-		console.log(biquadIndex + ", biquad type = " + biquadTypes[biquadIndex - 1] + "frequency  = " + biquadFilter.frequency)
+		console.log("biquad " + biquadIndex + ", biquad type = " + biquadTypes[biquadIndex - 1] + ", frequency = " + biquadFilter.frequency.value)
 	}
 	else //turn off biquad 
 	{
