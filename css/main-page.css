@@ -11,14 +11,17 @@
 	#entry-img 
 	{
 		width: 50vw; height: auto;
-		animation: zoom 2.5s linear 1;
 	}
 	@keyframes zoom 
 	{
 		from {width: 5vw; height: auto;}
 		to {width: 50vw; height: auto;}
 	}
-	/*same width as entry img. font size scales to viewport width*/
+	@keyframes enter
+	{
+		from {width: 50vw; height: auto;}
+		to {width: 150vw; height: auto;}
+	}
 	/* #lain-os-text {font-size: 16vw;} */
 	/* #version-text {font-size: 4vw;} */
 
@@ -48,12 +51,16 @@
 	#entry-img 
 	{
 		width: 70vw; height: auto;
-		animation: zoom 2.5s linear 1;
 	}
 	@keyframes zoom 
 	{
 		from {width: 5vw; height: auto;}
 		to {width: 70vw; height: auto;}
+	}
+	@keyframes enter
+	{
+		from {width: 70vw; height: auto;}
+		to {width: 170vw; height: auto;}
 	}
 	/* #lain-os-text {font-size: 20vw;} */
 	/* #version-text {font-size: 5vw;} */
@@ -65,12 +72,18 @@
 	#entry-img	
 	{
 		height: 55vh; width: auto;
-		animation: zoom 2.5s linear 1;
 	}
+	/*zoom into view*/
 	@keyframes zoom 
 	{
 		from {height: 5vh; width: auto;}
 		to {height: 55vh; width: auto;}
+	}
+	/*zoom in to fill the whole page*/
+	@keyframes enter
+	{
+		from {height: 55vh; width: auto;}
+		to {height: 155vh; width: auto;}
 	}
 	/* #lain-os-text {font-size: 10vw;} */
 	/* #version-text {font-size: 2vw;} */
@@ -200,6 +213,16 @@ p, label, button, option, ul
 #entry-texts-container {position: fixed; width: 0; height: 0;}
 #entry-texts {position: absolute; color: black; white-space: nowrap;}
 .entry-text-bg {text-shadow: 0 0 20px var(--purple-highlight-color), 0 0 20px var(--purple-highlight-color);}
+
+.zoom-into-view
+{
+	animation: zoom 2.5s linear 1;
+}
+
+.zoom-fill-screen
+{
+	animation: enter 0.7s linear 1;;
+}
 
 #login-click-area 
 {

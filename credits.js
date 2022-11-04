@@ -18,6 +18,10 @@ load(bgImgPath).then(() =>
     mainContainer.style.opacity = "1";
 });
 
+window.onload = function() {
+    // fade in title
+    document.getElementById("title").style.opacity = "1";
+}
 //all links besides the last one (back) will open in new tab
 let links = document.getElementsByTagName("a")
 for (let i = 0; i < links.length - 1; i++)
