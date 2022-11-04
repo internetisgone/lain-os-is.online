@@ -1323,11 +1323,6 @@ let servBgBufferData
 let servBgBufferNode
 let servBgGain
 
-// moved to window.onload
-// fetch("/bg-mp3/serv188-210.mp3")
-// .then(function(response) {return response.arrayBuffer()})
-// .then(decode);
-
 function decode(buffer) 
 {
 	audioContext.decodeAudioData(buffer, success);
@@ -1341,6 +1336,12 @@ function success(buffer)
 
 function playServerRoomBg()
 {
+	// if (servBgBufferData == null)
+	// {
+	// 	fetch("/bg-mp3/serv113.mp3")
+	// 	.then(function(response) {return response.arrayBuffer()})
+	// 	.then(decode);
+	// }
 	servBgBufferNode = audioContext.createBufferSource();
 	servBgBufferNode.buffer = servBgBufferData;
 	servBgGain = new GainNode(audioContext, {gain: 0.7});
@@ -1416,16 +1417,16 @@ let filterPresetsArray = [
 
 const filterNames = [
 	{
-		name: "nowhere",
-		desc: "it feels like being in a white room"
+		name: "a white room",
+		desc: "it feels like you've always been here."
 	},
 	{
 		name: "server room",
-		desc: "you can hear machines humming and occasional beeps. it's warm in here"
+		desc: "you can hear machines humming and occasional beeps. it's warm."
 	},
 	{
 		name: "smoking area",
-		desc: "you hear faint music oozing through the brick wall"
+		desc: "you hear faint music oozing through the brick wall."
 	}
 	// "toilet"
 ]
