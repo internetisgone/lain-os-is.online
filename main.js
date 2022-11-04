@@ -1422,7 +1422,7 @@ const filterNames = [
 	},
 	{
 		name: "server room",
-		desc: "you can hear machines humming and occasional beeps. it's warm."
+		desc: "you hear machines humming softly and occasional beeps. it's warm."
 	},
 	{
 		name: "smoking area",

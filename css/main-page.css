@@ -20,7 +20,7 @@
 	@keyframes enter
 	{
 		from {width: 50vw; height: auto;}
-		to {width: 150vw; height: auto;}
+		to {width: 150vw; height: 150vw;}
 	}
 	/* #lain-os-text {font-size: 16vw;} */
 	/* #version-text {font-size: 4vw;} */
@@ -60,7 +60,7 @@
 	@keyframes enter
 	{
 		from {width: 70vw; height: auto;}
-		to {width: 170vw; height: auto;}
+		to {width: 170vw; height: 170vw;}
 	}
 	/* #lain-os-text {font-size: 20vw;} */
 	/* #version-text {font-size: 5vw;} */
@@ -83,7 +83,7 @@
 	@keyframes enter
 	{
 		from {height: 55vh; width: auto;}
-		to {height: 155vh; width: auto;}
+		to {height: 155vh; width: 155vh;}
 	}
 	/* #lain-os-text {font-size: 10vw;} */
 	/* #version-text {font-size: 2vw;} */
