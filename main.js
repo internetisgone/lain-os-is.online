@@ -69,6 +69,7 @@ frameImg.src = "img/frame_c1.png";
 frameImg.onload = function() {
 	frameImg.id = "entry-img";
 	entryPage.appendChild(frameImg)
+	frameImg.classList.add("zoom-into-view")
 	console.log("loaded entry page frame img")
 
 	// large imgs are loaded after frame img
@@ -86,7 +87,7 @@ frameImg.onload = function() {
 	}, 2500);
 }
 
-// todo it finishes later than window onload does....
+// todo it finishes later than window onload does in safari....
 function setPlayerAndBgImg()
 {
 	let playerImgPath = "img/player-final77-small.png"
@@ -129,6 +130,10 @@ window.onload = function() {
 		entryPage.style.opacity = "0"
 		if (audioContext.state === 'suspended') {audioContext.resume();}
 		//setInterval(totalLengthTest, 3000);
+
+		// play animation on click, zooms in to fill the whole screen
+		frameImg.classList.remove("zoom-into-view")
+		frameImg.classList.add("zoom-fill-screen")
 	})
 
 	entryPage.addEventListener('transitionend', function() {
@@ -147,11 +152,10 @@ window.onload = function() {
 
 	//<script id="cid0020000328095633756" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 100%;">{"handle":"lain-os-is-online","arch":"js","styles":{"a":"f5f5f5","b":100,"c":"000000","d":"000000","e":"f5f5f5","h":"f5f5f5","l":"f5f5f5","m":"FFFFFF","p":"12","q":"f5f5f5","r":100,"t":0,"usricon":0,"surl":0,"allowpm":0}}</script>
 
-	// temp 
 	document.getElementById("chat-container").appendChild(chatScript)
 
 	// server room bg
-	fetch("bg-mp3/serv188-210.mp3")
+	fetch("bg-mp3/serv113.mp3")
 	.then(function(response) {return response.arrayBuffer()})
 	.then(decode);
 }//end of onload
@@ -320,7 +324,7 @@ function dragEnd()
 
 //terminal texts
 const helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸<br><br>"
-				//+ "available commands:<br><br>"
+				+ "available commands:<br><br>"
 				+ "playback controls<br>"
 				+ "&emsp;&emsp;<span style='color:lime'>play </span>&nbsp;&nbsp;&nbsp; play the currently loaded song<br>"
 				+ "&emsp;&emsp;<span style='color:lime'>pause </span><br>"
@@ -331,10 +335,10 @@ const helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø�
 				+ "audio filters<br>"
 				+ "&emsp;&emsp;<span style='color:lime'>serv </span>&nbsp;&nbsp;&nbsp; go to server room<br>"
 				+ "&emsp;&emsp;<span style='color:lime'>smok </span>&nbsp;&nbsp;&nbsp; go to smoking area<br>"
-				+ "&emsp;&emsp;<span style='color:lime'>look </span>&nbsp;&nbsp;&nbsp; check where u are<br>"
+				+ "&emsp;&emsp;<span style='color:lime'>look </span>&nbsp;&nbsp;&nbsp; check your surroundings<br>"
 				// + "&emsp;&emsp;<span style='color:lime'>toilet</span><br>"
 				+ "&emsp;&emsp;<span style='color:lime'>leave </span>&nbsp;&nbsp; clear all audio filters<br><br>"
-				+ "note: i only look at the first 4 letters u type, for example <span style='color:lime'>rand</span> is equivalent to <span style='color:lime'>random</span>. there's one exception and it's for u to find out (>ω•)<br><br>"
+				+ "note: i only look at the first 4 letters u type, for example <span style='color:lime'>rand</span> is equivalent to <span style='color:lime'>random</span>. there's a secret command that's exempt from this rule (>ω•)<br><br>"
 				+ "¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨<br>"
 
 const lainStrings = [
@@ -345,13 +349,16 @@ const lainStrings = [
 	"when i grow up i wanna be smart like gpt-3...",
 	"¨°º¤ø„(☾)ɠℂᴜ̣̣℃↔ɠƒƒϊz<3↕⁷ℂᴜ̣̣℃(^)„ø¤º°¨"
 ]
-const invalidInputStr = "idk that word (´;ω;`)" 
+// const invalidInputStr = "idk that word (´;ω;`)" 
 
-randCommandStrings = [
-	" type <span style='color:lime'>help</span> if u feel lost!",
-	" imma head to the <span style='color:lime'>smok</span>ing area do u wanna come with me?",
-	" listen to a <span style='color:lime'>random</span> song with me!",
-	" i heard there are otherworldly entities lurking in the <span style='color:lime'>serv</span>er room..."
+const randCommandStrings = [
+	"idk that word (´;ω;`)",
+	"type <span style='color:lime'>help</span> if u feel lost!",
+	"imma head to the <span style='color:lime'>smok</span>ing area do u wanna come with me?",
+	"listen to a <span style='color:lime'>rand</span>om song with me!",
+	"take a <span style='color:lime'>look</span> at your surroundings!",
+	"i heard there are otherworldly entities lurking in the <span style='color:lime'>serv</span>er room...",
+	"i heard there are otherworldly entities lurking in the <span style='color:lime'>serv</span>er room..."
 ]
 
 let terminalTxtContainer = document.getElementById("terminal-txt-container")
@@ -434,7 +441,7 @@ function validateInput(e)
 			let trimmedInput = inputEl.value.trim();
 			// only look at the first 4 letters
 			if (trimmedInput.substring(0, 4).match(inputPattern))
-				checkCommand(trimmedInput.substring(0, 4));
+				checkCommand(trimmedInput.substring(0, 4).toLowerCase());
 			else if (trimmedInput.length > 0)
 				appendInvalidResponse();
 		}
@@ -463,18 +470,14 @@ function appendTerminalOutput(output)
 function appendInvalidResponse()
 {
 	invalidCount++;	
-	if (invalidCount > 3) 
+	if (invalidCount > 2) 
 	{
 		let rand = getRandomInt(0, randCommandStrings.length)
 		terminalDisplay.innerHTML += randCommandStrings[rand] + "<br>";
 	}
-	else if (invalidCount === 3)
-	{
-		terminalDisplay.innerHTML += randCommandStrings[0] + "<br>";
-	}
 	else
 	{
-		terminalDisplay.innerHTML += invalidInputStr + "<br>";	
+		terminalDisplay.innerHTML += randCommandStrings[invalidCount - 1] + "<br>";	
 	}	
 }
 
@@ -696,11 +699,9 @@ function parseTime(duration)
 //playback controls
 function playTrack()
 {
-	////temp. move this to entry page click event later 
 	if (audioContext.state === 'suspended') {
 		audioContext.resume();
 	}
-	//temp
 
 	curTrack.play();
 	isPlaying = true;
@@ -1344,19 +1345,18 @@ let filterPresetsArray = [
 	// gotoToilet
 ]
 
-// todo more desc
 const filterNames = [
 	{
 		name: "nowhere",
-		desc: ""
+		desc: "it feels like being in a white room"
 	},
 	{
 		name: "server room",
-		desc: "machines humming"
+		desc: "you can hear machines humming and occasional beeps. it's warm in here"
 	},
 	{
 		name: "smoking area",
-		desc: "faint music"
+		desc: "you hear faint music oozing through the brick wall"
 	}
 	// "toilet"
 ]

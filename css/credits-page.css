@@ -20,11 +20,14 @@
 	overflow-y: scroll;
 }
 
-.title 
+#title 
 {
 	font-family: "Verzierte_Favorite", "Courier New", monospace;
-	font-size: 87px;
-	padding: 6%;
+	font-size: 90px;
+	padding: 7%;
+	margin-top: 3%;
+	text-shadow: var(--text-glow-shadow);
+	transition: var(--fade-in);
 }
 
 /*mobile / portrait display*/
