@@ -1,5 +1,10 @@
-website commission for an upcoming lain-themed compilation, featuring a functional "terminal", a winamp-inspired music player, and audio filters. designed and implemented by me, in collab with 2 artists and 2 curators.
+[lain-os-is.online](https://lain-os-is.online)
 
-inspired by [lainOS](https://lainos.org) and Microsoft Adventure (1981) 
+website commission for the Absurd TRAX compilation, lain os is online vol. 1: at last, lain is free [AT-030] 
+https://absurdtrax.bandcamp.com/album/lain-os-is-online-vol-1-at-last-lain-is-free-at-030
 
-available [here](https://internetisgone.github.io/lain-site) with test tracks. work in progress.
+website includes a functional "terminal", a winamp-inspired music player, and audio filters
+
+inspired by [lainOS](https://lainos.org) and Microsoft Adventure (1981)
+
+an ongoing project
