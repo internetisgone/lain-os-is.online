@@ -26,7 +26,7 @@ const trackList = [
 	{
 		name: "Thegn ft. Vrain - phantoma_-_track04.wav",
 		path: "21sept-master-mp3/thegn ft. vrain - phantoma [master 20220921].mp3",
-		link: "https://thegn.bandcamp.com"
+		link: "" //handled in loadTrack()
 	},
 	{
 		name: "Nerve - I'm Gonna Diss You",
@@ -720,7 +720,11 @@ function loadTrack()
 	}
 
 	//artist link
-	if (curIndex == 5)
+	if (curIndex == 2)
+	{
+		artistLink.innerHTML = '<a href="https://thegn.bandcamp.com" target="_blank">thegn.bandcamp.com</a><br><a href="https://nghttrrrs.bandcamp.com/album/zenith" target="_blank">nghttrrrs.bandcamp.com/album/zenith</a>'
+	}
+	else if (curIndex == 5)
 	{
 		artistLink.innerHTML = '<a href="https://grasps.bandcamp.com/" target="_blank">grasps.bandcamp.com</a><br><a href="https://soundcloud.com/nerdiecuzz" target="_blank">soundcloud.com/nerdiecuzz</a>'
 	}
