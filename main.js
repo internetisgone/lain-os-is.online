@@ -547,8 +547,12 @@ terminalTxtContainer.onscroll = function()
 	//console.log("terminal scroll pos " + terminalTxtContainer.scrollTop + ", scroll height = " + terminalTxtContainer.scrollHeight)
 }
 
-document.getElementById("terminal-inner-container").addEventListener("click", () => {
-	inputEl.focus()
+document.getElementById("terminal-inner-container").addEventListener("click", (e) => {
+	// make sure texts can still be selected 
+	let selection = window.getSelection();
+    if (selection.type != "Range") {
+		if (!inputEl.focused) inputEl.focus();
+	}
 })
 
 //for non user input 
