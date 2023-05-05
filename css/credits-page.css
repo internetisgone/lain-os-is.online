@@ -28,6 +28,7 @@
 	margin-top: 3%;
 	text-shadow: var(--text-glow-shadow);
 	transition: var(--fade-in);
+	user-select: none;
 }
 
 /*mobile / portrait display*/
