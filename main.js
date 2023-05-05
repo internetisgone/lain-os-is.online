@@ -224,7 +224,7 @@ window.onload = function() {
 	})
 
 	// chat embed
-	// initChatEmbed()
+	initChatEmbed()
 
 	// server room bg
 	fetch("/bg-mp3/serv113.mp3")
