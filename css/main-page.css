@@ -253,6 +253,8 @@ p, label, button, option, ul
 	font-family: var(--mono-font);
 }
 
+.mini-window { user-select: none; }
+#terminal-inner-container { user-select: text !important; }
 /***************** mini windows /*****************/
 .mini-window
 {
@@ -494,7 +496,7 @@ so that texts of variable lengths can be scrolled*/
 
 #shuffle-loop-container button 
 {
-	outline: none; background: transparent;	border: none; 
+	background: transparent; border: none; 
 	margin: 0; padding: 0; border: 0;
 	width: 100%; height: 52%; 
 	cursor: pointer; 
@@ -513,7 +515,7 @@ so that texts of variable lengths can be scrolled*/
 
 #playback-controls button 
 {
-	outline: none; background: transparent;border: none; 
+	background: transparent; border: none; 
 	margin: 1%; padding: 0; border: 0; margin-bottom: 2%;
 	border-radius: 11px;
 	cursor: pointer;
@@ -544,7 +546,7 @@ so that texts of variable lengths can be scrolled*/
 
 #dl-button-container button 
 {
-	outline: none; background: transparent;border: none; 
+	background: transparent;border: none; 
 	margin: 0; padding: 0; border: 0; cursor: pointer;
 }
 
@@ -628,7 +630,7 @@ so that texts of variable lengths can be scrolled*/
 
 #mini-controls-btns-container button 
 {
-	outline: none; background: transparent;	border: none; 
+	background: transparent; border: none; 
 	margin: 0; padding: 0; border: 0;
 	cursor: pointer;
 	/* background-color: violet; */

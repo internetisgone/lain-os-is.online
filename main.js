@@ -1,3 +1,7 @@
+// diable google analytics
+// todo find property id 
+window['ga-disable-UA-XXXXX-Y'] = true; 
+
 const trackList = [
 	{
 		name: "x/o - Duvet cyberia re-chopped & screwed-MiX",
@@ -210,6 +214,16 @@ window.onload = function() {
 	})
 
 	// chat embed
+	// initChatEmbed()
+
+	// server room bg
+	fetch("/bg-mp3/serv113.mp3")
+	.then(function(response) {return response.arrayBuffer()})
+	.then(decode);
+} //end of onload
+
+function initChatEmbed()
+{
 	let chatScript = document.createElement("script")
 	chatScript.id = "cid0020000328095633756"
 	chatScript.setAttribute("data-cfasync", "false")
@@ -222,12 +236,7 @@ window.onload = function() {
 	//<script id="cid0020000328095633756" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 100%;">{"handle":"lain-os-is-online","arch":"js","styles":{"a":"f5f5f5","b":100,"c":"000000","d":"000000","e":"f5f5f5","h":"f5f5f5","l":"f5f5f5","m":"FFFFFF","p":"12","q":"f5f5f5","r":100,"t":0,"usricon":0,"surl":0,"allowpm":0}}</script>
 
 	document.getElementById("chat-container").appendChild(chatScript)
-
-	// server room bg
-	fetch("/bg-mp3/serv113.mp3")
-	.then(function(response) {return response.arrayBuffer()})
-	.then(decode);
-}//end of onload
+}
 
 ////////////// entry page //////////////
 
@@ -448,15 +457,14 @@ inputEl.onkeydown = validateInput
 
 function validateInput(e)
 {	
-	//8 is backspace
-	let inputLength = (e.keyCode === 8)? (inputEl.value.length - 1) : (inputEl.value.length + 1); 
+	let inputLength = (e.key === "Backspace")? (inputEl.value.length - 1) : (inputEl.value.length + 1); 
 	if (inputLength < 0) inputLength = 0;
 	caretOffest =  inputLength * fontWidth + initialIndent
 	fakeCaret.style.marginLeft = caretOffest + "px"
 	//console.log(e)
 	//console.log("input length " + inputLength + " caret offest" + caretOffest)
 
-	if (e.keyCode === 13) // “enter”
+	if (e.key === "Enter") // “enter”
 	{
 		// use textContent instead of innerHTML for user input
 		let userInputEl = document.createElement("span");
@@ -528,6 +536,10 @@ terminalTxtContainer.onscroll = function()
 	if (terminalTxtContainer.scrollTop < 620) terminalTxtContainer.scrollTop = 620;
 	//console.log("terminal scroll pos " + terminalTxtContainer.scrollTop + ", scroll height = " + terminalTxtContainer.scrollHeight)
 }
+
+document.getElementById("terminal-inner-container").addEventListener("click", () => {
+	inputEl.focus()
+})
 
 //for non user input 
 function appendTerminalOutput(output) 
