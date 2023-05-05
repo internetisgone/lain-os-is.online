@@ -5,6 +5,6 @@ https://absurdtrax.bandcamp.com/album/lain-os-is-online-vol-1-at-last-lain-is-fr
 
 website includes a functional "terminal", a winamp-inspired music player, and audio filters
 
-inspired by [lainOS](https://lainos.org) and Microsoft Adventure (1981)
+inspired by [lainOS](https://lainos.org) and Colossal Cave Adventure
 
 an ongoing project
