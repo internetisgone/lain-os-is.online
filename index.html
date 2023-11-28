@@ -1,23 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
+
+	<meta name="description" content="a compilation album released by the hong kong based indepedent music label absurd trax. artists: Fetus, GRASPS, Imryll, Jennifer Walton, Kagami Smile, lovefear, NERDIE, Nerve, Sour Gout, Thegn, Wa?ste, x/o, Yikii, Yraki, Yuting Wu, ΛFΛLFL, 堀池ゆめぁ">
 
 	<!-- disable browser caching since the page might get constantly updated -->
 	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0" />
 	<meta http-equiv="Pragma" content="no-cache" />
 	<meta http-equiv="Expires" content="0" />
 
+	<!-- favicon -->
+	<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/main-page.css">
-	<title>club cyberia</title>
+	<title>lain OS is online vol. 1: at last, lain is free</title>
 </head>
 <body>
 	<div id="entry-page"> 
-		<img src="/img/frame.png" id="entry-img">
+		<div id="lain-os-text" style="opacity: 0;">lain OS<br>vol. 1</div>
+		<!-- <div id="version-text">online edition 1.0<br>at last, lain is free</div> -->
  		<div id="entry-texts-container">
-			<div id="entry-texts">initialising</div>
+			<div id="entry-texts"></div>
 		</div>
 		<p id="entry-bottom-text"></p>
 	</div>
@@ -26,9 +34,9 @@
 
 		<!---------- music player ---------->
 		<div class="mini-window" id="music-player">
-			<audio preload="auto" id="cur-track"></audio>
-<!-- 			<audio preload="auto" id="bg-track" loop src="/bg-mp3/server_room_188.mp3"></audio>  -->
-			<div class="mini-window-header">player
+			<audio id="cur-track"></audio>
+			<!-- <audio preload="auto" id="server-room-bg-track" src="/bg-mp3/serv188-210.mp3"></audio>  -->
+			<div class="mini-window-header">lain-amp
 				<div class="mini-window-close"></div>
 			</div>
 			<div class="mini-window-draggable"></div>
@@ -52,32 +60,32 @@
 			</div>
 
 			<div id="volume-slider-container">
-				<input type="range" min="0" max="100" value="77" step="1" id="volume-slider" oninput="setVolume()" onchange="onFinishSettingVolume()">
+				<input type="range" min="0" max="100" value="77" step="1" id="volume-slider" oninput="setVolume()" onchange="onFinishSettingVolume()" aria-label="volume slider">
 			</div>
 
 			<div id="progress-bar-container">
-				<img src="/img/music-player-components/progress_bar.png" style="position: absolute; width: 100%;">
+				<img src="img/music-player-components/progress_bar.png" style="position: absolute; width: 100%;">
 				<div id="progress-bar-fill">
-					<img src="/img/music-player-components/progress_bar_fill.png" style="width: 100%;">
+					<img src="img/music-player-components/progress_bar_fill.png" style="width: 100%;">
 				</div>
 			</div>
 
 			<div id="shuffle-loop-container">
-				<button id="loop-btn" onclick="switchLoop()" style="margin-left: 13px;"><img src="/img/music-player-components/loop_off.png"></button>
-				<button id="shuffle-btn" onclick="toggleShuffle()"><img src="/img/music-player-components/shuffle_off.png"></button>
+				<button id="loop-btn" onclick="switchLoop()" style="margin-left: 13px;" aria-label="change loop mode"><img src="img/music-player-components/loop_off.png"></button>
+				<button id="shuffle-btn" onclick="toggleShuffle()" aria-label="change shuffle mode"><img src="img/music-player-components/shuffle_off.png"></button>
 			</div>
 
 			<div id="playback-controls">
-				<button onclick="prevTrack()"><img src="/img/btns-shaded/prev2.png"></button>
-				<button onclick="playTrack()"><img src="/img/btns-shaded/play2.png"></button>
-				<button onclick="pauseTrack()"><img src="/img/btns-shaded/pause2.png"></button>
-				<button onclick="stopTrack()"><img src="/img/btns-shaded/stop2.png"></button>
-				<button onclick="nextTrack()"><img src="/img/btns-shaded/next2.png"></button>
+				<button onclick="prevTrack()" aria-label="previous"><img src="img/btns-shaded/prev2.png"></button>
+				<button onclick="playTrack()" aria-label="play"><img src="img/btns-shaded/play2.png"></button>
+				<button onclick="pauseTrack()" aria-label="pause"><img src="img/btns-shaded/pause2.png"></button>
+				<button onclick="stopTrack()" aria-label="stop"><img src="img/btns-shaded/stop2.png"></button>
+				<button onclick="nextTrack()" aria-label="next"><img src="img/btns-shaded/next2.png"></button>
 			</div>
 
 			<div id="dl-button-container">
-				<a href="https://www.mediafire.com" target="_blank">
-					<button id="dl-btn"><img src="/img/music-player-components/dl_button.png"></button>
+				<a href="https://www.mediafire.com/file/4t99s3ywf3cyzg6/AT-030.zip/file" target="_blank">
+					<button id="dl-btn" aria-label="mediafire download"><img src="img/music-player-components/dl_button.png"></button>
 				</a>
 			</div>
 
@@ -93,13 +101,13 @@
 			<div id="mini-display-container">
 				<div id="mini-total-time">00:00 / 00:00</div>
 				<div id="mini-controls">
-					<img src="/img/music-player-components/icons_all_c.png">
+					<img src="img/music-player-components/icons_all_c.png">
 					<div id="mini-controls-btns-container">
-						<button onclick="prevTrack()"></button>
-						<button onclick="playTrack()"></button>
-						<button onclick="pauseTrack()"></button>
-						<button onclick="stopTrack()"></button>
-						<button onclick="nextTrack()"></button>
+						<button onclick="prevTrack()" aria-label="prev"></button>
+						<button onclick="playTrack()" aria-label="play"></button>
+						<button onclick="pauseTrack()" aria-label="pause"></button>
+						<button onclick="stopTrack()" aria-label="stop"></button>
+						<button onclick="nextTrack()" aria-label="next"></button>
 					</div>
 				</div>
 				<div id = "mini-cur-time">00:00</div>
@@ -200,13 +208,13 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 					</pre>
 <!-- 				</div> -->
 					<p id="terminal-display">
-						type <span style='color:lime'>help</span> and hit enter to see a list of avaibale commands :3<br>
+						type <span style='color:lime'>help</span> and hit enter to see available commands :3<br>
 					</p>
 
 				</div>
 				<div id="terminal-input-container"> 
 					<span id="terminal-prompt">lain@navi ~ % &nbsp;</span><span id="fake-caret">&nbsp;</span>
-					<input id="terminal-input" maxlength="33">	
+					<input type="text" id="terminal-input" maxlength="33" aria-label="terminal input field">	
 				</div>
 			</div>
 		</div>
@@ -221,7 +229,6 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 	
 			<div id="chat-container">
 				<p style="position: absolute; width: 100%; text-align: center; color: black; z-index: -1;">loading chat...</p>
-				<script id="cid0020000321473420645" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%; height: 100%;">{"handle":"lain-os-test","arch":"js","styles":{"b":100,"c":"000000","d":"000000","l":"FFFFFF","m":"FFFFFF","p":"11","r":100,"t":0,"surl":0,"cnrs":"0.35","showx":0}}</script>
 			</div>
 		</div>
 		<!-------------- chat end -------------->
@@ -236,38 +243,42 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 			<div id="version-history-container">
 				<pre id="version-history-texts">
 
- 0.3.2<span>09 oct 2022 </span>
- added artist link section in music player
- spinning navi logo as credits page entrance
- added window minimise animation
+ 1.0.0<span>04 nov 2022 </span>
+ vol. 1 release
 
- 0.3.1<span>25 sep 2022 </span>
- added easter egg command
- fixed issue where volume can't be set in safari
- scale down ascii art to counter browser font size limitation
+ 0.3.2<span>26 oct 2022 </span>
+ added audio filter developer mode
+
+ 0.3.1<span>09 oct 2022 </span>
+ window minimise animation
+ fixed ascii art display issue
+ fixed safari volume issue
 
  0.3.0<span>21 sep 2022 </span>
- uploaded lain comp vol 1 master
+ uploaded vol 1 master
+ music player visualiser
 
- 0.2.0<span>14 aug 2022 </span>
- added mini windows that can be dragged around
- added terminal window with a fake caret
+ 0.2.1<span>01 sep 2022 </span>
+ audio filter commands
+ mobile optimisation
 
- 0.1.0<span>9 aug 2022 </span>
+ 0.2.0<span>28 aug 2022 </span>
+ added terminal window
+ added version history window
+
+ 0.1.0<span>09 aug 2022 </span>
  uploaded lain comp vol 1 demo
- music player with biquad filters and reverb
+ music player with audio filters
 </pre>
 			</div>
 		</div>
 		<!-------------- version history end -------------->
 
-		<div id="temp-toggle">(temp) switch view</div>
-<!-- 		<div id="temp-bg-audio-toggle">(temp) toggle bg ambiance</div>
- -->
-
+		<div id="temp-toggle" style="display: none;">audio filter settings</div>
+		
  		<div id="credits-btn">
 			<a href="credits.html" target="_blank">
-				<img src="/img/navi-logo.gif">
+				<img src="img/navi-logo.gif">
 			</a>
 		</div>
 		<!-------------- icons -------------->
@@ -276,20 +287,20 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 				<div id="dock-bg-color"></div>
 				<div id="icons-container">
 					<div class="icon" id="icon-music-player">
-						<img src="/img/window-icons/player-tr1.png"></img>
+						<img src="img/window-icons/player-tr1_c.png"></img>
 					</div>
 					<div class="icon" id="icon-terminal">
-						<img src="/img/window-icons/comp-tr1.png"></img>
+						<img src="img/window-icons/comp-tr1_c.png"></img>
 					</div>
 					<div class="icon" id="icon-chat">
-						<img src="/img/window-icons/chat-tr2.png"></img>
+						<img src="img/window-icons/chat-tr2_c.png"></img>
 					</div>
 					<div class="icon" id="icon-version-history">
-						<img src="/img/window-icons/vh.png"></img>
+						<img src="img/window-icons/vh_c.png"></img>
 					</div>
 					<div class="icon" style="display: block;"> 
-						<a href="https://isitbandcampfriday.com/" target="_blank">
-							<img src="/img/window-icons/bandcamp37.png"></img> 
+						<a href="https://absurdtrax.bandcamp.com/album/lain-os-is-online-vol-1-at-last-lain-is-free-at-030" target="_blank">
+							<img src="img/window-icons/bandcamp37_c.png"></img> 
 						</a>
 					</div>
 				</div>
@@ -298,15 +309,20 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 		</div>
 		<!-------------- icons end -------------->
 
-		<!-------------- preload shuffle, loop, play, pause images -------------->
-		<link rel="preload" href="/img/music-player-components/shuffle_off.png" as="image">
-		<link rel="preload" href="/img/music-player-components/shuffle_on.png" as="image">
-		<link rel="preload" href="/img/music-player-components/loop_off.png" as="image">
-		<link rel="preload" href="/img/music-player-components/loop_album.png" as="image">
-		<link rel="preload" href="/img/music-player-components/loop_song_inverted.png" as="image">
+		<!-------------- preload fonts & images -------------->
+		<link rel="preload" href="fonts/LoveLetter.TTF" as="font" crossorigin>
+		<link rel="preload" href="fonts/Input-Regular_(InputMonoNarrow-Regular).ttf" as="font" crossorigin>
+		<link rel="preload" href="fonts/Verzierte_Favorite.ttf" as="font" crossorigin>
 
-		<link rel="preload" href="/img/music-player-components/test-play.png" as="image">
-		<link rel="preload" href="/img/music-player-components/test-pause.png" as="image">
+		<link rel="preload" href="img/frame_c1.png" as="image">
+		<link rel="preload" href="img/music-player-components/shuffle_off.png" as="image">
+		<link rel="preload" href="img/music-player-components/shuffle_on.png" as="image">
+		<link rel="preload" href="img/music-player-components/loop_off.png" as="image">
+		<link rel="preload" href="img/music-player-components/loop_album.png" as="image">
+		<link rel="preload" href="img/music-player-components/loop_song_inverted.png" as="image">
+
+		<link rel="preload" href="img/music-player-components/test-play.png" as="image">
+		<link rel="preload" href="img/music-player-components/test-pause.png" as="image">
 		<!-------------- end of preload -------------->
 
 		<div id="old-playlist-container">
@@ -319,17 +335,16 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 			<p id="cur-track-info" style="width: 333px;"></p>
 
 			<div>
-				<button onclick="prevTrack()">prev</button>
-				<button id="old-play-pause-btn" onclick="playOrPause()">play</button>
-				<button onclick="nextTrack()">next</button>
-				<button id="pl-toggle" >playlist</button>
+				<button onclick="prevTrack()" aria-label="prev">prev</button>
+				<button id="old-play-pause-btn" onclick="playOrPause()" aria-label="play or pause">play</button>
+				<button onclick="nextTrack()" aria-label="next">next</button>
+				<button id="pl-toggle" aria-label="toggle playlist visibility">playlist</button>
 			</div>
 			<br>
 
 			<div style="display: flex;"> 
 				<span class="cur-time" id="old-cur-time" style="color: black; font-size: 13px; margin: 0;">00:00</span>
 				<div id ="old-progress-bar-container">
-					<img src="/img/music-player-components/progress_bar.png" style="position: absolute; width: 100%">
 					<div id="old-progress-bar-fill"></div>
 				</div>
 				<span id="old-total-time" style="color: black;">00:00</span>
@@ -340,7 +355,7 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 			<p id="biquad-prompt" style="width: 100%;">choose a biquad filter:
 				<span id="biquad-tips">gain adjustment is available for lowshelf, highshelf, peaking.<br><br>q factor adjustment is available for lowpass, highpass, bandpass, peaking, notch, allpasss.<br><br>not much info is found about detune but it seems to work with lowpass, highpass, bandpass, allpass.<br><br>search "biquad filter MDN" for more info.</span> 
 			</p>
-			<select id="switch-biquad" size="1">
+			<select id="switch-biquad" size="1" aria-label="select a biquad filter">
 				<option value="0" selected="selected">none</option>
 				<option value="1">lowpass</option>
 				<option value="2">highpass</option>
@@ -353,28 +368,31 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 			</select>
 
 			<p id="cur-frequency" style="color: grey;">frequency: 350</p>
-			<input class="long-slider" type="range" min="20" max="15000" value="350" step="5" id="frequency-slider" onchange="setFrequency()">
+			<input class="long-slider" type="range" min="20" max="15000" value="350" step="5" id="frequency-slider" onchange="setFrequency()" aria-label="frequency">
 
 			<p id="cur-gain" style="color: grey;">gain: 0</p>
-			<input class="long-slider" type="range" min="-40" max="40" value="0" step="1" id="gain-slider" onchange="setGain()">
+			<input class="long-slider" type="range" min="-40" max="40" value="0" step="1" id="gain-slider" onchange="setGain()" aria-label="gain">
 
 			<p id="cur-q" style="color: grey;">Q factor: 1</p>
-			<input class="long-slider" type="range" min="0.01" max="20" value="1" step="0.2" id="q-slider" onchange="setQ()">
+			<input class="long-slider" type="range" min="0.01" max="20" value="1" step="0.2" id="q-slider" onchange="setQ()" aria-label="Q value">
 
 			<p id="cur-detine" style="color: grey;">detune: 0</p>
-			<input class="long-slider" type="range" min="-2400" max="2400" value="0" step="10" id="detune-slider" onchange="setDetune()">
+			<input class="long-slider" type="range" min="-2400" max="2400" value="0" step="10" id="detune-slider" onchange="setDetune()" aria-label="detune">
 
 			<br>
 			<hr>
 			<br>
 
-			<button id="reverb-toggle" onclick="toggleReverb()">turn on reverb</button>
+			<button id="reverb-toggle" onclick="toggleReverb()" aria-label="toggle reverb">turn on reverb</button>
 			<br>
 			<p id="cur-reverb-duration" style="color: grey;">duration: 15</p>
-			<input class="long-slider" type="range" min="0.1" max="120" value="15" id="reverb-duration" step="1" onchange="setReverb()">
+			<input class="long-slider" type="range" min="0.1" max="120" value="15" id="reverb-duration" step="1" onchange="setReverb()" aria-label="reverb duration">
 			<p id="cur-reverb-decay" style="color: grey;">decay: 5</p>
-			<input class="long-slider" type="range" min="0.1" max="80" value="5" id="reverb-decay" step="0.2" onchange="setReverb()">
-
+			<input class="long-slider" type="range" min="0.1" max="80" value="5" id="reverb-decay" step="0.2" onchange="setReverb()" aria-label="reverb decay">
+			<br>
+			<hr>
+			<br>
+			<button onclick="resetAllFilters()" aria-label="reset all audio filters">reset to default</button>
 		</div> <!-- end of old player container -->
 	</div> <!-- end of main container -->
 	<script type="text/javascript" src="main.js"></script>

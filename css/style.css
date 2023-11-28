@@ -3,13 +3,13 @@
 @font-face 
 {
 	font-family: "LoveLetter";
-	src: url("/fonts/LoveLetter.TTF") format("truetype");
+	src: url("../fonts/LoveLetter.TTF") format("truetype");
 }
 
 @font-face
 {
 	font-family: "Input-Mono";
-	src: url("/fonts/Input-Regular_(InputMonoNarrow-Regular).ttf") format("truetype");
+	src: url("../fonts/Input-Regular_(InputMonoNarrow-Regular).ttf") format("truetype");
 }
 
 body 
@@ -21,8 +21,13 @@ body
 	--mono-font: "Input-Mono", "Courier New", monospace;
 	--lain-font: "LoveLetter", "Courier New", monospace;
 
+	--text-glow-shadow: 0 0 4px #ffffff, 0 0 13px rgba(255, 255, 255, 0.5);
+	--purple-highlight-color: #383896;
+
 	--fade-in: opacity 0.7s ease-out; /*used by entry div and credits page*/
 }
+
+pre {font-family: var(--mono-font);}
 
 #main-container
 {

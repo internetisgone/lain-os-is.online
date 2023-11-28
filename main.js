@@ -1,146 +1,119 @@
+// test tracks
 // const trackList = [
 // 	{
-// 		name: "x/o - Duvet cyberia re-chopped & screwed-MiX",
-// 		path: "/21sept-master-mp3/xo - 200529-DuvetBoa8  [master 20220921].mp3",
-// 		link: "https://x-o-xio.bandcamp.com"
+// 		name: "boa - duvet",
+// 		path: "mp3/boa_duvet.mp3",
+// 		link: "https://bandcamp.com"
 // 	},
 // 	{
-// 		name: "Wa?ste - cyberia texture 5a x professed intention and real intention",
-// 		path: "/21sept-master-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention [master 20221005].mp3",
-// 		link: "https://wa-ste222.bandcamp.com"
+// 		name: "exxy44 - TWICE 트와이스 TT 3XXY EDIT",
+// 		path: "mp3/exxy44_twice_TT.mp3",
+// 		link: "https://bandcamp.com"
 // 	},
-// 	{
-// 		name: "Thegn ft. Vrain - phantoma_-_track04.wav",
-// 		path: "/21sept-master-mp3/thegn ft. vrain - phantoma [master 20220921].mp3",
-// 		link: "https://thegn.bandcamp.com"
-// 	},
-// 	{
-// 		name: "Nerve - I'm Gonna Diss You",
-// 		path: "/21sept-master-mp3/Nerve - I_m Gonna Diss You [master 20220921].mp3",
-// 		link: "https://www.lo4nerve.com"
-// 	},
-// 	{
-// 		name: "Fetus - Footprints",
-// 		path: "/21sept-master-mp3/Fetus - Footprints [master 20220921].mp3",
-// 		link: "https://fetusmusic.bandcamp.com"
-// 	},
-// 	{
-// 		name: "GRASPS X NERDIE - I AM HURTING",
-// 		path: "/21sept-master-mp3/GRASPS X NERDIE - I AM HURTING [master 20220921].mp3",
-// 		link: "" //handled in loadTrack()
-// 	},
-// 	{
-// 		name: "Yraki - Lights Down",
-// 		path: "/21sept-master-mp3/Yraki - Lights Down [master 20220921].mp3",
-// 		link: "https://yraki.bandcamp.com"
-// 	},
-// 	{
-// 		name: "Sour Gout - Transmigration",
-// 		path: "/21sept-master-mp3/Sour Gout - Transmigration [master 20220921].mp3",
-// 		link: "https://sourgout.bandcamp.com/"
-// 	},
-// 	{
-// 		name: "lovefear - Breathe",
-// 		path: "/21sept-master-mp3/lovefear - SEL compilation track final  [master 20220921].mp3",
-// 		link: "https://lovefear.bandcamp.com/"
-// 	},
-// 	{
-// 		name: "堀池ゆめぁ - lain ",
-// 		path: "/21sept-master-mp3/Yumea Horiike - lain [master 20220921].mp3",
-// 		linkName: "artist link",
-// 		link: "https://uuumea.bandcamp.com"
-// 	},
-// 	{
-// 		name: "Yuting Wu - Help me to Breathe",
-// 		path: "/21sept-master-mp3/Yuting Wu - Help me to Breathe [master 20220921].mp3",
-// 		link: "https://yutingwu.bandcamp.com"
-// 	},
-// 	{
-// 		name: "ΛFΛLFL - just some kick noyze",
-// 		path: "/21sept-master-mp3/afalfl - just some kick noyze [master 20220921].mp3",
-// 		link: "https://afalfl.bandcamp.com/"
-// 	  },
-// 	  {
-// 		name: "Yikii - Ancient Scanner",
-// 		path: "/21sept-master-mp3/Yikii - Ancient Scanner [master 20220921].mp3",
-// 		link: "https://yikii.bandcamp.com"
-// 	},
-// 	{
-// 		name: "Kagami Smile -  Acts of Betrayal",
-// 		path: "/21sept-master-mp3/Kagami Smile -  Acts of Betrayal [master 20220921].mp3",
-// 		link: "https://kagamismile.bandcamp.com/"
-// 	},
-// 	{
-// 		name: "Imryll - Family Portrait (Imryll Reimagined)",
-// 		path: "/21sept-master-mp3/Imryll - Family Portrait (Imryll Reimagined) [master 20220921].mp3",
-// 		link: "https://phantomlimblabel.bandcamp.com/album/psalm008-mortal"
-// 	},
-// 	{
-// 		name: "Jennifer Walton - At Last, Lain Is Free",
-// 		path: "/21sept-master-mp3/Jennifer Walton - At Last, Lain Is Free [master 20220921].mp3",
-// 		link: "https://allcentre.bandcamp.com/album/flash-on"
-// 	},
-// ]; 
+// ]
 
-// test tracks
 const trackList = [
 	{
-		name: "boa - duvet",
-		path: "/mp3/boa_duvet.mp3",
-		link: "https://bandcamp.com"
+		name: "x/o - Duvet cyberia re-chopped & screwed-MiX",
+		path: "21sept-master-mp3/xo - 200529-DuvetBoa8  [master 20220921].mp3",
+		link: "https://x-o-xio.bandcamp.com"
 	},
 	{
-		name: "exxy4_TWICE 트와이스 TT 3XXY EDIT",
-		path: "/mp3/exxy4_TWICE 트와이스 TT 3XXY EDIT.mp3",
-		link: "https://bandcamp.com"
+		name: "Wa?ste - cyberia texture 5a x professed intention and real intention",
+		path: "21sept-master-mp3/Wa_ste - cyberia texture 5a x professed intention and real intention [master 20220929].mp3",
+		link: "https://wa-ste222.bandcamp.com"
 	},
-]
+	{
+		name: "Thegn ft. Vrain - phantoma_-_track04.wav",
+		path: "21sept-master-mp3/thegn ft. vrain - phantoma [master 20220921].mp3",
+		link: "" //handled in loadTrack()
+	},
+	{
+		name: "Nerve - I'm Gonna Diss You",
+		path: "21sept-master-mp3/Nerve - I_m Gonna Diss You [master 20220921].mp3",
+		link: "https://www.lo4nerve.com"
+	},
+	{
+		name: "Fetus - Footprints",
+		path: "21sept-master-mp3/Fetus - Footprints [master 20220921].mp3",
+		link: "https://fetusmusic.bandcamp.com"
+	},
+	{
+		name: "GRASPS X NERDIE - I AM HURTING",
+		path: "21sept-master-mp3/GRASPS X NERDIE - I AM HURTING [master 20220921].mp3",
+		link: "" //handled in loadTrack()
+	},
+	{
+		name: "Yraki - Lights Down",
+		path: "21sept-master-mp3/Yraki - Lights Down [master 20220921].mp3",
+		link: "https://yraki.bandcamp.com"
+	},
+	{
+		name: "Sour Gout - Transmigration",
+		path: "21sept-master-mp3/Sour Gout - Transmigration [master 20220921].mp3",
+		link: "https://sourgout.bandcamp.com/"
+	},
+	{
+		name: "lovefear - Breathe",
+		path: "21sept-master-mp3/lovefear - SEL compilation track final  [master 20220921].mp3",
+		link: "https://lovefear.bandcamp.com/"
+	},
+	{
+		name: "堀池ゆめぁ - lain ",
+		path: "21sept-master-mp3/Yumea Horiike - lain [master 20220921].mp3",
+		link: "https://uuumea.bandcamp.com"
+	},
+	{
+		name: "Yuting Wu - Help me to Breathe",
+		path: "21sept-master-mp3/Yuting Wu - Help me to Breathe [master 20220921].mp3",
+		link: "https://yutingwu.bandcamp.com"
+	},
+	{
+		name: "ΛFΛLFL - just some kick noyze",
+		path: "21sept-master-mp3/afalfl - just some kick noyze [master 20220921].mp3",
+		link: "https://afalfl.bandcamp.com/"
+	  },
+	  {
+		name: "Yikii - Ancient Scanner",
+		path: "21sept-master-mp3/Yikii - Ancient Scanner [master 20220921].mp3",
+		link: "https://yikii.bandcamp.com"
+	},
+	{
+		name: "Kagami Smile -  Acts of Betrayal",
+		path: "21sept-master-mp3/Kagami Smile -  Acts of Betrayal [master 20220921].mp3",
+		link: "https://kagamismile.bandcamp.com/"
+	},
+	{
+		name: "Imryll - Family Portrait (Imryll Reimagined)",
+		path: "21sept-master-mp3/Imryll - Family Portrait (Imryll Reimagined) [master 20220921].mp3",
+		link: "https://phantomlimblabel.bandcamp.com/album/psalm008-mortal"
+	},
+	{
+		name: "Jennifer Walton - At Last, Lain Is Free",
+		path: "21sept-master-mp3/Jennifer Walton - At Last, Lain Is Free [master 20220921].mp3",
+		link: "https://allcentre.bandcamp.com/album/flash-on"
+	},
+]; 
 
 //entry page texts
 const entryInitStr = "initialising";
 const entryOnloadStr = "log in";
-const entryBottomStr = "public domain operating system"
-
-//music player 
-const bitrateStereoStr = "320 KBPS 48 KHZ";  
-const bitrateStereoPlaceholder = "&nbsp;&nbsp;&nbsp;&nbsp;KBPS&nbsp;&nbsp;&nbsp;&nbsp;KHZ"
-const loadingTrackStr = "loading metadata..."; 
-const totalTime = "68:21" //calculated with totalLengthTest() in onload()
-
-//terminal texts
-const lainStrings = [
-	"let's all love lain (づ◡﹏◡)づ",
-	"you're a web 3 developer, i'm a web :3 developer",
-	"suicide by CIA",
-	"Virtuality features highly accelerated cultural evolution, giving it extreme susceptibility to manipulation and high hyperstitional potentiation. Technodieties will proliferate in the form of egregores, directly bending reality to their will. Humanity will be twisted",
-	"logging off"
-]
-const invalidInputStr = "idk that word!"
-
-//initial audio node params
-//gain node
-const initialGain = 0.77;
-let currentFilter = 0 // filter preset index in filterPresetsArray. 0 means none
-
-// colors
-let plEntryBgColor = "rgba(255, 255, 255, 0.7)" //bg highlight color for current song in playlist
+// const entryBottomStr = "public domain operating system"
+const entryBottomStr = "at last, lain is free"
+let bgImgPath = "img/lain_extended_3k.jpg"
 
 //bg color #e1e4eb
-
-//media queries
-let isLandscape = window.matchMedia("(min-aspect-ratio: 4/3)").matches
 
 ////////////// entry page //////////////
 
 let entryPage = document.getElementById("entry-page")
 let entryTextsEl = document.getElementById("entry-texts")
 let entryBottomTexts = document.getElementById("entry-bottom-text")
-
-// let bgAudio = document.getElementById("bg-track")
+entryTextsEl.textContent = entryInitStr
 
 // manually center the loading text so its position is fixed while adding the "..."
-let initialLeft = entryTextsEl.parentElement.offsetWidth/2 - entryTextsEl.offsetWidth/2
-entryTextsEl.style.left = initialLeft + "px"
+entryTextsEl.style.left = `${(entryTextsEl.parentElement.offsetWidth - entryTextsEl.offsetWidth)/2}px` 
+
 let loadingTimer = setInterval(loadingText, 777)
 let loadingIndex = 0
 
@@ -158,9 +131,9 @@ function loadingText()
 	}
 }
 
-//unicode chars 33-122, 161-404. see getUnicodeChars() in utilities
-let chars = ["!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","¡","¢","£","¤","¥","¦","§","¨","©","ª","«","¬","­","®","¯","°","±","²","³","´","µ","¶","·","¸","¹","º","»","¼","½","¾","¿","À","Á","Â","Ã","Ä","Å","Æ","Ç","È","É","Ê","Ë","Ì","Í","Î","Ï","Ð","Ñ","Ò","Ó","Ô","Õ","Ö","×","Ø","Ù","Ú","Û","Ü","Ý","Þ","ß","à","á","â","ã","ä","å","æ","ç","è","é","ê","ë","ì","í","î","ï","ð","ñ","ò","ó","ô","õ","ö","÷","ø","ù","ú","û","ü","ý","þ","ÿ","Ā","ā","Ă","ă","Ą","ą","Ć","ć","Ĉ","ĉ","Ċ","ċ","Č","č","Ď","ď","Đ","đ","Ē","ē","Ĕ","ĕ","Ė","ė","Ę","ę","Ě","ě","Ĝ","ĝ","Ğ","ğ","Ġ","ġ","Ģ","ģ","Ĥ","ĥ","Ħ","ħ","Ĩ","ĩ","Ī","ī","Ĭ","ĭ","Į","į","İ","ı","Ĳ","ĳ","Ĵ","ĵ","Ķ","ķ","ĸ","Ĺ","ĺ","Ļ","ļ","Ľ","ľ","Ŀ","ŀ","Ł","ł","Ń","ń","Ņ","ņ","Ň","ň","ŉ","Ŋ","ŋ","Ō","ō","Ŏ","ŏ","Ő","ő","Œ","œ","Ŕ","ŕ","Ŗ","ŗ","Ř","ř","Ś","ś","Ŝ","ŝ","Ş","ş","Š","š","Ţ","ţ","Ť","ť","Ŧ","ŧ","Ũ","ũ","Ū","ū","Ŭ","ŭ","Ů","ů","Ű","ű","Ų","ų","Ŵ","ŵ","Ŷ","ŷ","Ÿ","Ź","ź","Ż","ż","Ž","ž","ſ","ƀ","Ɓ","Ƃ","ƃ","Ƅ","ƅ","Ɔ","Ƈ","ƈ","Ɖ","Ɗ","Ƌ","ƌ","ƍ","Ǝ","Ə","Ɛ","Ƒ","ƒ","Ɠ","Ɣ"]
-let BottomTextLength = 33
+//unicode chars 33-122. see getUnicodeChars() in utilities
+let chars = ["!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+let BottomTextLength = 27
 let bottomTextTimer = setInterval(scrambleBottomText, 100)
 
 function scrambleBottomText()
@@ -173,28 +146,107 @@ function scrambleBottomText()
 	}
 }
 
+// make sure entry frame img is fully loaded b4 showing
+let frameImg = new Image();
+frameImg.src = "img/frame_c1.png";
+frameImg.onload = function() {
+	frameImg.id = "entry-img";
+	entryPage.appendChild(frameImg)
+	frameImg.classList.add("zoom-into-view")
+	console.log("loaded entry page frame img")
+
+	// large imgs are loaded after frame img
+	setPlayerAndBgImg()
+
+	// load first song
+	initPlayer()
+
+	// text is shown after frame animation finishes
+	setTimeout(() => {
+		clearInterval(bottomTextTimer)
+		document.getElementById("lain-os-text").style.opacity = "1"		
+		entryBottomTexts.classList.add("entry-bottom-text-loaded")
+		entryBottomTexts.textContent = entryBottomStr
+	}, 2500);
+}
+
+// todo it finishes later than window onload does in safari....
+function setPlayerAndBgImg()
+{
+	let playerImgPath = "img/player-final77-small.png"
+	loadImg(playerImgPath).then(function() {
+		document.getElementById("music-player").style.backgroundImage = `url(${playerImgPath})`
+		console.log("loaded player img")
+	})
+
+	loadImg(bgImgPath).then(function() {
+		document.getElementById("main-container").style.backgroundImage = `url(${bgImgPath})`
+		console.log("loaded bg img")
+	})
+}
+
+function loadImg(src) 
+{
+    return new Promise((resolve, reject) => {
+        const image = new Image();
+        image.addEventListener('load', resolve);
+        image.addEventListener('error', reject);
+        image.src = src;
+    });
+}
+
 window.onload = function() {
 	clearInterval(loadingTimer)
-	clearInterval(bottomTextTimer)
 
 	entryTextsEl.parentElement.style.display = "flex"
 	entryTextsEl.parentElement.style.justifyContent = "center"
 	entryTextsEl.style.left = "auto"
 
 	entryTextsEl.textContent = entryOnloadStr
-	entryBottomTexts.style.fontFamily = "LoveLetter"
-	entryBottomTexts.textContent = entryBottomStr
+	entryTextsEl.classList.add("entry-text-bg")
+	
+	let loginClickArea = document.createElement("div")
+	loginClickArea.id = "login-click-area"
+	entryPage.appendChild(loginClickArea)
 
-	entryPage.addEventListener("click", function(){
+	loginClickArea.addEventListener("click", function(){
 		entryPage.style.opacity = "0"
 		if (audioContext.state === 'suspended') {audioContext.resume();}
 		//setInterval(totalLengthTest, 3000);
+
+		// play animation on click, zooms in to fill the whole screen
+		frameImg.classList.remove("zoom-into-view")
+		frameImg.classList.add("zoom-fill-screen")
 	})
 
 	entryPage.addEventListener('transitionend', function() {
 		entryPage.parentNode.removeChild(entryPage)
 	})
-}//end of onload
+
+	// chat embed
+	initChatEmbed()
+
+	// server room bg
+	fetch("/bg-mp3/serv113.mp3")
+	.then(function(response) {return response.arrayBuffer()})
+	.then(decode);
+} //end of onload
+
+function initChatEmbed()
+{
+	let chatScript = document.createElement("script")
+	chatScript.id = "cid0020000328095633756"
+	chatScript.setAttribute("data-cfasync", "false")
+	chatScript.async = true;
+	chatScript.src = "//st.chatango.com/js/gz/emb.js"
+	chatScript.style.width = "100%"
+	chatScript.style.height = "100%"
+	chatScript.innerHTML = '{"handle":"lain-os-is-online","arch":"js","styles":{"a":"f5f5f5","b":100,"c":"000000","d":"000000","e":"f5f5f5","h":"f5f5f5","l":"f5f5f5","m":"FFFFFF","p":"12","q":"f5f5f5","r":100,"t":0,"usricon":0,"surl":0,"allowpm":0}}'
+
+	//<script id="cid0020000328095633756" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 100%;">{"handle":"lain-os-is-online","arch":"js","styles":{"a":"f5f5f5","b":100,"c":"000000","d":"000000","e":"f5f5f5","h":"f5f5f5","l":"f5f5f5","m":"FFFFFF","p":"12","q":"f5f5f5","r":100,"t":0,"usricon":0,"surl":0,"allowpm":0}}</script>
+
+	document.getElementById("chat-container").appendChild(chatScript)
+}
 
 ////////////// entry page //////////////
 
@@ -208,6 +260,8 @@ let cursorPos;
 let offset = [0,0];
 let isMoving = false;
 let maxZ = 10;
+
+let isLandscape = window.matchMedia("(min-aspect-ratio: 4/3)").matches
 
 //mini wondows closing animation
 const closeAnimation = [
@@ -223,9 +277,7 @@ const closeAnimation = [
 	opacity: "0.3"}    
 ]
 const closeAnimDuration = 333 //ms
-const closeTiming = {duration: closeAnimDuration, iterations: 1}
 //const windowAnimationArr = new Array()
-
 console.log("mini windows count " + miniWindows.length + " icon count " + icons.length)
 
 for (let i = 0; i < miniWindows.length; i++)
@@ -235,7 +287,7 @@ for (let i = 0; i < miniWindows.length; i++)
 	let closeBtn = miniWindow.querySelector(".mini-window-close")
 	console.log("mini windows " + miniWindows.item(i).id)
 
-	let closeCurWindow = miniWindow.animate(closeAnimation, closeTiming)
+	let closeCurWindow = miniWindow.animate(closeAnimation, {duration: closeAnimDuration, iterations: 1})
 	closeCurWindow.pause()
 	//windowAnimationArr.push(closeCurWindow)
 
@@ -253,7 +305,7 @@ for (let i = 0; i < miniWindows.length; i++)
 	})
 	icon.addEventListener("click", function(){
 		miniWindow.style.zIndex = maxZ; maxZ++;
-		if(miniWindow.id == "chat-window") miniWindow.style.display = "flex";
+		if (miniWindow.id == "chat-window") miniWindow.style.display = "flex";
 		else miniWindow.style.display = "block";
 		icon.style.display = "none"
 
@@ -353,16 +405,49 @@ function dragEnd()
 	document.removeEventListener("touchend", dragEnd)
 }
 
-// windowDock.addEventListener("click", function(){
-// 	if (miniWindow.style.display === "none")
-// 		miniWindow.style.display = "block";
-// })
-
 ////////////// mini windows //////////////
 
 
-
 ////////////// terminal //////////////
+
+//terminal texts
+const helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸<br><br>"
+				+ "available commands:<br><br>"
+				+ "playback controls<br>"
+				+ "&emsp;&emsp;<span style='color:lime'>play </span>&nbsp;&nbsp;&nbsp; play the currently loaded song<br>"
+				+ "&emsp;&emsp;<span style='color:lime'>pause </span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>stop </span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>prev </span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>next </span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>random </span>&nbsp;&nbsp;play a random song<br><br>"
+				+ "audio filters<br>"
+				+ "&emsp;&emsp;<span style='color:lime'>serv </span>&nbsp;&nbsp;&nbsp; go to server room<br>"
+				+ "&emsp;&emsp;<span style='color:lime'>smok </span>&nbsp;&nbsp;&nbsp; go to smoking area<br>"
+				+ "&emsp;&emsp;<span style='color:lime'>look </span>&nbsp;&nbsp;&nbsp; check your surroundings<br>"
+				// + "&emsp;&emsp;<span style='color:lime'>toilet</span><br>"
+				+ "&emsp;&emsp;<span style='color:lime'>leave </span>&nbsp;&nbsp; clear all audio filters<br><br>"
+				+ "note: i only look at the first 4 letters u type, for example <span style='color:lime'>rand</span> is equivalent to <span style='color:lime'>random</span>. there's a secret command that's exempt from this rule (>ω•)<br><br>"
+				+ "¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨<br>"
+
+const lainStrings = [
+	"let's all love lain (づ◡﹏◡)づ",
+	"syncing with u at 7.83Hz",
+	"<span style='color:#AAA4FF'>root access granted<br>audio filter debug mode enabled</span>",
+	"(づ◡﹏◡)づ you're already a developer",
+	"when i grow up i wanna be smart like gpt-3...",
+	"¨°º¤ø„(☾)ɠℂᴜ̣̣℃↔ɠƒƒϊz<3↕⁷ℂᴜ̣̣℃(^)„ø¤º°¨"
+]
+// const invalidInputStr = "idk that word (´;ω;`)" 
+
+const randCommandStrings = [
+	"idk that word (´;ω;`)",
+	"type <span style='color:lime'>help</span> if u feel lost!",
+	"imma head to the <span style='color:lime'>smok</span>ing area do u wanna come with me?",
+	"listen to a <span style='color:lime'>rand</span>om song with me!",
+	"take a <span style='color:lime'>look</span> at your surroundings!",
+	"i heard there are otherworldly entities lurking in the <span style='color:lime'>serv</span>er room...",
+	"i heard there are otherworldly entities lurking in the <span style='color:lime'>serv</span>er room..."
+]
 
 let terminalTxtContainer = document.getElementById("terminal-txt-container")
 let terminalDisplay = document.getElementById("terminal-display") //pre
@@ -373,66 +458,79 @@ let initialIndent = 111 //need to get from element tbh
 let fontWidth = 8 //subject to changee
 let caretOffest
 
-let inputPattern = /^[a-zA-Z\d\s]*$/; //letters, digits, and whitespace
+let inputPattern = /^[a-zA-Z\d]+$/; //letters and digits
 let lainCount = 0 
-let rangeDelta = 2  // output index range lainCount +- rangeDelta
+let invalidCount = 0
+//let rangeDelta = 2  // output index range lainCount +- rangeDelta
 
 inputEl.onkeydown = validateInput
 
 function validateInput(e)
 {	
-	let inputLength = (e.key == "Backspace")? (inputEl.value.length - 1) : (inputEl.value.length + 1);
+	let inputLength = (e.key === "Backspace")? (inputEl.value.length - 1) : (inputEl.value.length + 1); 
 	if (inputLength < 0) inputLength = 0;
 	caretOffest =  inputLength * fontWidth + initialIndent
 	fakeCaret.style.marginLeft = caretOffest + "px"
-
 	//console.log(e)
 	//console.log("input length " + inputLength + " caret offest" + caretOffest)
 
-	if (e.key == "Enter")
+	if (e.key === "Enter") // “enter”
 	{
-		terminalDisplay.innerHTML += "lain@navi ~ % " + inputEl.value + "</br>";
+		// use textContent instead of innerHTML for user input
+		let userInputEl = document.createElement("span");
+		userInputEl.textContent = "lain@navi ~ % " + inputEl.value;
+		terminalDisplay.appendChild(userInputEl).appendChild(document.createElement("br"));
+
 		//easter egg
 		if (inputEl.value.toLowerCase().includes("lain"))
-		{
-			terminalDisplay.innerHTML += lainStrings[0] + "</br>"; 
+		{			
+			// let lowerBound = (lainCount > rangeDelta)? (lainCount - rangeDelta) : 0
+			// let upperBound = (lainCount > lainStrings.length - 1 - rangeDelta)? (lainStrings.length - 1) : (lainCount + rangeDelta)
+			// if (lowerBound > upperBound) lowerBound = upperBound;
 
-			// sad to see it go >:(
-			// if (lainCount == 0) 
-			// {
-			// 	terminalDisplay.innerHTML += lainStrings[0] + "</br>"; 
-			// }
-			// else
-			// {
-			// 	// let lowerBound = (lainCount > rangeDelta)? (lainCount - rangeDelta) : 0
-			// 	// let upperBound = (lainCount > lainStrings.length - 1 - rangeDelta)? (lainStrings.length - 1) : (lainCount + rangeDelta)
-			// 	// if (lowerBound > upperBound) lowerBound = upperBound;
+			// method 1 random int w range
+			// let outputIndex = getRandomInt(lowerBound, upperBound)
 
-			// 	// method 1 random int w range
-			// 	// let outputIndex = getRandomInt(lowerBound, upperBound)
+			// method 2 normally distributed int w range 
+			// let outputIndex = getIntNormallyDistributed(lowerBound, upperBound)
 
-			// 	// method 2 normally distributed int w range 
-			// 	// let outputIndex = getIntNormallyDistributed(lowerBound, upperBound)
+			// method 3 use input count directly
+			// prob gonna go with this method cuz lainStrings has a rather small size and this way the user can go thru every string element
+			
+			//let outputIndex = (lainCount > lainStrings.length - 1)? (lainStrings.length - 1) : lainCount;
+			if (lainCount < lainStrings.length) 
+			{
+				// unhide audio filter setting toggle 
+				if (lainCount === 2) settingsViewToggle.style.display = "block";
 
-			// 	// method 3 use input count directly
-			// 	// prob gonna go with this method cuz lainStrings has a rather small size and this way the user can go thru every string element
-			// 	let outputIndex = (lainCount > lainStrings.length - 1)? (lainStrings.length - 1) : lainCount;
-			// 	terminalDisplay.innerHTML += lainStrings[outputIndex] + "<br>";
+				terminalDisplay.innerHTML += lainStrings[lainCount] + "<br>";
+			}
+			else
+			{
+				// generate a string of random chars of random length 
+				let randLength = getRandomInt(20, 50)
+				for (let i = 0; i < randLength; i++)
+				{
+					randIndex = getRandomInt(0, chars.length)
+					terminalDisplay.innerHTML += chars[randIndex]
+				}
+				terminalDisplay.innerHTML += "<br>";
+			}
+			// method 4 generate random numbers 6 times and take the avr (central limit theorem)
+			// todo
 
-			// 	//console.log(`range ${lowerBound} to ${upperBound}, input count ${lainCount}, output ${outputIndex}`)
-			// }
-			// lainCount++;
+			//console.log(`range ${lowerBound} to ${upperBound}, input count ${lainCount}, output ${outputIndex}`)
+		
+			lainCount++;
 		}
-		//valid input
-		else if (inputEl.value.match(inputPattern))	
+		else 
 		{
-			// only look at the first 4 chars
-			checkCommand(inputEl.value.trim().toLowerCase().substring(0, 4));
-		}
-		else //invalid input
-		{
-			//terminalDisplay.innerHTML += "invalid input (´;ω;`) letters, numbers, and spaces only pls</br>";
-			terminalDisplay.innerHTML += invalidInputStr + "<br>"
+			let trimmedInput = inputEl.value.trim();
+			// only look at the first 4 letters
+			if (trimmedInput.substring(0, 4).match(inputPattern))
+				checkCommand(trimmedInput.substring(0, 4).toLowerCase());
+			else if (trimmedInput.length > 0)
+				appendInvalidResponse();
 		}
 		inputEl.value = "";
 		fakeCaret.style.marginLeft = initialIndent + "px";
@@ -449,6 +547,14 @@ terminalTxtContainer.onscroll = function()
 	//console.log("terminal scroll pos " + terminalTxtContainer.scrollTop + ", scroll height = " + terminalTxtContainer.scrollHeight)
 }
 
+document.getElementById("terminal-inner-container").addEventListener("click", (e) => {
+	// make sure texts can still be selected 
+	let selection = window.getSelection();
+    if (selection.type != "Range") {
+		if (!inputEl.focused) inputEl.focus();
+	}
+})
+
 //for non user input 
 function appendTerminalOutput(output) 
 {
@@ -456,21 +562,20 @@ function appendTerminalOutput(output)
 	terminalTxtContainer.scrollTop = terminalTxtContainer.scrollHeight; 
 }
 
-let helpText = "¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸<br><br>available commands:<br><br>"
-							+ "playback controls<br>"
-							+ "&emsp;&emsp;<span style='color:lime'>play </span> &emsp;&emsp; play the currently loaded song<br>"
-							+ "&emsp;&emsp;<span style='color:lime'>pause </span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>stop </span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>prev </span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>next </span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>random </span>&nbsp;play a random song<br><br>"
-							+ "audio filters<br>"
-							+ "&emsp;&emsp;<span style='color:lime'>server room</span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>smoking area</span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>toilet</span><br>"
-							+ "&emsp;&emsp;<span style='color:lime'>leave </span>&nbsp; clear all audio filters<br><br>"
-							+ "note: only the first 4 letters are processed. <span style='color:lime'>serv</span> is equivalent to <span style='color:lime'>server room</span><br><br>"
-							+ "¨°º¤ø„¸¸„ø¤º°¨°º¤ø„¸„ø¤º°¨°º¤ø„¸¸„ø¤º°¨<br>"
+function appendInvalidResponse()
+{
+	invalidCount++;	
+	if (invalidCount > 2) 
+	{
+		let rand = getRandomInt(0, randCommandStrings.length)
+		terminalDisplay.innerHTML += randCommandStrings[rand] + "<br>";
+	}
+	else
+	{
+		terminalDisplay.innerHTML += randCommandStrings[invalidCount - 1] + "<br>";	
+	}	
+}
+
 function checkCommand(input) 
 {
 	// console.log("trimmed command " + input)
@@ -484,7 +589,8 @@ function checkCommand(input)
 		case "next": nextTrack(); break;
 		case "rand": 
 			curIndex = getRandomInt(0, trackList.length)
-			loadTrack(); playTrack();
+			loadTrack(); 
+			playTrack();
 			break;
 
 		case "help": terminalDisplay.innerHTML += helpText; break;
@@ -493,9 +599,12 @@ function checkCommand(input)
 		case "leav": applyFilter(0); break;
 		case "serv": applyFilter(1); break;
 		case "smok": applyFilter(2); break;
-		case "toil": applyFilter(3); break;
+		// case "toil": applyFilter(3); break;
+		case "look": 
+			appendTerminalOutput("you are in " + filterNames[currentFilter].name + ". " + filterNames[currentFilter].desc);
+			break;
 
-		default: terminalDisplay.innerHTML += invalidInputStr + "</br>"
+		default: appendInvalidResponse();
 	}
 }
 
@@ -503,15 +612,16 @@ function checkCommand(input)
 
 
 ////////////// music player //////////////
+const bitrateStereoStr = "320 KBPS 48 KHZ";  
+const bitrateStereoPlaceholder = "&nbsp;&nbsp;&nbsp;&nbsp;KBPS&nbsp;&nbsp;&nbsp;&nbsp;KHZ"
+const loadingTrackStr = "loading metadata..."; 
+const totalTime = "68:21" //calculated with totalLengthTest() in onload()
 
 let playPauseBtn = document.getElementById("old-play-pause-btn")
 let volumeSlider = document.getElementById("volume-slider")
 
 let oldProgressBar = document.getElementById("old-progress-bar-container")
-let oldProgressFill = document.getElementById("old-progress-bar-fill")
-
 let progressBar = document.getElementById("progress-bar-container")
-let progressFill = document.getElementById("progress-bar-fill")
 
 let curTrackText = document.getElementById("cur-track-info")
 
@@ -569,31 +679,26 @@ function fillPlaylist(playlist)
 		})
 	}
 }
-////////////// music player //////////////
-
-
-////////////// old music player //////////////
 
 let oldCurTimeEl = document.getElementById("old-cur-time")
 let curTimeEl = document.getElementById("cur-time")
 let oldTotalTimeEl = document.getElementById("old-total-time")
 
-let wrapperClone
+// let wrapperClone
 let playlistEntries = playlistUl.getElementsByClassName("playlist-entry")
 
-///////initial state///////
-
-//function initAudio()
-loadTrack();
-stopTrack(); //stop icon, no bitrate display
+///////initial state
+function initPlayer()
+{
+	loadTrack();
+	stopTrack(); //stop icon, no bitrate display
+}
 
 let loopIndex = 2 //0 no loop, 1 loop album, 2 loop one song
 switchLoop() //no loop 
 
 progressBar.addEventListener("click", setProgress)
 oldProgressBar.addEventListener("click", oldSetProgress);
-
-///////initial state///////
 
 function loadTrack()
 {
@@ -613,17 +718,32 @@ function loadTrack()
 	//set playlist entry bg color 
 	for (let i = 0; i < trackList.length; i++)
 	{
-		if (i === curIndex) playlistEntries.item(i).style.backgroundColor = plEntryBgColor;
-		else playlistEntries.item(i).style.backgroundColor = "transparent";
+		let curEntry = playlistEntries.item(i)
+		if (i === curIndex) 
+		{
+			curEntry.style.backgroundColor = "rgba(0, 0, 0, 0.9)"
+			curEntry.style.color = "white";
+		}
+		else 
+		{
+			curEntry.style.backgroundColor = "transparent";
+			curEntry.style.color = "black";
+		}
 	}
 
-	//artist link. remove the "https://" in link text 
-	artistLink.innerHTML = `<a href=${trackList[curIndex].link} target="_blank">${trackList[curIndex].link.substring(8)}</a>` 
-
-	//if (trackList[curIndex].name == "GRASPS X NERDIE - I AM HURTING")
-	if (curIndex == 5)
+	//artist link
+	if (curIndex == 2)
+	{
+		artistLink.innerHTML = '<a href="https://thegn.bandcamp.com" target="_blank">thegn.bandcamp.com</a><br><a href="https://nghttrrrs.bandcamp.com/album/zenith" target="_blank">nghttrrrs.bandcamp.com/album/zenith</a>'
+	}
+	else if (curIndex == 5)
 	{
 		artistLink.innerHTML = '<a href="https://grasps.bandcamp.com/" target="_blank">grasps.bandcamp.com</a><br><a href="https://soundcloud.com/nerdiecuzz" target="_blank">soundcloud.com/nerdiecuzz</a>'
+	}
+	else
+	{
+		//remove the "https://" in link text 
+		artistLink.innerHTML = `<a href=${trackList[curIndex].link} target="_blank">${trackList[curIndex].link.substring(8)}</a>` 
 	}
 }
 
@@ -639,7 +759,8 @@ curTrack.onloadedmetadata = function()
 		curTrackText.textContent = trackList[curIndex].name	
 
 		nowPlayingText.textContent = trackList[curIndex].name	+ " " + timeStrings.min + ":" + timeStrings.sec;
-		//only scroll if track name + length is longer than the container 
+
+		// only scroll if track name + length is longer than the container 
 		nowPlayingWidth = nowPlayingWrapper.offsetWidth
 		isScrolling = nowPlayingWidth > nowPlayingContainer.offsetWidth
 		if (!isScrolling) 
@@ -653,9 +774,12 @@ curTrack.onloadedmetadata = function()
 			nowPlayingStatic.textContent = "";		
 		}
 
-		//console.log("nowPlayingWidth = " + nowPlayingWidth + ", nowPlayingContainer width = " + nowPlayingContainer.offsetWidth)
+		// todo can't get width when player window is hidden... 
+		// maybe calc the width using font width * char count?
+		// console.log(`nowPlayingWidth = ${nowPlayingWidth}, nowPlayingContainer width = ${nowPlayingContainer.offsetWidth}`)
+		// console.log(`nowPlayingWrapper computed width ${window.getComputedStyle(nowPlayingWrapper).getPropertyValue("width")}`)
 
-		appendTerminalOutput("now playing " + trackList[curIndex].name)
+		appendTerminalOutput("loaded track " + trackList[curIndex].name)
 	}
 
 function parseTime(duration)
@@ -674,15 +798,13 @@ function parseTime(duration)
 //playback controls
 function playTrack()
 {
-	////temp. move this to entry page click event later 
 	if (audioContext.state === 'suspended') {
 		audioContext.resume();
 	}
-	//temp
 
 	curTrack.play();
 	isPlaying = true;
-	curTrackStateIcon.src = "/img/music-player-components/test-play.png"
+	curTrackStateIcon.src = "img/music-player-components/test-play.png"
 	curBitrate.innerHTML = bitrateStereoStr
 	monoStereo.style.opacity = "1"
 
@@ -698,7 +820,7 @@ function pauseTrack()
 	{
 		curTrack.pause();
 		isPlaying = false;
-		curTrackStateIcon.src = "/img/music-player-components/test-pause.png"
+		curTrackStateIcon.src = "img/music-player-components/test-pause.png"
 
 		playPauseBtn.textContent = "play";//to be deleted
 	}
@@ -706,11 +828,11 @@ function pauseTrack()
 
 function setNowPlayingAnim(playAnim)
 {
-	if (wrapperClone)	
-	{
-		nowPlayingContainer.removeChild(wrapperClone)
-		wrapperClone = null;
-	}
+	// if (wrapperClone)	
+	// {
+	// 	nowPlayingContainer.removeChild(wrapperClone)
+	// 	wrapperClone = null;
+	// }
 
 	if (playAnim) //show the scrolling divs
 	{
@@ -785,7 +907,7 @@ function stopTrack()
 	isPlaying = false;
 	curTrack.currentTime = 0; 
 	updateProgress();
-	curTrackStateIcon.src = "/img/music-player-components/test-stop.png";
+	curTrackStateIcon.src = "img/music-player-components/test-stop.png";
 
 	curBitrate.innerHTML = bitrateStereoPlaceholder
 	monoStereo.style.opacity = "0"
@@ -799,13 +921,15 @@ function toggleShuffle()
 {
 	if (isShuffle == false) 
 	{
-		isShuffle = true; appendTerminalOutput("shuffle on")
-		shuffleImg.src = "/img/music-player-components/shuffle_on.png"
+		isShuffle = true; 
+		// appendTerminalOutput("shuffle on")
+		shuffleImg.src = "img/music-player-components/shuffle_on.png"
 	}
 	else 
 	{
-		isShuffle = false; appendTerminalOutput("shuffle off")
-		shuffleImg.src = "/img/music-player-components/shuffle_off.png"
+		isShuffle = false; 
+		// appendTerminalOutput("shuffle off")
+		shuffleImg.src = "img/music-player-components/shuffle_off.png"
 	}
 }
 
@@ -814,24 +938,24 @@ function switchLoop()
 	if (loopIndex == 0) 
 	{
 		loopIndex++ // 1 loop album
-		appendTerminalOutput("loop album")
-		loopImg.src = "/img/music-player-components/loop_album.png"
+		// appendTerminalOutput("loop album")
+		loopImg.src = "img/music-player-components/loop_album.png"
 
 		curTrack.addEventListener("ended", nextTrack); //handled in nextTrack()
 	}
 	else if (loopIndex == 1) 
 	{
 		loopIndex++ // 2 loop song 
-		appendTerminalOutput("loop song")
-		loopImg.src = "/img/music-player-components/loop_song_inverted.png"
+		// appendTerminalOutput("loop song")
+		loopImg.src = "img/music-player-components/loop_song_inverted.png"
 		curTrack.removeEventListener("ended", nextTrack)
 		curTrack.addEventListener("ended", loopSong)
 	}
 	else 
 	{
 		loopIndex = 0 // 0 no loop
-		appendTerminalOutput("loop off")
-		loopImg.src = "/img/music-player-components/loop_off.png"
+		// appendTerminalOutput("loop off")
+		loopImg.src = "img/music-player-components/loop_off.png"
 
 		curTrack.removeEventListener("ended", loopSong)
 		curTrack.addEventListener("ended", nextTrack); //handled in nextTrack()
@@ -844,11 +968,6 @@ function loopSong()
 	curTrack.play()
 }
 
-// function onBeforeSettingVolume()
-// {
-// 	console.log("onBeforeSettingVolume")
-// }
-
 function setVolume()
 {
 	changingVolumeText.style.opacity = "1"
@@ -860,7 +979,7 @@ function setVolume()
 	else  			  nowPlayingStatic.style.opacity = "0";
 
 	//in case it gets stuck
-	setTimeout(onFinishSettingVolume, "2000")
+	setTimeout(onFinishSettingVolume, "3000")
 }
 
 function onFinishSettingVolume()
@@ -877,8 +996,8 @@ function updateProgress()
 {
 	let progress = curTrack.currentTime / curTrack.duration;
 
-	progressFill.style.clipPath = `polygon(0% 0%, ${progress*100}% 0%, ${progress*100}% 100%, 0% 100%)`
-	oldProgressFill.style.width = progress * oldProgressBar.offsetWidth + "px";
+	document.getElementById("progress-bar-fill").style.clipPath = `polygon(0% 0%, ${progress*100}% 0%, ${progress*100}% 100%, 0% 100%)`
+	document.getElementById("old-progress-bar-fill").style.width = progress * oldProgressBar.offsetWidth + "px";
 
 	//set time
 	let timeStrings = parseTime(curTrack.currentTime)
@@ -894,8 +1013,8 @@ function oldSetProgress(el)
 	let oldJumpTo = curTrack.duration * (el.offsetX / oldProgressBar.offsetWidth);
 	curTrack.currentTime = oldJumpTo;
 	updateProgress()
-	console.log("progressss " + el)
-	console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + oldProgressBar.offsetWidth + ", oldJumpTo = " + oldJumpTo)
+	// console.log("progressss " + el)
+	// console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + oldProgressBar.offsetWidth + ", oldJumpTo = " + oldJumpTo)
 }
 
 function setProgress(el)
@@ -903,26 +1022,29 @@ function setProgress(el)
 	let jumpTo = curTrack.duration * (el.offsetX / progressBar.offsetWidth);
 	curTrack.currentTime = jumpTo;
 	updateProgress()
-	console.log("progressss " + el)
-	console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + progressBar.offsetWidth + ", jumpTo = " + jumpTo)
+	// console.log("progressss " + el)
+	// console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + progressBar.offsetWidth + ", jumpTo = " + jumpTo)
 }
 
 let oldPlaylist = document.getElementById("old-playlist-content")
 fillPlaylist(oldPlaylist);
-////////////// old music player //////////////
+////////////// music player //////////////
 
-//////temppppp switch  view
-let tempToggle = document.getElementById("temp-toggle")
+////// audio filter settings view //////
+let settingsViewToggle = document.getElementById("temp-toggle")
+
 let oldPlayerContainer = document.getElementById("old-player-container")
 let playlistEl = document.getElementById("old-playlist-container")
 let playlistToggle = document.getElementById("pl-toggle")
 let mainContainer = document.getElementById("main-container")
+let creditsBtn = document.getElementById("credits-btn")
 
 let showingOldUI = false
-tempToggle.addEventListener("click", function(){
+settingsViewToggle.addEventListener("click", function(){
 	if (showingOldUI)
 	{
-		mainContainer.style.backgroundImage = 'url("/img/lain_extended_m.png")'
+		mainContainer.style.backgroundImage = `url(${bgImgPath})`
+		creditsBtn.style.display = "block"
 		oldPlayerContainer.style.display = "none"
 		playlistEl.style.display = "none"
 		dockContainer.style.display = "flex"
@@ -936,6 +1058,7 @@ tempToggle.addEventListener("click", function(){
 	else 
 	{
 		mainContainer.style.backgroundImage = "none"
+		creditsBtn.style.display = "none"
 		oldPlayerContainer.style.display = "block"
 		dockContainer.style.display = "none"
 		//playlistEl.style.display = "block"
@@ -952,9 +1075,13 @@ playlistToggle.addEventListener("click", function(){
 	if (playlistEl.style.display == "none") {playlistEl.style.display = "block";}
 	else {playlistEl.style.display = "none";}	
 })
-//////tempppppppppppppppp
+////// audio filter settings view //////
+
 
 ////////////// audio filter //////////////
+//initial audio node params
+const initialGain = 0.77;
+let currentFilter = 0 // filter preset index in filterPresetsArray. 0 means none
 
 let biquadSelectionEl = document.getElementById("switch-biquad")
 let frequencySlider = document.getElementById("frequency-slider")
@@ -974,10 +1101,10 @@ let reverbDurationText = document.getElementById("cur-reverb-duration")
 let reverbDecayText = document.getElementById("cur-reverb-decay")
 
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-const biquadFilter = new BiquadFilterNode(audioContext, {frequency:1000});
-let impulse = impulseResponse(reverbDurationSlider.value, reverbDecaySlider.value)
-const convolver = new ConvolverNode(audioContext, {buffer:impulse})
-const gainNode = new GainNode(audioContext, {gain:initialGain}) 
+const biquadFilter = new BiquadFilterNode(audioContext, {frequency:350});
+const convolver = new ConvolverNode(audioContext)
+const gainNode = new GainNode(audioContext, {gain:initialGain})  // can be adjusted by the user 
+const masterGainNode = new GainNode(audioContext, {gain: 1})     // specific to filter presets
 
 /////// frequency visualiser ///////
 const analyser = new AnalyserNode(audioContext, {
@@ -1021,7 +1148,7 @@ let biquadTypes = ["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "
 let hasReverb = false
 
 let source = audioContext.createMediaElementSource(curTrack);
-source.connect(gainNode).connect(analyser).connect(audioContext.destination)
+source.connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 
 biquadSelectionEl.addEventListener("change", function(){switchBiquad(biquadSelectionEl.value);}) 
 
@@ -1053,29 +1180,30 @@ function switchBiquad(index)
 		{
 			// convolver.buffer = null;
 			// convolver.disconnect();
-			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
 		else 
 		{	
-			source.connect(biquadFilter).connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(biquadFilter).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
 		frequencyEl.style.color = "black";
 		gainEl.style.color = "black";
 		qEl.style.color = "black";
 		detuneEl.style.color = "black";
-		console.log(biquadIndex + ", biquad type = " + biquadTypes[biquadIndex - 1] + "frequency  = " + biquadFilter.frequency)
+		console.log("biquad " + biquadIndex + ", biquad type = " + biquadTypes[biquadIndex - 1] + ", frequency = " + biquadFilter.frequency.value)
 	}
 	else //turn off biquad 
 	{
 		biquadFilter.disconnect()
 		if (hasReverb)
 		{
-			source.connect(convolver).connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
 		else 
 		{
-			source.connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
+		// todo disable sliders
 		frequencyEl.style.color = "grey";
 		gainEl.style.color = "grey";
 		qEl.style.color = "grey"
@@ -1117,13 +1245,14 @@ function setReverb()
 	convolver.buffer = impulse
 }
 
-function toggleReverb() //to be deleted
+function toggleReverb() 
 {
 	if (hasReverb)
 	{
 		convolver.disconnect()
 		convolver.buffer = null
-		reverbToggle.textContent = "turn on reverb "
+		// todo disable sliders
+		reverbToggle.textContent = "turn on reverb"
 		reverbDurationText.style.color = "grey"
 		reverbDecayText.style.color = "grey"
 		hasReverb = false
@@ -1133,12 +1262,13 @@ function toggleReverb() //to be deleted
 		setReverb();
 		if (biquadIndex > 0) 
 		{
-			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
 		else 
 		{
-			source.connect(convolver).connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
+		// todo enable sliders 
 		reverbToggle.textContent = "turn off reverb"
 		reverbDurationText.style.color = "black"
 		reverbDecayText.style.color = "black"
@@ -1153,6 +1283,10 @@ function turnOffReverb()
 		convolver.buffer = null;
 		convolver.disconnect();
 		hasReverb = false;
+
+		reverbToggle.textContent = "turn on reverb"
+		reverbDurationText.style.color = "grey"
+		reverbDecayText.style.color = "grey"
 	}
 }
 
@@ -1162,12 +1296,15 @@ function turnOnReverb()
 	{	
 		if (biquadIndex > 0) 
 		{
-			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(biquadFilter).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
 		else 
 		{
-			source.connect(convolver).connect(gainNode).connect(analyser).connect(audioContext.destination)
+			source.connect(convolver).connect(gainNode).connect(masterGainNode).connect(analyser).connect(audioContext.destination)
 		}
+		reverbToggle.textContent = "turn off reverb"
+		reverbDurationText.style.color = "black"
+		reverbDecayText.style.color = "black"
 		hasReverb = true
 	}
 }
@@ -1184,28 +1321,100 @@ function turnOnReverb()
 const crossfadeGainDelta = 0.05;
 const crossfadeStep = 20; //in ms
 
+// for "leave" command
 function clearAllFilters()
 {
+	masterGainNode.gain.value = 1;
 	turnOffReverb();
     switchBiquad(0);
 }
 
-function gotoServerRoom()
-//lowpass + reverb
+// for reset btn in old player
+function resetAllFilters()
 {
-	switchBiquad(1); //["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch", "allpass"]
-	// biquadFilter.frequency.value = 1000;
-	// biquadFilter.gain.value = 20;
-	// biquadFilter.Q.value = 1;
-	
+	clearAllFilters();
+
+	biquadSelectionEl.value = 0; //none
+	frequencySlider.value = 350;
+	gainSlider.value = 0;
+	qSlider.value = 1;
+	detuneSlider.value = 0;
+	setFrequency();
+	setGain();
+	setQ();
+	setDetune();
+
+	reverbDurationSlider.value = 15;
+	reverbDecaySlider.value = 5;
+	setReverb();
+}
+
+let servBgBufferData
+let servBgBufferNode
+let servBgGain
+
+function decode(buffer) 
+{
+	audioContext.decodeAudioData(buffer, success);
+}
+
+function success(buffer)
+{
+	servBgBufferData = buffer;
+	console.log("decoded server room bg");
+}
+
+function playServerRoomBg()
+{
+	// if (servBgBufferData == null)
+	// {
+	// 	fetch("/bg-mp3/serv113.mp3")
+	// 	.then(function(response) {return response.arrayBuffer()})
+	// 	.then(decode);
+	// }
+	servBgBufferNode = audioContext.createBufferSource();
+	servBgBufferNode.buffer = servBgBufferData;
+	servBgGain = new GainNode(audioContext, {gain: 0.7});
+
+	servBgBufferNode.connect(servBgGain).connect(masterGainNode).connect(audioContext.destination);
+	servBgBufferNode.loop = true;
+	servBgBufferNode.start();
+}
+
+// servBgTrack = document.getElementById("server-room-bg-track")
+// servBgTrack.addEventListener("ended", function(){
+// 	servBgTrack.currentTime = 0;
+// 	servBgTrack.play()
+// })
+
+function stopServerRoomBg()
+{
+	servBgBufferNode.stop();
+	servBgBufferNode = null; // reset node, cannot start() the same node twice
+}
+
+function gotoServerRoom()
+{
+	masterGainNode.gain.value = 0.2;
+
+	switchBiquad(8); 
+	//["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch", "allpass"]
+	biquadFilter.frequency.value = 10000;
+	biquadFilter.Q.value = 1.8;
+	biquadFilter.detune.value = 2400
+
 	turnOffReverb(); //clear convolver buffer 
-	impulse = impulseResponse(100, 15) //duration, decay
+	impulse = impulseResponse(11, 80) //duration, decay
 	convolver.buffer = impulse
 	turnOnReverb();
+
+	playServerRoomBg();
 }
 
 function gotoSmokingArea()
 {
+	masterGainNode.gain.value = 0.4;
+
 	switchBiquad(8); //allpass
 	biquadFilter.frequency.value = 2000;
 	biquadFilter.Q.value = 0.01;
@@ -1216,29 +1425,40 @@ function gotoSmokingArea()
 	turnOnReverb();
 }
 
-function gotoToilet() //test filter 1
-{
-	switchBiquad(4); //lowshelf
-	biquadFilter.gain.value = 0;
+// function gotoToilet() //test filter 1
+// {
+// 	masterGainNode.gain.value = 0.1;
 
-	turnOffReverb(); //clear convolver buffer 
-	impulse = impulseResponse(7, 13) //duration, decay
-	convolver.buffer = impulse
-	turnOnReverb();
-}
+// 	switchBiquad(4); //lowshelf
+// 	biquadFilter.gain.value = 0;
+
+// 	turnOffReverb(); //clear convolver buffer 
+// 	impulse = impulseResponse(7, 13) //duration, decay
+// 	convolver.buffer = impulse
+// 	turnOnReverb();
+// }
 
 let filterPresetsArray = [
 	clearAllFilters, 
 	gotoServerRoom,
 	gotoSmokingArea, 
-	gotoToilet
+	// gotoToilet
 ]
 
-let filterNames = [
-	"nowhere",
-	"server room",
-	"smoking area",
-	"toilet"
+const filterNames = [
+	{
+		name: "a white room",
+		desc: "it feels like you've always been here."
+	},
+	{
+		name: "server room",
+		desc: "you hear machines humming softly and occasional beeps. it's warm."
+	},
+	{
+		name: "smoking area",
+		desc: "you hear faint music oozing through the brick wall."
+	}
+	// "toilet"
 ]
 
 function applyFilter(index)
@@ -1250,12 +1470,16 @@ function applyFilter(index)
 	{
 		let prevFilter = currentFilter;
 		currentFilter = index;
+
+		if (prevFilter === 1) //server room
+			stopServerRoomBg();
+
 		let fadeOut = setInterval(function(){
 			if (gainNode.gain.value > crossfadeGainDelta)
 			//gradually decrease volume 
 			{
 				gainNode.gain.setValueAtTime((gainNode.gain.value - crossfadeGainDelta), audioContext.currentTime);
-				console.log("fading out, current volume " + gainNode.gain.value)
+				// console.log("fading out, current volume " + gainNode.gain.value)
 			}	
 			else 
 			//set filter and gradually increase volume 
@@ -1265,18 +1489,18 @@ function applyFilter(index)
 				//apply filter 
 				gainNode.gain.setValueAtTime(0, audioContext.currentTime);
 				filterPresetsArray[index]();
-				console.log("applied audio filter at index " + index)
+				// console.log("applied audio filter at index " + index)
 
 				if (index === 0)
-					appendTerminalOutput("you've left " + filterNames[prevFilter]);
-				else appendTerminalOutput("you are now in " + filterNames[index]);
+					appendTerminalOutput("you've left " + filterNames[prevFilter].name);
+				else appendTerminalOutput("you are now in " + filterNames[index].name + ". " + filterNames[index].desc);
 				
 				//fade in
 				let fadeIn = setInterval(function(){
 					if (gainNode.gain.value < (initialVolume - crossfadeGainDelta))
 					{
 						gainNode.gain.setValueAtTime((gainNode.gain.value + crossfadeGainDelta), audioContext.currentTime);
-						console.log("fading in, current volume " + gainNode.gain.value)
+						// console.log("fading in, current volume " + gainNode.gain.value)
 					}
 					else 
 					{
@@ -1289,11 +1513,11 @@ function applyFilter(index)
 	}
 	else 
 	{
-		appendTerminalOutput("you are already in " + filterNames[index])
+		appendTerminalOutput("you are already in " + filterNames[index].name +"!")
 	}	
 }
 
-////////////// audio filter presets //////////////
+////////////// audio filter presets end //////////////
 
 
 ////////////// utilities //////////////
@@ -1306,33 +1530,33 @@ function getRandomInt(min, max)
 
 // based on this answer, converted to int and minus skew 
 // stackoverflow.com/questions/25582882/javascript-math-random-normal-distribution-gaussian-bell-curve/49434653#49434653
-function getIntNormallyDistributed(min, max) 
-{
-	let u = 0, v = 0;
-	while(u === 0) u = Math.random() //Converting [0,1) to (0,1)
-	while(v === 0) v = Math.random()
-	let num = Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v )
+// function getIntNormallyDistributed(min, max) 
+// {
+// 	let u = 0, v = 0;
+// 	while(u === 0) u = Math.random() //Converting [0,1) to (0,1)
+// 	while(v === 0) v = Math.random()
+// 	let num = Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v )
 	
-	num = num / 10.0 + 0.5 // Translate to 0 -> 1
-	if (num > 1 || num < 0) 
-		num = getIntNormallyDistributed(min, max); // resample between 0 and 1 if out of range
-	else
-		num = Math.floor(num * (max - min) + min); //convert to int
-	return num
-	//todo upper limit - 1 not inclusive??
-  }
+// 	num = num / 10.0 + 0.5 // Translate to 0 -> 1
+// 	if (num > 1 || num < 0) 
+// 		num = getIntNormallyDistributed(min, max); // resample between 0 and 1 if out of range
+// 	else
+// 		num = Math.floor(num * (max - min) + min); //convert to int
+// 	return num
+// 	//todo upper limit - 1 not inclusive??
+//   }
 
-//testing getIntNormallyDistributed
-function testRandInt(min, max)
-{
-	// let randomNumArr = new Array()
-	for (let i = 0; i < 100; i++)
-	{
-		let num = getIntNormallyDistributed(min, max)
-		// randomNumArr.push(num)
-		console.log(num)
-	}
-}
+// testing getIntNormallyDistributed
+// function testRandInt(min, max)
+// {
+// 	// let randomNumArr = new Array()
+// 	for (let i = 0; i < 100; i++)
+// 	{
+// 		let num = getIntNormallyDistributed(min, max)
+// 		// randomNumArr.push(num)
+// 		console.log(num)
+// 	}
+// }
 //testRandInt(0, 6);
 
 //get total length of album
@@ -1366,6 +1590,7 @@ function testRandInt(min, max)
 // }
 
 //prints unicode char array in console
+//getUnicodeChars()
 // function getUnicodeChars()
 // {
 // 	let chars = new Array()
@@ -1386,4 +1611,4 @@ function testRandInt(min, max)
 // 	console.log(JSON.stringify(chars)) // prints the full array 
 // }
 
-////////////// utilities //////////////
+////////////// utilities end //////////////
