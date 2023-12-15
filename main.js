@@ -170,7 +170,6 @@ frameImg.onload = function() {
 	}, 2500);
 }
 
-// todo it finishes later than window onload does in safari....
 function setPlayerAndBgImg()
 {
 	let playerImgPath = "img/player-final77-small.png"
