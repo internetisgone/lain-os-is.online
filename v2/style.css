@@ -1,0 +1,70 @@
+@font-face 
+{
+	font-family: "LoveLetter";
+	src: url("../fonts/LoveLetter.TTF") format("truetype");
+}
+
+@font-face
+{
+	font-family: "Input-Mono";
+	src: url("../fonts/Input-Regular_(InputMonoNarrow-Regular).ttf") format("truetype");
+}
+
+/* scan lines stolen from binarymarionette.neocities.org */
+/* body:before 
+{
+    content: " ";
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(32,16,24,0) 50%,rgba(0,0,0,.25) 50%);
+    z-index: 2;
+    background-size: 100% 2px, 2px 100%;
+    background-attachment: fixed;
+    pointer-events: none
+} */
+
+body
+{
+    --mono-font: "Input-Mono", "Courier New", monospace;
+	--lain-font: "LoveLetter", "Courier New", monospace;
+
+    background: center/80% url("img/bg.png") repeat;
+
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+p, a
+{
+    font-family: var(--lain-font);
+    text-decoration: none;
+    color: black;
+}
+
+#soon::after
+{
+    content: "";
+    display: inline-block;
+    background: black;
+    width: 10px;
+    height: 3px; 
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+	from,
+	to {background: transparent;}
+  	50% {background: black;}
+} 
+
+/* box-shadow: 10px 90px 20px rgb(92, 92, 92); */
