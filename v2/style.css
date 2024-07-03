@@ -6,8 +6,23 @@
 
 @font-face
 {
-	font-family: "Input-Mono";
-	src: url("../fonts/Input-Regular_(InputMonoNarrow-Regular).ttf") format("truetype");
+	font-family: "JuliaMono";
+	src: url("../fonts/JuliaMono-Regular.ttf") format("truetype");
+}
+
+/*mobile / portrait display*/
+@media (max-aspect-ratio: 4/3) 
+{
+	#lain-ascii
+	{
+        font-size: 10px;
+	}
+}
+
+/*desktop / landscape display*/
+@media (min-aspect-ratio: 4/3) 
+{
+
 }
 
 /* scan lines stolen from binarymarionette.neocities.org */
@@ -28,7 +43,7 @@
 
 body
 {
-    --mono-font: "Input-Mono", "Courier New", monospace;
+    --mono-font: "JuliaMono", "Courier New", monospace;
 	--lain-font: "LoveLetter", "Courier New", monospace;
 
     /* background: center/80% url("img/bg.png") repeat; */
@@ -51,6 +66,10 @@ p, a
     color: black;
 }
 
+pre
+{
+    font-family: var(--mono-font);
+}
 /* blinking caret */
 
 /* #soon::after
