@@ -17,7 +17,7 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
 
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/main-page.css">
+	<link rel="stylesheet" type="text/css" href="css/v1.css">
 	<title>lain OS is online vol. 1: at last, lain is free</title>
 </head>
 <body>
@@ -227,8 +227,10 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 			</div>
 			<div class="mini-window-draggable"></div>
 	
-			<div id="chat-container">
-				<p style="position: absolute; width: 100%; text-align: center; color: black; z-index: -1;">loading chat...</p>
+			<div id="chat-wrapper">
+				<div id="chat-container">
+					<p style="position: absolute; width: 100%; text-align: center; color: black; z-index: -1;">loading chat...</p>
+				</div>
 			</div>
 		</div>
 		<!-------------- chat end -------------->
@@ -399,7 +401,8 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 			<button onclick="resetAllFilters()" aria-label="reset all audio filters">reset to default</button>
 		</div> <!-- end of old player container -->
 	</div> <!-- end of main container -->
-	<script type="text/javascript" src="main.js"></script>
+	<script type="text/javascript" src="shared.js"></script>
+	<script type="text/javascript" src="v1.js"></script>
 
 </body>
 </html>

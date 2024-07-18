@@ -168,6 +168,8 @@ frameImg.onload = function() {
 		entryBottomTexts.classList.add("entry-bottom-text-loaded")
 		entryBottomTexts.textContent = entryBottomStr
 	}, 2500);
+
+	initMiniWindows()
 }
 
 function setPlayerAndBgImg()
@@ -231,178 +233,36 @@ window.onload = function() {
 	.then(decode);
 } //end of onload
 
-function initChatEmbed()
-{
-	let chatScript = document.createElement("script")
-	chatScript.id = "cid0020000328095633756"
-	chatScript.setAttribute("data-cfasync", "false")
-	chatScript.async = true;
-	chatScript.src = "//st.chatango.com/js/gz/emb.js"
-	chatScript.style.width = "100%"
-	chatScript.style.height = "100%"
-	chatScript.innerHTML = '{"handle":"lain-os-is-online","arch":"js","styles":{"a":"f5f5f5","b":100,"c":"000000","d":"000000","e":"f5f5f5","h":"f5f5f5","l":"f5f5f5","m":"FFFFFF","p":"12","q":"f5f5f5","r":100,"t":0,"usricon":0,"surl":0,"allowpm":0}}'
-
-	//<script id="cid0020000328095633756" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 100%;">{"handle":"lain-os-is-online","arch":"js","styles":{"a":"f5f5f5","b":100,"c":"000000","d":"000000","e":"f5f5f5","h":"f5f5f5","l":"f5f5f5","m":"FFFFFF","p":"12","q":"f5f5f5","r":100,"t":0,"usricon":0,"surl":0,"allowpm":0}}</script>
-
-	document.getElementById("chat-container").appendChild(chatScript)
-}
-
 ////////////// entry page //////////////
 
 ////////////// mini windows //////////////
 
-let miniWindows = document.getElementsByClassName("mini-window")
+const miniWindows = document.getElementsByClassName("mini-window")
 let dockContainer = document.getElementById("dock-container")
-let icons = dockContainer.getElementsByClassName("icon")
+const icons = dockContainer.getElementsByClassName("icon")
 let movingWindow;
 let cursorPos;
 let offset = [0,0];
-let isMoving = false;
-let maxZ = 10;
+// let isMoving = false;
+// let maxZ = 10;
 
-let isLandscape = window.matchMedia("(min-aspect-ratio: 4/3)").matches
+function initMiniWindows() {
+	for (let i = 0; i < miniWindows.length; i++) {
+		// let miniWindow = miniWindows.item(i)
+		// let icon = icons.item(i)
+		// let closeBtn = miniWindow.querySelector(".mini-window-close")
+		// let dragArea = miniWindow.querySelector(".mini-window-draggable")
 
-//mini wondows closing animation
-const closeAnimation = [
-	//display the whole window
-	{clipPath: "polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%)"}, 
-
-	{clipPath: "polygon(0% 0%, 0% 70%, 100% 70%, 100% 0%)", opacity: "1"},
-	{clipPath: "polygon(0% 0%, 0% 20%, 100% 20%, 100% 0%)", transform: "translate(0%, 0%)", opacity: "0.8"},
-
-	//display the top 5% rect area of window, shift left (landscape) or down (portrait)
-	{clipPath: "polygon(0% 0%, 0% 5%, 100% 5%, 100% 0%)", 
-	transform: isLandscape? ("translate(-20%, 10%)"):("translate(0%, 40%)"), 
-	opacity: "0.3"}    
-]
-const closeAnimDuration = 333 //ms
-//const windowAnimationArr = new Array()
-console.log("mini windows count " + miniWindows.length + " icon count " + icons.length)
-
-for (let i = 0; i < miniWindows.length; i++)
-{
-	let miniWindow = miniWindows.item(i)
-	let icon = icons.item(i)
-	let closeBtn = miniWindow.querySelector(".mini-window-close")
-	console.log("mini windows " + miniWindows.item(i).id)
-
-	let closeCurWindow = miniWindow.animate(closeAnimation, {duration: closeAnimDuration, iterations: 1})
-	closeCurWindow.pause()
-	//windowAnimationArr.push(closeCurWindow)
-
-	//hide / show window n corresponding icon
-	// todo animation only plays once in safari
-	closeBtn.addEventListener("click", function(){
-		//windowAnimationArr[i].play(); 
-		closeCurWindow.play()
-		
-		//hide window n show icon when the animation finishes 
-		setTimeout(() => {
-			miniWindow.style.display = "none"
-			icon.style.display = "block"
-		}, closeAnimDuration * 0.95);
-	})
-	icon.addEventListener("click", function(){
-		miniWindow.style.zIndex = maxZ; maxZ++;
-		if (miniWindow.id == "chat-window") miniWindow.style.display = "flex";
-		else miniWindow.style.display = "block";
-		icon.style.display = "none"
-
-		//open animation??
-		// windowAnimationArr[i].reverse()
-		// windowAnimationArr[i].play(); 
-
-		// setTimeout(() => {
-		// 	if(miniWindow.id == "chat-window") miniWindow.style.display = "flex";
-		// 	else miniWindow.style.display = "block";
-		
-		// 	icon.style.display = "none"
-		// }, closeAnimDuration);
-	})
-
-	// click to bring to front
-	miniWindow.addEventListener("click", function(){
-		miniWindow.style.zIndex = maxZ; maxZ++;
-	})
-
-	//set drag 
-	let draggable = miniWindow.querySelector(".mini-window-draggable")
-	draggable.onmousedown = dragStart
-	draggable.ontouchstart = dragStart
-
-	// miniWindow.addEventListener("click", function(){
-	// 	miniWindow.style.zIndex = "7"
-	// })
-}
-
-function dragStart(e)
-{
-	e.preventDefault()
-	isMoving = true
-	movingWindow = e.target.parentElement
-	// console.log(movingWindow)
-	offset = [
-		movingWindow.offsetLeft - e.clientX,
-	  movingWindow.offsetTop - e.clientY
-  ]
-  if (e.touches != null)
-	{
-		//console.log("touch event")
-		offset = [
-			movingWindow.offsetLeft - e.touches[0].clientX,
-		  movingWindow.offsetTop - e.touches[0].clientY
-	  ]
-	}
-
-	//set z-index
-  for (let i = 0; i < miniWindows.length; i++)
-  {
-  	if (miniWindows.item(i) == movingWindow)
-  		{
-  			movingWindow.style.zIndex = maxZ + "";
-  			maxZ++;
-  		}
-  }
-
-  // use document instead of movingWindow so drag continues even when cursor / touch pos leaves the movingWindow
-  document.addEventListener("mousemove", doDrag)
-  document.addEventListener("mouseup", dragEnd)
-  document.addEventListener("touchmove", doDrag)
-  document.addEventListener("touchend", dragEnd)
-}
-
-function doDrag(e)
-{
-	e.preventDefault()
-	if (isMoving)
-	{
-		cursorPos = {
-			x : e.clientX,
-			y : e.clientY
-		};
-
-		if (e.touches != null)
-		{
-			cursorPos = {
-				x : e.touches[0].clientX,
-				y : e.touches[0].clientY
-			}
-		}
-		movingWindow.style.left = (cursorPos.x + offset[0]) + 'px';
-    	movingWindow.style.top  = (cursorPos.y + offset[1]) + 'px';
+		let miniWindow = new MiniWindow(
+			i,
+			miniWindows.item(i), 
+			icons.item(i), 
+		)
+	
+		miniWindow.init()
 	}
 }
 
-function dragEnd() 
-{
-	isMoving = false;
-
-	//need 2 remove event listeners otherwise sliders cannot be dragged
-	document.removeEventListener("mousemove", doDrag)
-	document.removeEventListener("mouseup", dragEnd)
-	document.removeEventListener("touchmove", doDrag)
-	document.removeEventListener("touchend", dragEnd)
-}
 
 ////////////// mini windows //////////////
 
@@ -1520,12 +1380,6 @@ function applyFilter(index)
 
 
 ////////////// utilities //////////////
-
-//min inclusive, max exclusive
-function getRandomInt(min, max)
-{
-	return Math.floor(Math.random() * (max - min) + min);
-}
 
 // based on this answer, converted to int and minus skew 
 // stackoverflow.com/questions/25582882/javascript-math-random-normal-distribution-gaussian-bell-curve/49434653#49434653

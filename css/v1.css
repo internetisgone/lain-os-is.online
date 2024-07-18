@@ -644,7 +644,7 @@ so that texts of variable lengths can be scrolled*/
 /******* music player end *******/
 
 /******* chat *******/
-#chat-window
+#chat-wrapper
 {
 	display: flex; justify-content: center; align-items: center;
 	/*width n height are set separately, responsive to screen size*/
