@@ -12,8 +12,22 @@
 {% block body %}
 
 <noscript>
-    <!-- todo -->
-    <!-- <audio controls src=""></audio> -->
+    <style>
+        #entry-page { display: none; }
+        #main-container { display: none; }
+        body { font-family: var(--mono-font); margin: 20px; }
+        figure { margin-left: 0; margin-right: 0; }
+    </style>
+    <h3>lain OS is online vol. 1: at last, lain is free</h3>
+    <a href="https://absurdtrax.bandcamp.com/album/lain-os-is-online-vol-1-at-last-lain-is-free-at-030" target="_blank">bandcamp</a>
+    <a href="https://www.mediafire.com/file/4t99s3ywf3cyzg6/AT-030.zip/file" target="_blank" >mediafire</a>
+    {% for track in tracklist %}
+        <figure>
+            <figcaption>{{ track.name }}</figcaption>
+            <audio controls src = "{{ track.path }}" ></audio>
+        </figure>
+   {% endfor %}
+
 </noscript>
 
 <div id="entry-page"> 
