@@ -1,33 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset="utf-8">
+{% extends "_base.html" %}
 
-	<meta name="description" content="a compilation album released by the hong kong based indepedent music label absurd trax. artists: Fetus, GRASPS, Imryll, Jennifer Walton, Kagami Smile, lovefear, NERDIE, Nerve, Sour Gout, Thegn, Vrain, Wa?ste, x/o, Yikii, Yraki, Yuting Wu, ΛFΛLFL, 堀池ゆめぁ">
-
-	<!-- disable browser caching since the page might get constantly updated -->
-	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0" />
-	<meta http-equiv="Pragma" content="no-cache" />
-	<meta http-equiv="Expires" content="0" />
-
-	<!-- favicon -->
-	<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
-
-
+{% block head %}
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/v1.css">
 <title>lain OS is online vol. 1: at last, lain is free</title>
 
+{% endblock %}
 
 
-</head>
-<body>
-
-
+{% block body %}
 
 <noscript>
     <!-- todo -->
@@ -257,32 +239,10 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 
         <div id="version-history-container">
             <pre id="version-history-texts">
-
- 1.1.0<span>01 july 2024</span>
- some vol. 2 tracks premiered on <a href="https://www.nts.live/shows/bloodz-boi/episodes/bloodz-boi-1st-july-2024" target="_blank">NTS</a><br> added /v2 placeholder
-
- 1.0.0<span>04 nov 2022</span>
- vol. 1 release
-
- 0.3.2<span>26 oct 2022</span>
- added audio filter developer mode
-
- 0.3.1<span>09 oct 2022</span>
- window minimise animation<br> fixed ascii art display issue<br> fixed safari volume issue
-
- 0.3.0<span>21 sep 2022</span>
- uploaded vol. 1 master<br> music player visualiser
-
- 0.2.1<span>01 sep 2022</span>
- audio filter commands<br> mobile optimisation
-
- 0.2.0<span>28 aug 2022</span>
- added terminal window<br> added version history window
-
- 0.1.0<span>09 aug 2022</span>
- uploaded lain comp vol. 1 demo<br> music player with audio filters
-
-
+{% for entry in version_history_entries %}
+ {{ entry.version }}<span>{{ entry.date }}</span>
+ {{ entry.description }}
+{% endfor %}
             </pre>
         </div>
     </div>
@@ -412,7 +372,4 @@ cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::
 <script type="text/javascript" src="../shared.js"></script>
 <script type="text/javascript" src="v1.js"></script>
 
-
-
-</body>
-</html>
+{% endblock %}

@@ -225,11 +225,10 @@ window.onload = function() {
 	})
 
 	// chat embed
-	// temp
-	// initChatEmbed()
+	initChatEmbed()
 
 	// server room bg
-	fetch("/bg-mp3/serv113.mp3")
+	fetch("/v1/bg-mp3/serv113.mp3")
 	.then(function(response) {return response.arrayBuffer()})
 	.then(decode);
 } //end of onload
@@ -911,7 +910,6 @@ settingsViewToggle.addEventListener("click", function(){
 		for (let i = 0; i < miniWindows.length; i++)
 		{
 			miniWindows.item(i).style.display = "block"
-			if(miniWindows.item(i).id == "chat-window") miniWindows.item(i).style.display = "flex"
 		}
 		showingOldUI = false
 	}
