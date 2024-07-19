@@ -44,7 +44,7 @@ class MiniWindow {
 		closeAnim.pause()
 		let curIndex = this.index // not elegant but werks
 
-		dragArea.addEventListener("click", () => bringWindowToFront(curIndex))
+		this.element.addEventListener("click", () => bringWindowToFront(curIndex))
 
 		// close btn
 		closeBtn.addEventListener("click", function(){
