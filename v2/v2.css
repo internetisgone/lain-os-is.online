@@ -57,6 +57,8 @@ body
     align-items: center;
     justify-content: center;
     gap: 40px;
+
+    font-family: var(--mono-font);
 }
 
 p, a
@@ -66,7 +68,7 @@ p, a
     color: black;
 }
 
-pre
+pre, input
 {
     font-family: var(--mono-font);
 }
@@ -88,50 +90,91 @@ pre
   	50% {background: black;}
 }  */
 
-/* box-shadow: 10px 90px 20px rgb(92, 92, 92); */@font-face 
-{
-	font-family: "LoveLetter";
-	src: url("../fonts/LoveLetter.TTF") format("truetype");
-}
-
-@font-face
-{
-	font-family: "Input-Mono";
-	src: url("../fonts/Input-Regular_(InputMonoNarrow-Regular).ttf") format("truetype");
-}
-
-/* scan lines stolen from binarymarionette.neocities.org */
-body:before 
-{
-    content: " ";
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: linear-gradient(rgba(32,16,24,0) 50%,rgba(0,0,0,.25) 50%);
-    z-index: 2;
-    background-size: 100% 2px, 2px 100%;
-    background-attachment: fixed;
-    pointer-events: none
-}
-
-body
-{
-    --mono-font: "Input-Mono", "Courier New", monospace;
-	--lain-font: "LoveLetter", "Courier New", monospace;
-
-    font-family: var(--lain-font);
-    background: center/80% url("img/bg.png") repeat;
-    ;
-
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 /* box-shadow: 10px 90px 20px rgb(92, 92, 92); */
+
+
+/*+------- mini windows -------+*/
+
+.mini-window
+{
+	position: absolute;
+	background-color: black;
+    width: 333px; height: 333px;
+}
+
+.mini-window-draggable
+{
+	position: absolute;
+	height: 30px;
+    left: 0; right: 0;
+	cursor: grab;
+    border: 2px solid crimson;
+}
+
+.mini-window-header
+{
+	position: absolute;
+	top: 0; left: 0; right: 0;
+	display: flex; justify-content: center; align-items: center;
+	color: red;
+}
+
+.mini-window-close 
+{
+    position: absolute; right: 0; top: 0;
+	width: 30px; height: 30px;
+    background-color: gray;
+    z-index: 10;
+}
+
+
+/*+------- window icons -------+*/
+#icons-container 
+{
+	position: absolute; bottom: 10%;
+	display: flex; flex-direction: row;
+}
+.icon 
+{
+	display: none;
+	cursor: pointer;
+}
+
+/*+------- terminal window -------+*/
+#terminal
+{
+    position: absolute;
+    top: 30%; left: 50%;
+}
+#terminal-wrapper
+{
+    left: 0; right: 0;
+}
+#terminal-input
+{
+    width: 100%;
+    color: white;
+    background-color: black;
+    /* border-width: 0px; */
+	/* caret-color: transparent; */
+}
+
+/*+------- version history window -------+*/
+#version-history-container
+{
+	position: absolute;
+	display: flex;
+	justify-content: center; align-items: center;
+	width: 92%; height: 83%;
+	left: 0px; right: 0px; top: 12%;
+}
+#version-history-texts
+{
+	font-family: var(--mono-font); 
+    color: white;
+	width: 100%; height: 100%; 
+	margin: 0; padding: 0;
+	overflow-y: scroll;
+	white-space: pre-wrap; 
+}
+#version-history-texts span {float: right;}

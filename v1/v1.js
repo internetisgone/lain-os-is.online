@@ -225,7 +225,7 @@ window.onload = function() {
 	})
 
 	// chat embed
-	initChatEmbed()
+	// initChatEmbed()
 
 	// server room bg
 	fetch("/v1/bg-mp3/serv113.mp3")
@@ -240,29 +240,17 @@ window.onload = function() {
 const miniWindows = document.getElementsByClassName("mini-window")
 let dockContainer = document.getElementById("dock-container")
 const icons = dockContainer.getElementsByClassName("icon")
-let movingWindow;
-let cursorPos;
-let offset = [0,0];
-// let isMoving = false;
-// let maxZ = 10;
 
 function initMiniWindows() {
 	for (let i = 0; i < miniWindows.length; i++) {
-		// let miniWindow = miniWindows.item(i)
-		// let icon = icons.item(i)
-		// let closeBtn = miniWindow.querySelector(".mini-window-close")
-		// let dragArea = miniWindow.querySelector(".mini-window-draggable")
-
 		let miniWindow = new MiniWindow(
 			i,
 			miniWindows.item(i), 
 			icons.item(i), 
-		)
-	
+		)	
 		miniWindow.init()
 	}
 }
-
 
 ////////////// mini windows //////////////
 

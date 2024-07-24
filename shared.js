@@ -2,30 +2,31 @@
 
 /////////// global vars ///////////
 
-// whether a mini window is being dragged rn
-var windowIsMoving = false;
+// mini windows //
+let movingWindow
+let windowIsMoving = false;
+let offset = [0,0];
+let maxZ = 10;
 
-var maxZ = 10;
-
-var isLandscape = window.matchMedia("(min-aspect-ratio: 4/3)").matches
+let isLandscape = window.matchMedia("(min-aspect-ratio: 4/3)").matches
 
 /////////// mini windows ///////////
 
 const closeAnimation = [
-	//display the whole window
+	// display the whole window
 	{clipPath: "polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%)"}, 
 
 	{clipPath: "polygon(0% 0%, 0% 70%, 100% 70%, 100% 0%)", opacity: "1"},
 	{clipPath: "polygon(0% 0%, 0% 20%, 100% 20%, 100% 0%)", transform: "translate(0%, 0%)", opacity: "0.8"},
 
-	//display the top 5% rect area of window, shift left (landscape) or down (portrait)
+	// display the top 5% rect area of window, shift left (landscape) or down (portrait)
 	{clipPath: "polygon(0% 0%, 0% 5%, 100% 5%, 100% 0%)", 
 	transform: isLandscape? ("translate(-20%, 10%)"):("translate(0%, 40%)"), 
 	opacity: "0.3"}    
 ]
-const closeAnimDuration = 333 //ms
+const closeAnimDuration = 333 // ms
 
-// draggable mini windows 
+// draggable mini window class
 class MiniWindow {
 	constructor(index, element, icon) {
 		this.index = index,
@@ -34,10 +35,6 @@ class MiniWindow {
 	}
 
 	init() {
-		// console.log(this.index)
-		// console.log(this.element)
-		// console.log(this.icon)
-
 		let closeBtn = this.element.querySelector(".mini-window-close")
 		let dragArea = this.element.querySelector(".mini-window-draggable")
 		let closeAnim = this.element.animate(closeAnimation, {duration: closeAnimDuration, iterations: 1})
