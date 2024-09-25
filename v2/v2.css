@@ -46,11 +46,9 @@ body
     --mono-font: "JuliaMono", "Courier New", monospace;
 	--lain-font: "LoveLetter", "Courier New", monospace;
 
-    /* background: center/50% url("img/bg.jpg") repeat; */
-
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
+    /* background: center/50% url("img/bg.png") repeat; */
+    background-color: black;
+    color: red;
 
     display: flex;
     flex-direction: column;
@@ -59,13 +57,13 @@ body
     gap: 40px;
 
     font-family: var(--mono-font);
+    font-size: 16px;
 }
 
 p, a
 {
-    font-family: var(--lain-font);
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
 pre, input

@@ -1,0 +1,66 @@
+{% extends "_base.html" %}
+
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="style.css">
+<title>lain OS is online</title>
+
+{% endblock %}
+
+{% block body %}
+
+<style>
+    body {
+        background-color: black;
+        color: white;
+    }
+    #main-container {
+        display: flex; align-items: center;
+        flex-direction: column;
+    }
+    ul {
+        width: 100%;
+        border: solid white;
+        list-style-type: none; 
+        margin: 0; padding: 0;
+        text-align: left;
+    }
+    li { padding: 1%; }
+
+    li:hover {
+        background-color: grey;   
+        color: white;    
+    }
+    a {
+        text-decoration: none;
+        color: unset;
+    }
+    pre {
+        position: absolute;
+        right: 10%;
+        top: 30%;
+        font-family: "JuliaMono", monospace;
+    }
+
+</style>
+
+<div id="main-container">
+	<p>lainboot 20241015 release</p>
+    <ul>
+        <a href="v1"><li>lain OS vol. 1</li></a>
+        <a href="v2"><li>lain OS vol. 2</li></a>
+        <a href="offline.html"><li>power off</li></a>
+        <li>reboot</li>
+    </ul>
+    <br>
+    <p style="align-self: flex-start; justify-self: flex-end;">use arrow keys to select highlighted entry</p>
+    <p style="align-self: flex-start; justify-self: flex-end;">press enter to boot the selected OS</p>
+</div>
+
+<pre>
+    aldmflam
+    adf
+  d  
+</pre>
+
+{% endblock %}
