@@ -138,6 +138,14 @@ pre, input
 	cursor: pointer;
 }
 
+/*+------- music player window -------+*/
+#music-player {
+    position: absolute;
+    top: 10%;
+    left: 20%;
+}
+
+
 /*+------- terminal window -------+*/
 #terminal
 {

@@ -3,6 +3,7 @@
 {% block head %}
 
 <link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="v2/v2.css">
 <title>lain OS is online</title>
 
 {% endblock %}
@@ -13,19 +14,20 @@
     body {
         background-color: black;
         color: white;
+        margin-top: 0;
+        margin-bottom: 0;
     }
     #main-container {
-        display: flex; align-items: center;
+        display: flex; align-items: center; justify-content: center;
         flex-direction: column;
     }
     ul {
-        width: 100%;
-        border: solid white;
+        width: 100vw;
         list-style-type: none; 
         margin: 0; padding: 0;
         text-align: left;
     }
-    li { padding: 1%; }
+    li { padding: 12px; }
 
     li:hover {
         background-color: grey;   
@@ -38,7 +40,7 @@
     pre {
         position: absolute;
         right: 10%;
-        top: 30%;
+        top: 10%;
         font-family: "JuliaMono", monospace;
     }
 
@@ -50,17 +52,45 @@
         <a href="v1"><li>lain OS vol. 1</li></a>
         <a href="v2"><li>lain OS vol. 2</li></a>
         <a href="offline.html"><li>power off</li></a>
-        <li>reboot</li>
     </ul>
-    <br>
-    <p style="align-self: flex-start; justify-self: flex-end;">use arrow keys to select highlighted entry</p>
-    <p style="align-self: flex-start; justify-self: flex-end;">press enter to boot the selected OS</p>
+    <div style="position: absolute; left: 10px; bottom: 5px;">
+        <p>use arrow keys to select highlighted entry</p>
+        <p>press enter to boot the selected OS</p>
+    </div>
 </div>
 
 <pre>
-    aldmflam
-    adf
-  d  
+ ..               . .                       .
+ .   .  .                         .            .
+             .    .-+*#%@@%%%%#*+=:.   .    .
+..               .-+#%#+===============                   .
+       . .  .:*%*+====================-.
+          :%*=========================.        .   .    .
+        :#+=======:..=####*++=---========-:.
+       .+=====.. -#*+=---------------=========-.
+      .+==+=.  :#=------------=--=======-------==:
+.   .==++.   ==-------------=------------------==.
+     -=++=. .=---===========--::-========--------=.  .
+    . -+++=. :++++++++++++*-.     .#+++++++=======. .  .
+       :++++*:.=**+++++++==+*######*=============:
+         :++++*#--+*+++++++++==================-.
+    .      .-+**+*#@%*++++++++==============:.        . .
+              ..-+******#%@@@@%%%%%%#:.... .   ==:.    .
+.  .         .  .  ..:-=++**@@@@@@@@%..  .    .+*%+  .
+            ..  .  .-=+++=::+++======.        .===:
+      .      .:-=%@@@@%+========-:.    .  .   .===:    .
+          ..-==*@@@@#===============.         .===-
+          :+===@@@@%=================:        :===-
+          -===+@@@@#================##   .   .-===-
+          :===+@@@@@================#-    .=======:    ..
+          .====%@@@@#================: :=========-.
+.         .=====+#%@@*===============. -=======-.
+      .    .-======================-.  .-=====.    .
+            .:-=================:.      .-.:
+.   .          .     .:--------:.   .
+.            .                               .         .
+.                             .       .
+
 </pre>
 
 {% endblock %}
