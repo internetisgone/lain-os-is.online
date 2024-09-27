@@ -45,7 +45,6 @@ VERSION_HISTORY_ENTRIES = [
     },
 ]
 
-# for noscript
 V1_TRACKLIST = [
 	{
 		"name": "x/o - Duvet cyberia re-chopped & screwed-MiX",
@@ -113,6 +112,20 @@ V1_TRACKLIST = [
 	},
 ]; 
 
+V2_TRACKLIST = []
+
+# for filename in os.listdir("../v1/21sept-master-mp3"):
+#       V1_TRACKLIST.append( { "name": filename.split(".mp3")[0], "path": "21sept-master-mp3/" + filename })
+      
+for filename in os.listdir("../v2/final_master_mp3"):
+    # print(filename.split(".mp3")[0])
+    # print("final_master_mp3/" + filename)
+	V2_TRACKLIST.append( { "name": filename.split(".mp3")[0], "path": "final_master_mp3/" + filename, "link": "artist_link" })
+	# todo append artist name 
+    # todo manually order tracks
+
+print(V2_TRACKLIST)
+
 if __name__ == "__main__":
     site = Site.make_site( 
             contexts = [ 
@@ -120,7 +133,10 @@ if __name__ == "__main__":
                     "version_history_entries": VERSION_HISTORY_ENTRIES,
                     "tracklist" : V1_TRACKLIST
                     }), 
-                ("v2/index.html", {"version_history_entries": VERSION_HISTORY_ENTRIES })],
+                ("v2/index.html", {
+                    "version_history_entries": VERSION_HISTORY_ENTRIES,
+                    "tracklist": V2_TRACKLIST
+                    })],
             outpath = "../"
         )
     site.render(use_reloader=True)

@@ -43,75 +43,102 @@
     </div>
     <div class="mini-window-draggable"></div>
     
-    <audio id="cur-track"></audio>
+    <div id="music-player-top-container">
+        <audio id="cur-track"></audio>
 
-    <div id="now-playing-container">
-        <p id="now-playing-static"></p>
-        <p id="changing-volume"></p>
+        <div id="top-display">
+            <img id="cur-track-state"></img>
+            <div class="cur-time" id="cur-time">00:00</div>
+            <div id="visualiser-wrapper">
+                <canvas id="visualiser"></canvas>
+            </div>
+        </div>
+
         <div id="now-playing">
-            <p id="now-playing-marquee"></p> 
+            <p id="now-playing">now playing</p>
+            <p id="changing-volume"></p>
+            <p id="cur-track-bitrate">777kbps</p>
+            <p id="mono-stereo">stereo</p>
         </div>
-        <p id="cur-track-bitrate"></p>
-        <p id="mono-stereo">stereo</p>
-    </div>
 
-    <div id="cur-time-container">
-        <img id="cur-track-state"></img>
-        <div class="cur-time" id="cur-time">00:00</div>
-        <div id="visualiser-container">
-            <canvas id="visualiser"></canvas>
+        <input id="volume-slider" type="range" min="0" max="100" value="77" step="1" oninput="setVolume()" onchange="onFinishSettingVolume()" aria-label="volume slider">
+
+        <div id="progress-bar">
+            <img src="img/music-player-components/progress_bar.png" style="position: absolute; width: 100%;">
+            <div id="progress-bar-fill">
+                <img src="img/music-player-components/progress_bar_fill.png" style="width: 100%;">
+            </div>
         </div>
-    </div>
 
-    <div id="volume-slider-container">
-        <input type="range" min="0" max="100" value="77" step="1" id="volume-slider" oninput="setVolume()" onchange="onFinishSettingVolume()" aria-label="volume slider">
-    </div>
+        <div id="playback-controls">
+            <button id="loop-btn" onclick="switchLoop()" style="margin-left: 13px;" aria-label="change loop mode">loop</button>
+            <button id="shuffle-btn" onclick="toggleShuffle()" aria-label="change shuffle mode">shuffle</button>
 
-    <div id="progress-bar-container">
-        <img src="img/music-player-components/progress_bar.png" style="position: absolute; width: 100%;">
-        <div id="progress-bar-fill">
-            <img src="img/music-player-components/progress_bar_fill.png" style="width: 100%;">
+            <button onclick="prevTrack()" aria-label="previous">prev</button>
+            <button onclick="playTrack()" aria-label="play">play</button>
+            <button onclick="pauseTrack()" aria-label="pause">pause</button>
+            <button onclick="stopTrack()" aria-label="stop">stop</button>
+            <button onclick="nextTrack()" aria-label="next">next</button>
+            <button id="dl-btn" aria-label="mediafire download">dl</button>
         </div>
+
     </div>
 
-    <div id="shuffle-loop-container">
-        <button id="loop-btn" onclick="switchLoop()" style="margin-left: 13px;" aria-label="change loop mode"><img src="img/music-player-components/loop_off.png"></button>
-        <button id="shuffle-btn" onclick="toggleShuffle()" aria-label="change shuffle mode"><img src="img/music-player-components/shuffle_off.png"></button>
+
+    <div id="artist-links-container">
+        <p>artist link placeholder</p>
     </div>
 
-    <div id="playback-controls">
-        <button onclick="prevTrack()" aria-label="previous"><img src="img/btns-shaded/prev2.png"></button>
-        <button onclick="playTrack()" aria-label="play"><img src="img/btns-shaded/play2.png"></button>
-        <button onclick="pauseTrack()" aria-label="pause"><img src="img/btns-shaded/pause2.png"></button>
-        <button onclick="stopTrack()" aria-label="stop"><img src="img/btns-shaded/stop2.png"></button>
-        <button onclick="nextTrack()" aria-label="next"><img src="img/btns-shaded/next2.png"></button>
-    </div>
-
-    <div id="dl-button-container">
-        <a href="https://www.mediafire.com/file/4t99s3ywf3cyzg6/AT-030.zip/file" target="_blank">
-            <button id="dl-btn" aria-label="mediafire download"><img src="img/music-player-components/dl_button.png"></button>
-        </a>
-    </div>
-
-    <div id="artist-link-container">
-        <p></p>
-    </div>
-
-    <div id="playlist-container">
-        <ul id="playlist-content">
+    <div id="tracklist-container">
+        <ul id="tracklist">
+            
+                <li>Simulated Bionic Tears</li>
+            
+                <li>霊性 Wired Unconscious</li>
+            
+                <li>Arisu</li>
+            
+                <li>一人ぼっち1a (Videopunks works)</li>
+            
+                <li>Slip The Hoax</li>
+            
+                <li>AIR Sword _94</li>
+            
+                <li>Spliced fom Memory </li>
+            
+                <li>Where_s The Real Me</li>
+            
+                <li>The Music Just Turns Me On</li>
+            
+                <li>El Nexo</li>
+            
+                <li>PCB in the Garbage </li>
+            
+                <li>Lain is Everywhere </li>
+            
+                <li>真実は真実だからこそ強いんだ</li>
+            
+                <li>Fake Trauma Orchestra</li>
+            
+                <li>Virtual Material Uploading... </li>
+            
+                <li>Nonverbal communication</li>
+            
+                <li>765</li>
+            
         </ul>
     </div>
 
-    <div id="mini-display-container">
+    <div id="music-player-bottom-container">
         <div id="mini-total-time">00:00 / 00:00</div>
         <div id="mini-controls">
-            <img src="img/music-player-components/icons_all_c.png">
-            <div id="mini-controls-btns-container">
-                <button onclick="prevTrack()" aria-label="prev"></button>
-                <button onclick="playTrack()" aria-label="play"></button>
-                <button onclick="pauseTrack()" aria-label="pause"></button>
-                <button onclick="stopTrack()" aria-label="stop"></button>
-                <button onclick="nextTrack()" aria-label="next"></button>
+            <!-- <img src="img/music-player-components/icons_all_c.png"> -->
+            <div id="mini-controls-btns">
+                <button onclick="prevTrack()" aria-label="prev">prev</button>
+                <button onclick="playTrack()" aria-label="play">play</button>
+                <button onclick="pauseTrack()" aria-label="pause">pause</button>
+                <button onclick="stopTrack()" aria-label="stop">stop</button>
+                <button onclick="nextTrack()" aria-label="next">next</button>
             </div>
         </div>
         <div id = "mini-cur-time">00:00</div>

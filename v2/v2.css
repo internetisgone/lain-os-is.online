@@ -46,6 +46,8 @@ body
     --mono-font: "JuliaMono", "Courier New", monospace;
 	--lain-font: "LoveLetter", "Courier New", monospace;
 
+    --drag-area-height: 30px;
+
     /* background: center/50% url("img/bg.png") repeat; */
     background-color: black;
     color: red;
@@ -103,10 +105,11 @@ pre, input
 .mini-window-draggable
 {
 	position: absolute;
-	height: 30px;
-    left: 0; right: 0;
+	height: var(--drag-area-height);
+    left: 0; right: 0; top: 0;
 	cursor: grab;
     border: 2px solid crimson;
+    z-index: 111;
 }
 
 .mini-window-header
@@ -141,10 +144,90 @@ pre, input
 /*+------- music player window -------+*/
 #music-player {
     position: absolute;
+    display: flex;
+    flex-direction: column;
     top: 10%;
     left: 20%;
+    width: 400px;
+    height: unset;
+    padding-top: var(--drag-area-height);
+    z-index: 3;
 }
 
+#music-player-top-container {
+    background-color: gold; 
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+#artist-links-container {
+    background-color: coral;
+}
+
+#tracklist-container {
+    background-color: beige;
+}
+
+#music-player-bottom-container {
+    background-color: coral;
+}
+
+
+#top-display {
+    grid-column: 1; grid-row: 1;
+}
+
+#now-playing {
+    grid-column-start: 2; grid-column-end: 3;
+    grid-row: 1;
+    display: flex; flex-direction: row;
+}
+
+#top-display canvas {
+    width: 110px; height: 50px;
+    background-color: red;
+}
+
+#volume-slider {
+    grid-column: 2;
+    grid-row: 2;
+    width: 50px;
+}
+
+#progress-bar {
+    grid-column-start: 1; grid-column-end: 3;
+    grid-row: 2;
+    background-color: darkred;
+    height: 33px;
+}
+
+#playback-controls {
+    grid-column-start: 1; grid-column-end: 3;
+    grid-row: 3;
+    display: flex; flex-direction: row;
+}
+
+#cur-time-container {
+
+}
+
+#now-playing-container {
+
+}
+
+#artist-links {
+
+}
+
+#tracklist {
+
+}
+
+#tracklist li {
+    list-style-type: none; 
+	padding: 0; 
+}
 
 /*+------- terminal window -------+*/
 #terminal

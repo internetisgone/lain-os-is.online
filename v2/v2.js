@@ -1,4 +1,8 @@
+const trackList = [
+    {
 
+    }
+]
 
 // mini windows
 const miniWindows = document.getElementsByClassName("mini-window")
@@ -15,6 +19,15 @@ function initMiniWindows() {
 		miniWindow.init()
 	}
 }
+
+
+// music player
+let curTrackAudioElement = document.getElementById("cur-track")
+
+curTrackAudioElement.src = "final_master_mp3/PCB in the Garbage .mp3"
+curTrackAudioElement.load()
+
+
 
 
 // terminal input
