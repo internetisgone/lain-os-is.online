@@ -429,15 +429,15 @@ function checkCommand(input)
 	switch (input) 
 	{
 		//playback
-		case "play": playTrack(); break;
-		case "paus": pauseTrack(); break;
-		case "stop": stopTrack(); break;
-		case "prev": prevTrack(); break;
-		case "next": nextTrack(); break;
+		case "play": playTrackV1(); break;
+		case "paus": pauseTrackV1(); break;
+		case "stop": stopTrackV1(); break;
+		case "prev": prevTrackV1(); break;
+		case "next": nextTrackV1(); break;
 		case "rand": 
 			curIndex = getRandomInt(0, trackList.length)
 			loadTrack(); 
-			playTrack();
+			playTrackV1();
 			break;
 
 		case "help": terminalDisplay.innerHTML += helpText; break;
@@ -521,7 +521,7 @@ function fillPlaylist(playlist)
 		li.addEventListener("click", function(){
 			curIndex = i 
 			loadTrack()
-			playTrack()
+			playTrackV1()
 			updateProgress()
 		})
 	}
@@ -538,7 +538,7 @@ let playlistEntries = playlistUl.getElementsByClassName("playlist-entry")
 function initPlayer()
 {
 	loadTrack();
-	stopTrack(); //stop icon, no bitrate display
+	stopTrackV1(); //stop icon, no bitrate display
 }
 
 let loopIndex = 2 //0 no loop, 1 loop album, 2 loop one song
@@ -643,11 +643,9 @@ function parseTime(duration)
 }
 
 //playback controls
-function playTrack()
+function playTrackV1()
 {
-	if (audioContext.state === 'suspended') {
-		audioContext.resume();
-	}
+	_playTrack()
 
 	curTrack.play();
 	isPlaying = true;
@@ -661,8 +659,9 @@ function playTrack()
 	playPauseBtn.textContent = "pause";//to be deleted
 }
 
-function pauseTrack() 
+function pauseTrackV1() 
 {
+	_pauseTrack()
 	if (isPlaying) 
 	{
 		curTrack.pause();
@@ -707,20 +706,24 @@ function playOrPause()
 		audioContext.resume();
 	}
 	//temp
-	if (isPlaying) pauseTrack();
-	else playTrack();
+	if (isPlaying) pauseTrackV1();
+	else playTrackV1();
 }
 
-function prevTrack()
+function prevTrackV1()
 {
+	_prevTrack()
+
 	curIndex > 0 ? curIndex -= 1 : curIndex = trackList.length - 1;
 	loadTrack();
-	playTrack();
+	playTrackV1();
 	updateProgress();
 }
 
-function nextTrack()
+function nextTrackV1()
 {
+	_nextTrack()
+
 	if (isShuffle) // always play a random song 
 	{
 		curIndex = getRandomInt(0, trackList.length)
@@ -731,8 +734,8 @@ function nextTrack()
 		{
 			if (curIndex == (trackList.length - 1)) 
 			{
-				curTrack.addEventListener("ended", stopTrack);
-				curTrack.removeEventListener("ended", nextTrack);
+				curTrack.addEventListener("ended", stopTrackV1);
+				curTrack.removeEventListener("ended", nextTrackV1);
 				return; //end at last song
 			}
 			else curIndex++;
@@ -744,12 +747,14 @@ function nextTrack()
 	}
 
 	loadTrack();
-	playTrack();
+	playTrackV1();
 	updateProgress();
 }
 
-function stopTrack() 
+function stopTrackV1() 
 {
+	_stopTrack()
+	
 	curTrack.pause();
 	isPlaying = false;
 	curTrack.currentTime = 0; 
@@ -788,14 +793,14 @@ function switchLoop()
 		// appendTerminalOutput("loop album")
 		loopImg.src = "img/music-player-components/loop_album.png"
 
-		curTrack.addEventListener("ended", nextTrack); //handled in nextTrack()
+		curTrack.addEventListener("ended", nextTrackV1); //handled in nextTrackV1()
 	}
 	else if (loopIndex == 1) 
 	{
 		loopIndex++ // 2 loop song 
 		// appendTerminalOutput("loop song")
 		loopImg.src = "img/music-player-components/loop_song_inverted.png"
-		curTrack.removeEventListener("ended", nextTrack)
+		curTrack.removeEventListener("ended", nextTrackV1)
 		curTrack.addEventListener("ended", loopSong)
 	}
 	else 
@@ -805,7 +810,7 @@ function switchLoop()
 		loopImg.src = "img/music-player-components/loop_off.png"
 
 		curTrack.removeEventListener("ended", loopSong)
-		curTrack.addEventListener("ended", nextTrack); //handled in nextTrack()
+		curTrack.addEventListener("ended", nextTrackV1); //handled in nextTrackV1()
 	}
 }
 

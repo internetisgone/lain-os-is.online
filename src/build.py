@@ -1,4 +1,5 @@
 from staticjinja import Site
+import eyed3
 import os
 
 VERSION_HISTORY_ENTRIES = [
@@ -118,11 +119,13 @@ V2_TRACKLIST = []
 #       V1_TRACKLIST.append( { "name": filename.split(".mp3")[0], "path": "21sept-master-mp3/" + filename })
       
 for filename in os.listdir("../v2/final_master_mp3"):
-    # print(filename.split(".mp3")[0])
-    # print("final_master_mp3/" + filename)
-	V2_TRACKLIST.append( { "name": filename.split(".mp3")[0], "path": "final_master_mp3/" + filename, "link": "artist_link" })
-	# todo append artist name 
-    # todo manually order tracks
+    path_lain = os.path.dirname(os.path.realpath(__file__))[0:-4]
+    
+    audiofile = eyed3.load(path_lain + "/v2/final_master_mp3/" + filename)
+    
+    V2_TRACKLIST.append( { "name": audiofile.tag.artist + " - " + filename.split(".mp3")[0], "path": "final_master_mp3/" + filename, "link": "artist_link" })
+	
+	# todo append duration, artist link
 
 print(V2_TRACKLIST)
 

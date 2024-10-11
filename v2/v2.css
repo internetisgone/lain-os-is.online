@@ -10,21 +10,6 @@
 	src: url("../fonts/JuliaMono-Regular.ttf") format("truetype");
 }
 
-/*mobile / portrait display*/
-@media (max-aspect-ratio: 4/3) 
-{
-	#lain-ascii
-	{
-        font-size: 10px;
-	}
-}
-
-/*desktop / landscape display*/
-@media (min-aspect-ratio: 4/3) 
-{
-
-}
-
 /* scan lines stolen from binarymarionette.neocities.org */
 /* body:before 
 {
@@ -64,7 +49,6 @@ body
 
 p, a
 {
-    text-decoration: none;
     color: white;
 }
 
@@ -99,7 +83,7 @@ pre, input
 {
 	position: absolute;
 	background-color: black;
-    width: 333px; height: 333px;
+    width: 433px; height: 333px;
 }
 
 .mini-window-draggable
@@ -109,7 +93,7 @@ pre, input
     left: 0; right: 0; top: 0;
 	cursor: grab;
     border: 2px solid crimson;
-    z-index: 111;
+    z-index: 10;
 }
 
 .mini-window-header
@@ -125,11 +109,12 @@ pre, input
     position: absolute; right: 0; top: 0;
 	width: 30px; height: 30px;
     background-color: gray;
-    z-index: 10;
+    z-index: 11;
 }
 
 
 /*+------- window icons -------+*/
+
 #icons-container 
 {
 	position: absolute; bottom: 10%;
@@ -142,6 +127,7 @@ pre, input
 }
 
 /*+------- music player window -------+*/
+
 #music-player {
     position: absolute;
     display: flex;
@@ -155,22 +141,22 @@ pre, input
 }
 
 #music-player-top-container {
-    background-color: gold; 
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr 1fr;
 }
 
 #artist-links-container {
-    background-color: coral;
+    background-color: darkred;
 }
 
 #tracklist-container {
-    background-color: beige;
+    overflow-y: scroll;
+    height: 250px;
 }
 
 #music-player-bottom-container {
-    background-color: coral;
+    background-color: darkred;
 }
 
 
@@ -186,7 +172,7 @@ pre, input
 
 #top-display canvas {
     width: 110px; height: 50px;
-    background-color: red;
+    background-color: darkred;
 }
 
 #volume-slider {
@@ -230,31 +216,41 @@ pre, input
 }
 
 /*+------- terminal window -------+*/
-#terminal
-{
+
+#terminal {
     position: absolute;
     top: 30%; left: 50%;
+    padding-top: var(--drag-area-height);
+    height: unset;
 }
-#terminal-wrapper
-{
-    left: 0; right: 0;
+#terminal-wrapper {
+    position: absolute;
+    width: 96%;
+    left: 2%; right: 2%;
 }
-#terminal-input
-{
+#terminal-content {
+    height: 280px;
+    margin-top: 5px;
+    word-wrap: break-word;
+    overflow-y: scroll;
+}
+#terminal-input {
     width: 100%;
+    height: 25px;
     color: white;
     background-color: black;
-    /* border-width: 0px; */
+    border-width: 0px;
 	/* caret-color: transparent; */
 }
 
 /*+------- version history window -------+*/
+
 #version-history-container
 {
 	position: absolute;
 	display: flex;
 	justify-content: center; align-items: center;
-	width: 92%; height: 83%;
+	height: 100%;
 	left: 0px; right: 0px; top: 12%;
 }
 #version-history-texts
@@ -267,3 +263,15 @@ pre, input
 	white-space: pre-wrap; 
 }
 #version-history-texts span {float: right;}
+
+
+
+/* mobile / portrait display */
+
+@media (max-aspect-ratio: 4/3) 
+{
+	#lain-ascii
+	{
+        font-size: 10px;
+	}
+}

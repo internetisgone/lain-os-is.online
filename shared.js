@@ -142,15 +142,51 @@ function dragEnd()
 }
 
 
-// music player 
-// controls, visualizer, etc
+/////////// music player ///////////
 
-// terminal 
+// playback controls
 
-// version history
+function _playTrack()
+{
+	if (audioContext.state === 'suspended') {
+		audioContext.resume();
+	}
+
+	// curTrack.play();
+	// isPlaying = true;
+	// curTrackStateIcon.src = "img/music-player-components/test-play.png"
+	// curBitrate.innerHTML = bitrateStereoStr
+	// monoStereo.style.opacity = "1"
+
+	// //visualiser
+	// drawFrame()
+}
+
+function _pauseTrack() {
+
+}
+
+function _stopTrack() {
+
+}
+
+function _prevTrack() {
+
+}
+
+function _nextTrack() {
+
+}
+
+// todo loop, shuffle, random
 
 
-// chat
+
+// visualizer
+
+
+
+/////////// chat ///////////
 function initChatEmbed()
 {
 	let chatScript = document.createElement("script")
