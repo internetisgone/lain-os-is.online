@@ -56,6 +56,15 @@ pre, input
 {
     font-family: var(--mono-font);
 }
+
+.bg-ascii {
+    position: absolute;
+    font-size: small;
+}
+
+.hidden {
+    display: none;
+}
 /* blinking caret */
 
 /* #soon::after
@@ -134,7 +143,7 @@ pre, input
     flex-direction: column;
     top: 10%;
     left: 20%;
-    width: 400px;
+    width: 420px;
     height: unset;
     padding-top: var(--drag-area-height);
     z-index: 3;
@@ -167,12 +176,13 @@ pre, input
 #now-playing {
     grid-column-start: 2; grid-column-end: 3;
     grid-row: 1;
-    display: flex; flex-direction: row;
+    display: flex; flex-direction: column;
 }
+
+#cur-track-name { white-space: nowrap; }
 
 #top-display canvas {
     width: 110px; height: 50px;
-    background-color: darkred;
 }
 
 #volume-slider {
@@ -211,8 +221,12 @@ pre, input
 }
 
 #tracklist li {
-    list-style-type: none; 
+    list-style-type: decimal; 
 	padding: 0; 
+}
+#tracklist li:hover, .highlighted-track {
+    background-color: white;
+    cursor: pointer;
 }
 
 /*+------- terminal window -------+*/
@@ -264,7 +278,13 @@ pre, input
 }
 #version-history-texts span {float: right;}
 
+/*+------- chat window -------+*/
 
+#chat-window {
+    position: absolute;
+    top: 13%;
+    left: 40%;
+}
 
 /* mobile / portrait display */
 

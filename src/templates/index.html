@@ -46,9 +46,6 @@
         font-size: 12px;
         margin: 0;
     }
-    .hidden {
-       display: none;
-    }
 
 </style>
 
@@ -154,6 +151,7 @@
     for (let i = 0; i < bootOptions.length; i++) {
         bootOptions[i].addEventListener("click", () => {
             bootIndex = i
+            updateHighlight()
             osStart()
         })
     }
@@ -507,8 +505,7 @@
        setTimeout(() => {
            clearInterval(animId)
            loadPage()
-    }, frameDuration * jukeboxFrames.length);
-
+        }, frameDuration * jukeboxFrames.length);
     }
 
     // todo: jukebox idle animation

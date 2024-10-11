@@ -474,7 +474,6 @@ let curTrackText = document.getElementById("cur-track-info")
 
 let curIndex = 0
 let curTrack = document.getElementById("cur-track")
-let isPlaying = false
 let progressTimer
 
 let nowPlayingContainer = document.getElementById("now-playing-container")
@@ -497,11 +496,6 @@ let loopImg = loopBtn.querySelector("img")
 
 let miniTotalTime = document.getElementById("mini-total-time")
 let miniCurTime = document.getElementById("mini-cur-time")
-
-//visualiserr
-let visualiserCanvas = document.getElementById("visualiser")
-let canvasContext = visualiserCanvas.getContext("2d")
-canvasContext.fillStyle = "black"
 
 let artistLink = document.getElementById("artist-link-container").querySelector("p")
 
@@ -546,6 +540,9 @@ switchLoop() //no loop
 
 progressBar.addEventListener("click", setProgress)
 oldProgressBar.addEventListener("click", oldSetProgress);
+
+// visualiser
+canvasContext.fillStyle = "black"
 
 function loadTrack()
 {
@@ -647,14 +644,9 @@ function playTrackV1()
 {
 	_playTrack()
 
-	curTrack.play();
-	isPlaying = true;
 	curTrackStateIcon.src = "img/music-player-components/test-play.png"
 	curBitrate.innerHTML = bitrateStereoStr
 	monoStereo.style.opacity = "1"
-
-	//visualiser
-	drawFrame()
 
 	playPauseBtn.textContent = "pause";//to be deleted
 }
@@ -664,10 +656,7 @@ function pauseTrackV1()
 	_pauseTrack()
 	if (isPlaying) 
 	{
-		curTrack.pause();
-		isPlaying = false;
 		curTrackStateIcon.src = "img/music-player-components/test-pause.png"
-
 		playPauseBtn.textContent = "play";//to be deleted
 	}
 }
@@ -755,18 +744,11 @@ function stopTrackV1()
 {
 	_stopTrack()
 	
-	curTrack.pause();
-	isPlaying = false;
-	curTrack.currentTime = 0; 
 	updateProgress();
 	curTrackStateIcon.src = "img/music-player-components/test-stop.png";
 
 	curBitrate.innerHTML = bitrateStereoPlaceholder
 	monoStereo.style.opacity = "0"
-	
-	requestAnimationFrame(function() {
-		canvasContext.clearRect(0, 0, visualiserCanvas.width, visualiserCanvas.height)
-	})
 }
 
 function toggleShuffle()
@@ -951,47 +933,11 @@ let reverbDecaySlider = document.getElementById("reverb-decay")
 let reverbDurationText = document.getElementById("cur-reverb-duration")
 let reverbDecayText = document.getElementById("cur-reverb-decay")
 
-const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+// const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 const biquadFilter = new BiquadFilterNode(audioContext, {frequency:350});
 const convolver = new ConvolverNode(audioContext)
 const gainNode = new GainNode(audioContext, {gain:initialGain})  // can be adjusted by the user 
 const masterGainNode = new GainNode(audioContext, {gain: 1})     // specific to filter presets
-
-/////// frequency visualiser ///////
-const analyser = new AnalyserNode(audioContext, {
-													fftSize: 32,
-													// maxDecibels: -25,
-													// minDecibels: -60,
-													smoothingTimeConstant: 0.7
-												})
-
-let bufferLength = analyser.frequencyBinCount
-let frequencyData = new Uint8Array(bufferLength)
-let barGap = 1
-let barWidth = visualiserCanvas.width / bufferLength - barGap
-
-// console.log("barWidth " + barWidth)
-
-function drawFrame()
-{
-	if (isPlaying) requestAnimationFrame(drawFrame);
-
-	analyser.getByteFrequencyData(frequencyData)
-	//console.log("analyserrr bin count " + analyser.frequencyBinCount + ", data " + frequencyData)
-
-	canvasContext.clearRect(0, 0, visualiserCanvas.width, visualiserCanvas.height)
-	let x = 0
-	for (let i = 0; i < bufferLength; i++)
-	{
-		let barHeight = frequencyData[i] / 2.5;
-		//console.log("index = " + i + ", x = " + x + ", bar height " + barHeight)
-		canvasContext.fillRect(x, visualiserCanvas.height - barHeight, barWidth, barHeight)
-
-		x += barWidth + barGap
-	}
-}
-
-/////// frequency visualiser end ///////
 
 
 let biquadIndex = 0

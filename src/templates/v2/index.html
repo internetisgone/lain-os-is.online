@@ -11,12 +11,113 @@
 {% block body %}
 
 <style>
-    body {
-        width: 100vw;
-        height: 100vh;
-    }
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    position: fixed;
+}
 </style>
 
+<!-- <pre class="bg-ascii" style="top: 10px;">
+  .         .         .      .         .         .      .         .         .      .         .         .      .         .         .      .         .         .      
+    ' ,     :     , '          ' ,     :     , '          ' ,     :     , '          ' ,     :     , '          ' ,     :     , '          ' ,     :     , '
+
+        ' . ^ . '                  ' . ^ . '                  ' . ^ . '                  ' . ^ . '                  ' . ^ . '                  ' . ^ . '
+          .&lt; &gt;.                      .&lt; &gt;.                      .&lt; &gt;.                      .&lt; &gt;.                      .&lt; &gt;.                      .&lt; &gt;.
+      , '   v   ' ,              , '   v   ' ,              , '   v   ' ,              , '   v   ' ,              , '   v   ' ,              , '   v   ' ,
+  . '       :       ' .      . '       :       ' .      . '       :       ' .   . '          :       ' .      . '       :       ' .      . '       :       ' .
+            :                          :                          :                          :                          :                          :
+            |                          |                          |                          |                          |                          |
+</pre> -->
+
+<pre class="bg-ascii" style="left: 0; top: 0;">
+                                            .
+                                        , '
+                                    , '
+                                , '                    .
+                            , '                    , '
+                   :` ` , '.                   , '
+                   ` ,   ;, ,              , '                     .
+               , '     ' ,   ' ,       , '                     , '
+           , '             ' ,   ' ; '                     , '
+       , '                    ,; ,   ' ,               , '                     ,
+   . '                    , '      ' ,   ' ,       , '                     , ' ;
+                      , '              ' ,   ' ; '                     , '   .
+                  , '                     .,',   ' ,               , '    . '
+              . '                     , '      ' ,   ' ,       , '    . '
+                                  , '          |  .' ,   ' ; '    . '                              .
+                              , '              :  :    ';,   ' ;'                              , '
+                          . '                  :  | , '  ..':;'  ' ,                       , '
+                                               :  :  . '    :; ' ,   ' ,               , '
+                                            , ':  |'        :,     ' ,   ' ,       , '
+                                        . '  . |  :        ;;          ' ,   ' ;.'
+                                          `    :  :       .;               ';,. ,'
+                                               :  |       :.             , '   '
+                                               |  :       ;'         , '
+                                               :  :      ;:      , '
+                                              ::;=:;;,, .;'  . '
+                                               |  :    ';;
+                                               :  |     ::
+                                               :  |    ;;
+                                               |  :    ;:
+                                               .  |    ;.
+                                               :  :   ;.
+                                               |  :
+                                               :  :
+                                               :  |
+                                               :  :
+                                               :  |
+                                               .  :
+                                               :  :
+                                               .  : 
+                                               .  . 
+                                                  .
+                                                  .
+</pre>
+
+<pre class="bg-ascii" style="bottom: 0; right: 30px;">
+                 '. /                      '. /
+             - - - /,- - -             - - - /,- - -
+             .    /  '.                .    /  '.
+              '. /                      '. /
+          - - - /,- - -             - - - /,- - -
+          .    /  '.                .    /  '.
+           '. /                      '. /
+       - - - /,- - -             -     /,         '. /
+       .    /  '.        '.      .    /  '.   - - - /,- - -
+        '. /         - - - /- - - ', /        .    /  '.
+     = = =/.= = =    .    /    = = =/= = =     '. /
+    .    /  '.        '. /    .    /',     - - - /,- - -
+     '. /         - - - /,- - -'. /   '    .    /  '.
+  - - -/.- - -    .    /  '.- - -/.- - -    '. /
+      /  '.        '. /    \\   /  '.   - - - /- - -        '. /
+  \\ /.        - - - /,- - -\\ /.       .    / ',       - - - /,- - -
+   \/.         .    /  '.    \\          '. /    .      .    /  '.
+    \\          '. /         - - -    = = =/= = =        '. /
+     \\      = = =/.= = =    . \\ /  .    /',        - - - /,- - -
+      \\    .    /  '.        '.\/    '. /   .       .    /  '.
+       \\    '. /         - - - /,-- - -/.- -         '. /
+        \\- - -/.         .    /  '    /  '.      - - - /,- - -
+         \\ . /  '.        '. /   \\  /.          .    /  '.
+          \\ /.        - - - /,- - \\/.            '. /
+           \\.         .    /  '.   \\          = = =/.= = =
+            \\          '. /         \\        .    /  '.
+             \\      = = =/.= = =     \\        '. /
+              \\    .    /  '.         \\    - - -/.- - -
+               \\    '. /               \\       /  '.
+                \\- - -/.- - -           \\     /.
+                 \\ . /  '.               \\   /.
+                  \\ /.                    \\ /
+                   \\.                      \\
+                    \\                       \\
+                     \\                       \\
+                      \\                       \\
+                       \\                       \\
+                        \\                       \\
+                         \\                       \}
+                          \}
+</pre>
 
 <div class="mini-window" id="music-player">
     <div class="mini-window-header">winamp
@@ -36,10 +137,8 @@
         </div>
 
         <div id="now-playing">
-            <p id="now-playing">now playing</p>
-            <p id="changing-volume"></p>
-            <p id="cur-track-bitrate">320 KBPS 48 KHZ</p>
-            <p id="mono-stereo">stereo</p>
+            <p id="cur-track-name"></p>
+            <p>320 KBPS 48 KHZ &nbsp;&nbsp; stereo</p>
         </div>
 
         <input id="volume-slider" type="range" min="0" max="100" value="77" step="1" oninput="setVolume()" onchange="onFinishSettingVolume()" aria-label="volume slider">
@@ -48,15 +147,15 @@
         </div>
 
         <div id="playback-controls">
-            <button id="loop-btn" onclick="switchLoop()" style="margin-left: 13px;" aria-label="change loop mode">loop</button>
-            <button id="shuffle-btn" onclick="toggleShuffle()" aria-label="change shuffle mode">shuffle</button>
+            <button id="loop-btn" disabled onclick="switchLoop()"aria-label="change loop mode">loop</button>
+            <button id="shuffle-btn" disabled onclick="toggleShuffle()" aria-label="change shuffle mode">shuffle</button>
 
             <button onclick="prevTrackV2()" aria-label="previous">prev</button>
             <button onclick="playTrackV2()" aria-label="play">play</button>
             <button onclick="pauseTrackV2()" aria-label="pause">pause</button>
             <button onclick="stopTrackV2()" aria-label="stop">stop</button>
             <button onclick="nextTrackV2()" aria-label="next">next</button>
-            <button id="dl-btn" aria-label="mediafire download">dl</button>
+            <button id="dl-btn" disabled aria-label="mediafire download">dl</button>
         </div>
 
     </div>
@@ -97,7 +196,44 @@
     <div class="mini-window-draggable"></div>
 
     <div id="terminal-content">
-    </div>
+        <pre style="font-size: 8px;">
+ @%%%%%%%@%%%%%%%%%%%#@@@%%%%%%#*%%%%%*#**#%#***##%%%%%%##%%%%%%###%%%%%#%%%%%%%%%%%
+ @%%%%%%%%%%%@@%%%%%%%%%%%%%%%%: *%%%%#%####%#%##%%%%%%%%%%#%%%%%%%%%%%%%%%%%%%%%%#%
+ @%%%%%%%%%%%@@%%%%%%%%%%%*%%%+. .#%%%#%#%%%%%%##%%%%%%%%%%###%%##%#%##%%%%%%%%%%%#%
+ @%%%%%%%%%@%@@%%%%%%%%%%#.%%*-   =%%#*%%%%%#%%%%%%%%%%%%%%##%%%%#%##%%%%%%%%%%%%%#%
+ @%%%%%%@@%@@@@%%%%%%%%%%- #%*-   :%%##%%%%##%%##%%%%%%%%%%##%%%%%%#####%%%%%%%%%%%%
+ @@%%@@@%@%%%%%%%%%%%%%%#. ##+-..  %%-*%%%%###%#%%%%##%%%%%%%%%%%%#%######%%%%%%%%%%
+ @@%%%%%%@@%@@%%%%%%%%%%:  #:=.   .*% *%%%%##%%###%%%%%%####%%###############%%%%%%%
+ @@@%%@%@%###%@%%%%%%%%#.  *.:  .  =* -*%%%%%%%%%%%%%%%##########%############%%%%%%
+ @@@@@@@@%@%@%%%%%%%%%%* . =.      += .*%%%%##%%%%%%%%%%#######%*%#***####*###%%%%%%
+ @@@@@@@@@@@%%%%%@@@%%%- . :       -.  -#%+:%%#%%%%#%%%%%*##%%%%=%##****#######%#%%%
+ @@@@@@@@%%%%%%%%@%%@%%- . -  .  ..:    +.   *%%%%*=%*#*:=%*+%%#-*####*###*####%##%%
+ @@@@%@@@@%%%%%#%%#+#@%-::-***###*##*:  =:    .*%%--%++*#****#%#+*%###****##*##%#%%%
+ @@%%%@%%%%%%%# *..:+*#+:.    .     .  .        .+  +-=-:::--:--=+#%#***#+###%%%%%%#
+ @%%%%%%%%%%%%* ..::.          ::.                 ..:-+==-::::---=*#**#*##*###%%%%#
+ @%%%%%%@@%%@@#   .:  .-=**+++=:--=.                 :-=+-:-=++*##%***+-##*#%#+-%%%:
+ @%%%%%%@@@%%%%  :-.:=**#####*+*#*+:         .     ..:-=--:+*###**%*###+:=%**   *%- 
+ --%%%%%@@@@%.+: . -++.:#***#%#*-..::.     .  .     .-:...-.+%%#*==#####*-:=.+  :+  
+ =..+%%#%%:@%     .-::+%****%%**-....         . .        .-+%%%##***#####*-.##   -  
+ @#-...:.=.=+        .-*%%%%#**+-::..          .      . ..++*##*+*=+*#*##-+=.*  .   
+ @%%#=:...  .   .     .=--*-::..:-:. .    .                .....:--:::+*:#%%#-      
+ @%##%%%%*:     ..      .        ..   .   .         .      .    ...:.:#*###%#-      
+ %#%%####%*.  .           ..       .       ..                   ..::::#%##%%#.    . 
+ %#%%%%#%%#:.  .     .                            .      .  .  ...:::=#%#%%%%.      
+ %%%%%%%@%%*    .  =..     .    ..    .          ..   .    .  ...:::-##%%%%%%   .. .
+ @@%%%#%%%%%:      :              .             .-: .    . .  ..:::=###%##%%#       
+ %%%%%%%%%%%*  .   :          .  .          .   .--        . ...::+%%#%#%%%%# .     
+ %#%#*+%#%#%%*      :                           .+=:.       ...::*%%%%%%%%%%*       
+ +  =# *#%@%%%      .                       .. .:=*:   .   ...:-%%##%%%%%%%%=  .    
+ .   * .#:%@%@.  ...:.               .            .      ....:%%%%##%%%%%%%@        
+ .   .      #%  . .:=-..                      . .         .-%%%#%%%%%%%%@%%%..      
+ .          .:     .-=#+::.              .   .. .        :%%*=%%%%%%%%%%@@%# .      
+ .   .    .         .:=#%#-..               ..         -%#* . *%%=.=.%%%@%@#        
+ .         ..  .     .:=#%%%*-:.. .            ......==:-# .  :%+ . .%%%@%@*       .
+
+        </pre>
+lain@navi ~ %<br>
+</div>
 
     <input type="text" id="terminal-input" maxlength="33" aria-label="terminal input field">
 </div>
@@ -118,8 +254,23 @@
     </div>
 </div>
 
+<div class="mini-window" id="chat-window">
+    <div class="mini-window-header">chat
+        <div class="mini-window-close"></div>
+    </div>
+    <div class="mini-window-draggable"></div>		
+    <div>
+        <br>
+        <br>
+        chat is this real
+    </div>
+</div>
+
 
 <div id="icons-container">
+    <div class="icon">
+        <img src="img/light.jpeg"></img>
+    </div>
     <div class="icon">
         <img src="img/light.jpeg"></img>
     </div>

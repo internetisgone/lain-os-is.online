@@ -144,6 +144,8 @@ function dragEnd()
 
 /////////// music player ///////////
 
+let isPlaying = false
+
 // playback controls
 
 function _playTrack()
@@ -152,22 +154,33 @@ function _playTrack()
 		audioContext.resume();
 	}
 
-	// curTrack.play();
-	// isPlaying = true;
+	curTrack.play();
+	isPlaying = true;
+
 	// curTrackStateIcon.src = "img/music-player-components/test-play.png"
 	// curBitrate.innerHTML = bitrateStereoStr
 	// monoStereo.style.opacity = "1"
 
-	// //visualiser
-	// drawFrame()
+	// visualiser
+	drawFrame()
 }
 
 function _pauseTrack() {
-
+	if (isPlaying) 
+	{
+		curTrack.pause();
+		isPlaying = false;
+	}
 }
 
 function _stopTrack() {
+	curTrack.pause();
+	curTrack.currentTime = 0; 
+	isPlaying = false;
 
+	requestAnimationFrame(function() {
+		canvasContext.clearRect(0, 0, visualiserCanvas.width, visualiserCanvas.height)
+	})
 }
 
 function _prevTrack() {
@@ -182,8 +195,41 @@ function _nextTrack() {
 
 
 
-// visualizer
+// visualiser
+const audioContext = new (window.AudioContext || window.webkitAudioContext)()
+const analyser = new AnalyserNode(audioContext, {
+    fftSize: 32,
+    // maxDecibels: -25,
+    // minDecibels: -60,
+    smoothingTimeConstant: 0.7
+})
 
+let bufferLength = analyser.frequencyBinCount
+let frequencyData = new Uint8Array(bufferLength)
+
+let visualiserCanvas = document.getElementById("visualiser")
+let canvasContext = visualiserCanvas.getContext("2d")
+const barGap = 1
+const barWidth = visualiserCanvas.width / bufferLength - barGap
+
+function drawFrame()
+{
+	if (isPlaying) requestAnimationFrame(drawFrame);
+
+	analyser.getByteFrequencyData(frequencyData)
+	// console.log("analyserrr bin count " + analyser.frequencyBinCount + ", data " + frequencyData)
+
+	canvasContext.clearRect(0, 0, visualiserCanvas.width, visualiserCanvas.height)
+	let x = 0
+	for (let i = 0; i < bufferLength; i++)
+	{
+		let barHeight = frequencyData[i] / 2.5;
+		//console.log("index = " + i + ", x = " + x + ", bar height " + barHeight)
+		canvasContext.fillRect(x, visualiserCanvas.height - barHeight, barWidth, barHeight)
+
+		x += barWidth + barGap
+	}
+}
 
 
 /////////// chat ///////////
