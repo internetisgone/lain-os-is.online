@@ -2,6 +2,7 @@
 
 {% block head %}
 
+<link rel="stylesheet" type="text/css" href="../style.css">
 <link rel="stylesheet" type="text/css" href="v2.css">
 
 <title>lain OS is online vol. 2</title>
@@ -9,15 +10,6 @@
 {% endblock %}
 
 {% block body %}
-
-<style>
-body {
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    position: fixed;
-}
-</style>
 
 <!-- <pre class="bg-ascii" style="top: 10px;">
   .         .         .      .         .         .      .         .         .      .         .         .      .         .         .      .         .         .      
@@ -121,7 +113,7 @@ body {
 
 <div class="mini-window" id="music-player">
     <div class="mini-window-header">winamp
-        <div class="mini-window-close"></div>
+        <div class="mini-window-close">X</div>
     </div>
     <div class="mini-window-draggable"></div>
     
@@ -191,7 +183,7 @@ body {
 
 <div class="mini-window" id="terminal">
     <div class="mini-window-header">terminal
-        <div class="mini-window-close"></div>
+        <div class="mini-window-close">X</div>
     </div>
     <div class="mini-window-draggable"></div>
 
@@ -232,15 +224,17 @@ body {
  .         ..  .     .:=#%%%*-:.. .            ......==:-# .  :%+ . .%%%@%@*       .
 
         </pre>
-lain@navi ~ %<br>
 </div>
-
-    <input type="text" id="terminal-input" maxlength="33" aria-label="terminal input field">
+    <div id="terminal-input-container">
+        <span id="terminal-prompt">lain@navi ~ % &nbsp;</span>
+        <!-- <span id="fake-caret">&nbsp;</span> -->
+        <input type="text" id="terminal-input" maxlength="33" aria-label="terminal input field">
+    </div>
 </div>
 
 <div class="mini-window" id="version-history-window">
     <div class="mini-window-header">version history
-        <div class="mini-window-close"></div>
+        <div class="mini-window-close">X</div>
     </div>
     <div class="mini-window-draggable"></div>		
 
@@ -256,7 +250,7 @@ lain@navi ~ %<br>
 
 <div class="mini-window" id="chat-window">
     <div class="mini-window-header">chat
-        <div class="mini-window-close"></div>
+        <div class="mini-window-close">X</div>
     </div>
     <div class="mini-window-draggable"></div>		
     <div>

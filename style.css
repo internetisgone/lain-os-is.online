@@ -10,6 +10,12 @@
 	src: url("fonts/Input-Regular_(InputMonoNarrow-Regular).ttf") format("truetype");
 }
 
+@font-face
+{
+	font-family: "JuliaMono";
+	src: url("fonts/JuliaMono-Regular.ttf") format("truetype");
+}
+
 body
 {
     font-family: "LoveLetter", "Courier New", monospace;

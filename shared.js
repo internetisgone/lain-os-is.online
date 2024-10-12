@@ -157,10 +157,6 @@ function _playTrack()
 	curTrack.play();
 	isPlaying = true;
 
-	// curTrackStateIcon.src = "img/music-player-components/test-play.png"
-	// curBitrate.innerHTML = bitrateStereoStr
-	// monoStereo.style.opacity = "1"
-
 	// visualiser
 	drawFrame()
 }

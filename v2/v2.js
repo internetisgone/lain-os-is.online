@@ -1,9 +1,45 @@
-const trackList = [{'name': 'Axorst2k - Simulated Bionic Tears', 'path': 'final_master_mp3/Simulated Bionic Tears.mp3', 'duration': '02:22', 'link': 'artist_link'}, {'name': 'Cicada Shell - 霊性 Wired Unconscious', 'path': 'final_master_mp3/霊性 Wired Unconscious.mp3', 'duration': '04:24', 'link': 'artist_link'}, {'name': 'Kwan - Arisu', 'path': 'final_master_mp3/Arisu.mp3', 'duration': '05:25', 'link': 'artist_link'}, {'name': 'Akira Takemoto  - 一人ぼっち1a (Videopunks works)', 'path': 'final_master_mp3/一人ぼっち1a (Videopunks works).mp3', 'duration': '09:09', 'link': 'artist_link'}, {'name': '7mint - Slip The Hoax', 'path': 'final_master_mp3/Slip The Hoax.mp3', 'duration': '05:05', 'link': 'artist_link'}, {'name': '444theGod  - AIR Sword _94', 'path': 'final_master_mp3/AIR Sword _94.mp3', 'duration': '03:13', 'link': 'artist_link'}, {'name': 'georg-i - Spliced fom Memory ', 'path': 'final_master_mp3/Spliced fom Memory .mp3', 'duration': '03:53', 'link': 'artist_link'}, {'name': 'Bungalovv - Where_s The Real Me', 'path': 'final_master_mp3/Where_s The Real Me.mp3', 'duration': '05:00', 'link': 'artist_link'}, {'name': 'provinceofnowhere feat. SimonBB - The Music Just Turns Me On', 'path': 'final_master_mp3/The Music Just Turns Me On.mp3', 'duration': '02:49', 'link': 'artist_link'}, {'name': 'd3br1s - El Nexo', 'path': 'final_master_mp3/El Nexo.mp3', 'duration': '04:04', 'link': 'artist_link'}, {'name': 'moemiki - PCB in the Garbage ', 'path': 'final_master_mp3/PCB in the Garbage .mp3', 'duration': '03:24', 'link': 'artist_link'}, {'name': 'FINGERGAP - Lain is Everywhere ', 'path': 'final_master_mp3/Lain is Everywhere .mp3', 'duration': '02:51', 'link': 'artist_link'}, {'name': 'aDeAD  - 真実は真実だからこそ強いんだ', 'path': 'final_master_mp3/真実は真実だからこそ強いんだ.mp3', 'duration': '03:48', 'link': 'artist_link'}, {'name': 'Rench Kee - Fake Trauma Orchestra', 'path': 'final_master_mp3/Fake Trauma Orchestra.mp3', 'duration': '07:55', 'link': 'artist_link'}, {'name': 'Yau Hei ASJ - Virtual Material Uploading... ', 'path': 'final_master_mp3/Virtual Material Uploading... .mp3', 'duration': '04:18', 'link': 'artist_link'}, {'name': 'Emo Betriebswerk - Nonverbal communication', 'path': 'final_master_mp3/Nonverbal communication.mp3', 'duration': '02:14', 'link': 'artist_link'}, {'name': 'NTFL - 765', 'path': 'final_master_mp3/765.mp3', 'duration': '03:42', 'link': 'artist_link'}]
+const trackList = [
+    {'name': 'Bungalovv - Where_s The Real Me', 'path': 'final_master_mp3/Where_s The Real Me.mp3', 'duration': '05:00', 'link': 'https://soundcloud.com/bungalovv'}, 
+
+    {'name': 'aDeAD  - 真実は真実だからこそ強いんだ', 'path': 'final_master_mp3/真実は真実だからこそ強いんだ.mp3', 'duration': '03:48', 'link': 'https://adeadmusic.bandcamp.com/'}, 
+
+    {'name': 'georg-i - Spliced fom Memory ', 'path': 'final_master_mp3/Spliced fom Memory .mp3', 'duration': '03:53', 'link': 'artist_link'}, 
+
+    {'name': 'moemiki - PCB in the Garbage ', 'path': 'final_master_mp3/PCB in the Garbage .mp3', 'duration': '03:24', 'link': 'artist_link'}, 
+
+    {'name': 'NTFL - 765', 'path': 'final_master_mp3/765.mp3', 'duration': '03:42', 'link': 'artist_link'},
+
+    {'name': 'Axorst2k - Simulated Bionic Tears', 'path': 'final_master_mp3/Simulated Bionic Tears.mp3', 'duration': '02:22', 'link': 'artist_link'}, 
+
+    {'name': 'Cicada Shell - 霊性 Wired Unconscious', 'path': 'final_master_mp3/霊性 Wired Unconscious.mp3', 'duration': '04:24', 'link': 'artist_link'}, 
+
+    {'name': 'Akira Takemoto  - 一人ぼっち1a (Videopunks works)', 'path': 'final_master_mp3/一人ぼっち1a (Videopunks works).mp3', 'duration': '09:09', 'link': 'artist_link'},
+
+    {'name': '7mint - Slip The Hoax', 'path': 'final_master_mp3/Slip The Hoax.mp3', 'duration': '05:05', 'link': 'https://7mint.bandcamp.com/'}, 
+
+    {'name': 'Yau Hei ASJ - Virtual Material Uploading... ', 'path': 'final_master_mp3/Virtual Material Uploading... .mp3', 'duration': '04:18', 'link': 'artist_link'}, 
+
+    {'name': 'd3br1s - El Nexo', 'path': 'final_master_mp3/El Nexo.mp3', 'duration': '04:04', 'link': 'https://d3br1s.bandcamp.com/'}, 
+
+    {'name': 'Kwan - Arisu', 'path': 'final_master_mp3/Arisu.mp3', 'duration': '05:25', 'link': 'artist_link'}, 
+
+    {'name': 'provinceofnowhere feat. SimonBB - The Music Just Turns Me On', 'path': 'final_master_mp3/The Music Just Turns Me On.mp3', 'duration': '02:49', 'link': 'artist_link'}, 
+    
+    {'name': 'FINGERGAP - Lain is Everywhere ', 'path': 'final_master_mp3/Lain is Everywhere .mp3', 'duration': '02:51', 'link': 'artist_link'}, 
+
+    {'name': '444theGod  - AIR Sword _94', 'path': 'final_master_mp3/AIR Sword _94.mp3', 'duration': '03:13', 'link': 'artist_link'}, 
+    
+    {'name': 'Emo Betriebswerk - Nonverbal communication', 'path': 'final_master_mp3/Nonverbal communication.mp3', 'duration': '02:14', 'link': 'artist_link'}, 
+
+    {'name': 'Rench Kee - Fake Trauma Orchestra', 'path': 'final_master_mp3/Fake Trauma Orchestra.mp3', 'duration': '07:55', 'link': 'artist_link'}
+]
 
 
 // mini windows
 const miniWindows = document.getElementsByClassName("mini-window")
 const icons = document.getElementsByClassName("icon")
+
+initMiniWindows()
 
 function initMiniWindows() {
 	for (let i = 0; i < miniWindows.length; i++) {
@@ -22,6 +58,7 @@ function initMiniWindows() {
 const trackListEl = document.getElementById("tracklist").getElementsByTagName("li")
 let curTrack = document.getElementById("cur-track")
 let curIndex = 0
+let marqueeId 
 // visualiser
 canvasContext.fillStyle = "red"
 
@@ -37,6 +74,12 @@ function loadTrack() {
     console.log("loaded", trackList[curIndex].name) 
     document.getElementById("cur-track-name").textContent = `${curIndex + 1}. ${trackList[curIndex].name} ${trackList[curIndex].duration}`
     setTracklistHighlight()
+
+    if (marqueeId) {
+        clearInterval(marqueeId)
+        marqueeId = null
+    }
+    startMarquee()
 }
 
 function playTrackV2() {
@@ -86,6 +129,41 @@ function initTracklistClickEvent() {
         })
     }
 }
+
+function startMarquee() {
+    // based on https://stackoverflow.com/questions/337330/javascript-marquee-to-replace-marquee-tags/26372490#26372490
+
+    const initialDelay = 1500
+    const defaultStep = 0.1
+    const speed = 1
+    const space = '&nbsp;&nbsp;';
+
+    function go() {
+        i = i < width ? i + step : step;
+        m.style.marginLeft = -i + 'px';
+    }
+    var i = 0
+    var step = defaultStep
+    var m = document.getElementById('cur-track-name');
+    var t = m.innerHTML; // text
+    m.innerHTML = t + space;
+    m.style.position = 'absolute'; 
+    var width = (m.clientWidth + 1);
+    m.style.position = '';
+    m.innerHTML = t + space + t + space + t + space;
+
+    m.addEventListener('mouseenter', () => {
+		step = 0;
+	}, true);
+    m.addEventListener('mouseleave', () => {
+		step = defaultStep;
+	}, true);
+
+    setTimeout(() => {
+        marqueeId = setInterval(go, speed);
+    }, initialDelay);
+}
+
 
 function setVolume() {
 
@@ -142,9 +220,6 @@ function processInput(e)
             break
 	}
 }
-
-
-initMiniWindows()
 
 
 window.onload = ()=> 
