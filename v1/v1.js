@@ -546,9 +546,9 @@ canvasContext.fillStyle = "black"
 
 function loadTrack()
 {
-	// if (progressTimer != null) 	{}
+	_loadTrack()
+
 	clearInterval(progressTimer);
-	curTrack.src = trackList[curIndex].path;
 	curTrackText.textContent = loadingTrackStr //old music player
 
 	setNowPlayingAnim(false)
@@ -556,7 +556,6 @@ function loadTrack()
 	curBitrate.innerHTML = bitrateStereoStr
 	monoStereo.style.opacity = "1"
 
-	curTrack.load();
 	progressTimer = setInterval(updateProgress, 1000);	
 	
 	//set playlist entry bg color 
@@ -626,18 +625,6 @@ curTrack.onloadedmetadata = function()
 		appendTerminalOutput("loaded track " + trackList[curIndex].name)
 	}
 
-function parseTime(duration)
-{
-	let minutes = Math.floor(duration/60)
-	let seconds = Math.round(duration % 60)
-	let minString = (minutes < 10)? ("0" + minutes) : ("" + minutes);
-	let secString = (seconds < 10)? ("0" + seconds) : ("" + seconds);
-
-	return { 
-     min: minString,
-     sec: secString
-   }; 
-}
 
 //playback controls
 function playTrackV1()

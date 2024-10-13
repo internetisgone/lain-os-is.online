@@ -30,7 +30,7 @@ p, a
     color: red;
 }
 
-pre, input
+pre, input, button
 {
     font-family: var(--mono-font);
 }
@@ -114,13 +114,15 @@ pre, input
 #icons-container 
 {
 	position: absolute; bottom: 20px;
-	display: flex; flex-direction: row;
+	display: flex; flex-direction: row; gap: 5px;
 }
 .icon 
 {
 	display: none;
 	cursor: pointer;
     margin: 0;
+    background-color: snow;
+    font-size: 12px;
 }
 
 /*+------- music player window -------+*/
@@ -131,7 +133,6 @@ pre, input
     flex-direction: column;
     top: 10%;
     left: 20%;
-    width: 420px;
     height: unset;
     padding-top: var(--drag-area-height);
     z-index: 3;
@@ -140,7 +141,7 @@ pre, input
 #music-player-top-container {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: 120px 30px 70px;
+    grid-template-rows: 110px 20px 100px;
 }
 
 #artist-links-container {
@@ -160,7 +161,7 @@ pre, input
     grid-column: 1; grid-row: 1;
 }
 
-#cur-time {
+#big-cur-time {
     font-size: 18px;
     margin: 7px;
 }
@@ -193,10 +194,32 @@ pre, input
 }
 
 #volume-slider {
-    width: 50px;
+    width: 60px;
+    height: 10px;
+    --thumb-size: 15px;
+    --thumb-color:red;
+    background: gainsboro;
+    -webkit-appearance :none;
+    -moz-appearance :none;
+    appearance :none;
     /* writing-mode: vertical-lr;
     direction: rtl; */
 }
+#volume-slider::-webkit-slider-thumb{
+    height: var(--thumb-size);
+    background: var(--thumb-color);
+    aspect-ratio: 1;
+    -webkit-appearance: none;
+    appearance: none;
+}
+#volume-slider::-moz-range-thumb {
+    height: var(--thumb-size);
+    aspect-ratio: 1;
+    background: var(--thumb-color);
+    aspect-ratio: 1;
+    -webkit-appearance: none;
+    appearance: none;
+  }
 
 #progress-bar {
     grid-column-start: 1; grid-column-end: 3;
@@ -209,6 +232,14 @@ pre, input
     grid-column-start: 1; grid-column-end: 3;
     grid-row: 3;
     display: flex; flex-direction: row;
+}
+#playback-controls button {
+    border: unset;
+    padding: 0;
+    background-color: transparent;
+}
+#playback-controls button, #playback-controls pre {
+    font-size: 15px;
 }
 
 #cur-time-container {
@@ -229,7 +260,8 @@ pre, input
 
 #tracklist li {
     list-style-type: decimal; 
-	padding: 0; 
+    padding: 4px;
+    padding-left: 0;
 }
 #tracklist li:hover, .highlighted-track {
     color: white;

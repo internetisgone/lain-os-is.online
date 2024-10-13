@@ -148,8 +148,12 @@ let isPlaying = false
 
 // playback controls
 
-function _playTrack()
-{
+function _loadTrack() {
+	curTrack.src = trackList[curIndex].path;
+	curTrack.load()
+}
+
+function _playTrack() {
 	if (audioContext.state === 'suspended') {
 		audioContext.resume();
 	}
@@ -210,7 +214,9 @@ const barWidth = visualiserCanvas.width / bufferLength - barGap
 
 function drawFrame()
 {
-	if (isPlaying) requestAnimationFrame(drawFrame);
+	if (!isPlaying) return;
+		
+	requestAnimationFrame(drawFrame);
 
 	analyser.getByteFrequencyData(frequencyData)
 	// console.log("analyserrr bin count " + analyser.frequencyBinCount + ", data " + frequencyData)
@@ -251,4 +257,17 @@ function initChatEmbed()
 function getRandomInt(min, max)
 {
 	return Math.floor(Math.random() * (max - min) + min);
+}
+
+function parseTime(duration)
+{
+	let minutes = Math.floor(duration/60)
+	let seconds = Math.round(duration % 60)
+	let minString = (minutes < 10)? ("0" + minutes) : ("" + minutes);
+	let secString = (seconds < 10)? ("0" + seconds) : ("" + seconds);
+
+	return { 
+     min: minString,
+     sec: secString
+   }; 
 }

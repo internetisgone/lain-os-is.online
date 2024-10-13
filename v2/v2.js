@@ -35,7 +35,10 @@ const trackList = [
 ]
 
 
-// mini windows
+// *+-------              -------+* //
+// *+------- mini windows -------+* //
+// *+-------              -------+* //
+
 const miniWindows = document.getElementsByClassName("mini-window")
 const icons = document.getElementsByClassName("icon")
 
@@ -53,15 +56,21 @@ function initMiniWindows() {
 	}
 }
 
+// *+-------              -------+* //
+// *+------- music player -------+* //
+// *+-------              -------+* //
 
-// music player
 const trackListEl = document.getElementById("tracklist").getElementsByTagName("li")
-let curTrack = document.getElementById("cur-track")
-let curTrackName = document.getElementById("cur-track-name")
-let curTrackNameClone = document.getElementById("cur-track-name-clone") // invisible clone for getting text width
-let artistLinksEl = document.getElementById("artist-links")
+const curTrack = document.getElementById("cur-track")
+const curTrackName = document.getElementById("cur-track-name")
+const curTrackNameClone = document.getElementById("cur-track-name-clone") // invisible clone for getting text width
+const artistLinksEl = document.getElementById("artist-links")
+const curTimeEls = document.getElementsByClassName("cur-time")
+const volSlider = document.getElementById("volume-slider")
+
 let curIndex = 0
 let marqueeId, marqueeDelayId
+let progressTimer
 
 // visualiser
 let source = audioContext.createMediaElementSource(curTrack);
@@ -71,21 +80,30 @@ canvasContext.fillStyle = "red"
 loadTrack()
 initTracklistClickEvent()
 
+curTrack.addEventListener("ended", nextTrackV2); 
+
 function loadTrack() {
-    curTrack.src = trackList[curIndex].path
-    curTrack.load()
+    _loadTrack()
     console.log("loaded", trackList[curIndex].name) 
+
     curTrackName.innerHTML = `${curIndex + 1}. ${trackList[curIndex].name} ${trackList[curIndex].duration}`
     curTrackNameClone.innerHTML = `${curIndex + 1}. ${trackList[curIndex].name} ${trackList[curIndex].duration}`
+
     setTracklistHighlight()
  
     startMarquee()
 
     updateArtistLink()
+
+    resetProgress()
+    clearInterval(progressTimer);
+    progressTimer = setInterval(updateProgress, 1000);	    
+
+    document.getElementById("cur-track-duration").textContent = trackList[curIndex].duration
 }
 
 function playTrackV2() {
-    _playTrack()    
+    _playTrack()
 }
 
 function pauseTrackV2() {
@@ -94,6 +112,7 @@ function pauseTrackV2() {
 
 function stopTrackV2() {
     _stopTrack()
+    resetProgress()
 }
 
 function prevTrackV2() {
@@ -183,16 +202,34 @@ function updateArtistLink() {
     artistLinksEl.textContent = linkText == null ? trackList[curIndex].link : linkText
 }
 
-
 function setVolume() {
-
+    curTrack.volume = volSlider.value / volSlider.max // this does not work in safari. use gain node instead
 }
 
 function onFinishSettingVolume() {
     
 }
 
-// terminal input
+function updateProgress() {
+    if (isPlaying) {
+        // let progress = curTrack.currentTime / curTrack.duration;
+        let timeStr = parseTime(curTrack.currentTime)
+
+        for (i = 0; i < curTimeEls.length; i++) {
+            curTimeEls[i].textContent = timeStr.min + ":" + timeStr.sec;
+        }
+    }
+}
+
+function resetProgress() {
+    for (i = 0; i < curTimeEls.length; i++) {
+        curTimeEls[i].textContent = "00:00";
+    }
+}
+
+// *+-------          -------+* //
+// *+------- terminal -------+* //
+// *+-------          -------+* //
 
 const COMMANDS = ["help", "cd", "ls", "pwd", "whoami", "neofetch", "ssh", "clear"]
 const INPUT_PATTERN = /^[\w\s]*$/
