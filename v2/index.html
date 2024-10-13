@@ -209,22 +209,27 @@
             </div>
         </div>
 
-        <div id="progress-bar">
-            <span id="progress-bar-playhead">-v-</span>
-            <!-- <span style="float: right;"></span> -->
+        <div id="progress-bar">&nbsp;/- - - - - - - - - - - - - - - - - - - - - - /&nbsp;
+            <span id="progress-bar-playhead">=v=</span>
         </div>
 
         <div id="playback-controls">
-         <!-- todo -->
-        <!-- <div id="playback-btn-click-area"></div> -->
-            <pre>
+            <pre style="position: absolute;">
    /  .. / .-.. --- ...- . / -.-- --- ..- 
- //     /     //    /     /     '   <button id="loop-btn" disabled onclick="switchLoop()"aria-label="change loop mode">loop</button>
- / <button onclick="prevTrackV2()" aria-label="prev">&lt;&lt; </button> / <button onclick="playTrackV2()" aria-label="play"> &#x25B6; </button> /<button onclick="pauseTrackV2()" aria-label="pause">  &#x23F8; </button> / <button onclick="stopTrackV2()" aria-label="stop"> &#x23F9; </button> / <button onclick="nextTrackV2()" aria-label="next"> &gt;&gt; </button>/          <button id="dl-btn" disabled aria-label="mediafire download">dl</button>
-      //    /     //    /     /   <button id="shuffle-btn" disabled onclick="toggleShuffle()" aria-label="change shuffle mode">shfl</button>
- `---'`----'`----'`----'`----//
+ //     /     //    /     /     '   
+ /     /     /     /     /     /    <button id="loop-btn" disabled onclick="switchLoop()"aria-label="change loop mode">loop</button>      
+      //    /     //    /     /            <button id="dl-btn" disabled aria-label="mediafire download">dl</button>
+ `---'`----'`----'`----'`----//    <button id="shuffle-btn" disabled onclick="toggleShuffle()" aria-label="change shuffle mode">shfl</button>
                             /
+                           / 
             </pre>
+            <div id="playback-controls-click-area">
+                <button onclick="prevTrackV2()" aria-label="prev">&#x23EA;</button>
+                <button onclick="playTrackV2()" aria-label="play">&#x23F5;</button>
+                <button onclick="pauseTrackV2()" aria-label="pause">&#x23F8;</button>
+                <button onclick="stopTrackV2()" aria-label="stop">&#x23F9;</button>
+                <button onclick="nextTrackV2()" aria-label="next">&#x23E9;</button>
+            </div>
         </div>
 
     </div>
@@ -281,11 +286,11 @@
             <div id="mini-total-time"><span id="cur-track-duration">00:00</span>/73:43</div>
             <div id="mini-controls">
                 <div id="mini-controls-btns">
-                    <button onclick="prevTrackV2()" aria-label="prev">&lt;&lt;</button>
-                    <button onclick="playTrackV2()" aria-label="play">&#x25B6;</button>
+                    <button onclick="prevTrackV2()" aria-label="prev">&#x23EA;</button>
+                    <button onclick="playTrackV2()" aria-label="play">&#x23F5;</button>
                     <button onclick="pauseTrackV2()" aria-label="pause">&#x23F8;</button>
                     <button onclick="stopTrackV2()" aria-label="stop">&#x23F9;</button>
-                    <button onclick="nextTrackV2()" aria-label="next">&gt;&gt;</button>
+                    <button onclick="nextTrackV2()" aria-label="next">&#x23E9;</button>
                 </div>
             </div>
             <div class="cur-time" id = "mini-cur-time">00:00</div>
@@ -313,7 +318,15 @@
     <div class="mini-window-draggable"></div>
 
     <div id="terminal-content">
-        <pre style="font-size: 8px;">
+        <pre>
+ .__         .__        ________    _________
+ |  | _____  |__| ____  \_____  \  /   _____/
+ |  | \__  \ |  |/    \  /   |   \ \_____  \ 
+ |  |__/ __ \|  |   |  \/    |    \/        \
+ |____(____  /__|___|  /\_______  /_______  /
+           \/        \/         \/        \/ 
+        </pre>
+        <!-- <pre style="font-size: 8px;">
 @%%%%%%%@%%%%%%%%%%%#@@@%%%%%%#*%%%%%*#**#%#***##%%%%%%##%%%%%%###%%%%%#%%%%%%%%%%%
 @%%%%%%%%%%%@@%%%%%%%%%%%%%%%%: *%%%%#%####%#%##%%%%%%%%%%#%%%%%%%%%%%%%%%%%%%%%%#%
 @%%%%%%%%%%%@@%%%%%%%%%%%*%%%+. .#%%%#%#%%%%%%##%%%%%%%%%%###%%##%#%##%%%%%%%%%%%#%
@@ -347,7 +360,7 @@
 .          .:     .-=#+::.              .   .. .        :%%*=%%%%%%%%%%@@%# .      
 .   .    .         .:=#%#-..               ..         -%#* . *%%=.=.%%%@%@#        
 .         ..  .     .:=#%%%*-:.. .            ......==:-# .  :%+ . .%%%@%@*       .
-        </pre>
+        </pre> -->
 </div>
     <div id="terminal-input-container">
         <span id="terminal-prompt">lain@navi ~ % &nbsp;</span>

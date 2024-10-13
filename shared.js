@@ -1,16 +1,13 @@
-// functions, vars, and classes shared between v1 and v2
+// *+-------              -------+* //
+// *+------- mini windows -------+* //
+// *+-------              -------+* //
 
-/////////// global vars ///////////
-
-// mini windows //
 let movingWindow
 let windowIsMoving = false;
 let offset = [0,0];
 let maxZ = 10;
-
 let isLandscape = window.matchMedia("(min-aspect-ratio: 4/3)").matches
-
-/////////// mini windows ///////////
+const closeAnimDuration = 333 // ms
 
 const closeAnimation = [
 	// display the whole window
@@ -24,7 +21,6 @@ const closeAnimation = [
 	transform: isLandscape? ("translate(-20%, 10%)"):("translate(0%, 40%)"), 
 	opacity: "0.3"}    
 ]
-const closeAnimDuration = 333 // ms
 
 // draggable mini window class
 class MiniWindow {
@@ -142,7 +138,9 @@ function dragEnd()
 }
 
 
-/////////// music player ///////////
+// *+-------              -------+* //
+// *+------- music player -------+* //
+// *+-------              -------+* //
 
 let isPlaying = false
 
@@ -256,7 +254,10 @@ function initChatEmbed()
 	document.getElementById("chat-container").appendChild(chatScript)
 }
 
-/////////// utils ///////////
+
+// *+-------       -------+* //
+// *+------- utils -------+* //
+// *+-------       -------+* //
 
 // min inclusive, max exclusive
 function getRandomInt(min, max)

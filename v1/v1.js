@@ -829,6 +829,13 @@ function updateProgress()
 	//console.log("updated progress, progress = " + progress + ", width = " + oldPprogressFill.style.width)
 }
 
+function setProgress(el)
+{
+	let jumpTo = curTrack.duration * (el.offsetX / progressBar.offsetWidth);
+	curTrack.currentTime = jumpTo;
+	updateProgress()
+}
+
 function oldSetProgress(el)
 {
 	let oldJumpTo = curTrack.duration * (el.offsetX / oldProgressBar.offsetWidth);

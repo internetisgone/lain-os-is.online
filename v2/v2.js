@@ -73,6 +73,7 @@ const playhead = document.getElementById("progress-bar-playhead")
 let curIndex = 0
 let marqueeId, marqueeDelayId
 let progressTimer
+const fontWidth = 9 
 progressBar.addEventListener("click", setProgress)
 
 // visualiser
@@ -221,8 +222,8 @@ function updateProgress() {
         }
 
         let progress = curTrack.currentTime / curTrack.duration;
-        let offset = 9 // current font width
-        playhead.style.left = (progress * (progressBar.clientWidth - playhead.clientWidth)) + offset + "px"
+        let marginCharCount = 2
+        playhead.style.left = progress * (progressBar.clientWidth - playhead.clientWidth - 2 * marginCharCount * fontWidth) + marginCharCount * fontWidth + "px"
     }
 }
 
@@ -230,6 +231,7 @@ function resetProgress() {
     for (i = 0; i < curTimeEls.length; i++) {
         curTimeEls[i].textContent = "00:00";
     }
+    playhead.style.left = 2 * fontWidth + "px"
 }
 
 // *+-------          -------+* //
@@ -240,6 +242,16 @@ const COMMANDS = [
     "play", "pause", "prev", "next", "stop",
     "help", "cd", "ls", "pwd", "whoami", "neofetch", "ssh", "clear"
 ]
+const HELP_TEXT = `
+
+playback controls  
+
+play    pause    prev    next    stop
+rand
+
+exit
+
+`
 const INPUT_PATTERN = /^[\w\s]*$/
 const inputEl = document.getElementById("terminal-input")
 const terminalContentEl = document.getElementById("terminal-content")
@@ -255,14 +267,17 @@ function processInput(e)
 {	
     switch(e.key) {
         case "Enter":
+            // display usr input
+            let usrInput = inputEl.value.trim()
+            let userInputEl = document.createElement("span")
+            userInputEl.textContent = "lain@navi ~ % " + usrInput
+            terminalContentEl.appendChild(userInputEl).appendChild(document.createElement("br"))
+
+            // check for illegal chars
             let outputStr = ""
             if (inputEl.value.match(INPUT_PATTERN) == null) {
                 outputStr = "what did u just say u faggot"
             }
-
-            let userInputEl = document.createElement("span")
-            userInputEl.textContent = "lain@navi ~ % " + inputEl.value
-            terminalContentEl.appendChild(userInputEl).appendChild(document.createElement("br"))
 
             let outputEl = document.createElement("span")
             outputEl.textContent = outputStr
@@ -273,14 +288,30 @@ function processInput(e)
             break
 		
         case "ArrowUp":
+            e.preventDefault()       
             historyIndex++
             break
         
         case "ArrowDown":
+            e.preventDefault()       
             historyIndex--
             break
 
         case "Tab":
+            e.preventDefault()       
+            for (let command of COMMANDS) {
+                if (inputEl.value.trim().toLowerCase() == command) {
+                    // todo                    
+                    // go to next match
+                }
+                else 
+                {
+                    // auto complete
+                    if(command.startsWith(inputEl.value.trim().toLowerCase())) {
+                        inputEl.value = command
+                    }
+                }
+            }
             break
 	}
 }

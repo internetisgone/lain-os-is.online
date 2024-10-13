@@ -3,13 +3,16 @@ body
     --mono-font: "JuliaMono", "Courier New", monospace;
 	--lain-font: "LoveLetter", "Courier New", monospace;
 
+    --accent-color: red;
+    /* --secondary-color: rgb(255, 235, 235); */
+
     --drag-area-height: 30px;
-    --window-border: 1px solid red;
+    --window-border: 1px solid var(--accent-color);
     --font-width: 9px;
 
     /* background: center/50% url("img/bg.png") repeat; */
     background-color: white;
-    color: red;
+    color: var(--accent-color);
 
     display: flex;
     flex-direction: column;
@@ -28,7 +31,7 @@ body
 
 p, a
 {
-    color: red;
+    color: var(--accent-color);
 }
 
 pre, input, button
@@ -92,7 +95,7 @@ pre, input, button
     height: var(--drag-area-height);
 	top: 0; left: 0; right: 0;
 	display: flex; justify-content: center; align-items: center;
-	color: red;
+	color: var(--accent-color);
     background-color: snow;
 }
 
@@ -132,6 +135,7 @@ pre, input, button
     position: absolute;
     display: flex;
     flex-direction: column;
+    gap: 10px;
     top: 10%;
     left: 20%;
     height: unset;
@@ -141,7 +145,7 @@ pre, input, button
 
 #music-player-top-container {
     display: grid;
-    grid-template-rows: 70px 16px 110px;
+    grid-template-rows: 65px 30px 110px;
     grid-template-columns: auto auto;
     grid-column-gap: 10px;
 }
@@ -151,7 +155,7 @@ pre, input, button
     display: flex;
     align-items: center;
     justify-content: space-around;
-    height: 33px;
+    height: 50px;
 }
 
 #tracklist-container {
@@ -215,7 +219,7 @@ canvas::before {
     width: 70px;
     height: 10px;
     --thumb-size: 12px;
-    --thumb-color:red;
+    --thumb-color: var(--accent-color);
     background: snow;
     -webkit-appearance :none;
     -moz-appearance :none;
@@ -243,11 +247,13 @@ canvas::before {
     grid-column-start: 1; grid-column-end: 3;
     grid-row: 2;
     background-color: snow;
+    user-select: none;
+    display: flex; align-items: center;
 }
 #progress-bar-playhead {
-    user-select: none;
     position: absolute;
     left: calc(2 * var(--font-width));
+    background-color: snow;
 }
 
 #playback-controls {
@@ -259,6 +265,11 @@ canvas::before {
     border: unset;
     padding: 0;
     background-color: transparent;
+    cursor: pointer;
+    color: var(--accent-color);
+}
+#playback-controls button:hover, #mini-controls-btns button:hover {
+    text-shadow: 2px 2px coral;
 }
 #playback-controls pre {
     margin: 0;
@@ -266,6 +277,20 @@ canvas::before {
 }
 #playback-controls button, #playback-controls pre {
     font-size: 15px;
+}
+#playback-controls-click-area {
+    margin-left: 22px;
+    margin-top: 12px;
+    margin-bottom: 33px;
+    z-index: 10;
+}
+#playback-controls-click-area button {
+    width: 46px;
+    height: 100%;
+    font-size: 30px;
+}
+#mini-controls-btns button {
+    font-size: 18px;
 }
 
 #tracklist li {
@@ -275,12 +300,12 @@ canvas::before {
 }
 #tracklist li:hover, .highlighted-track {
     color: white;
-    background-color: red;
+    background-color: var(--accent-color);
     cursor: pointer;
 }
 
 #tracklist li:hover::marker, .highlighted-track::marker {
-    color: red;
+    color: var(--accent-color);
 }
 
 #mini-stats-container {
@@ -324,6 +349,9 @@ canvas::before {
     word-wrap: break-word;
     overflow-y: scroll;
 }
+#terminal-content pre {
+    margin: 0;
+}
 
 #terminal-input-container {
     display: flex; flex-direction: row;
@@ -332,7 +360,7 @@ canvas::before {
     width: 100%;
 }
 #terminal-input {
-    color: red;
+    color: var(--accent-color);
     background-color: white;
     border-width: 0px;
     font-size: 15px;
@@ -352,7 +380,6 @@ canvas::before {
 #version-history-texts
 {
 	font-family: var(--mono-font); 
-    color: red;
 	width: 100%; height: 100%; 
 	margin: 0; padding: 0;
 	overflow-y: scroll;
