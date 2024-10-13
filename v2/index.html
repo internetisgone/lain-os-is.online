@@ -203,21 +203,27 @@
         <div id="now-playing">
             <p id="cur-track-name"></p>
             <p id="cur-track-name-clone"></p>
-            <p id="audio-stats">320 KBPS 48 KHZ &nbsp;&nbsp; stereo</p>
-            <input id="volume-slider" type="range" min="0" max="100" value="77" step="1" oninput="setVolume()" onchange="onFinishSettingVolume()" aria-label="volume slider">
+            <div>
+                <p id="audio-stats">320 KBPS 48 KHZ &nbsp;&nbsp; stereo</p>
+                <input id="volume-slider" type="range" min="0" max="100" value="77" step="1" oninput="setVolume()" onchange="onFinishSettingVolume()" aria-label="volume slider">
+            </div>
         </div>
 
         <div id="progress-bar">
-            /*+----------------------+*/
+            <span id="progress-bar-playhead">-v-</span>
+            <!-- <span style="float: right;"></span> -->
         </div>
 
         <div id="playback-controls">
+         <!-- todo -->
+        <!-- <div id="playback-btn-click-area"></div> -->
             <pre>
-   / .. / .-.. --- ...- . / -.-- --- ..- 
-  /      /      /      /      /      ' <button id="loop-btn" disabled onclick="switchLoop()"aria-label="change loop mode">loop</button>
- / <button onclick="prevTrackV2()" aria-label="prev">prev</button> / <button onclick="playTrackV2()" aria-label="play">play</button> /<button onclick="pauseTrackV2()" aria-label="pause">pause</button> / <button onclick="stopTrackV2()" aria-label="stop">stop</button> / <button onclick="nextTrackV2()" aria-label="next">next</button> /       <button id="dl-btn" disabled aria-label="mediafire download">dl</button>
-       /      /      /      /      / <button id="shuffle-btn" disabled onclick="toggleShuffle()" aria-label="change shuffle mode">shfl</button>
- `----'`-----'`-----'`-----'`-----/
+   /  .. / .-.. --- ...- . / -.-- --- ..- 
+ //     /     //    /     /     '   <button id="loop-btn" disabled onclick="switchLoop()"aria-label="change loop mode">loop</button>
+ / <button onclick="prevTrackV2()" aria-label="prev">&lt;&lt; </button> / <button onclick="playTrackV2()" aria-label="play"> &#x25B6; </button> /<button onclick="pauseTrackV2()" aria-label="pause">  &#x23F8; </button> / <button onclick="stopTrackV2()" aria-label="stop"> &#x23F9; </button> / <button onclick="nextTrackV2()" aria-label="next"> &gt;&gt; </button>/          <button id="dl-btn" disabled aria-label="mediafire download">dl</button>
+      //    /     //    /     /   <button id="shuffle-btn" disabled onclick="toggleShuffle()" aria-label="change shuffle mode">shfl</button>
+ `---'`----'`----'`----'`----//
+                            /
             </pre>
         </div>
 
@@ -225,7 +231,9 @@
 
 
     <div id="artist-links-container">
+        <span>/+--·</span>
         <a id="artist-links" target="_blank"></a>
+        <span>·--+/</span>
     </div>
 
     <div id="tracklist-container">
@@ -269,18 +277,32 @@
     </div>
 
     <div id="music-player-bottom-container">
-        <div id="mini-total-time"><span id="cur-track-duration">00:00</span>/73:43</div>
-        <div id="mini-controls">
-            <!-- <img src="img/music-player-components/icons_all_c.png"> -->
-            <div id="mini-controls-btns">
-                <button onclick="prevTrackV2()" aria-label="prev">prev</button>
-                <button onclick="playTrackV2()" aria-label="play">play</button>
-                <button onclick="pauseTrackV2()" aria-label="pause">pause</button>
-                <button onclick="stopTrackV2()" aria-label="stop">stop</button>
-                <button onclick="nextTrackV2()" aria-label="next">next</button>
+        <div id="mini-stats-container">
+            <div id="mini-total-time"><span id="cur-track-duration">00:00</span>/73:43</div>
+            <div id="mini-controls">
+                <div id="mini-controls-btns">
+                    <button onclick="prevTrackV2()" aria-label="prev">&lt;&lt;</button>
+                    <button onclick="playTrackV2()" aria-label="play">&#x25B6;</button>
+                    <button onclick="pauseTrackV2()" aria-label="pause">&#x23F8;</button>
+                    <button onclick="stopTrackV2()" aria-label="stop">&#x23F9;</button>
+                    <button onclick="nextTrackV2()" aria-label="next">&gt;&gt;</button>
+                </div>
             </div>
-        </div>
-        <div class="cur-time" id = "mini-cur-time">00:00</div>
+            <div class="cur-time" id = "mini-cur-time">00:00</div>
+       <pre>
+         
+         /
+    - - /,- - 
+  .    /  '.
+   '. /
+ - - /,- - -    '. /
+    /  '.   - - - /,- - -
+', /        .    /  '.
+ -/- - -     '. /
+ /',     - - - /,- - -
+/.          . /  '.
+       </pre>
+       </div>
     </div>
 </div>
 

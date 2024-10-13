@@ -193,7 +193,12 @@ function _nextTrack() {
 
 // todo loop, shuffle, random
 
-
+function setProgress(el)
+{
+	let jumpTo = curTrack.duration * (el.offsetX / progressBar.offsetWidth);
+	curTrack.currentTime = jumpTo;
+	updateProgress()
+}
 
 // visualiser
 const audioContext = new (window.AudioContext || window.webkitAudioContext)()

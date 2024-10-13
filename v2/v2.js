@@ -1,7 +1,7 @@
 const trackList = [
     {'name': 'Bungalovv - Where\'s The Real Me', 'path': 'final_master_mp3/Where_s The Real Me.mp3', 'duration': '05:00', 'link': 'https://soundcloud.com/bungalovv'}, 
 
-    {'name': 'aDeAD  - 真実は真実だからこそ強いんだ', 'path': 'final_master_mp3/真実は真実だからこそ強いんだ.mp3', 'duration': '03:48', 'link': 'https://adeadmusic.bandcamp.com/'}, 
+    {'name': 'aDeAD  - 真実は真実だからこそ強いんだ', 'path': 'final_master_mp3/真実は真実だからこそ強いんだ.mp3', 'duration': '03:48', 'link': 'https://adeadmusic.bandcamp.com'}, 
 
     {'name': 'georg-i - Spliced fom Memory ', 'path': 'final_master_mp3/Spliced fom Memory .mp3', 'duration': '03:53', 'link': 'artist_link'}, 
 
@@ -15,11 +15,11 @@ const trackList = [
 
     {'name': 'Akira Takemoto  - 一人ぼっち1a (Videopunks works)', 'path': 'final_master_mp3/一人ぼっち1a (Videopunks works).mp3', 'duration': '09:09', 'link': 'artist_link'},
 
-    {'name': '7mint - Slip The Hoax', 'path': 'final_master_mp3/Slip The Hoax.mp3', 'duration': '05:05', 'link': 'https://7mint.bandcamp.com/'}, 
+    {'name': '7mint - Slip The Hoax', 'path': 'final_master_mp3/Slip The Hoax.mp3', 'duration': '05:05', 'link': 'https://7mint.bandcamp.com'}, 
 
     {'name': 'Yau Hei ASJ - Virtual Material Uploading... ', 'path': 'final_master_mp3/Virtual Material Uploading... .mp3', 'duration': '04:18', 'link': ' https://soundcloud.com/weareasj'}, 
 
-    {'name': 'd3br1s - El Nexo', 'path': 'final_master_mp3/El Nexo.mp3', 'duration': '04:04', 'link': 'https://d3br1s.bandcamp.com/'}, 
+    {'name': 'd3br1s - El Nexo', 'path': 'final_master_mp3/El Nexo.mp3', 'duration': '04:04', 'link': 'https://d3br1s.bandcamp.com'}, 
 
     {'name': 'Kwan - Arisu', 'path': 'final_master_mp3/Arisu.mp3', 'duration': '05:25', 'link': 'artist_link'}, 
 
@@ -67,10 +67,13 @@ const curTrackNameClone = document.getElementById("cur-track-name-clone") // inv
 const artistLinksEl = document.getElementById("artist-links")
 const curTimeEls = document.getElementsByClassName("cur-time")
 const volSlider = document.getElementById("volume-slider")
+const progressBar = document.getElementById("progress-bar")
+const playhead = document.getElementById("progress-bar-playhead")
 
 let curIndex = 0
 let marqueeId, marqueeDelayId
 let progressTimer
+progressBar.addEventListener("click", setProgress)
 
 // visualiser
 let source = audioContext.createMediaElementSource(curTrack);
@@ -203,7 +206,7 @@ function updateArtistLink() {
 }
 
 function setVolume() {
-    curTrack.volume = volSlider.value / volSlider.max // this does not work in safari. use gain node instead
+    curTrack.volume = volSlider.value / volSlider.max // temp. does not work in safari. use gain node instead
 }
 
 function onFinishSettingVolume() {
@@ -212,12 +215,14 @@ function onFinishSettingVolume() {
 
 function updateProgress() {
     if (isPlaying) {
-        // let progress = curTrack.currentTime / curTrack.duration;
         let timeStr = parseTime(curTrack.currentTime)
-
         for (i = 0; i < curTimeEls.length; i++) {
             curTimeEls[i].textContent = timeStr.min + ":" + timeStr.sec;
         }
+
+        let progress = curTrack.currentTime / curTrack.duration;
+        let offset = 9 // current font width
+        playhead.style.left = (progress * (progressBar.clientWidth - playhead.clientWidth)) + offset + "px"
     }
 }
 
@@ -231,7 +236,10 @@ function resetProgress() {
 // *+------- terminal -------+* //
 // *+-------          -------+* //
 
-const COMMANDS = ["help", "cd", "ls", "pwd", "whoami", "neofetch", "ssh", "clear"]
+const COMMANDS = [
+    "play", "pause", "prev", "next", "stop",
+    "help", "cd", "ls", "pwd", "whoami", "neofetch", "ssh", "clear"
+]
 const INPUT_PATTERN = /^[\w\s]*$/
 const inputEl = document.getElementById("terminal-input")
 const terminalContentEl = document.getElementById("terminal-content")

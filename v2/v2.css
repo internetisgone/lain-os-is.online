@@ -5,6 +5,7 @@ body
 
     --drag-area-height: 30px;
     --window-border: 1px solid red;
+    --font-width: 9px;
 
     /* background: center/50% url("img/bg.png") repeat; */
     background-color: white;
@@ -140,12 +141,17 @@ pre, input, button
 
 #music-player-top-container {
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: 110px 20px 100px;
+    grid-template-rows: 70px 16px 110px;
+    grid-template-columns: auto auto;
+    grid-column-gap: 10px;
 }
 
 #artist-links-container {
     background-color: snow;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 33px;
 }
 
 #tracklist-container {
@@ -162,15 +168,26 @@ pre, input, button
 }
 
 #big-cur-time {
-    font-size: 18px;
-    margin: 7px;
+    font-size: 17px;
+    margin: 0;
+    margin-left: 7px;
+    margin-top: 7px;
 }
 
 #now-playing {
     grid-column-start: 2; grid-column-end: 3;
     grid-row: 1;
     display: flex; flex-direction: column;
+    justify-content: space-between;
     overflow: hidden;
+}
+
+canvas::before {
+
+}
+
+#now-playing div {
+    display: flex; flex-direction: row; gap: 30px;
 }
 
 #cur-track-name { 
@@ -187,6 +204,7 @@ pre, input, button
 
 #audio-stats {
     font-size: 12px;
+    margin: 0;
 }
 
 #top-display canvas {
@@ -194,11 +212,11 @@ pre, input, button
 }
 
 #volume-slider {
-    width: 60px;
+    width: 70px;
     height: 10px;
-    --thumb-size: 15px;
+    --thumb-size: 12px;
     --thumb-color:red;
-    background: gainsboro;
+    background: snow;
     -webkit-appearance :none;
     -moz-appearance :none;
     appearance :none;
@@ -208,7 +226,7 @@ pre, input, button
 #volume-slider::-webkit-slider-thumb{
     height: var(--thumb-size);
     background: var(--thumb-color);
-    aspect-ratio: 1;
+    aspect-ratio: 0.5;
     -webkit-appearance: none;
     appearance: none;
 }
@@ -216,7 +234,7 @@ pre, input, button
     height: var(--thumb-size);
     aspect-ratio: 1;
     background: var(--thumb-color);
-    aspect-ratio: 1;
+    aspect-ratio: 0.5;
     -webkit-appearance: none;
     appearance: none;
   }
@@ -225,7 +243,11 @@ pre, input, button
     grid-column-start: 1; grid-column-end: 3;
     grid-row: 2;
     background-color: snow;
-    height: 33px;
+}
+#progress-bar-playhead {
+    user-select: none;
+    position: absolute;
+    left: calc(2 * var(--font-width));
 }
 
 #playback-controls {
@@ -233,29 +255,17 @@ pre, input, button
     grid-row: 3;
     display: flex; flex-direction: row;
 }
-#playback-controls button {
+#playback-controls button, #mini-controls-btns button {
     border: unset;
     padding: 0;
     background-color: transparent;
 }
+#playback-controls pre {
+    margin: 0;
+    margin-left: 6px; margin-right: 6px;
+}
 #playback-controls button, #playback-controls pre {
     font-size: 15px;
-}
-
-#cur-time-container {
-
-}
-
-#now-playing-container {
-
-}
-
-#artist-links {
-
-}
-
-#tracklist {
-
 }
 
 #tracklist li {
@@ -271,6 +281,28 @@ pre, input, button
 
 #tracklist li:hover::marker, .highlighted-track::marker {
     color: red;
+}
+
+#mini-stats-container {
+    height: 70px;
+    width: 100px;
+    display: grid;
+    align-items: center;
+    margin-left: 7px;
+}
+#mini-total-time {
+    grid-row: 1;
+}
+#mini-controls {
+    grid-row: 2;
+}
+#mini-cur-time {
+    grid-row: 2;
+}
+#mini-stats-container pre {
+    position: absolute;
+    right: 0;
+    font-size: 12px;
 }
 
 /*+------- terminal window -------+*/

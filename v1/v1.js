@@ -838,15 +838,6 @@ function oldSetProgress(el)
 	// console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + oldProgressBar.offsetWidth + ", oldJumpTo = " + oldJumpTo)
 }
 
-function setProgress(el)
-{
-	let jumpTo = curTrack.duration * (el.offsetX / progressBar.offsetWidth);
-	curTrack.currentTime = jumpTo;
-	updateProgress()
-	// console.log("progressss " + el)
-	// console.log("set progress: el.offsetX  = " + el.offsetX + ", curTrack.duration = " + curTrack.duration + ", max width = " + progressBar.offsetWidth + ", jumpTo = " + jumpTo)
-}
-
 let oldPlaylist = document.getElementById("old-playlist-content")
 fillPlaylist(oldPlaylist);
 ////////////// music player //////////////
