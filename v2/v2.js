@@ -1,11 +1,11 @@
 const trackList = [
-    {'name': 'Bungalovv - Where_s The Real Me', 'path': 'final_master_mp3/Where_s The Real Me.mp3', 'duration': '05:00', 'link': 'https://soundcloud.com/bungalovv'}, 
+    {'name': 'Bungalovv - Where\'s The Real Me', 'path': 'final_master_mp3/Where_s The Real Me.mp3', 'duration': '05:00', 'link': 'https://soundcloud.com/bungalovv'}, 
 
     {'name': 'aDeAD  - 真実は真実だからこそ強いんだ', 'path': 'final_master_mp3/真実は真実だからこそ強いんだ.mp3', 'duration': '03:48', 'link': 'https://adeadmusic.bandcamp.com/'}, 
 
     {'name': 'georg-i - Spliced fom Memory ', 'path': 'final_master_mp3/Spliced fom Memory .mp3', 'duration': '03:53', 'link': 'artist_link'}, 
 
-    {'name': 'moemiki - PCB in the Garbage ', 'path': 'final_master_mp3/PCB in the Garbage .mp3', 'duration': '03:24', 'link': 'artist_link'}, 
+    {'name': 'moemiki - PCB in the Garbage ', 'path': 'final_master_mp3/PCB in the Garbage .mp3', 'duration': '03:24', 'link': 'https://soundcloud.com/moemiki'}, 
 
     {'name': 'NTFL - 765', 'path': 'final_master_mp3/765.mp3', 'duration': '03:42', 'link': 'artist_link'},
 
@@ -17,7 +17,7 @@ const trackList = [
 
     {'name': '7mint - Slip The Hoax', 'path': 'final_master_mp3/Slip The Hoax.mp3', 'duration': '05:05', 'link': 'https://7mint.bandcamp.com/'}, 
 
-    {'name': 'Yau Hei ASJ - Virtual Material Uploading... ', 'path': 'final_master_mp3/Virtual Material Uploading... .mp3', 'duration': '04:18', 'link': 'artist_link'}, 
+    {'name': 'Yau Hei ASJ - Virtual Material Uploading... ', 'path': 'final_master_mp3/Virtual Material Uploading... .mp3', 'duration': '04:18', 'link': ' https://soundcloud.com/weareasj'}, 
 
     {'name': 'd3br1s - El Nexo', 'path': 'final_master_mp3/El Nexo.mp3', 'duration': '04:04', 'link': 'https://d3br1s.bandcamp.com/'}, 
 
@@ -57,29 +57,31 @@ function initMiniWindows() {
 // music player
 const trackListEl = document.getElementById("tracklist").getElementsByTagName("li")
 let curTrack = document.getElementById("cur-track")
+let curTrackName = document.getElementById("cur-track-name")
+let curTrackNameClone = document.getElementById("cur-track-name-clone") // invisible clone for getting text width
+let artistLinksEl = document.getElementById("artist-links")
 let curIndex = 0
-let marqueeId 
+let marqueeId, marqueeDelayId
+
 // visualiser
+let source = audioContext.createMediaElementSource(curTrack);
+source.connect(analyser).connect(audioContext.destination)
 canvasContext.fillStyle = "red"
 
 loadTrack()
 initTracklistClickEvent()
 
-let source = audioContext.createMediaElementSource(curTrack);
-source.connect(analyser).connect(audioContext.destination)
-
 function loadTrack() {
     curTrack.src = trackList[curIndex].path
     curTrack.load()
     console.log("loaded", trackList[curIndex].name) 
-    document.getElementById("cur-track-name").textContent = `${curIndex + 1}. ${trackList[curIndex].name} ${trackList[curIndex].duration}`
+    curTrackName.innerHTML = `${curIndex + 1}. ${trackList[curIndex].name} ${trackList[curIndex].duration}`
+    curTrackNameClone.innerHTML = `${curIndex + 1}. ${trackList[curIndex].name} ${trackList[curIndex].duration}`
     setTracklistHighlight()
-
-    if (marqueeId) {
-        clearInterval(marqueeId)
-        marqueeId = null
-    }
+ 
     startMarquee()
+
+    updateArtistLink()
 }
 
 function playTrackV2() {
@@ -131,6 +133,20 @@ function initTracklistClickEvent() {
 }
 
 function startMarquee() {
+
+    if (marqueeId) {
+        curTrackName.style.marginLeft = "0"
+        clearInterval(marqueeId)
+        marqueeId = null
+    }
+    if (marqueeDelayId) {
+        clearTimeout(marqueeDelayId)
+    }
+
+    // only start marquee if text width is longer than display width
+    var width = (curTrackNameClone.clientWidth + 1); 
+    if (width <= curTrackName.clientWidth) return; 
+
     // based on https://stackoverflow.com/questions/337330/javascript-marquee-to-replace-marquee-tags/26372490#26372490
 
     const initialDelay = 1500
@@ -139,29 +155,32 @@ function startMarquee() {
     const space = '&nbsp;&nbsp;';
 
     function go() {
-        i = i < width ? i + step : step;
-        m.style.marginLeft = -i + 'px';
+        i = i < width ? i + step : -17;
+        curTrackName.style.marginLeft = -i + 'px';
     }
     var i = 0
     var step = defaultStep
-    var m = document.getElementById('cur-track-name');
-    var t = m.innerHTML; // text
-    m.innerHTML = t + space;
-    m.style.position = 'absolute'; 
-    var width = (m.clientWidth + 1);
-    m.style.position = '';
-    m.innerHTML = t + space + t + space + t + space;
+    var t = curTrackName.innerHTML; // text
 
-    m.addEventListener('mouseenter', () => {
-		step = 0;
-	}, true);
-    m.addEventListener('mouseleave', () => {
-		step = defaultStep;
-	}, true);
-
-    setTimeout(() => {
+    marqueeDelayId = setTimeout(() => {
+        curTrackName.innerHTML = t + space + t + space;
         marqueeId = setInterval(go, speed);
     }, initialDelay);
+
+    // pause scrolling on hover
+    curTrackName.addEventListener('mouseenter', () => {
+        step = 0;
+    }, true);
+    curTrackName.addEventListener('mouseleave', () => {
+        step = defaultStep;
+    }, true);
+}
+
+function updateArtistLink() {
+    artistLinksEl.href = trackList[curIndex].link
+    // temp 
+    linkText = trackList[curIndex].link.split("//")[1]
+    artistLinksEl.textContent = linkText == null ? trackList[curIndex].link : linkText
 }
 
 
@@ -242,3 +261,6 @@ window.onload = ()=>
 
     // setInterval(updateSprite, 433);
 }
+
+// chat
+// initChatEmbed()

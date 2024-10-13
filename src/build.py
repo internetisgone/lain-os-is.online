@@ -114,7 +114,7 @@ V1_TRACKLIST = [
 ]; 
 
 V2_TRACKLIST = [
-    {'name': 'Bungalovv - Where_s The Real Me', 'path': 'final_master_mp3/Where_s The Real Me.mp3', 'duration': '05:00', 'link': 'https://soundcloud.com/bungalovv'}, 
+    {'name': 'Bungalovv - Where\'s The Real Me', 'path': 'final_master_mp3/Where_s The Real Me.mp3', 'duration': '05:00', 'link': 'https://soundcloud.com/bungalovv'}, 
 
     {'name': 'aDeAD  - 真実は真実だからこそ強いんだ', 'path': 'final_master_mp3/真実は真実だからこそ強いんだ.mp3', 'duration': '03:48', 'link': 'https://adeadmusic.bandcamp.com/'}, 
 
@@ -152,10 +152,10 @@ V2_TRACKLIST = [
 # for filename in os.listdir("../v1/21sept-master-mp3"):
 #       V1_TRACKLIST.append( { "name": filename.split(".mp3")[0], "path": "21sept-master-mp3/" + filename })
 
-# def format_duration(seconds):
-#     minutes, seconds = divmod(seconds, 60)
-#     duration = "{:02d}:{:02d}".format(int(minutes), int(seconds))
-#     return duration
+def format_duration(seconds):
+    minutes, seconds = divmod(seconds, 60)
+    duration = "{:02d}:{:02d}".format(int(minutes), int(seconds))
+    return duration
      
 # for filename in os.listdir("../v2/final_master_mp3"):
 #     path_lain = os.path.dirname(os.path.realpath(__file__))[0:-4]
@@ -165,6 +165,14 @@ V2_TRACKLIST = [
 #     V2_TRACKLIST.append( { "name": audiofile.tag.artist + " - " + filename.split(".mp3")[0], "path": "final_master_mp3/" + filename, "duration": format_duration(audiofile.info.time_secs), "link": "artist_link" })
 	
 # print(V2_TRACKLIST)
+
+# get total duration
+total_seconds = 0
+for filename in os.listdir("../v2/final_master_mp3"):
+    path_lain = os.path.dirname(os.path.realpath(__file__))[0:-4]  
+    audiofile = eyed3.load(path_lain + "/v2/final_master_mp3/" + filename)
+    total_seconds += audiofile.info.time_secs
+print(format_duration(total_seconds))
 
 if __name__ == "__main__":
     site = Site.make_site( 
