@@ -43,13 +43,28 @@ pre, input, button
 
 .bg-ascii {
     position: absolute;
-    font-size: 9px;
+    font-size: 10px;
+    line-height: 1;
     margin: 0;
     user-select: none;
 }
 
 .hidden {
     display: none;
+}
+
+#splash-screen {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    background-color: white;
+    z-index: 777;
+}
+#splash-screen pre {
+    position: absolute;
+    right: 0;
+    font-size: 12px;
+    line-height: 1;
 }
 /* blinking caret */
 
@@ -122,6 +137,7 @@ pre, input, button
 {
 	position: absolute; bottom: 20px;
 	display: flex; flex-direction: row; gap: 15px;
+    background-color: white;
 }
 .icon 
 {
@@ -250,7 +266,7 @@ pre, input, button
 #progress-bar {
     grid-column-start: 1; grid-column-end: 3;
     grid-row: 2;
-    /* background-color: snow; */
+    /* background-color: var(--secondary-color); */
     user-select: none;
     display: flex; align-items: center;
     /* border-style: none none dashed none; */
