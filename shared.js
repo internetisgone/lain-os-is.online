@@ -1,31 +1,28 @@
-// functions, vars, and classes shared between v1 and v2
+// *+-------              -------+* //
+// *+------- mini windows -------+* //
+// *+-------              -------+* //
 
-/////////// global vars ///////////
-
-// whether a mini window is being dragged rn
-var windowIsMoving = false;
-
-var maxZ = 10;
-
-var isLandscape = window.matchMedia("(min-aspect-ratio: 4/3)").matches
-
-/////////// mini windows ///////////
+let movingWindow
+let windowIsMoving = false;
+let offset = [0,0];
+let maxZ = 10;
+let isLandscape = window.matchMedia("(min-aspect-ratio: 4/3)").matches
+const closeAnimDuration = 333 // ms
 
 const closeAnimation = [
-	//display the whole window
+	// display the whole window
 	{clipPath: "polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%)"}, 
 
 	{clipPath: "polygon(0% 0%, 0% 70%, 100% 70%, 100% 0%)", opacity: "1"},
 	{clipPath: "polygon(0% 0%, 0% 20%, 100% 20%, 100% 0%)", transform: "translate(0%, 0%)", opacity: "0.8"},
 
-	//display the top 5% rect area of window, shift left (landscape) or down (portrait)
+	// display the top 5% rect area of window, shift left (landscape) or down (portrait)
 	{clipPath: "polygon(0% 0%, 0% 5%, 100% 5%, 100% 0%)", 
 	transform: isLandscape? ("translate(-20%, 10%)"):("translate(0%, 40%)"), 
 	opacity: "0.3"}    
 ]
-const closeAnimDuration = 333 //ms
 
-// draggable mini windows 
+// draggable mini window class
 class MiniWindow {
 	constructor(index, element, icon) {
 		this.index = index,
@@ -34,10 +31,6 @@ class MiniWindow {
 	}
 
 	init() {
-		// console.log(this.index)
-		// console.log(this.element)
-		// console.log(this.icon)
-
 		let closeBtn = this.element.querySelector(".mini-window-close")
 		let dragArea = this.element.querySelector(".mini-window-draggable")
 		let closeAnim = this.element.animate(closeAnimation, {duration: closeAnimDuration, iterations: 1})
@@ -75,11 +68,11 @@ function bringWindowToFront(index) {
 }
 
 function toggleWindow(index, isVisible) {
-	miniWindows.item(index).style.display = isVisible ? "block" : "none"
+	miniWindows.item(index).style.visibility = isVisible ? "visible" : "hidden"
 }
 
 function toggleIcon(index, isVisible) {
-	icons.item(index).style.display = isVisible ? "block" : "none"
+	icons.item(index).style.visibility = isVisible ? "visible" : "hidden"
 }
 
 function dragStart(e) {
@@ -145,35 +138,124 @@ function dragEnd()
 }
 
 
-// music player 
-// controls, visualizer, etc
+// *+-------              -------+* //
+// *+------- music player -------+* //
+// *+-------              -------+* //
 
-// terminal 
+let isPlaying = false
 
-// version history
+// playback controls
 
-
-// chat
-function initChatEmbed()
-{
-	let chatScript = document.createElement("script")
-	chatScript.id = "cid0020000328095633756"
-	chatScript.setAttribute("data-cfasync", "false")
-	chatScript.async = true;
-	chatScript.src = "//st.chatango.com/js/gz/emb.js"
-	chatScript.style.width = "100%"
-	chatScript.style.height = "100%"
-	chatScript.innerHTML = '{"handle":"lain-os-is-online","arch":"js","styles":{"a":"f5f5f5","b":100,"c":"000000","d":"000000","e":"f5f5f5","h":"f5f5f5","l":"f5f5f5","m":"FFFFFF","p":"12","q":"f5f5f5","r":100,"t":0,"usricon":0,"surl":0,"allowpm":0}}'
-
-	//<script id="cid0020000328095633756" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 100%;">{"handle":"lain-os-is-online","arch":"js","styles":{"a":"f5f5f5","b":100,"c":"000000","d":"000000","e":"f5f5f5","h":"f5f5f5","l":"f5f5f5","m":"FFFFFF","p":"12","q":"f5f5f5","r":100,"t":0,"usricon":0,"surl":0,"allowpm":0}}</script>
-
-	document.getElementById("chat-container").appendChild(chatScript)
+function _loadTrack() {
+	curTrack.src = trackList[curIndex].path;
+	curTrack.load()
 }
 
-/////////// utils ///////////
+function _playTrack() {
+	if (audioContext.state === 'suspended') {
+		audioContext.resume();
+	}
+
+	curTrack.play();
+	isPlaying = true;
+
+	// visualiser
+	drawFrame()
+}
+
+function _pauseTrack() {
+	if (isPlaying) 
+	{
+		curTrack.pause();
+		isPlaying = false;
+	}
+}
+
+function _stopTrack() {
+	curTrack.pause();
+	curTrack.currentTime = 0; 
+	isPlaying = false;
+
+	requestAnimationFrame(function() {
+		canvasContext.clearRect(0, 0, visualiserCanvas.width, visualiserCanvas.height)
+	})
+}
+
+function _prevTrack() {
+
+}
+
+function _nextTrack() {
+
+}
+
+// todo loop, shuffle, random
+
+function setProgress(el)
+{
+	let jumpTo = curTrack.duration * (el.offsetX / progressBar.offsetWidth);
+	curTrack.currentTime = jumpTo;
+	updateProgress()
+}
+
+// visualiser
+const audioContext = new (window.AudioContext || window.webkitAudioContext)()
+const analyser = new AnalyserNode(audioContext, {
+    fftSize: 32,
+    // maxDecibels: -25,
+    // minDecibels: -60,
+    smoothingTimeConstant: 0.7
+})
+
+let bufferLength = analyser.frequencyBinCount
+let frequencyData = new Uint8Array(bufferLength)
+
+let visualiserCanvas = document.getElementById("visualiser")
+let canvasContext = visualiserCanvas.getContext("2d")
+const barGap = 1
+const barWidth = visualiserCanvas.width / bufferLength - barGap
+
+function drawFrame()
+{
+	if (!isPlaying) return;
+		
+	requestAnimationFrame(drawFrame);
+
+	analyser.getByteFrequencyData(frequencyData)
+	// console.log("analyserrr bin count " + analyser.frequencyBinCount + ", data " + frequencyData)
+
+	canvasContext.clearRect(0, 0, visualiserCanvas.width, visualiserCanvas.height)
+	let x = 0
+	for (let i = 0; i < bufferLength; i++)
+	{
+		let barHeight = frequencyData[i] / 2.5;
+		//console.log("index = " + i + ", x = " + x + ", bar height " + barHeight)
+		canvasContext.fillRect(x, visualiserCanvas.height - barHeight, barWidth, barHeight)
+
+		x += barWidth + barGap
+	}
+}
+
+
+// *+-------       -------+* //
+// *+------- utils -------+* //
+// *+-------       -------+* //
 
 // min inclusive, max exclusive
 function getRandomInt(min, max)
 {
 	return Math.floor(Math.random() * (max - min) + min);
+}
+
+function parseTime(duration)
+{
+	let minutes = Math.floor(duration/60)
+	let seconds = Math.round(duration % 60)
+	let minString = (minutes < 10)? ("0" + minutes) : ("" + minutes);
+	let secString = (seconds < 10)? ("0" + seconds) : ("" + seconds);
+
+	return { 
+     min: minString,
+     sec: secString
+   }; 
 }

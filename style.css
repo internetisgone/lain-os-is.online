@@ -1,0 +1,30 @@
+@font-face 
+{
+	font-family: "LoveLetter";
+	src: url("fonts/LoveLetter.TTF") format("truetype");
+}
+
+@font-face
+{
+	font-family: "Input-Mono";
+	src: url("fonts/Input-Regular_(InputMonoNarrow-Regular).ttf") format("truetype");
+}
+
+@font-face
+{
+	font-family: "JuliaMono";
+	src: url("fonts/JuliaMono-Regular.ttf") format("truetype");
+	font-weight: normal;
+}
+
+@font-face
+{
+	font-family: "JuliaMono";
+	src: url("fonts/JuliaMono-ExtraBold.ttf") format("truetype");
+	font-weight: bold;
+}
+
+body
+{
+    font-family: "LoveLetter", "Courier New", monospace;
+}

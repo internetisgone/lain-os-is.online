@@ -1,0 +1,389 @@
+{% extends "_base.html" %}
+
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/v1.css">
+<title>lain OS is online vol. 1: at last, lain is free</title>
+
+{% endblock %}
+
+
+{% block body %}
+
+<noscript>
+    <style>
+        #entry-page { display: none; }
+        #main-container { display: none; }
+        body { font-family: var(--mono-font); margin: 20px; }
+        figure { margin-left: 0; margin-right: 0; }
+    </style>
+    <h3>lain OS is online vol. 1: at last, lain is free</h3>
+    <a href="https://absurdtrax.bandcamp.com/album/lain-os-is-online-vol-1-at-last-lain-is-free-at-030" target="_blank">bandcamp</a>
+    <a href="https://www.mediafire.com/file/4t99s3ywf3cyzg6/AT-030.zip/file" target="_blank" >mediafire</a>
+    {% for track in tracklist %}
+        <figure>
+            <figcaption>{{ track.name }}</figcaption>
+            <audio controls src = "{{ track.path }}" ></audio>
+        </figure>
+   {% endfor %}
+
+</noscript>
+
+<div id="entry-page"> 
+    <div id="lain-os-text" style="opacity: 0;">lain OS<br>vol. 1</div>
+    <!-- <div id="version-text">online edition 1.0<br>at last, lain is free</div> -->
+    <div id="entry-texts-container">
+        <div id="entry-texts"></div>
+    </div>
+    <p id="entry-bottom-text"></p>
+</div>
+
+<div id="main-container">
+
+    <!---------- music player ---------->
+    <div class="mini-window" id="music-player">
+        <audio id="cur-track"></audio>
+        <!-- <audio preload="auto" id="server-room-bg-track" src="/bg-mp3/serv188-210.mp3"></audio>  -->
+        <div class="mini-window-header">lain-amp
+            <div class="mini-window-close"></div>
+        </div>
+        <div class="mini-window-draggable"></div>
+        
+        <div id="now-playing-container">
+            <p id="now-playing-static"></p>
+            <p id="changing-volume"></p>
+            <div id="now-playing">
+                <p id="now-playing-marquee"></p> 
+            </div>
+            <p id="cur-track-bitrate"></p>
+            <p id="mono-stereo">stereo</p>
+        </div>
+
+        <div id="cur-time-container">
+            <img id="cur-track-state"></img>
+            <div class="cur-time" id="cur-time">00:00</div>
+            <div id="visualiser-container">
+                <canvas id="visualiser"></canvas>
+            </div>
+        </div>
+
+        <div id="volume-slider-container">
+            <input type="range" min="0" max="100" value="77" step="1" id="volume-slider" oninput="setVolume()" onchange="onFinishSettingVolume()" aria-label="volume slider">
+        </div>
+
+        <div id="progress-bar-container">
+            <img src="img/music-player-components/progress_bar.png" style="position: absolute; width: 100%;">
+            <div id="progress-bar-fill">
+                <img src="img/music-player-components/progress_bar_fill.png" style="width: 100%;">
+            </div>
+        </div>
+
+        <div id="shuffle-loop-container">
+            <button id="loop-btn" onclick="switchLoop()" style="margin-left: 13px;" aria-label="change loop mode"><img src="img/music-player-components/loop_off.png"></button>
+            <button id="shuffle-btn" onclick="toggleShuffle()" aria-label="change shuffle mode"><img src="img/music-player-components/shuffle_off.png"></button>
+        </div>
+
+        <div id="playback-controls">
+            <button onclick="prevTrackV1()" aria-label="previous"><img src="img/btns-shaded/prev2.png"></button>
+            <button onclick="playTrackV1()" aria-label="play"><img src="img/btns-shaded/play2.png"></button>
+            <button onclick="pauseTrackV1()" aria-label="pause"><img src="img/btns-shaded/pause2.png"></button>
+            <button onclick="stopTrackV1()" aria-label="stop"><img src="img/btns-shaded/stop2.png"></button>
+            <button onclick="nextTrackV1()" aria-label="next"><img src="img/btns-shaded/next2.png"></button>
+        </div>
+
+        <div id="dl-button-container">
+            <a href="https://www.mediafire.com/file/4t99s3ywf3cyzg6/AT-030.zip/file" target="_blank">
+                <button id="dl-btn" aria-label="mediafire download"><img src="img/music-player-components/dl_button.png"></button>
+            </a>
+        </div>
+
+        <div id="artist-link-container">
+            <p></p>
+        </div>
+
+        <div id="playlist-container">
+            <ul id="playlist-content">
+            </ul>
+        </div>
+
+        <div id="mini-display-container">
+            <div id="mini-total-time">00:00 / 00:00</div>
+            <div id="mini-controls">
+                <img src="img/music-player-components/icons_all_c.png">
+                <div id="mini-controls-btns-container">
+                    <button onclick="prevTrackV1()" aria-label="prev"></button>
+                    <button onclick="playTrackV1()" aria-label="play"></button>
+                    <button onclick="pauseTrackV1()" aria-label="pause"></button>
+                    <button onclick="stopTrackV1()" aria-label="stop"></button>
+                    <button onclick="nextTrackV1()" aria-label="next"></button>
+                </div>
+            </div>
+            <div id = "mini-cur-time">00:00</div>
+        </div>
+    </div>
+    <!---------- music player end ---------->
+
+    <!-------------- terminal -------------->
+    <div class="mini-window" id="terminal">
+        <div class="mini-window-header">terminal
+            <div class="mini-window-close"></div>
+        </div>
+        <div class="mini-window-draggable"></div>
+        
+        <div id="terminal-inner-container">
+            <div id="terminal-txt-container">
+<!-- 				<pre style="color: whitesmoke;">
+
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣄⣀⠀⠀⠀⠀ 
+⠀⠀⠀⣠⠶⠾⠟⠃⠀⠀⠀⠀⠀⠀⠀⠈⠙⠳⣆⠀ 
+⠀⣤⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⣶⣶⡌⠀ 
+⠘⠁⢠⢶⢾⣯⣍⡁⠀⠀⠀⠀⠀⠀⢰⣧⣨⣿⢸⠄ 
+⠀⣠⢾⣷⣾⣿⣿⣷⠀⠀⠀⠀⠀⠀⢠⢿⣿⡿⡎⠀ 
+⠀⠃⢹⡘⢿⣿⡟⣹⠀⠀⠀⠀⠀⠀⠘⢤⣉⣑⠁⠀ 
+⠀⠀⠀⠙⣦⣤⠔⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+            </pre> -->
+<!-- 				<div id="terminal-ascii-art-container"> -->
+                <pre id="terminal-ascii-art">
+;;;::cccclllolcokkd:;oO0KKKKKKKKKKKKKKkxOKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKXXKKKXXXXXXXXKOc'.';lkKKKKKKKKKKKKKKKKKKKKKKKK000000000000OOOOOOOOOOkkxol;....:lodddddol;.......  
+;;::ccccclllolcokkxc;lk0KKKKKKKKKKKKKKkxOKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKXKKKKKKKKXXXXKKKKOo;'..;ok0K00KK000KKKKKKKKKK000000000000000OOOOOOOkxl:,'...........',;::,.....     
+;;::ccccclllolcokOko;:dOKKKKKKKKKKKKKKkx0KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXKKKOo;..';lk0000000000000000000000000OOOOOOOOOOOkko:'.';;'...:llcc:,.............   
+;::cccllllooolcdkOOd:;lk0KKKXKKKKKKKKKkk0KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXKKKKOo:'..,cdOKKKKKKKKKK0000000000000OOOOOOOOkkxc'.,ldxc...cdxdlc;'...'''........  
+:::ccllllloooocdO00kl;cx0KKXXXXXXXXXXKkkKXXXXXXXXXXXXXXXXXXXXXXXXKKKXXXXXXXXXXXXXXNNNNXXXXXXXXXXXXKKKKKKKKKKKKKKK0xc,..';oxO0000000000000000000OOOOOOOOOkxc..,oxxl'..clc:,'.',:cloddl:,...... 
+::cclllllooooocdOKK0xc:oOKXXXXXXXXXXNKkkKNNNNNNNXXXXXNNNXXXXXXXXXXXXXXXXXXNNNXXXXXNNNNNNNXXXXXXXXXXXXXXXXXXXKKKKKKKKOd:'..':oxO00000000000000OOOOOOOOOkkko'..cddl,..''..',:lodddddddol:'..... 
+::cclllooooooocdOKXKOo:lkKXNNNNNNNNNNKkkKNNNNNNNNNNNNNNNNNNNNNXXNNNNXXXNNNNNNXXXXXXNNNNNNXXXXXXXXXXXXXXXXXXXXXKKKKKKKK0kl;'..,:ldxO0000000000OOOOOOOOOOkkc...;;,....,;:lodddddddddolc;,'..... 
+:ccclloooooodoldOKXXKkl:d0XNNNNNNNNNNKkkKNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNXXXXXXXXXNNXXXXXXXXXXXXXXXXXXXXXXXKKKKKKKKKOxo:,''',;cldxkkOOOOOOOOOkkxdolc,...... .;odxxxxxxxxxddoolc:;,'..... 
+:ccllloooooodolxOKXXX0dclkKXXXNXXXXXXKkkKXXXXXXXXXXXXXXNNNNNNNNNNXXXXXXXXXNNNNNNXXXXXXXXNNXXXXXXXXXXXXXXXXXXXXXXXXKKKKKKKKKK0Oxlc;,'.'',;;;::;;;;;;,,'.......,...;dxxxxxxxxxxddoolc::,,,'.... 
+cccllloooodddolxOKXXXKkocdOKXXXXXXXXXKkkKXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXNNNXXNNXXXXXXXNXXXXXXXXXXXXXXXXXXXXXXXXXKKKKKKKKK0K00Okdoc:;,,,,,,,,,,,;:::cl;......'oxxxxxxxxxxddoolc;;;,,...... 
+cccllooooddddolxOKXXXX0xllk0XXXXXXXXX0xkKXXXXXXXXXXXXXXXXXXXXXK0OOkxxxxkO0KXXXXNNNNNXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXKKKKKKK0KK0000000OOkkkkkkkkkkkOOkkkl'.....cxxxxxxxxxxxdl;''.......      
+cccllooooddddolx0KXXXXKOoclk0XXXXXXXX0xkKXXXXXXXXXXXXXXXXXXKOdl:,,''..'',:cdOKXXXXXNNNNXXXXXXXXXXXXNNNNNXXXXXXXXXXXXXXXXKKKKKKKKKK00000000000OOOOOOOOOOkkx;....:xxxxxxxxxxxxdo;..........     
+ccllloooddddxdox0KXXXXX0xc:ok0KXXXXXX0xOKXXXXXXXXXXXKKXXKK0d:'.............';lkKXXXNNNNXXNNNXXXXXXXNNNNXXXXXXXXXXXXXXXXXXXKKKKKKKKKK0000000000OOOOOOOOOkkkl'..,oxxxkxxxxxxxxxdl,''........    
+ccllloooddddxdox0KXXXXXKOo::oOKKXXXXX0xOKXXXXXXKKKKKKKKKKOl,.................';o0XXXNXXNNNXXXXNNXXXXXXXXXXXXXXXXXXXXXXXXXXKKKKKKKKKKK000000000OOOOOOOOOOkko,..'oxkkkkkkxxxxxdo:;,''........   
+ccllloooddddxdox0KXXXXXX0kl;:oOKKXXXKOxOKKKKKKKKKKKKKKKKOl'...................',l0XXXXXNNNNNNNNNNNNXXXXXXXXXXXXXXXXXXXXKKKKKKKKKKKKKKK00000000000OOOOOOOOkl'...,dkkkkkkkkxxdoc:,'''.........  
+cclllloodddxxdox0KXXXXXXK0d:,:oO0KKKKOkOKKKKKKKKKKKKKKK0d,.....................',dKXXNNXNNNNNNXXXXXXXXXXXXXXXXXXKOxdolllloxO0KKKKKKKKKK0000000000OOOOOOOOx:.....;dxkkkkkxdol:,'...........    
+:ccllooodddxxdoxOKKXXXXXXKOo;,:dOKKKKOkOKKKKKKKKKKKKKKK0l......................',l0XXXXNNNXXXXXXXXXXXXXXXXXXXKOdc,'........,:ok0KKKKKK00000000000OOOOOOOOd,......;dkkkkkdc;,......            
+,;:cllooddxxxxdxOKKKXXXXXK0ko;;ok0KKKOkOKKKKKKKKKKKKKKK0l............ .........',oKXXXXXXXXXXXXXXXXXXXXXXXXX0o;'..............,lk00000000000000000OOOOOOko,.'lc...,oxxxl,..'.........         
+...,;:clodxxkxdkO0KKKKXXKKK0kl:cdOKKKOk0KKKKXKXXXXXXXKKKo'........... ....''.';ccxXXXXXXXXXXXXXXXXXXXXXXXKKOc'.................':x00000000000000000OOOOOkl,.'oxo;..'co:............           
+.....',:lodxkxxkO0KKKKKKXXKK0xl:lxOKKOk0KKXXXXXXXXXXXKK0l.................,,;:x00KXXXXXXXXXXXXXXXXXXXXXKKKOc'....................:x0000000000000000OOOOOkl'.'okkxl,.....;;....                
+......',;coxkkkOO0KKKKKXXXXXK0xl:lk0KOk0KXXXXXXXXXXXK0Oo'................';;:o0KKXXXXXXXXXXXXXXXXXXXXXKKKKx;.....................'lO0000000000000OOOOOOOkl,.'okkkkxc...':;'.                  
+.....';coxkOOO0KKKKXXXXXXXKOxccoO0Ok0KXXKXXXXXXXKK0xc'..........'.....,:cldOKKXXXXXXXXXXXXXXXXXXXXKKKKKo,......................ck0000000000OOOOOOOOOOko,..lkkkkko'. ..'..                  
+....',:oxkOOO00KKKXXXXXXXXKOdccdkkk0KKKKKXXKKKKKKK0koc,......,,,'...,:lxO0KKKXXXXXXXXXXXXXXXXXXXKKKKK0o;'.....................:kOOOO000OOOOOOOOOOOOOOd;..:xkkkx:..''...                   
+    ....';cdxkOOO00KKKXXXXXXXXKOocldxx0KKKKKKKKKKKKKKKOo:'......',,,...:dk0KKKKKKKXXXXXXXXXXXXXXXXXKKKKKKOxc'','.................;xOOOOOOOOOOOOOOOOOOOOkx:..;xkkkd;.'ll,....              ...
+    .....,;clodxkOO0KKKKKXXXXXK0koccod0KKKKKKKKKKKKKKKOo:'.........;;''o0KKKKKKKKKKKKKKXXXXXXXXXXXKKKKKKKKOc,;;,'................'oOOOOOOOOOOOOOOOOOOOkkkc'.,dkkko'.,ol,''.......        ....
+    ....',;:codxkO00KKKKKKKKKK0xl::oOKKKKKKKKKKKKKKKkoc'..........',:d0KKKKKKKKKKKKKXXXXXXKKKKKKKKKKKKKKkcc:;,..................ckOOOOOOOOOOOOOOOOOkkkko,..cxxxc..;l:''....''..        ....
+    .....'',:loxkO00KKKKKKKKKK0xc;cd0KKKKKKKKKKKKKkdl;........';;'.;x0KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK0dldl;,.......... .....';lkOOOOOOOOOOOOOOOkkkkkkd:..,oxd;..''.....''...             
+.         .....',;coxkOO0000KKKKKK0Oo:;cxO0KKK0000000Odl;..........,ll;':k00KKKKKKKKKKKKKKKKKKKKKKKK0000000olxc;;......''.....:d:;c:okOOOOkkkkkkkkkkkkkxxxxc'..:dl'.....:c,....               
+'...        .....,;coxkkkkkkxxxxxxxxo:,,:ldxxxxxxxxxdol;............:oo;,lxxxxxxxxxxxxxxxxxxxxxxxxxxxxddddd::l;;;'....',,,....,c:,;;,cooooooollllllllllllll:.. .;,.  ..;;,'.                  
+:;,'..       .....';:ldxxxxdoooolllllc;,,,:lllllllllcc;.............;ool::llllllllllllllllllllllllllllllllc,,:'.'';cllc::;.....,;'.,'';:::::::::::::::::::::,.. .'. ..,,'..                   
+cc::;,...      ....',:clodxddddddddoool:,,,:loooooolc:'.............;ooclllooooooooooodooddoooooooooooooool;;lccodddl:;,,'......::',:';cllllllllllllllllllllc'. ... .,;'...                   
+ccccc:;,'..     ....',;:cloddddooddooool:,',:loooool:,..............:oc'.':oooooooodddddddddddoooooooooooodooxxdlc;,,,,,,'......,c,'::';lllllllllllllllllcccc:'.     .,'.               ...   
+cccccccc:;'.     ....'',,;clooooooddooool:,',:looooc;'.............'ll'...'cloooooooddoooooooooooolloddoooolc:;,,,,,,,,,,'..'...'::',c;':llllllllllllllllccccc:'.    .'.                ....  
+lccccccccc:,..     .......,;cloooooooooool:;,,;cool:,..............;l,.....';;;;;:::ccccllloooooddollcc:;,,,,,,,'''..',,,'..'..'.':;.;c;';clllllccccccccccccccc:'.   ...                      
+lcccccccccc:;'.      ......,;clooooooooooolc;,,;cll:,..............:;.....'clllcc:::;;,,,,;;::::cc:;,,,,,,'',,,...''.'',,'..''',,.,:'':c;';cccccccccccccccc:::c:..   ....                     
+lccccccccccc:;'.         ...,:clllooooooooolc;,,;:c:;.............';'.....,llooooooollcc::;;;,,,,,,,,;;::c:'';,',:::;,''''..''.,:'.;:',:c;',:cccccccccc::::::::;. ..  .'...                   
+ccccccccccccc:;..         ...,:cllllllllllollc;,',;:;..............,......,lllolooollloooolllccc:::ccllllll;',,';cccc:;;;,.....'::'':,',cc;',::::::::::::::::::;. ...  .....                  
+cccccccccccllc:,..         ...,:clllllllllllllc;,'',,..............'......,clllllllllllllllllllllllllllllll:;,,,:ccccc::c:,.,;,,:c;.':'':c:;'';::::::::::::::::,. .'.    ....                 
+ccccccccccccllc:,.          ...,:ccllllllllllllc;,.'......................;cllllllllllllllllllllllllllllllc;,,',:cccccccc:,'::;;:cc,.,;',::::'.,:::::::::::::;:;.  .'.      ....              
+ccccccccccccccc:;'.          ..';:ccccccccccccccc;''......................:cccccllcccccccccccccccccccccccc:;,,',:ccccccccc,';:;;cc::,.,,.,::::,.';:::::::;:;;;;;'. .'..  ...  ...             
+cccccccccccccccc:,.           ..,;::cccccccccccc::;'.....................':cccccccccccccccccccccccccccccc::;,,',cccccccccc;';:,;:::::'.''.,::::;..,;;;;;;;;;;;;;,.. .'.  ....                 
+cccccccccc::::::;,..          ..';::::::::::::::;::'.....................':c:cccccccccccccccccc:cc:::ccc::c;,,';cccccc;;:c;',:,;:::::;'.''.,;;;;;'..,;;;;;;;;;;;,'.  ...   ..       ..        
+cc::;;;;;;,,,''''...           ..,;::::::::::::;;c;......................'::::::::::::::::::::::::::::::;:c;,'';cccccc:;;:;.,:,,;;;;;;;'....';;;;,,..',,;;;,,,,,,,'.  ......        ..        
+::;'.................          ..',;;;;;;;::::;;::'......................';;;;;:::::::::::::::::::::::::;cc,,'';ccccccc:;:;.,:,,;;;;;;;,.....',,,,,,'..',,,,,,,,,,,'...''..         .         
+:;,'...''''......'...           ..',,''',,;;;;;;:,.......................,;;;;;;;;;;;;;;;;;;;;:::;;;;;:;;c:','';cccccc::::;'':,',,,,;,,,,......,,,,,,'...',,,,,,','',:c:,...       ..         
+;;;;;;;;;;;,,,,,,,,'..          ...''.....',;;;c:,.......................';;;;;;;;;;;;;;;;;;;;;;;;;;;;;,;:;''..;::ccc::::::'';;'',,,,,,,,,......''','''....''''''''','......      ...         
+,;;:::;;;;;,,,,,,,,'..           ..'''......',:c:'.......................',,,,,,,,,,,,,,;;;;;;;;;;;;;;;,;:,'''',:::::::::::'.;;,',,,,,,,,,'......''''''''....''''''...            ...         
+',;;;;;;,,,,,,'''''''..          ...',''......,,'.........................,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,;:,''''':::::::::::'.,:,'''''''''''''......'''''''.....'.....             ...         
+.',,;;;,,,'''''''''''..           ..',,,''................................'''''''''',,'',,,,,,,,,,,;:::;;;''.''';::::::::::,.,:;'.'''''.......... ...................             ...         
+..',,,,'''''''''''''''..          ...',,,'',,..................... ......'''''''''''''''''''''',;clllllc:,'..,,.'::::::::::;.';;,.....        ...   .....   .........              ..         
+...'',,'......''''''''..           ..,,;,,;c;.  ..................   ....,,,'.......''......'.',;;,,''',;'...,;'';:::::;;::;'.,;;.             ..                  ..              ..         
+....''''..........''''..         ...',;,,:c,.. ...................   ...;:::;;;,.....      ..,;;::;.';;,'......',::;;;,,;;:,.';;,.                                                 ..        
+....'''..........'''..         ....''',;:'............................,;clllllcc:,..     .',,,''...'''''''...',,;;;:;;;;:;..,;;'                                ...               .        
+.....................          ......',,..................'............';:cccclllc:'.   .''''''...''''''''..,;;;;;::::;;:,..;;;.                              ......             ..       
+    ...................           ......''''..............''''''''...'........'';:ccc::;'. .''''''...'''''''''..'',;::::;;;;;'.';;'.                            .....'..             ..      
+    ................               ...',,,,'...........''',,,,,''''''...........'',;,,;.  .........''''''''''...,;:;;;;;;;;;..,;'.                            ....,:;'..                   
+    ...............               ..',;;:;;,..   .....'',;:ccc::::;;,''...  ......''...     .... ....'''''...',;;;;;;;;;;;;,..'.                         .'.....,cll:,...                 
+        ......... .......            ..,;::::;,'.    ......';:loolllllc:,'...     .......        .. ........'...';;;;;;;;;;;;;;,..                         .,'.   ..'','......               
+        .....    ......           ..',;::;,'..       .....,;:::cllllc;'..        ......           .............''''..''',,,,,.                        ..'..    ..                         
+            ....     .....            .........            ......',;;:;;'..         .......                                    .                         ...      ..                         
+                ..     ...             ..                   ...............               .                                                             ...        .                         
+                .                                          ...............                                                                     ...........                                  
+                                                            .................                                                                 ...........                                   
+                                                            ...................                                                             ....'''''....                                  
+                                        ........................................  ...................                                     .....'',''...                           ..      
+                                            ................................       ......................   ...                            ..........                           ...       
+                                                ...........        .    ..                                           ....                   ......                             ..         
+                                                    ...........                                                           ...         ....   ......                             ...         
+
+                </pre>
+<!-- 				</div> -->
+                <p id="terminal-display">
+                    type <span style='color:lime'>help</span> and hit enter to see available commands :3<br>
+                </p>
+
+            </div>
+            <div id="terminal-input-container"> 
+                <span id="terminal-prompt">lain@navi ~ % &nbsp;</span><span id="fake-caret">&nbsp;</span>
+                <input type="text" id="terminal-input" maxlength="33" aria-label="terminal input field">	
+            </div>
+        </div>
+    </div>
+    <!-------------- terminal end -------------->
+
+    <!-------------- chat -------------->
+    <div class="mini-window" id="chat-window">
+        <div class="mini-window-header">chat
+            <div class="mini-window-close"></div>
+        </div>
+        <div class="mini-window-draggable"></div>
+
+        <div id="chat-wrapper">
+            <div id="chat-container">
+                <p style="position: absolute; width: 100%; text-align: center; color: black; z-index: -1;">loading chat...</p>
+            </div>
+        </div>
+    </div>
+    <!-------------- chat end -------------->
+
+    <!-------------- version history -------------->
+    <div class="mini-window" id="version-history-window">
+        <div class="mini-window-header">version history
+            <div class="mini-window-close"></div>
+        </div>
+        <div class="mini-window-draggable"></div>		
+
+        <div id="version-history-container">
+            <pre id="version-history-texts">
+{% for entry in version_history_entries %}
+ {{ entry.version }}<span>{{ entry.date }}</span>
+ {{ entry.description }}
+{% endfor %}
+            </pre>
+        </div>
+    </div>
+    <!-------------- version history end -------------->
+
+    <div id="temp-toggle" style="display: none;">audio filter settings</div>
+    
+    <div id="credits-btn">
+        <a href="credits.html" target="_blank">
+            <img src="img/navi-logo.gif">
+        </a>
+    </div>
+    <!-------------- icons -------------->
+    <div id="dock-container">
+        <div id="dock-bg">
+            <div id="dock-bg-color"></div>
+            <div id="icons-container">
+                <div class="icon" id="icon-music-player">
+                    <img src="img/window-icons/player-tr1_c.png"></img>
+                </div>
+                <div class="icon" id="icon-terminal">
+                    <img src="img/window-icons/comp-tr1_c.png"></img>
+                </div>
+                <div class="icon" id="icon-chat">
+                    <img src="img/window-icons/chat-tr2_c.png"></img>
+                </div>
+                <div class="icon" id="icon-version-history">
+                    <img src="img/window-icons/vh_c.png"></img>
+                </div>
+                <div class="icon" style="display: block;"> 
+                    <a href="https://absurdtrax.bandcamp.com/album/lain-os-is-online-vol-1-at-last-lain-is-free-at-030" target="_blank">
+                        <img src="img/window-icons/bandcamp37_c.png"></img> 
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <!-------------- icons end -------------->
+
+    <!-------------- preload fonts & images -------------->
+    <link rel="preload" href="../fonts/LoveLetter.TTF" as="font" crossorigin>
+    <link rel="preload" href="../fonts/Input-Regular_(InputMonoNarrow-Regular).ttf" as="font" crossorigin>
+    <link rel="preload" href="../fonts/Verzierte_Favorite.ttf" as="font" crossorigin>
+
+    <link rel="preload" href="img/frame_c1.png" as="image">
+    <link rel="preload" href="img/music-player-components/shuffle_off.png" as="image">
+    <link rel="preload" href="img/music-player-components/shuffle_on.png" as="image">
+    <link rel="preload" href="img/music-player-components/loop_off.png" as="image">
+    <link rel="preload" href="img/music-player-components/loop_album.png" as="image">
+    <link rel="preload" href="img/music-player-components/loop_song_inverted.png" as="image">
+
+    <link rel="preload" href="img/music-player-components/test-play.png" as="image">
+    <link rel="preload" href="img/music-player-components/test-pause.png" as="image">
+    <!-------------- end of preload -------------->
+
+    <div id="old-playlist-container">
+        <ul id="old-playlist-content">
+        </ul>
+    </div>
+
+    <!-- temp div, will eventually delete -->
+    <div id="old-player-container">
+        <p id="cur-track-info" style="width: 333px;"></p>
+
+        <div>
+            <button onclick="prevTrackV1()" aria-label="prev">prev</button>
+            <button id="old-play-pause-btn" onclick="playOrPause()" aria-label="play or pause">play</button>
+            <button onclick="nextTrackV1()" aria-label="next">next</button>
+            <button id="pl-toggle" aria-label="toggle playlist visibility">playlist</button>
+        </div>
+        <br>
+
+        <div style="display: flex;"> 
+            <span class="cur-time" id="old-cur-time" style="color: black; font-size: 13px; margin: 0;">00:00</span>
+            <div id ="old-progress-bar-container">
+                <div id="old-progress-bar-fill"></div>
+            </div>
+            <span id="old-total-time" style="color: black;">00:00</span>
+        </div>
+        
+            
+        <hr>
+        <p id="biquad-prompt" style="width: 100%;">choose a biquad filter:
+            <span id="biquad-tips">gain adjustment is available for lowshelf, highshelf, peaking.<br><br>q factor adjustment is available for lowpass, highpass, bandpass, peaking, notch, allpasss.<br><br>not much info is found about detune but it seems to work with lowpass, highpass, bandpass, allpass.<br><br>search "biquad filter MDN" for more info.</span> 
+        </p>
+        <select id="switch-biquad" size="1" aria-label="select a biquad filter">
+            <option value="0" selected="selected">none</option>
+            <option value="1">lowpass</option>
+            <option value="2">highpass</option>
+            <option value="3">bandpass</option>
+            <option value="4">lowshelf</option>
+            <option value="5">highshelf</option>
+            <option value="6">peaking</option>
+            <option value="7">notch</option>
+            <option value="8">allpass</option>
+        </select>
+
+        <p id="cur-frequency" style="color: grey;">frequency: 350</p>
+        <input class="long-slider" type="range" min="20" max="15000" value="350" step="5" id="frequency-slider" onchange="setFrequency()" aria-label="frequency">
+
+        <p id="cur-gain" style="color: grey;">gain: 0</p>
+        <input class="long-slider" type="range" min="-40" max="40" value="0" step="1" id="gain-slider" onchange="setGain()" aria-label="gain">
+
+        <p id="cur-q" style="color: grey;">Q factor: 1</p>
+        <input class="long-slider" type="range" min="0.01" max="20" value="1" step="0.2" id="q-slider" onchange="setQ()" aria-label="Q value">
+
+        <p id="cur-detine" style="color: grey;">detune: 0</p>
+        <input class="long-slider" type="range" min="-2400" max="2400" value="0" step="10" id="detune-slider" onchange="setDetune()" aria-label="detune">
+
+        <br>
+        <hr>
+        <br>
+
+        <button id="reverb-toggle" onclick="toggleReverb()" aria-label="toggle reverb">turn on reverb</button>
+        <br>
+        <p id="cur-reverb-duration" style="color: grey;">duration: 15</p>
+        <input class="long-slider" type="range" min="0.1" max="120" value="15" id="reverb-duration" step="1" onchange="setReverb()" aria-label="reverb duration">
+        <p id="cur-reverb-decay" style="color: grey;">decay: 5</p>
+        <input class="long-slider" type="range" min="0.1" max="80" value="5" id="reverb-decay" step="0.2" onchange="setReverb()" aria-label="reverb decay">
+        <br>
+        <hr>
+        <br>
+        <button onclick="resetAllFilters()" aria-label="reset all audio filters">reset to default</button>
+    </div> <!-- end of old player container -->
+</div> <!-- end of main container -->
+<script type="text/javascript" src="../shared.js"></script>
+<script type="text/javascript" src="v1.js"></script>
+
+{% endblock %}

@@ -4,3 +4,5 @@
 .DS_Store
 .vscode/launch.json
 img/.DS_Store
+/test-mp3/*
+/v2/final_master_mp3
