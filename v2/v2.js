@@ -158,8 +158,9 @@ function initTracklistClickEvent() {
 function startMarquee() {
 
     if (marqueeId) {
+        // clearInterval(marqueeId)
+        cancelAnimationFrame(marqueeId)
         curTrackName.style.marginLeft = "0"
-        clearInterval(marqueeId)
         marqueeId = null
     }
     if (marqueeDelayId) {
@@ -170,16 +171,14 @@ function startMarquee() {
     var width = (curTrackNameClone.clientWidth + 1); 
     if (width <= curTrackName.clientWidth) return; 
 
-    // based on https://stackoverflow.com/questions/337330/javascript-marquee-to-replace-marquee-tags/26372490#26372490
-
     const initialDelay = 1500
-    const defaultStep = 0.1
-    const speed = 1
+    const defaultStep = 0.5
     const space = '&nbsp;&nbsp;';
 
     function go() {
         i = i < width ? i + step : -17;
         curTrackName.style.marginLeft = -i + 'px';
+        marqueeId = requestAnimationFrame(go)
     }
     var i = 0
     var step = defaultStep
@@ -187,7 +186,8 @@ function startMarquee() {
 
     marqueeDelayId = setTimeout(() => {
         curTrackName.innerHTML = t + space + t + space;
-        marqueeId = setInterval(go, speed);
+        // marqueeId = setInterval(go, speed);
+        marqueeId = requestAnimationFrame(go)
     }, initialDelay);
 
     // pause scrolling on hover
@@ -298,20 +298,25 @@ function processInput(e)
             break
 
         case "Tab":
-            e.preventDefault()       
+            e.preventDefault()
+            let matches = []
             for (let command of COMMANDS) {
-                if (inputEl.value.trim().toLowerCase() == command) {
-                    // todo                    
-                    // go to next match
+                if(command.startsWith(inputEl.value.trim().toLowerCase())) {
+                    matches.push(command)
                 }
-                else 
-                {
-                    // auto complete
-                    if(command.startsWith(inputEl.value.trim().toLowerCase())) {
-                        inputEl.value = command
-                    }
-                }
+                // if (inputEl.value.trim().toLowerCase() == command) {
+                //     // todo                    
+                //     // go to next match
+                // }
+                // else 
+                // {
+                //     // auto complete
+                //     if(command.startsWith(inputEl.value.trim().toLowerCase())) {
+                //         inputEl.value = command
+                //     }
+                // }
             }
+            terminalContentEl.textContent += matches
             break
 	}
 }
