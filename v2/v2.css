@@ -75,7 +75,7 @@ pre, input, button
 {
 	position: absolute;
 	background-color: white;
-    width: 433px; height: 333px;
+    width: 443px; height: 333px;
     border: var(--window-border);
 }
 
@@ -184,10 +184,6 @@ pre, input, button
     display: flex; flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
-}
-
-canvas::before {
-
 }
 
 #now-playing div {
@@ -309,7 +305,7 @@ canvas::before {
 }
 
 #mini-stats-container {
-    height: 70px;
+    height: 60px;
     width: 100px;
     display: grid;
     align-items: center;
@@ -326,7 +322,7 @@ canvas::before {
 }
 #mini-stats-container pre {
     position: absolute;
-    right: 0;
+    right: 0; bottom: 0; margin: 0;
     font-size: 12px;
 }
 
@@ -338,34 +334,39 @@ canvas::before {
     padding-top: var(--drag-area-height);
     height: unset;
 }
-#terminal-wrapper {
-    position: absolute;
-    width: 96%;
-    left: 2%; right: 2%;
-}
 #terminal-content {
     height: 280px;
     margin-top: 5px;
     word-wrap: break-word;
     overflow-y: scroll;
+    line-height: 1.5;
+    margin-left: 3px;
+}
+#terminal-ascii {
+    margin: 0;
+    line-height: 1;
+    font-size: 8px;
 }
 #terminal-content pre {
     margin: 0;
 }
-
 #terminal-input-container {
     display: flex; flex-direction: row;
     align-items: center;
-    height: 25px;
     width: 100%;
+    line-height: 1.5;
+    margin-left: 3px;
 }
 #terminal-input {
     color: var(--accent-color);
     background-color: white;
     border-width: 0px;
+    padding-top: 0;
     font-size: 15px;
+    width: 270px;
 	/* caret-color: transparent; */
 }
+#terminal-input:focus { outline-color: red; }
 
 /*+------- version history window -------+*/
 
@@ -393,7 +394,7 @@ canvas::before {
     position: absolute;
     top: 13%;
     left: 40%;
-    height: 450px; width: 350px;
+    height: 433px; width: 333px;
 
 }
 

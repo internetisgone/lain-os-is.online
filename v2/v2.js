@@ -239,24 +239,30 @@ function resetProgress() {
 // *+-------          -------+* //
 
 const COMMANDS = [
-    "play", "pause", "prev", "next", "stop",
+    "play", "pause", "prev", "next", "stop", "rand",
     "help", "cd", "ls", "pwd", "whoami", "neofetch", "ssh", "clear"
 ]
-const HELP_TEXT = `
+const HELP_TEXT = 
+`
+.__         .__        ________    _________
+|  | _____  |__| ____  \\_____  \\  /   _____/
+|  | \\__  \\ |  |/    \\  /   |   \\ \\_____  \\ 
+|  |__/ __ \\|  |   |  \\/    |    \\/        \\
+|____(____  /__|___|  /\\_______  /_______  /
+          \\/        \\/         \\/        \\/   
 
-playback controls  
-
+playback controls
 play    pause    prev    next    stop
 rand
 
 exit
-
 `
+
 const INPUT_PATTERN = /^[\w\s]*$/
 const inputEl = document.getElementById("terminal-input")
 const terminalContentEl = document.getElementById("terminal-content")
 inputEl.onkeydown = processInput
-terminalContentEl.scrollTop = terminalContentEl.scrollHeight
+scrollTerminal()
 
 // todo history
 let historyArr = []
@@ -268,23 +274,24 @@ function processInput(e)
     switch(e.key) {
         case "Enter":
             // display usr input
-            let usrInput = inputEl.value.trim()
-            let userInputEl = document.createElement("span")
-            userInputEl.textContent = "lain@navi ~ % " + usrInput
-            terminalContentEl.appendChild(userInputEl).appendChild(document.createElement("br"))
+            var usrInput = inputEl.value.trim()
+            appendTerminalOutput("lain@navi ~ % " + usrInput)
+            inputEl.value = "";
 
             // check for illegal chars
-            let outputStr = ""
-            if (inputEl.value.match(INPUT_PATTERN) == null) {
-                outputStr = "what did u just say u faggot"
+            if (usrInput.match(INPUT_PATTERN) == null) {
+                appendTerminalOutput("what did u just say u faggot")
+                return
+            } 
+
+            // process command
+            for (let command of COMMANDS) {
+                if (usrInput.toLowerCase() == command) {
+                    processCommand(command)
+                }
             }
 
-            let outputEl = document.createElement("span")
-            outputEl.textContent = outputStr
-            terminalContentEl.appendChild(outputEl).appendChild(document.createElement("br"))
-
-            inputEl.value = "";
-            terminalContentEl.scrollTop = terminalContentEl.scrollHeight; 
+            scrollTerminal()
             break
 		
         case "ArrowUp":
@@ -299,31 +306,79 @@ function processInput(e)
 
         case "Tab":
             e.preventDefault()
-            let matches = []
+            var usrInput = inputEl.value.trim().toLowerCase()
+            if (usrInput.length == 0 || usrInput.match(INPUT_PATTERN) == null) return; 
+
+            var matches = []
             for (let command of COMMANDS) {
-                if(command.startsWith(inputEl.value.trim().toLowerCase())) {
+                if(command.startsWith(usrInput)) {
                     matches.push(command)
                 }
-                // if (inputEl.value.trim().toLowerCase() == command) {
-                //     // todo                    
-                //     // go to next match
-                // }
-                // else 
-                // {
-                //     // auto complete
-                //     if(command.startsWith(inputEl.value.trim().toLowerCase())) {
-                //         inputEl.value = command
-                //     }
-                // }
             }
-            terminalContentEl.textContent += matches
+            if (matches.length == 1) {
+                // auto complete
+                inputEl.value = matches[0]
+            }
+            if (matches.length > 1) {      
+                // show all matches      
+                appendTerminalOutput(matches) 
+                // todo
+                // press tab again to go to next match
+            }
             break
 	}
 }
 
+function processCommand(command) {
+    switch(command) {
+        case "play": playTrackV2(); break;
+		case "pause": pauseTrackV2(); break;
+		case "stop": stopTrackV2(); break;
+		case "prev": prevTrackV2(); break;
+		case "next": nextTrackV2(); break;
+		case "rand": 
+            stopTrackV2();
+			curIndex = getRandomInt(0, trackList.length);
+			loadTrack(); 
+			playTrackV2();
+			break;
+		case "help": 
+            appendTerminalOutput(HELP_TEXT); 
+            break;
+    }
+}
+
+function appendTerminalOutput(str) 
+{
+    let outputEl = document.createElement("pre")
+	outputEl.textContent = str
+    terminalContentEl.appendChild(outputEl).appendChild(document.createElement("br"))
+    scrollTerminal()
+}
+
+function scrollTerminal() {
+    // scroll to bottom
+	terminalContentEl.scrollTop = terminalContentEl.scrollHeight; 
+}
+
+function initChatEmbedV2()
+{
+	let chatScript = document.createElement("script")
+	chatScript.id = "cid0020000328095633756"
+	chatScript.setAttribute("data-cfasync", "false")
+	chatScript.async = true;
+	chatScript.src = "//st.chatango.com/js/gz/emb.js"
+	chatScript.style.width = "100%"
+	chatScript.style.height = "100%"
+	chatScript.innerHTML = '{"handle":"lain-os-is-online","arch":"js","styles":{"a":"ffffff","b":100,"c":"ff0000","d":"ff0000","g":"ff0000","j":"ff0000","k":"ff0000","l":"ff0000","m":"CC0000","n":"FFFFFF","p":"11","q":"ffffff","r":100,"t":0,"ab":false,"usricon":0,"surl":0}}'
+
+	document.getElementById("chat-container").appendChild(chatScript)
+}
 
 window.onload = ()=> 
 {
+    // chat
+    // initChatEmbedV2()
 
     // // 2d sprite walking animation
 
@@ -342,6 +397,3 @@ window.onload = ()=>
 
     // setInterval(updateSprite, 433);
 }
-
-// chat
-// initChatEmbed()

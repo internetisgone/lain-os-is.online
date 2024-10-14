@@ -237,24 +237,6 @@ function drawFrame()
 }
 
 
-/////////// chat ///////////
-function initChatEmbed()
-{
-	let chatScript = document.createElement("script")
-	chatScript.id = "cid0020000328095633756"
-	chatScript.setAttribute("data-cfasync", "false")
-	chatScript.async = true;
-	chatScript.src = "//st.chatango.com/js/gz/emb.js"
-	chatScript.style.width = "100%"
-	chatScript.style.height = "100%"
-	chatScript.innerHTML = '{"handle":"lain-os-is-online","arch":"js","styles":{"a":"f5f5f5","b":100,"c":"000000","d":"000000","e":"f5f5f5","h":"f5f5f5","l":"f5f5f5","m":"FFFFFF","p":"12","q":"f5f5f5","r":100,"t":0,"usricon":0,"surl":0,"allowpm":0}}'
-
-	//<script id="cid0020000328095633756" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 100%;">{"handle":"lain-os-is-online","arch":"js","styles":{"a":"f5f5f5","b":100,"c":"000000","d":"000000","e":"f5f5f5","h":"f5f5f5","l":"f5f5f5","m":"FFFFFF","p":"12","q":"f5f5f5","r":100,"t":0,"usricon":0,"surl":0,"allowpm":0}}</script>
-
-	document.getElementById("chat-container").appendChild(chatScript)
-}
-
-
 // *+-------       -------+* //
 // *+------- utils -------+* //
 // *+-------       -------+* //
