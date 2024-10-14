@@ -3,17 +3,17 @@ const trackList = [
 
     {'name': 'aDeAD  - 真実は真実だからこそ強いんだ', 'path': 'final_master_mp3/真実は真実だからこそ強いんだ.mp3', 'duration': '03:48', 'link': 'https://adeadmusic.bandcamp.com'}, 
 
-    {'name': 'georg-i - Spliced fom Memory ', 'path': 'final_master_mp3/Spliced fom Memory .mp3', 'duration': '03:53', 'link': 'artist_link'}, 
+    {'name': 'georg-i - Spliced fom Memory ', 'path': 'final_master_mp3/Spliced fom Memory .mp3', 'duration': '03:53', 'link': 'https://georg-i.bandcamp.com'}, 
 
     {'name': 'moemiki - PCB in the Garbage ', 'path': 'final_master_mp3/PCB in the Garbage .mp3', 'duration': '03:24', 'link': 'https://soundcloud.com/moemiki'}, 
 
-    {'name': 'NTFL - 765', 'path': 'final_master_mp3/765.mp3', 'duration': '03:42', 'link': 'artist_link'},
+    {'name': 'NTFL - 765', 'path': 'final_master_mp3/765.mp3', 'duration': '03:42', 'link': 'https://soundcloud.com/n-t-f-l'},
 
-    {'name': 'Axorst2k - Simulated Bionic Tears', 'path': 'final_master_mp3/Simulated Bionic Tears.mp3', 'duration': '02:22', 'link': 'artist_link'}, 
+    {'name': 'Axorst2k - Simulated Bionic Tears', 'path': 'final_master_mp3/Simulated Bionic Tears.mp3', 'duration': '02:22', 'link': 'https://cyanidesystem.bandcamp.com'}, 
 
-    {'name': 'Cicada Shell - 霊性 Wired Unconscious', 'path': 'final_master_mp3/霊性 Wired Unconscious.mp3', 'duration': '04:24', 'link': 'artist_link'}, 
+    {'name': 'Cicada Shell - 霊性 Wired Unconscious', 'path': 'final_master_mp3/霊性 Wired Unconscious.mp3', 'duration': '04:24', 'link': 'https://soundcloud.com/cicadas-shell'}, 
 
-    {'name': 'Akira Takemoto  - 一人ぼっち1a (Videopunks works)', 'path': 'final_master_mp3/一人ぼっち1a (Videopunks works).mp3', 'duration': '09:09', 'link': 'artist_link'},
+    {'name': 'Akira Takemoto  - 一人ぼっち1a (Videopunks works)', 'path': 'final_master_mp3/一人ぼっち1a (Videopunks works).mp3', 'duration': '09:09', 'link': 'https://videopunks.bandcamp.com'},
 
     {'name': '7mint - Slip The Hoax', 'path': 'final_master_mp3/Slip The Hoax.mp3', 'duration': '05:05', 'link': 'https://7mint.bandcamp.com'}, 
 
@@ -21,17 +21,17 @@ const trackList = [
 
     {'name': 'd3br1s - El Nexo', 'path': 'final_master_mp3/El Nexo.mp3', 'duration': '04:04', 'link': 'https://d3br1s.bandcamp.com'}, 
 
-    {'name': 'Kwan - Arisu', 'path': 'final_master_mp3/Arisu.mp3', 'duration': '05:25', 'link': 'artist_link'}, 
+    {'name': 'Kwan - Arisu', 'path': 'final_master_mp3/Arisu.mp3', 'duration': '05:25', 'link': 'https://kwanw.bandcamp.com'}, 
 
-    {'name': 'provinceofnowhere feat. SimonBB - The Music Just Turns Me On', 'path': 'final_master_mp3/The Music Just Turns Me On.mp3', 'duration': '02:49', 'link': 'artist_link'}, 
+    {'name': 'provinceofnowhere feat. SimonBB - The Music Just Turns Me On', 'path': 'final_master_mp3/The Music Just Turns Me On.mp3', 'duration': '02:49', 'link': ' https://soundcloud.com/province-of-nowhere'}, 
     
-    {'name': 'FINGERGAP - Lain is Everywhere ', 'path': 'final_master_mp3/Lain is Everywhere .mp3', 'duration': '02:51', 'link': 'artist_link'}, 
+    {'name': 'FINGERGAP - Lain is Everywhere ', 'path': 'final_master_mp3/Lain is Everywhere .mp3', 'duration': '02:51', 'link': 'https://fingergap.bandcamp.com'}, 
 
-    {'name': '444theGod  - AIR Sword _94', 'path': 'final_master_mp3/AIR Sword _94.mp3', 'duration': '03:13', 'link': 'artist_link'}, 
+    {'name': '444theGod  - AIR Sword \'94', 'path': 'final_master_mp3/AIR Sword _94.mp3', 'duration': '03:13', 'link': 'https://instagram.com/444_thegod'}, 
     
-    {'name': 'Emo Betriebswerk - Nonverbal communication', 'path': 'final_master_mp3/Nonverbal communication.mp3', 'duration': '02:14', 'link': 'artist_link'}, 
+    {'name': 'Emo Betriebswerk - Nonverbal communication', 'path': 'final_master_mp3/Nonverbal communication.mp3', 'duration': '02:14', 'link': 'https://soundcloud.com/emobetriebswerk'}, 
 
-    {'name': 'Rench Kee - Fake Trauma Orchestra', 'path': 'final_master_mp3/Fake Trauma Orchestra.mp3', 'duration': '07:55', 'link': 'artist_link'}
+    {'name': 'Rench Kee - Fake Trauma Orchestra', 'path': 'final_master_mp3/Fake Trauma Orchestra.mp3', 'duration': '07:55', 'link': 'https://instagram.com/totaldedly08river'}
 ]
 
 
@@ -81,14 +81,10 @@ let source = audioContext.createMediaElementSource(curTrack);
 source.connect(analyser).connect(audioContext.destination)
 canvasContext.fillStyle = "red"
 
-loadTrack()
-initTracklistClickEvent()
-
-curTrack.addEventListener("ended", nextTrackV2); 
-
 function loadTrack() {
     _loadTrack()
     console.log("loaded", trackList[curIndex].name) 
+    appendTerminalOutput("loaded " + trackList[curIndex].name)
 
     curTrackName.innerHTML = `${curIndex + 1}. ${trackList[curIndex].name} ${trackList[curIndex].duration}`
     curTrackNameClone.innerHTML = `${curIndex + 1}. ${trackList[curIndex].name} ${trackList[curIndex].duration}`
@@ -201,9 +197,9 @@ function startMarquee() {
 
 function updateArtistLink() {
     artistLinksEl.href = trackList[curIndex].link
-    // temp 
     linkText = trackList[curIndex].link.split("//")[1]
-    artistLinksEl.textContent = linkText == null ? trackList[curIndex].link : linkText
+    // artistLinksEl.textContent = linkText == null ? trackList[curIndex].link : linkText
+    artistLinksEl.textContent = `[${linkText}]`
 }
 
 function setVolume() {
@@ -240,28 +236,24 @@ function resetProgress() {
 
 const COMMANDS = [
     "play", "pause", "prev", "next", "stop", "rand",
-    "help", "cd", "ls", "pwd", "whoami", "neofetch", "ssh", "clear"
+    "help", "clear", "exit",
+    // todo "lain", "cd", "ls", "pwd", "whoami", "neofetch", "ssh", 
 ]
 const HELP_TEXT = 
-`
-.__         .__        ________    _________
-|  | _____  |__| ____  \\_____  \\  /   _____/
-|  | \\__  \\ |  |/    \\  /   |   \\ \\_____  \\ 
-|  |__/ __ \\|  |   |  \\/    |    \\/        \\
-|____(____  /__|___|  /\\_______  /_______  /
-          \\/        \\/         \\/        \\/   
+`+-------··                              .
+|  playback commands:                   ¦
+¦  <span style="font-weight:bold;">play  pause  prev  next  stop  rand</span>  |
+.                              ··-------+
++-------··              .
+|  utility commands:    ¦ 
+¦  <span style="font-weight:bold;">help   clear   exit</span>  |
+.              ··-------+`
 
-playback controls
-play    pause    prev    next    stop
-rand
-
-exit
-`
+const WELCOME_TEXT = "type \"help\" and hit enter to view available commands :3"
 
 const INPUT_PATTERN = /^[\w\s]*$/
 const inputEl = document.getElementById("terminal-input")
 const terminalContentEl = document.getElementById("terminal-content")
-inputEl.onkeydown = processInput
 scrollTerminal()
 
 // todo history
@@ -343,15 +335,30 @@ function processCommand(command) {
 			playTrackV2();
 			break;
 		case "help": 
-            appendTerminalOutput(HELP_TEXT); 
+            appendTerminalOutput(HELP_TEXT, true); 
+            break;
+
+        case "clear":
+            terminalContentEl.replaceChildren();
+            break;
+
+        case "exit":
+            window.location.href = "/offline.html"
             break;
     }
 }
 
-function appendTerminalOutput(str) 
+function appendTerminalOutput(str, useInnerHtml = false) 
 {
-    let outputEl = document.createElement("pre")
-	outputEl.textContent = str
+    let outputEl
+    if (useInnerHtml) {
+        outputEl = document.createElement("pre")
+        outputEl.innerHTML = str;
+    }
+    else {
+        outputEl = document.createElement("div")
+        outputEl.textContent = str;
+    }
     terminalContentEl.appendChild(outputEl).appendChild(document.createElement("br"))
     scrollTerminal()
 }
@@ -364,7 +371,7 @@ function scrollTerminal() {
 function initChatEmbedV2()
 {
 	let chatScript = document.createElement("script")
-	chatScript.id = "cid0020000328095633756"
+	chatScript.id = "cid0020000389860191718"
 	chatScript.setAttribute("data-cfasync", "false")
 	chatScript.async = true;
 	chatScript.src = "//st.chatango.com/js/gz/emb.js"
@@ -377,6 +384,14 @@ function initChatEmbedV2()
 
 window.onload = ()=> 
 {
+    inputEl.onkeydown = processInput
+    appendTerminalOutput(WELCOME_TEXT)
+
+    loadTrack()
+    initTracklistClickEvent()
+    curTrack.addEventListener("ended", nextTrackV2); 
+
+
     // chat
     // initChatEmbedV2()
 
