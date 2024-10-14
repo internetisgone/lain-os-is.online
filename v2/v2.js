@@ -34,6 +34,118 @@ const trackList = [
     {'name': 'Rench Kee - Fake Trauma Orchestra', 'path': 'final_master_mp3/Fake Trauma Orchestra.mp3', 'duration': '07:55', 'link': 'https://instagram.com/totaldedly08river'}
 ]
 
+const TERMINAL_ART = [
+// `.         .         .
+//   ' ,     :     , '
+//       ' . O . '
+//         .<+>.
+//     , '   V   ' ,
+// . '       :       ' .
+//           :
+//           |`,
+// `  /         \\
+//  (  (     )  )
+// (  {  / \\  }  )
+// < {  { O }  }  >
+// (  {  \\|/  }  )
+//  (  (  |  )  )
+//   \\    |    /
+//        A
+//       /|\\`,
+
+`⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡤⢤⣤⣤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣶⣧⣐⠍⢙⣀⣼⣿⣿⣅⡐⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠉⠙⠻⣿⣿⣿⣿⣿⣯⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⣶⠆⠀⢀⣺⡃⣀⠀⠀⠀⠈⢿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣷⣼⠆⠀⡌⢹⣿⣿⠀⢄⠀⠀⠈⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⠀⠸⣷⣿⣿⣿⣆⣠⣿⡄⠀⣼⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⠂⠀⠹⡿⣿⣿⣿⣿⣿⠀⠀⠟⠈⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⠏⢰⣿⣦⡀⠚⠛⢿⣿⡿⠀⠀⢸⠇⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⢿⣿⣿⠀⢾⣿⣿⡇⢻⡏⠀⠀⠀⠀⠀⡆⢰⣿⣿⡗⢠⣿⣿⣷⣦⣤⣤⣀⣤⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠒⠿⠿⣿⣿⠸⠇⠀⠀⠀⠀⠀⣷⠘⣿⠟⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⢆⣠⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣧⠀⠀⠀⠀⠀⠀⣿⠀⣃⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠏⠘⠉⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣧⠀⠀⠀⠀⠀⠀⢄⣸⣿⣿⣿⣿⣭⣭⡉⠉⠉⠉⠈⠉⠀⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠛⢸⡄⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣶⢸⣷⠀⠀⠀⠀⠈⣇⣽⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠛⠈⠉⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⢷⡆⠀⠀⠀⠀⠀⠀⠈⣄⣼⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠃⠀⠀⠀⠀⠀⠀⠀⢹⠛⢿⣿⠟⠁⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠚⠀⣴⡀⢰⡆⢀⣤⣄⣒⡉⠀⣶⣀⣎⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣿⣿⡟⠀⣼⡿⣷⢾⠇⢠⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣉⠛⠛⠁⢴⣽⣷⣧⣼⡄⠸⣽⡿⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⣿⣿⣿⣯⣿⣿⣿⣿⣿⣷⡶⣦⣴⡦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡯⢽⢿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣰⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⢾⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠀⠉⠙⠛⠻⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣏⣾⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠙⠛⠻⠿⢿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢰⣶⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠙⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠛⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`,
+
+`  ..........████████████████..........
+  ........█████████████████████.......
+  ......████████████████████████......
+  ......█████████████████████████.....
+  ....████████████████████████████....
+  ....████████████████████████████....
+  ....████████▒▒██▒▒██▒▒██████████....
+  ....██████▒▒░░██░░██░░██▒▒██ █ █....
+  .....███▒▒░░░░░░░░░░░░░░░░███ ██....
+  ......██▒▒░░░░░░░░░░░░░░░░██ █ █....
+  .......███░░████░░░░████▒▒██████....
+  ........██▒▒░░░░░░░░░░▒▒▒▒██████....
+  ............▓▓████████▓▓...████.....
+  .........▒▒▒▓▓▓▓▓▓▓▓▓▓▓▒▒▒..██......
+  ........▒▒▒▒▒▒▒▒██▒▒▒▒▒▒▒▒..........
+  ........▓▓▓▓██▒▒▒▒▒▒▒▒▓▓▓▓▓▓........
+  ........▓▓▓▓▒▒██████▒▒▓▓▓▓▓▓........
+  ......▓▓▓▓▓▓▒▒██▒▒▒▒▒▒▓▓▓▓▓▓▓▓......
+  ......▓▓▓▓▒▒▒▒▒▒██▒▒▒▒▒▒▒▒▓▓▓▓......
+  ....░░▒▒▒▒▒▒▒▒██▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░....
+  ....░░░░▒▒▒▒▒▒▒▒██▒▒▒▒▒▒▒▒▒▒░░░░....
+  ........▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒........
+  ......████░░░░░░████░░░░░░████......
+  ....███░░░░░░░░░████░░░░░░░░░███....
+  ....███░░░░░░░████████░░░░░░░███....
+  ......████████████████████████......`,
+
+//   `.-:::=+======+===**#*+====-=+=--+==---::-++++**+--..
+// .-=+=*##*****+*******++****=***+**+=-=====+*####*=-..
+// ::-=++*##+**++**+**************++++=--++==+=+**++#*-.
+// -:=##+==++++++++++++++**+++++=====--+**##*=====+*##+.
+// -:+*+=++===++*+==----*#+=--+=::::-:---===+*=--+*****:
+// ==#++++**=--=-::..:-*%%#+::-=:...:..:.:::-:-==+==***:
+// =+#++****-::-.....-*%%%#+:..=-. .:....:....:--====+*:
+// =*#*++=+-.:=-   .-*+**##*-..-=. .:...:=.    ..:-=+=+:
+// +=*#*-:+-.-=:...:+++=+=+*=..:+. :-:.:-=-:.  .. .:=++.
+// ++*+-:-*+-++-==+**#*=--=*=..-+::***+==---:::--.  .-=.
+// +++-::.+-:==-+*==-=::::-*=::-+::-:::-----:..=-.   .-.
+// ===:..:+--+#%%%%#*+-:::-*=-===:-:-+#%%%%#*-==-:    .
+// :-::..-+***%#%@#=#*+-:.=+========##+*%%####*+-:    .
+// :=::+=+*+-=##%%%##=-=-:-::::--+++-+##%%##=-=+=:    .
+// .:+==-==:-=++###*+=:.:=-:   .--::-++###**+-=*-.    :
+// .:=*+::-::..::-------=+*+. ..-===--:::-::::=+-.   -:
+// :.-=-=:.......::::----==+:   .:=++++==-:..:-=-:  :-:
+// .:-=--=-:::::.........:--.    .:--::..::::=+=--::-.
+// :..-====+=--::....   .....            ..:-+*=:-:=:
+// -::-++===++=--:..    . .....          .:-++*=::--.
+// :-:+**++==++=--:.       ..:: .   .   .:-==-*-.:+. .
+// ..:+-+-+++****=-:.       .:.   .    .:=+-:-*-:++.. .
+// ...::::-=+*+===+=-.. .   .        ..-+===+++-+*-...:
+// ..::=+++====-:---=+-:.          ..-=====+**==**+-:::.
+// ::++**+=======-::::-==-::...:::..::=+++++++=++++++-:
+// +*#+**+======-::::..:----=++=-:.:---+++**++*#***++++.
+// +##*+==+++====--:::....:---::..:------=+**##++******.
+// *#%*+*+=+***+===--:::........:::-++*++*+==++*##+*#%#:
+// =%%******#***++===---==========+++++***#%########%%%:
+// +++===---==--:::::..:--::-=+++++++=----======+++=+*+.`,
+]
+
 
 // *+-------              -------+* //
 // *+------- mini windows -------+* //
@@ -74,12 +186,6 @@ let curIndex = 0
 let marqueeId, marqueeDelayId
 let progressTimer
 const fontWidth = 9 
-progressBar.addEventListener("click", setProgress)
-
-// visualiser
-let source = audioContext.createMediaElementSource(curTrack);
-source.connect(analyser).connect(audioContext.destination)
-canvasContext.fillStyle = "red"
 
 function loadTrack() {
     _loadTrack()
@@ -234,32 +340,72 @@ function resetProgress() {
 // *+------- terminal -------+* //
 // *+-------          -------+* //
 
-const COMMANDS = [
-    "play", "pause", "prev", "next", "stop", "rand",
-    "help", "clear", "exit",
-    // todo "lain", "cd", "ls", "pwd", "whoami", "neofetch", "ssh", 
-]
-const HELP_TEXT = 
-`+-------··                              .
-|  playback commands:                   ¦
-¦  <span style="font-weight:bold;">play  pause  prev  next  stop  rand</span>  |
-.                              ··-------+
-+-------··              .
-|  utility commands:    ¦ 
-¦  <span style="font-weight:bold;">help   clear   exit</span>  |
-.              ··-------+`
-
-const WELCOME_TEXT = "type \"help\" and hit enter to view available commands :3"
-
 const INPUT_PATTERN = /^[\w\s]*$/
 const inputEl = document.getElementById("terminal-input")
 const terminalContentEl = document.getElementById("terminal-content")
-scrollTerminal()
+
+// hidden commands
+let exited = false 
+let lained = false
 
 // todo history
 let historyArr = []
 const historySize = 10
 let historyIndex = 0
+
+const COMMANDS = [
+    "play", "pause", "prev", "next", "stop", "rand",
+    "help", "clear", "exit",
+    "lain", "neofetch", 
+    // todo  "cd", "ls", "pwd", "whoami", "ssh", 
+]
+
+const HELP_TEXT = 
+`+-------··                              .
+|  playback commands:                   ¦
+¦  <span style="font-weight:bold;">play  pause  prev  next  stop  rand</span>  |
+.                              ··-------+
++-------··                .
+|  utility commands:      ¦ 
+¦  <span style="font-weight:bold;">help  clear  neofetch</span>  |
+.                ··-------+
+press tab to autocomplete`
+
+const WELCOME_TEXT = "type \"help\" and hit enter to view available commands :3"
+
+const LOGO = 
+`.__         .__        ________    _________
+|  | _____  |__| ____  \\_____  \\  /   _____/
+|  | \\__  \\ |  |/    \\  /   |   \\ \\_____  \\ 
+|  |__/ __ \\|  |   |  \\/    |    \\/        \\
+|____(____  /__|___|  /\______vol. 2 _____ /
+          \\/        \\/         \\/        \\/`
+
+let sys_info_text = 
+`+-------··
+|  lain@navi
+¦  -------------- 
+.  OS: lainOS 2.0 x86_64
+   Host: ${getBrowserName()}
+   Kernel: 2.0.0
+   Uptime: 
+   Terminal: Navi_Terminal
+   Terminal Font: JuliaMono-Regular
+   CPU Cores: ${navigator.hardwareConcurrency}
+   GPU: 
+   Memory:`
+// todo: use window.performance
+
+function getBrowserName() {
+    // todo parse user agent 
+    return "";
+}
+
+function getHiddenCommandsCount() {
+    if (exited == false && lained == false) return 0;
+    else if (exited == true && lained == true) return 2;
+    else return 1;
+}
 
 function processInput(e)
 {	
@@ -272,7 +418,7 @@ function processInput(e)
 
             // check for illegal chars
             if (usrInput.match(INPUT_PATTERN) == null) {
-                appendTerminalOutput("what did u just say u faggot")
+                // appendTerminalOutput("what did u just say u faggot")
                 return
             } 
 
@@ -336,6 +482,7 @@ function processCommand(command) {
 			break;
 		case "help": 
             appendTerminalOutput(HELP_TEXT, true); 
+            appendTerminalOutput(getHiddenCommandsCount() + " hidden commands discovered")
             break;
 
         case "clear":
@@ -343,12 +490,27 @@ function processCommand(command) {
             break;
 
         case "exit":
+            exited = true
+            inputEl.value = ""
             window.location.href = "/offline.html"
             break;
+
+        case "lain":
+            lained = true
+            // return a random ascii art 
+            var rand = getRandomInt(0, TERMINAL_ART.length)
+            appendTerminalOutput(TERMINAL_ART[rand], true, true);
+            break;
+
+        case "neofetch":
+            appendTerminalOutput(LOGO, true)
+            appendTerminalOutput(sys_info_text, true);
+            break;
+
     }
 }
 
-function appendTerminalOutput(str, useInnerHtml = false) 
+function appendTerminalOutput(str, useInnerHtml = false, useSmallFont = false) 
 {
     let outputEl
     if (useInnerHtml) {
@@ -358,6 +520,10 @@ function appendTerminalOutput(str, useInnerHtml = false)
     else {
         outputEl = document.createElement("div")
         outputEl.textContent = str;
+    }
+    if (useSmallFont) {
+        outputEl.style.fontSize = "12px"
+        outputEl.style.lineHeight = "1"
     }
     terminalContentEl.appendChild(outputEl).appendChild(document.createElement("br"))
     scrollTerminal()
@@ -390,7 +556,12 @@ window.onload = ()=>
     loadTrack()
     initTracklistClickEvent()
     curTrack.addEventListener("ended", nextTrackV2); 
+    progressBar.addEventListener("click", setProgress)
 
+    // visualiser
+    let source = audioContext.createMediaElementSource(curTrack);
+    source.connect(analyser).connect(audioContext.destination)
+    canvasContext.fillStyle = "red"
 
     // chat
     // initChatEmbedV2()

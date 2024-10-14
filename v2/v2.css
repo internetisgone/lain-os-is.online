@@ -150,7 +150,7 @@ pre, input, button
     display: grid;
     grid-template-rows: 72px 30px 100px;
     grid-template-columns: auto auto;
-    grid-column-gap: 10px;
+    /* grid-column-gap: 10px; */
 }
 
 #artist-links-container {
@@ -176,6 +176,7 @@ pre, input, button
 
 #top-display {
     grid-column: 1; grid-row: 1;
+    border-style: none dashed dashed none;
 }
 
 #big-cur-time {
@@ -191,6 +192,7 @@ pre, input, button
     display: flex; flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
+    border-style: none none dashed none;
 }
 
 #now-playing div {
@@ -332,7 +334,7 @@ pre, input, button
 #mini-stats-container pre {
     position: absolute;
     right: 0; bottom: 0; margin: 0;
-    user-select: none;
+    user-select: none; pointer-events: none;
 }
 
 /*+------- terminal window -------+*/
