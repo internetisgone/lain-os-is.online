@@ -2,8 +2,11 @@
 
 {% block head %}
 
+<link rel="preload" href="fonts/JuliaMono-Regular.ttf" as="font" crossorigin>
+<link rel="preload" href="fonts/JuliaMono-ExtraBold.ttf" as="font" crossorigin>
+
 <link rel="stylesheet" type="text/css" href="style.css">
-<title>lain OS is online</title>
+<title>lainboot - lain OS is online</title>
 
 {% endblock %}
 
@@ -34,17 +37,22 @@
         color: white;
         cursor: pointer;
     }
-    a {
+    li span {
+        float: right;
+    }
+    /* a {
         text-decoration: none;
         color: unset;
-    }
+    } */
     #jukebox-ascii {
         position: absolute;
-        right: 10%;
+        right: 5%;
         top: 10%;
         font-family: "JuliaMono", "Courier New", monospace;
         font-size: 12px;
         margin: 0;
+        user-select: none;
+        pointer-events: none;
     }
 
 </style>
@@ -52,16 +60,15 @@
 <div id="main-container">
 	<p>lainboot 20241015 release</p>
     <ul id="boot-options">
-        <li>lain OS vol. 1</li>
-        <li>lain OS vol. 2</li>
-        <li>power off</li>
+        <li>lain OS vol. 1<span>/v1</span></li>
+        <li>lain OS vol. 2<span>/v2</span></li>
+        <li>power off<span>?</span></li>
     </ul>
-    <div style="position: absolute; left: 10px; bottom: 5px;">
+    <div style="position: absolute; left: 10px; bottom: 5px; background-color: black; z-index: 3;">
         <p>use arrow keys to select highlighted entry</p>
         <p>press enter to boot the selected OS</p>
     </div>
 </div>
-
 
 <pre id="jukebox-ascii">
                                                                              

@@ -452,8 +452,10 @@ pre, input, button
 
 @media (max-aspect-ratio: 4/3) 
 {
-	#lain-ascii
-	{
-        font-size: 10px;
-	}
+    /* .bg-ascii {
+
+    } */
+	#icons-container {
+        bottom: 40px;
+    }
 }
