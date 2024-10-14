@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta charset="utf-8">
 
-	<meta name="description" content="a compilation album released by the hong kong based indepedent music label absurd trax. vol. 1 artists: Fetus, GRASPS, Imryll, Jennifer Walton, Kagami Smile, lovefear, NERDIE, Nerve, Sour Gout, Thegn, Vrain, Wa?ste, x/o, Yikii, Yraki, Yuting Wu, ΛFΛLFL, 堀池ゆめぁ. vol. 2 artists: Axorst2k, Cicada Shell, Kwan, Akira Takemoto, 7mint, 	444theGod, georg-i,	Bungalovv, provinceofnowhere feat. SimonBB, d3br1s, moemiki, FINGERGAP, aDeAD, Rench Kee, Yau Hei ASJ, Emo Betriebswerk, NTFL">
+	<meta name="keyword" content="serial experiments lain, club cyberia, music, hong kong, compilation album, lain, anime, lain os"/>
 
 	<!-- favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
 
 
+
+<link rel="preload" href="fonts/JuliaMono-Regular.ttf" as="font" crossorigin>
+<link rel="preload" href="fonts/JuliaMono-ExtraBold.ttf" as="font" crossorigin>
 
 <link rel="stylesheet" type="text/css" href="style.css">
-<title>lain OS is online</title>
+<title>lainboot - lain OS is online</title>
 
 
 
@@ -48,17 +51,22 @@
         color: white;
         cursor: pointer;
     }
-    a {
+    li span {
+        float: right;
+    }
+    /* a {
         text-decoration: none;
         color: unset;
-    }
+    } */
     #jukebox-ascii {
         position: absolute;
-        right: 10%;
+        right: 5%;
         top: 10%;
         font-family: "JuliaMono", "Courier New", monospace;
         font-size: 12px;
         margin: 0;
+        user-select: none;
+        pointer-events: none;
     }
 
 </style>
@@ -66,16 +74,15 @@
 <div id="main-container">
 	<p>lainboot 20241015 release</p>
     <ul id="boot-options">
-        <li>lain OS vol. 1</li>
-        <li>lain OS vol. 2</li>
-        <li>power off</li>
+        <li>lain OS vol. 1<span>/v1</span></li>
+        <li>lain OS vol. 2<span>/v2</span></li>
+        <li>power off<span>?</span></li>
     </ul>
-    <div style="position: absolute; left: 10px; bottom: 5px;">
+    <div style="position: absolute; left: 10px; bottom: 5px; background-color: black; z-index: 3;">
         <p>use arrow keys to select highlighted entry</p>
         <p>press enter to boot the selected OS</p>
     </div>
 </div>
-
 
 <pre id="jukebox-ascii">
                                                                              
