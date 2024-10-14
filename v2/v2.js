@@ -305,7 +305,7 @@ function updateArtistLink() {
     artistLinksEl.href = trackList[curIndex].link
     linkText = trackList[curIndex].link.split("//")[1]
     // artistLinksEl.textContent = linkText == null ? trackList[curIndex].link : linkText
-    artistLinksEl.textContent = `[${linkText}]`
+    artistLinksEl.textContent = linkText
 }
 
 function setVolume() {
@@ -343,8 +343,8 @@ function resetProgress() {
 const INPUT_PATTERN = /^[\w\s]*$/
 const inputEl = document.getElementById("terminal-input")
 const terminalContentEl = document.getElementById("terminal-content")
+const caret = document.getElementById("fake-caret")
 
-// hidden commands
 let exited = false 
 let lained = false
 
@@ -371,7 +371,8 @@ const HELP_TEXT =
 .                ··-------+
 press tab to autocomplete`
 
-const WELCOME_TEXT = "type \"help\" and hit enter to view available commands :3"
+const WELCOME_TEXT = `type <span style="font-weight:bold;">help</span> and hit enter to view available 
+commands :3`
 
 const LOGO = 
 `.__         .__        ________    _________
@@ -382,18 +383,18 @@ const LOGO =
           \\/        \\/         \\/        \\/`
 
 let sys_info_text = 
-`+-------··
-|  lain@navi
-¦  -------------- 
-.  OS: lainOS 2.0 x86_64
-   Host: ${getBrowserName()}
-   Kernel: 2.0.0
-   Uptime: 
-   Terminal: Navi_Terminal
-   Terminal Font: JuliaMono-Regular
-   CPU Cores: ${navigator.hardwareConcurrency}
-   GPU: 
-   Memory:`
+`
+  lain@navi
+  -------------- 
+  OS: lainOS 2.0 x86_64
+  Host: ${getBrowserName()}
+  Kernel: 2.0.0
+  Uptime: 
+  Terminal: Navi_Terminal
+  Terminal Font: JuliaMono-Regular
+  CPU Cores: ${navigator.hardwareConcurrency}
+  GPU: 
+  Memory:`
 // todo: use window.performance
 
 function getBrowserName() {
@@ -409,12 +410,14 @@ function getHiddenCommandsCount() {
 
 function processInput(e)
 {	
+    updateCaretPos()
+    // console.log(inputEl.value.length)
     switch(e.key) {
         case "Enter":
             // display usr input
             var usrInput = inputEl.value.trim()
             appendTerminalOutput("lain@navi ~ % " + usrInput)
-            inputEl.value = "";
+            clearInput()
 
             // check for illegal chars
             if (usrInput.match(INPUT_PATTERN) == null) {
@@ -456,10 +459,11 @@ function processInput(e)
             if (matches.length == 1) {
                 // auto complete
                 inputEl.value = matches[0]
+                updateCaretPos()
             }
             if (matches.length > 1) {      
                 // show all matches      
-                appendTerminalOutput(matches) 
+                appendTerminalOutput(matches.join(", ")) 
                 // todo
                 // press tab again to go to next match
             }
@@ -491,7 +495,7 @@ function processCommand(command) {
 
         case "exit":
             exited = true
-            inputEl.value = ""
+            clearInput()
             window.location.href = "/offline.html"
             break;
 
@@ -534,6 +538,14 @@ function scrollTerminal() {
 	terminalContentEl.scrollTop = terminalContentEl.scrollHeight; 
 }
 
+function updateCaretPos() {
+    caret.style.marginLeft = fontWidth + 1 + inputEl.value.length * fontWidth + "px"
+}
+
+function clearInput() {
+    inputEl.value = ""
+    caret.style.marginLeft = "0"
+}
 function initChatEmbedV2()
 {
 	let chatScript = document.createElement("script")
@@ -551,7 +563,7 @@ function initChatEmbedV2()
 window.onload = ()=> 
 {
     inputEl.onkeydown = processInput
-    appendTerminalOutput(WELCOME_TEXT)
+    appendTerminalOutput(WELCOME_TEXT, true)
 
     loadTrack()
     initTracklistClickEvent()
@@ -562,6 +574,15 @@ window.onload = ()=>
     let source = audioContext.createMediaElementSource(curTrack);
     source.connect(analyser).connect(audioContext.destination)
     canvasContext.fillStyle = "red"
+
+    // click terminal content to focus on the input element
+    terminalContentEl.addEventListener("click", (e) => {
+        // make sure texts can still be selected 
+        let selection = window.getSelection();
+        if (selection.type != "Range") {
+            if (!inputEl.focused) inputEl.focus();
+        }
+    })
 
     // chat
     // initChatEmbedV2()

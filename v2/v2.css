@@ -125,7 +125,7 @@ pre, input, button
 }
 .icon 
 {
-	display: none;
+    visibility: hidden;
 	cursor: pointer;
     margin: 0;
     font-size: 13px;
@@ -139,8 +139,8 @@ pre, input, button
     display: flex;
     flex-direction: column;
     gap: 10px;
-    top: 10%;
-    left: 20%;
+    top: 7%;
+    left: 10%;
     height: unset;
     padding-top: var(--drag-area-height);
     z-index: 3;
@@ -170,9 +170,6 @@ pre, input, button
     height: 250px;
     border-style: dashed none;
 }
-
-/* #music-player-bottom-container {
-} */
 
 #top-display {
     grid-column: 1; grid-row: 1;
@@ -256,6 +253,7 @@ pre, input, button
     /* background-color: snow; */
     user-select: none;
     display: flex; align-items: center;
+    /* border-style: none none dashed none; */
 }
 #progress-bar-playhead {
     position: absolute;
@@ -316,8 +314,8 @@ pre, input, button
 }
 
 #mini-stats-container {
-    height: 50px;
-    width: 100px;
+    height: 45px;
+    width: 150px;
     display: grid;
     align-items: center;
     margin-left: 7px;
@@ -341,9 +339,10 @@ pre, input, button
 
 #terminal {
     position: absolute;
-    top: 30%; left: 50%;
+    top: 30%; right: 15%;
     padding-top: var(--drag-area-height);
     height: unset;
+    z-index: 2
 }
 #terminal-content {
     height: 280px;
@@ -373,11 +372,33 @@ pre, input, button
     padding-top: 0;
     font-size: 15px;
     width: 270px;
-	/* caret-color: transparent; */
+	caret-color: transparent;
 }
 #terminal-input:focus { outline:none !important; }
 
+#fake-caret 
+{
+	position: absolute;
+    left: 130px;
+    margin-left: 0;
+    margin-bottom: 10px;
+	width: 11px;
+	animation: blink 1s step-end infinite;
+  	border-bottom: 2px solid red;
+}
+
+@keyframes blink {
+	from,
+	to {border-color: transparent;}
+  	50% {border-color: red;}
+}
+
 /*+------- version history window -------+*/
+
+#version-history {
+    position: absolute;
+    top: 20%; right: 5%;
+}
 
 #version-history-container
 {
@@ -401,10 +422,9 @@ pre, input, button
 
 #chat-window {
     position: absolute;
-    top: 13%;
-    left: 40%;
+    top: 12%;
+    left: 33%;
     height: 433px; width: 333px;
-
 }
 
 #chat-container {

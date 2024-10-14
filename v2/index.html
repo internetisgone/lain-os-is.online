@@ -16,6 +16,9 @@
 <link rel="stylesheet" type="text/css" href="../style.css">
 <link rel="stylesheet" type="text/css" href="v2.css">
 
+<link rel="preload" href="../fonts/JuliaMono-Regular.ttf" as="font" crossorigin>
+<link rel="preload" href="../fonts/JuliaMono-ExtraBold.ttf" as="font" crossorigin>
+
 <title>lain OS is online vol. 2</title>
 
 
@@ -86,7 +89,7 @@
 
 </pre>
 
-<pre class="bg-ascii" style="left: 0; top: 0; display: none;">
+<!-- <pre class="bg-ascii" style="left: 0; top: 0; display: none;">
                                             .
                                         , '
                                     , '
@@ -172,7 +175,7 @@
                         \\                       \\
                          \\                       \}
                           \}
-</pre>
+</pre> -->
 
 <div class="mini-window" id="music-player">
     <div class="mini-window-header">~ lain-amp ~
@@ -234,7 +237,7 @@
                                        /
                                       /
 </pre>
-        <a id="artist-links" target="_blank"></a>
+        [<a id="artist-links" target="_blank"></a>]
     </div>
 
     <div id="tracklist-container">
@@ -277,19 +280,18 @@
         </ul>
     </div>
 
-    <div id="music-player-bottom-container">
-        <div id="mini-stats-container">
-            <div id="mini-total-time"><span id="cur-track-duration">00:00</span>/73:43</div>
-            <div id="mini-controls">
-                <div id="mini-controls-btns">
-                    <button onclick="prevTrackV2()" aria-label="prev">&#x23EA;</button>
-                    <button onclick="playTrackV2()" aria-label="play">&#x23F5;</button>
-                    <button onclick="pauseTrackV2()" aria-label="pause">&#x23F8;</button>
-                    <button onclick="stopTrackV2()" aria-label="stop">&#x23F9;</button>
-                    <button onclick="nextTrackV2()" aria-label="next">&#x23E9;</button>
-                </div>
+    <div id="mini-stats-container">
+        <div id="mini-total-time"><span id="cur-track-duration">00:00</span>/73:43</div>
+        <div id="mini-controls">
+            <div id="mini-controls-btns">
+                <button onclick="prevTrackV2()" aria-label="prev">&#x23EA;</button>
+                <button onclick="playTrackV2()" aria-label="play">&#x23F5;</button>
+                <button onclick="pauseTrackV2()" aria-label="pause">&#x23F8;</button>
+                <button onclick="stopTrackV2()" aria-label="stop">&#x23F9;</button>
+                <button onclick="nextTrackV2()" aria-label="next">&#x23E9;</button>
             </div>
-            <div class="cur-time" id = "mini-cur-time">00:00</div>
+        </div>
+        <div class="cur-time" id = "mini-cur-time">00:00</div>
             <!-- <pre>
                   /
           /      / 
@@ -306,7 +308,6 @@
     .    /  '.  - - - /,- -
      ', //     .     /  '.
 </pre>
-       </div>
     </div>
 </div>
 
@@ -330,10 +331,11 @@
         <span id="terminal-prompt">lain@navi ~ %&nbsp;</span>
         <!-- <span id="fake-caret">&nbsp;</span> -->
         <input type="text" id="terminal-input" maxlength="33" aria-label="terminal input field">
+        <span id="fake-caret">&nbsp;</span>
     </div>
 </div>
 
-<div class="mini-window" id="version-history-window">
+<div class="mini-window" id="version-history">
     <div class="mini-window-header">~ version history ~
         <div class="mini-window-close">X</div>
     </div>

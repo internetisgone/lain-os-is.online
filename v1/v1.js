@@ -883,7 +883,7 @@ settingsViewToggle.addEventListener("click", function(){
 		dockContainer.style.display = "flex"
 		for (let i = 0; i < miniWindows.length; i++)
 		{
-			miniWindows.item(i).style.display = "block"
+			miniWindows.item(i).style.visibility = "visible"
 		}
 		showingOldUI = false
 	}
@@ -896,7 +896,7 @@ settingsViewToggle.addEventListener("click", function(){
 		//playlistEl.style.display = "block"
 		for (let i = 0; i < miniWindows.length; i++)
 		{
-			miniWindows.item(i).style.display = "none"
+			miniWindows.item(i).style.visibility = "hidden"
 		}
 		showingOldUI = true
 	}

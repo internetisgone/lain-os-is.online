@@ -68,11 +68,11 @@ function bringWindowToFront(index) {
 }
 
 function toggleWindow(index, isVisible) {
-	miniWindows.item(index).style.display = isVisible ? "block" : "none"
+	miniWindows.item(index).style.visibility = isVisible ? "visible" : "hidden"
 }
 
 function toggleIcon(index, isVisible) {
-	icons.item(index).style.display = isVisible ? "block" : "none"
+	icons.item(index).style.visibility = isVisible ? "visible" : "hidden"
 }
 
 function dragStart(e) {
