@@ -206,7 +206,8 @@ pre, input, button
 #now-playing div {
     display: flex; flex-direction: row; 
     align-items: center;
-    gap: 30px;
+    gap: 20px;
+    overflow-x: hidden;
 }
 
 #cur-track-name { 
