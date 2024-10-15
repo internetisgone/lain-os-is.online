@@ -423,11 +423,6 @@ const LOGO =
           \\/        \\/         \\/        \\/`
 
 
-function getBrowserName() {
-    // todo parse user agent 
-    return "test";
-}
-
 function getHiddenCommandsCount() {
     if (exited == false && lained == false) return 0;
     else if (exited == true && lained == true) return 2;
@@ -440,6 +435,7 @@ function processInput(e)
     // console.log(inputEl.value.length)
     switch(e.key) {
         case "Enter":
+            e.preventDefault()
             // display usr input
             var usrInput = inputEl.value.trim()
             appendTerminalOutput("lain@navi ~ % " + usrInput)

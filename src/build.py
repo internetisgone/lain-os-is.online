@@ -4,9 +4,24 @@ import os
 
 VERSION_HISTORY_ENTRIES = [
     {
+        "version": "2.0.0",
+        "date": "15 oct 2024 ",
+        "description": "vol. 2 release"
+    },
+    {
+        "version": "1.3.0",
+        "date": "13 oct 2024 ",
+        "description": "navi terminal 2.0"
+    },
+    {
+        "version": "1.2.0",
+        "date": "11 oct 2024 ",
+        "description": "added lainboot"
+    },
+    {
         "version": "1.1.0",
         "date": "01 july 2024 ",
-        "description": """a selection of vol. 2 tracks premiered on <a href="https://www.nts.live/shows/bloodz-boi/episodes/bloodz-boi-1st-july-2024" target="_blank">NTS</a><br> added /v2 placeholder"""
+        "description": """a selection of vol. 2 tracks premiered on <a href="https://www.nts.live/shows/bloodz-boi/episodes/bloodz-boi-1st-july-2024" target="_blank">NTS</a>"""
     },
     {
         "version": "1.0.0",
@@ -14,35 +29,14 @@ VERSION_HISTORY_ENTRIES = [
         "description": "vol. 1 release"
     },
     {
-        "version": "0.3.2",
+        "version": "0.2.0",
         "date": "26 oct 2022 ",
         "description": "added audio filter developer mode"
     },
     {
-        "version": "0.3.1",
-        "date": "09 oct 2022 ",
-        "description": """window minimise animation<br> fixed ascii art display issue<br> fixed safari volume issue"""
-    },
-    {
-        "version": "0.3.0",
-        "date": "21 sep 2022 ",
-        "description": """uploaded vol. 1 master<br> music player visualiser"""
-    },
-    {
-        "version": "0.2.1",
-        "date": "01 sep 2022 ",
-        "description": """audio filter commands<br> mobile optimisation"""
-    },
-    {
-        "version": "0.2.0",
-        "date": "28 aug 2022 ",
-        "description": """added terminal window<br> added version history window"""
-    },
-    {
         "version": "0.1.0",
         "date": "09 aug 2022 ",
-        "description": """uploaded lain comp vol. 1 demo<br> music player with audio filters
-"""
+        "description": "uploaded vol. 1 demo"
     },
 ]
 

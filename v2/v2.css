@@ -182,7 +182,7 @@ pre, input, button
 }
 
 #cur-track-state {
-    font-size: 24px;
+    font-size: 22px;
     margin-left: 7px;
     color: var(--secondary-color);
 }
@@ -453,14 +453,15 @@ pre, input, button
 
 /* credits */
 #credits {
-    position: absolute; bottom: -33px; right: 30px;
-    width: 120px; height: 100px;
+    position: absolute; bottom: -24px; right: 30px;
+    width: 120px;
     text-decoration: none;
     z-index: unset;
     /* animation: peek 2s linear infinite; */
 }
+#credits a { width: 0;}
 #credits:hover {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 /* @keyframes peek {
@@ -473,7 +474,10 @@ pre, input, button
 @media screen and (max-width: 500px)
 {
     #credits {
-        top: 20px; left: 0px;
+        top: 30px; left: -10px;
+    }
+    #credits img {
+        transform: rotate(90deg);
     }
     
 	#icon-tray {
