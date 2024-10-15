@@ -2,7 +2,7 @@
 const trackList = [
     {'name': 'Bungalovv - Where\'s The Real Me', 'path': 'final_master_mp3/Where_s The Real Me.mp3', 'duration': '05:00', 'link': 'https://soundcloud.com/bungalovv'}, 
 
-    {'name': 'aDeAD  - 真実は真実だからこそ強いんだ', 'path': 'final_master_mp3/真実は真実だからこそ強いんだ.mp3', 'duration': '03:48', 'link': 'https://adeadmusic.bandcamp.com'}, 
+    {'name': 'aDeAD  - 真実は真実だからこそ強いんだ', 'path': 'final_master_mp3/adead.mp3', 'duration': '03:48', 'link': 'https://adeadmusic.bandcamp.com'}, 
 
     {'name': 'georg-i - Spliced fom Memory ', 'path': 'final_master_mp3/Spliced fom Memory .mp3', 'duration': '03:53', 'link': 'https://georg-i.bandcamp.com'}, 
 
@@ -14,7 +14,7 @@ const trackList = [
 
     {'name': 'Cicada Shell - 霊性 Wired Unconscious', 'path': 'final_master_mp3/霊性 Wired Unconscious.mp3', 'duration': '04:24', 'link': 'https://soundcloud.com/cicadas-shell'}, 
 
-    {'name': 'Akira Takemoto  - 一人ぼっち1a (Videopunks works)', 'path': 'final_master_mp3/一人ぼっち1a (Videopunks works).mp3', 'duration': '09:09', 'link': 'https://videopunks.bandcamp.com'},
+    {'name': 'Akira Takemoto  - 一人ぼっち1a (Videopunks works)', 'path': 'final_master_mp3/videopunks.mp3', 'duration': '09:09', 'link': 'https://videopunks.bandcamp.com'},
 
     {'name': '7mint - Slip The Hoax', 'path': 'final_master_mp3/Slip The Hoax.mp3', 'duration': '05:05', 'link': 'https://7mint.bandcamp.com'}, 
 
