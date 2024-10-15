@@ -152,7 +152,7 @@ pre, input, button
 #music-player-top-container {
     display: grid;
     grid-template-rows: 72px 30px 100px;
-    grid-template-columns: auto auto;
+    grid-template-columns: 110px 332px;
     /* grid-column-gap: 10px; */
 }
 
@@ -193,6 +193,7 @@ pre, input, button
     grid-row: 1;
     display: flex; flex-direction: column;
     justify-content: space-between;
+    padding-left: 3px;
     overflow: hidden;
     border-width: var(--music-player-inner-border-width);
     border-style: none none dashed none;
