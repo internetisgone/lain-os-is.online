@@ -50,7 +50,7 @@ pre, input, button
 }
 
 .hidden {
-    display: none;
+    visibility: hidden;
 }
 
 .underline { text-decoration: underline; }
@@ -213,6 +213,8 @@ pre, input, button
     white-space: nowrap; 
     overflow: hidden;
 }
+
+.inactive-audio-stat { color: var(--secondary-color); }
 
 #cur-track-name-clone {
     visibility: hidden;
