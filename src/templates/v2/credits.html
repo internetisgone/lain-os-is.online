@@ -20,16 +20,27 @@
 {% block body %}
 
 <style>
-    #credits-container {        
+    #credits-container {       
         background-color: white; z-index: 10;
-        padding-right: 30px;
+        padding-left: 30px; padding-right: 30px;
+        overflow-y: auto;
+    }
+    ul { 
+        padding: 0; 
     }
     li {
         list-style: none;
-        margin-top: 5px;
+        padding: 5px;
     }
     li span {
         float: right;
+    }
+    li:hover, li:hover a {
+        color: white;
+        background-color: red;
+    }
+    p {
+        line-height: 1.3;
     }
 </style>
 
@@ -161,7 +172,7 @@
     <ul>
         {% for artist in artists %}
         <li>
-            {{ artist.name }} 
+            {{ artist.name }}&nbsp;&nbsp;&nbsp;
             <span>
                 {% set ig_link = "https://www.instagram.com/" + artist.ig  %}
                 {% set other_link_text = artist.other.split('www.')[1] %}
@@ -179,19 +190,21 @@
                 {% endif %}
 
                 {% if artist.other != '' %}
-                    <a href={{ artist.other }} target="_blank">{{ other_link_text }}</a>
+                    <a href={{ artist.other }} target="_blank">{{ other_link_text.split('.com')[0] }}</a>
                 {% endif %}
             </span>
         </li>
         {% endfor %}
     </ul>
 
-    <p style="margin: 40px;">
+    <br>
+    <p>
     Mastered by Nerve<br>
     Cover Art by Simone<br>
-    Website by Muon<br>
+    Curated by Anlin and Gavin<br>
     <br>
-    Curated by Anlin and Gavin
+    Website by Muon<br>
+    <a href="https://github.com/internetisgone/lain-os-is.online" target="_blank">Source code</a>
     </p>
 </div>
 

@@ -156,7 +156,6 @@ V2_TRACKLIST = [{'name': 'boa_duvet', 'path': 'test_mp3/boa_duvet.mp3', 'duratio
 
 V2_ARTISTS = [
 	{'name': 'aDeAD ', 'ig': 'adead27', 'sc': 'https://soundcloud.com/oran-dead', 'bc': 'https://adeadmusic.bandcamp.com', 'other': ''}, 
-    {'name': 'Akira Takemoto ', 'ig': '', 'sc': '', 'bc': '', 'other': ''}, 
     {'name': 'Axorst2k', 'ig': 'cyan1degh0st', 'sc': 'https://soundcloud.com/cyanidesystem', 'bc': 'https://cyanidesystem.bandcamp.com', 'other': ''}, 
     {'name': 'Bungalovv', 'ig': 'bungalovv', 'sc': 'https://soundcloud.com/bungalovv', 'bc': '', 'other': ''}, 
     {'name': 'Cicada Shell', 'ig': '_cicada_shell_', 'sc': 'https://soundcloud.com/cicadas-shell', 'bc': '', 'other': ''}, 
@@ -169,7 +168,6 @@ V2_ARTISTS = [
     {'name': 'NTFL', 'ig': 'n_t_f.l', 'sc': 'https://soundcloud.com/n-t-f-l', 'bc': '', 'other': ''}, 
     {'name': 'provinceofnowhere', 'ig': 'provinceofnowhere', 'sc': 'https://soundcloud.com/province-of-nowhere', 'bc': '', 'other': ''}, 
 	{'name': 'Rench Kee', 'ig': 'totaldedly08river', 'sc': '', 'bc': '', 'other': ''}, 
-    {'name': 'SimonBB', 'ig': '', 'sc': '', 'bc': '', 'other': ''},
     {'name': 'Videopunks', 'ig': 'vxpx.info', 'sc': '', 'bc': 'https://videopunks.bandcamp.com/', 'other': ''},
 	{'name': 'Yau Hei ASJ', 'ig': 'yauheiasj', 'sc': 'https://soundcloud.com/weareasj', 'bc': 'https://weareasj.bandcamp.com', 'other': ''}, 
     {'name': '444theGod ', 'ig': '444_thegod', 'sc': '', 'bc': '', 'other': ''}, 
