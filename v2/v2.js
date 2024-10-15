@@ -110,7 +110,7 @@ const TERMINAL_ART = [
 // *+-------              -------+* //
 
 const miniWindows = document.getElementsByClassName("mini-window")
-const  windowIcons = document.getElementsByClassName("icon")
+const icons = document.getElementsByClassName("icon")
 
 initMiniWindows()
 
@@ -120,7 +120,7 @@ function initMiniWindows() {
 		let miniWindow = new MiniWindow(
 			i,
 			miniWindows.item(i), 
-			 windowIcons.item(i), 
+            icons.item(i), 
 		)	
 		miniWindow.init()
 	}
