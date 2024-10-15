@@ -154,6 +154,26 @@ V1_TRACKLIST = [
 V2_TRACKLIST = [{'name': 'boa_duvet', 'path': 'test_mp3/boa_duvet.mp3', 'duration': '03:19', 'link': 'https://i.am.retarded.boa'}, {'name': 'dj sharpnel - gate openerz 0.900x', 'path': 'test_mp3/dj sharpnel - gate openerz 0.900x.mp3', 'duration': '04:54', 'link': 'https://i.am.retarded.sharpnel'}]
 
 
+V2_ARTISTS = [
+	{'name': 'aDeAD ', 'ig': 'adead27', 'sc': 'https://soundcloud.com/oran-dead', 'bc': 'https://adeadmusic.bandcamp.com', 'other': ''}, 
+    {'name': 'Axorst2k', 'ig': 'cyan1degh0st', 'sc': 'https://soundcloud.com/cyanidesystem', 'bc': 'https://cyanidesystem.bandcamp.com', 'other': ''}, 
+    {'name': 'Bungalovv', 'ig': 'bungalovv', 'sc': 'https://soundcloud.com/bungalovv', 'bc': '', 'other': ''}, 
+    {'name': 'Cicada Shell', 'ig': '_cicada_shell_', 'sc': 'https://soundcloud.com/cicadas-shell', 'bc': '', 'other': ''}, 
+	{'name': 'd3br1s', 'ig': '', 'sc': 'https://soundcloud.com/dur_ant', 'bc': 'https://d3br1s.bandcamp.com', 'other': 'https://www.youtube.com/@d3br1s_'}, 
+    {'name': 'Emo Betriebswerk', 'ig': 'djstoleyourbae', 'sc': 'https://soundcloud.com/emobetriebswerk', 'bc': '', 'other': ''}, 
+    {'name': 'FINGERGAP', 'ig': 'fingergap', 'sc': 'https://soundcloud.com/fingergap', 'bc': 'https://fingergap.bandcamp.com', 'other': ''}, 
+	{'name': 'georg-i', 'ig': '_georg_i_', 'sc': 'https://soundcloud.com/georg-i', 'bc': 'https://georg-i.bandcamp.com', 'other': ''}, 
+    {'name': 'Kwan', 'ig': 'kwanho1997', 'sc': 'https://soundcloud.com/kwanw', 'bc': 'https://kwanw.bandcamp.com', 'other': ''}, 
+	{'name': 'moemiki', 'ig': 'moemiki_', 'sc': 'https://soundcloud.com/moemiki', 'bc': '', 'other': 'https://www.twitter.com/moemiki_'}, 
+    {'name': 'NTFL', 'ig': 'n_t_f.l', 'sc': 'https://soundcloud.com/n-t-f-l', 'bc': '', 'other': ''}, 
+    {'name': 'provinceofnowhere', 'ig': 'provinceofnowhere', 'sc': 'https://soundcloud.com/province-of-nowhere', 'bc': '', 'other': ''}, 
+	{'name': 'Rench Kee', 'ig': 'totaldedly08river', 'sc': '', 'bc': '', 'other': ''}, 
+    {'name': 'Videopunks', 'ig': 'vxpx.info', 'sc': '', 'bc': 'https://videopunks.bandcamp.com/', 'other': ''},
+	{'name': 'Yau Hei ASJ', 'ig': 'yauheiasj', 'sc': 'https://soundcloud.com/weareasj', 'bc': 'https://weareasj.bandcamp.com', 'other': ''}, 
+    {'name': '444theGod ', 'ig': '444_thegod', 'sc': '', 'bc': '', 'other': ''}, 
+    {'name': '7mint', 'ig': '7mint.music', 'sc': '', 'bc': 'https://7mint.bandcamp.com', 'other': 'https://www.twitter.com/7mint_music'}, 
+]
+
 # for filename in os.listdir("../v1/21sept-master-mp3"):
 #       V1_TRACKLIST.append( { "name": filename.split(".mp3")[0], "path": "21sept-master-mp3/" + filename })
 
@@ -187,17 +207,38 @@ def format_duration(seconds):
 #     total_seconds += audiofile.info.time_secs
 # print(format_duration(total_seconds))
 
+
+# for filename in os.listdir("../v2/final_master_mp3"):
+#     path_lain = os.path.dirname(os.path.realpath(__file__))[0:-4]
+    
+#     audiofile = eyed3.load(path_lain + "/v2/final_master_mp3/" + filename)
+
+#     V2_ARTISTS.append(audiofile.tag.artist)
+    
+# V2_ARTISTS.sort()
+# print(V2_ARTISTS)
+
+# test = []
+# for artist in V2_ARTISTS:
+#     test.append({ 'name' : artist, 'ig' : '', 'sc' : '', 'bc' : '', 'other' : ''})
+
+# print(test)
+
 if __name__ == "__main__":
     site = Site.make_site( 
             contexts = [ 
                 ("v1/index.html", { 
                     "version_history_entries": VERSION_HISTORY_ENTRIES,
                     "tracklist" : V1_TRACKLIST
-                    }), 
+                }), 
                 ("v2/index.html", {
                     "version_history_entries": VERSION_HISTORY_ENTRIES,
                     "tracklist": V2_TRACKLIST
-                    })],
+                }),
+                ("v2/credits.html", {
+                    "artists": V2_ARTISTS
+                })
+        	],
             outpath = "../"
         )
     site.render(use_reloader=True)

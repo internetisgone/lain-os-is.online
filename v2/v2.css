@@ -444,6 +444,11 @@ pre, input, button
     width: 100%; height: calc(100% - var(--drag-area-height))
 }
 
+/* credits */
+#credits-container {
+    position: absolute; top: 20px; left: 20px;
+}
+
 /* mobile / portrait display */
 
 @media (max-aspect-ratio: 4/3) 
@@ -452,6 +457,6 @@ pre, input, button
 
     } */
 	#icon-tray {
-        bottom: 60px;
+        bottom: 80px;
     }
 }

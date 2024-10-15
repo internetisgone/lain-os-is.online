@@ -2,7 +2,7 @@
 
 {% block head %}
 
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="style.css">
 
 <title>404 - lain OS is online</title>
 
@@ -15,7 +15,19 @@
 
 {% block body %}
 
-<div id="main-container" style="display: flex; justify-content: center; align-items: center;">
+<style>
+	body {
+		background-color: black;
+		color: white;
+	}
+	a { color: white; }
+	#main-container {
+		display: flex; justify-content: center; align-items: center;
+	}
+	
+</style>
+
+<div id="main-container">
 	<p style="text-align: center;">
 		there's nothing here...<br>
 		<br>
