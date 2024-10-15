@@ -615,7 +615,7 @@ window.onload = ()=>
     })
 
     // chat
-    initChatEmbedV2()
+    // initChatEmbedV2()
 
 
     // get browser and system info 
