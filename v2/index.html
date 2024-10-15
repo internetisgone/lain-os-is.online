@@ -272,7 +272,7 @@
             <p id="cur-track-name"></p>
             <p id="cur-track-name-clone"></p>
             <div>
-                <p id="audio-stats">320 KBPS 48 KHZ &nbsp;&nbsp; stereo</p>
+                <p id="audio-stats"><span class="audio-stat hidden">320</span> KBPS <span class="audio-stat hidden">48</span> KHZ &nbsp;&nbsp;&nbsp;<span class="inactive-audio-stat">mono</span>&nbsp;&nbsp;<span class="inactive-audio-stat" id="stereo">stereo</span></p>
                 <input id="volume-slider" type="range" min="0" max="100" value="77" step="1" oninput="setVolume()" onchange="onFinishSettingVolume()" aria-label="volume slider">
             </div>
         </div>
