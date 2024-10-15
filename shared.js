@@ -247,15 +247,19 @@ function getRandomInt(min, max)
 	return Math.floor(Math.random() * (max - min) + min);
 }
 
-function parseTime(duration)
+function parseTime(sec)
 {
-	let minutes = Math.floor(duration/60)
-	let seconds = Math.round(duration % 60)
-	let minString = (minutes < 10)? ("0" + minutes) : ("" + minutes);
-	let secString = (seconds < 10)? ("0" + seconds) : ("" + seconds);
+	let hours = Math.floor(sec / 3600)
+	let minutes = Math.floor((sec - (hours * 3600)) / 60);
+	let seconds = Math.round(sec - (hours * 3600) - (minutes * 60));
+
+	let hrStr = (hours < 10)? ("0" + hours) : ("" + hours);
+	let minStr = (minutes < 10)? ("0" + minutes) : ("" + minutes);
+	let secStr = (seconds < 10)? ("0" + seconds) : ("" + seconds);
 
 	return { 
-     min: minString,
-     sec: secString
+		hr: hrStr,
+		min: minStr,
+		sec: secStr
    }; 
 }

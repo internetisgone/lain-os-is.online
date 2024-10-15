@@ -1,4 +1,4 @@
-// for prod
+// // for prod
 // const trackList = [
 //     {'name': 'Bungalovv - Where\'s The Real Me', 'path': 'final_master_mp3/Where_s The Real Me.mp3', 'duration': '05:00', 'link': 'https://soundcloud.com/bungalovv'}, 
 
@@ -30,7 +30,7 @@
 
 //     {'name': '444theGod  - AIR Sword \'94', 'path': 'final_master_mp3/AIR Sword _94.mp3', 'duration': '03:13', 'link': 'https://instagram.com/444_thegod'}, 
     
-//     {'name': 'Emo Betriebswerk - Nonverbal communication', 'path': 'final_master_mp3/Nonverbal communication.mp3', 'duration': '02:14', 'link': 'https://soundcloud.com/emobetriebswerk'}, 
+// {'name': 'Emo Betriebswerk - Nonverbal/Communication', 'path': 'final_master_mp3/Nonverbal communication.mp3', 'duration': '02:14', 'link': 'https://soundcloud.com/emobetriebswerk'}, 
 
 //     {'name': 'Rench Kee - Fake Trauma Orchestra', 'path': 'final_master_mp3/Fake Trauma Orchestra.mp3', 'duration': '07:55', 'link': 'https://instagram.com/totaldedly08river'}
 // ]
@@ -42,24 +42,6 @@ const trackList = [
 ]
 
 const TERMINAL_ART = [
-// `.         .         .
-//   ' ,     :     , '
-//       ' . O . '
-//         .<+>.
-//     , '   V   ' ,
-// . '       :       ' .
-//           :
-//           |`,
-// `  /         \\
-//  (  (     )  )
-// (  {  / \\  }  )
-// < {  { O }  }  >
-// (  {  \\|/  }  )
-//  (  (  |  )  )
-//   \\    |    /
-//        A
-//       /|\\`,
-
 `⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡤⢤⣤⣤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣶⣧⣐⠍⢙⣀⣼⣿⣿⣅⡐⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠉⠙⠻⣿⣿⣿⣿⣿⣯⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -120,37 +102,6 @@ const TERMINAL_ART = [
   ....███░░░░░░░░░████░░░░░░░░░███....
   ....███░░░░░░░████████░░░░░░░███....
   ......████████████████████████......`,
-
-//   `.-:::=+======+===**#*+====-=+=--+==---::-++++**+--..
-// .-=+=*##*****+*******++****=***+**+=-=====+*####*=-..
-// ::-=++*##+**++**+**************++++=--++==+=+**++#*-.
-// -:=##+==++++++++++++++**+++++=====--+**##*=====+*##+.
-// -:+*+=++===++*+==----*#+=--+=::::-:---===+*=--+*****:
-// ==#++++**=--=-::..:-*%%#+::-=:...:..:.:::-:-==+==***:
-// =+#++****-::-.....-*%%%#+:..=-. .:....:....:--====+*:
-// =*#*++=+-.:=-   .-*+**##*-..-=. .:...:=.    ..:-=+=+:
-// +=*#*-:+-.-=:...:+++=+=+*=..:+. :-:.:-=-:.  .. .:=++.
-// ++*+-:-*+-++-==+**#*=--=*=..-+::***+==---:::--.  .-=.
-// +++-::.+-:==-+*==-=::::-*=::-+::-:::-----:..=-.   .-.
-// ===:..:+--+#%%%%#*+-:::-*=-===:-:-+#%%%%#*-==-:    .
-// :-::..-+***%#%@#=#*+-:.=+========##+*%%####*+-:    .
-// :=::+=+*+-=##%%%##=-=-:-::::--+++-+##%%##=-=+=:    .
-// .:+==-==:-=++###*+=:.:=-:   .--::-++###**+-=*-.    :
-// .:=*+::-::..::-------=+*+. ..-===--:::-::::=+-.   -:
-// :.-=-=:.......::::----==+:   .:=++++==-:..:-=-:  :-:
-// .:-=--=-:::::.........:--.    .:--::..::::=+=--::-.
-// :..-====+=--::....   .....            ..:-+*=:-:=:
-// -::-++===++=--:..    . .....          .:-++*=::--.
-// :-:+**++==++=--:.       ..:: .   .   .:-==-*-.:+. .
-// ..:+-+-+++****=-:.       .:.   .    .:=+-:-*-:++.. .
-// ...::::-=+*+===+=-.. .   .        ..-+===+++-+*-...:
-// ..::=+++====-:---=+-:.          ..-=====+**==**+-:::.
-// ::++**+=======-::::-==-::...:::..::=+++++++=++++++-:
-// +*#+**+======-::::..:----=++=-:.:---+++**++*#***++++.
-// +##*+==+++====--:::....:---::..:------=+**##++******.
-// *#%*+*+=+***+===--:::........:::-++*++*+==++*##+*#%#:
-// =%%******#***++===---==========+++++***#%########%%%:
-// +++===---==--:::::..:--::-=+++++++=----======+++=+*+.`,
 ]
 
 
@@ -194,6 +145,9 @@ let marqueeId, marqueeDelayId
 let progressTimer
 const fontWidth = 9 
 
+let loopOn = false
+let shuffleOn = false
+
 function loadTrack() {
     _loadTrack()
 
@@ -236,9 +190,45 @@ function prevTrackV2() {
 
 function nextTrackV2() {
     _nextTrack()
-    curIndex < trackList.length - 1 ? curIndex += 1 : curIndex = 0;
+    
+    if (shuffleOn == true) curIndex = getRandomInt(0, trackList.length)
+    else curIndex < trackList.length - 1 ? curIndex += 1 : curIndex = 0;
     loadTrack()
     playTrackV2()
+}
+
+function toggleLoop() {
+    loopOn = !loopOn
+    if (loopOn) {
+        curTrack.removeEventListener("ended", nextTrackV2)
+		curTrack.addEventListener("ended", loopSong)
+        document.getElementById("loop-btn").classList.add("underline")
+    }
+    else {
+        curTrack.removeEventListener("ended", loopSong)
+        curTrack.addEventListener("ended", nextTrackV2)
+        document.getElementById("loop-btn").classList.remove("underline")
+    }
+    let str = loopOn == true? "on" : "off"
+    appendTerminalOutput("loop " + str)
+}
+
+function toggleShuffle() {
+    shuffleOn = !shuffleOn
+    if (shuffleOn) {
+        document.getElementById("shuffle-btn").classList.add("underline")
+    }
+    else {
+        document.getElementById("shuffle-btn").classList.remove("underline")
+    }
+    let str = shuffleOn == true? "on" : "off"
+    appendTerminalOutput("shuffle " + str)
+}
+
+function loopSong()
+{
+	curTrack.currentTime = 0;
+	curTrack.play()
 }
 
 function setTracklistHighlight() {
@@ -351,6 +341,17 @@ const inputEl = document.getElementById("terminal-input")
 const terminalContentEl = document.getElementById("terminal-content")
 const caret = document.getElementById("fake-caret")
 
+let sysInfo = { 
+    'browserName': '', 
+    'browserVersion': '',
+    'osName': '',
+    'osVersion': '',
+    'cpu': '',
+    'deviceVendor': '',
+    'deviceModel': '',
+}
+let loadTime
+
 let exited = false 
 let lained = false
 
@@ -380,6 +381,12 @@ press tab for auto completion`
 const WELCOME_TEXT = `type <span style="font-weight:bold;">help</span> and hit enter to view available 
 commands :3`
 
+const DEFAULT_RESPONSES = [
+	"idk that command (´;ω;`)",
+	"type <span style='font-weight:bold;'>help</span> to see available commands",
+    "i am going offline forever",
+]
+
 const LOGO = 
 `.__         .__        ________    _________
 |  | _____  |__| ____  \\_____  \\  /   _____/
@@ -388,24 +395,10 @@ const LOGO =
 |____(____  /__|___|  /\______vol. 2 _____ /
           \\/        \\/         \\/        \\/`
 
-let sys_info_text = 
-`
-  lain@navi
-  -------------- 
-  OS: lainOS 2.0 x86_64
-  Host: ${getBrowserName()}
-  Kernel: 2.0.0
-  Uptime: 
-  Terminal: Navi_Terminal
-  Terminal Font: JuliaMono-Regular
-  CPU Cores: ${navigator.hardwareConcurrency}
-  GPU: 
-  Memory:`
-// todo: use window.performance
 
 function getBrowserName() {
     // todo parse user agent 
-    return "";
+    return "test";
 }
 
 function getHiddenCommandsCount() {
@@ -425,6 +418,8 @@ function processInput(e)
             appendTerminalOutput("lain@navi ~ % " + usrInput)
             clearInput()
 
+            let responded = false
+
             // check for illegal chars
             if (usrInput.match(INPUT_PATTERN) == null) {
                 // appendTerminalOutput("what did u just say u faggot")
@@ -435,7 +430,12 @@ function processInput(e)
             for (let command of COMMANDS) {
                 if (usrInput.toLowerCase() == command) {
                     processCommand(command)
+                    responded = true
                 }
+            }
+
+            if (!responded) {
+                appendTerminalOutput(DEFAULT_RESPONSES[getRandomInt(0, DEFAULT_RESPONSES.length)], true)
             }
 
             scrollTerminal()
@@ -513,10 +513,17 @@ function processCommand(command) {
             break;
 
         case "neofetch":
+            var uptime = getUptime()
             appendTerminalOutput(LOGO, true)
-            appendTerminalOutput(sys_info_text, true);
+            appendTerminalOutput(`  OS: lain OS 2.0
+  host: ${sysInfo.browserName} ${sysInfo.browserVersion}
+  device: ${sysInfo.deviceVendor} ${sysInfo.deviceModel}
+  terminal: navi_terminal
+  terminal font: julia mono
+  uptime: ${uptime.hr} hours, ${uptime.min} minutes, ${uptime.sec} seconds`
+// todo: use window.performance
+, true);
             break;
-
     }
 }
 
@@ -572,11 +579,17 @@ function initChatEmbedV2()
     
 // }, 500);
 
+function getUptime() {
+    let millisecsPassed = Date.now() - loadTime
+    return parseTime(Math.floor(millisecsPassed / 1000))
+}
+
 window.onload = ()=> 
 {
     // clearInterval(splashScreenAnim)
     // splashScreenEl.parentNode.removeChild(splashScreenEl)
-    
+
+    loadTime = Date.now()
 
     // init events and stuff
     inputEl.onkeydown = processInput
@@ -602,8 +615,24 @@ window.onload = ()=>
     })
 
     // chat
-    initChatEmbedV2()
+    // initChatEmbedV2()
 
+
+    // get browser and system info 
+
+    let parser = new UAParser(window.navigator.userAgent);
+    // console.log(window.navigator)
+
+    if (parser) {
+        sysInfo.browserName = parser.getBrowser().name.toLowerCase() || ''
+        sysInfo.browserVersion = parser.getBrowser().version.toLowerCase() || ''
+        // sysInfo.osName = parser.getOS().name.toLowerCase() || ''
+        // sysInfo.osVersion = parser.getOS().version.toLowerCase()  || ''
+        // sysInfo.cpu = parser.getCPU().architecture.toLowerCase() || ''
+        sysInfo.deviceVendor = parser.getDevice().vendor.toLowerCase() || ''
+        sysInfo.deviceModel = parser.getDevice().model.toLowerCase() || ''
+    }
+    
     // // 2d sprite walking animation
 
     // let sprites = document.getElementById("lain-ascii").getElementsByTagName("pre")
