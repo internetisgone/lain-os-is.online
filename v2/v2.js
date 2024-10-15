@@ -379,9 +379,6 @@ let sysInfo = {
 }
 let loadTime
 
-let exited = false 
-let lained = false
-
 // todo history
 let historyArr = []
 const historySize = 10
@@ -424,6 +421,9 @@ const LOGO =
 
 
 function getHiddenCommandsCount() {
+    let lained = sessionStorage.getItem("lained") == "1"
+    let exited = sessionStorage.getItem("exited") == "1"
+
     if (exited == false && lained == false) return 0;
     else if (exited == true && lained == true) return 2;
     else return 1;
@@ -523,13 +523,13 @@ function processCommand(command) {
             break;
 
         case "exit":
-            exited = true
+            sessionStorage.setItem("exited", "1");
             clearInput()
             window.location.href = "/offline.html"
             break;
 
         case "lain":
-            lained = true
+            sessionStorage.setItem("lained", "1");
             // return a random ascii art 
             var rand = getRandomInt(0, TERMINAL_ART.length)
             appendTerminalOutput(TERMINAL_ART[rand], true, true);
