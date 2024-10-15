@@ -1,7 +1,7 @@
 body
 {
     --mono-font: "JuliaMono", "Courier New", monospace;
-	--lain-font: "LoveLetter", "Courier New", monospace;
+	/* --lain-font: "LoveLetter", "Courier New", monospace; */
 
     --accent-color: red;
     --secondary-color: rgb(255, 177, 177);
@@ -9,8 +9,8 @@ body
     --drag-area-height: 30px;
     --window-border: 1px solid var(--accent-color);
     --font-width: 9px;
+    --music-player-inner-border-width: 1.5px;
 
-    /* background: center/50% url("img/bg.png") repeat; */
     background-color: white;
     color: var(--accent-color);
 
@@ -44,14 +44,16 @@ pre, input, button
 .bg-ascii {
     position: absolute;
     font-size: 10px;
-    line-height: 1;
     margin: 0;
     user-select: none;
+    pointer-events: none;
 }
 
 .hidden {
     display: none;
 }
+
+.underline { text-decoration: underline; }
 
 #splash-screen {
     width: 100vw;
@@ -66,26 +68,6 @@ pre, input, button
     font-size: 12px;
     line-height: 1;
 }
-/* blinking caret */
-
-/* #soon::after
-{
-    content: "";
-    display: inline-block;
-    background: black;
-    width: 10px;
-    height: 3px; 
-    animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-	from,
-	to {background: transparent;}
-  	50% {background: black;}
-}  */
-
-/* box-shadow: 10px 90px 20px rgb(92, 92, 92); */
-
 
 /*+------- mini windows -------+*/
 
@@ -133,20 +115,25 @@ pre, input, button
 
 /*+------- window icons -------+*/
 
-#icons-container 
+#icon-tray 
 {
 	position: absolute; bottom: 20px;
 	display: flex; flex-direction: row; gap: 15px;
-    background-color: white;
+}
+#icon-tray pre {
+    font-size: 14px;
+    font-weight: bold;
+    user-select: none;
 }
 .icon 
 {
     visibility: hidden;
 	cursor: pointer;
-    margin: 0;
-    font-size: 13px;
-    font-weight: bold;
+    margin: 3px;
+    background-color: white;
 }
+#icons-top-corner { margin-top: 0; }
+#icons-bottom-corner { margin-bottom: 0;}
 
 /*+------- music player window -------+*/
 
@@ -184,11 +171,13 @@ pre, input, button
 #tracklist-container {
     overflow-y: scroll;
     height: 250px;
+    border-width: var(--music-player-inner-border-width);
     border-style: dashed none;
 }
 
 #top-display {
     grid-column: 1; grid-row: 1;
+    border-width: var(--music-player-inner-border-width);
     border-style: none dashed dashed none;
 }
 
@@ -205,6 +194,7 @@ pre, input, button
     display: flex; flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
+    border-width: var(--music-player-inner-border-width);
     border-style: none none dashed none;
 }
 
@@ -299,6 +289,11 @@ pre, input, button
 #playback-controls button, #playback-controls pre, #mini-stats-container pre {
     font-size: 15px;
 }
+#playback-controls a /*, #loop-btn, #shuffle-btn*/ { 
+    font-size: 20px;
+    line-height: 0.5;
+}
+
 #playback-controls-click-area {
     margin-left: 24px;
     margin-top: 12px;
@@ -405,8 +400,8 @@ pre, input, button
 
 @keyframes blink {
 	from,
-	to {border-color: transparent;}
-  	50% {border-color: red;}
+	to { border-color: transparent; }
+  	50% { border-color: red; }
 }
 
 /*+------- version history window -------+*/
@@ -455,7 +450,7 @@ pre, input, button
     /* .bg-ascii {
 
     } */
-	#icons-container {
-        bottom: 40px;
+	#icon-tray {
+        bottom: 60px;
     }
 }

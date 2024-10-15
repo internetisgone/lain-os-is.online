@@ -194,6 +194,9 @@ let marqueeId, marqueeDelayId
 let progressTimer
 const fontWidth = 9 
 
+let loopOn = false
+let shuffleOn = false
+
 function loadTrack() {
     _loadTrack()
 
@@ -236,9 +239,45 @@ function prevTrackV2() {
 
 function nextTrackV2() {
     _nextTrack()
-    curIndex < trackList.length - 1 ? curIndex += 1 : curIndex = 0;
+    
+    if (shuffleOn == true) curIndex = getRandomInt(0, trackList.length)
+    else curIndex < trackList.length - 1 ? curIndex += 1 : curIndex = 0;
     loadTrack()
     playTrackV2()
+}
+
+function toggleLoop() {
+    loopOn = !loopOn
+    if (loopOn) {
+        curTrack.removeEventListener("ended", nextTrackV2)
+		curTrack.addEventListener("ended", loopSong)
+        document.getElementById("loop-btn").classList.add("underline")
+    }
+    else {
+        curTrack.removeEventListener("ended", loopSong)
+        curTrack.addEventListener("ended", nextTrackV2)
+        document.getElementById("loop-btn").classList.remove("underline")
+    }
+    let str = loopOn == true? "on" : "off"
+    appendTerminalOutput("loop " + str)
+}
+
+function toggleShuffle() {
+    shuffleOn = !shuffleOn
+    if (shuffleOn) {
+        document.getElementById("shuffle-btn").classList.add("underline")
+    }
+    else {
+        document.getElementById("shuffle-btn").classList.remove("underline")
+    }
+    let str = shuffleOn == true? "on" : "off"
+    appendTerminalOutput("shuffle " + str)
+}
+
+function loopSong()
+{
+	curTrack.currentTime = 0;
+	curTrack.play()
 }
 
 function setTracklistHighlight() {
@@ -379,6 +418,12 @@ press tab for auto completion`
 
 const WELCOME_TEXT = `type <span style="font-weight:bold;">help</span> and hit enter to view available 
 commands :3`
+
+const DEFAULT_RESPONSES = [
+	"idk that word (´;ω;`)",
+	"type <span style='font-weight:bold;'>help</span> to see available commands",
+    "i am going offline forever... maybe",
+]
 
 const LOGO = 
 `.__         .__        ________    _________
