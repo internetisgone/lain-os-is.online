@@ -110,7 +110,7 @@ const TERMINAL_ART = [
 // *+-------              -------+* //
 
 const miniWindows = document.getElementsByClassName("mini-window")
-const icons = document.getElementsByClassName("icon")
+const  windowIcons = document.getElementsByClassName("icon")
 
 initMiniWindows()
 
@@ -120,7 +120,7 @@ function initMiniWindows() {
 		let miniWindow = new MiniWindow(
 			i,
 			miniWindows.item(i), 
-			icons.item(i), 
+			 windowIcons.item(i), 
 		)	
 		miniWindow.init()
 	}
@@ -139,6 +139,13 @@ const curTimeEls = document.getElementsByClassName("cur-time")
 const volSlider = document.getElementById("volume-slider")
 const progressBar = document.getElementById("progress-bar")
 const playhead = document.getElementById("progress-bar-playhead")
+
+const trackStateImg = document.getElementById("cur-track-state")
+const trackStateIcons = [
+    "&#x23F5;", // play
+    "&#x23F8;", // pause
+    "&#x23F9;", // stop
+]
 
 let curIndex = 0
 let marqueeId, marqueeDelayId
@@ -170,14 +177,17 @@ function loadTrack() {
 
 function playTrackV2() {
     _playTrack()
+    trackStateImg.innerHTML = trackStateIcons[0]
 }
 
 function pauseTrackV2() {
     _pauseTrack()
+    trackStateImg.innerHTML = trackStateIcons[1]
 }
 
 function stopTrackV2() {
     _stopTrack()
+    trackStateImg.innerHTML = trackStateIcons[2]
     resetProgress()
 }
 
@@ -597,6 +607,7 @@ window.onload = ()=>
 
     loadTrack()
     initTracklistClickEvent()
+    trackStateImg.innerHTML = trackStateIcons[2]
     curTrack.addEventListener("ended", nextTrackV2); 
     progressBar.addEventListener("click", setProgress)
 

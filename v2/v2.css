@@ -181,10 +181,13 @@ pre, input, button
     border-style: none dashed dashed none;
 }
 
+#cur-track-state {
+    font-size: 24px;
+    margin-left: 7px;
+}
 #big-cur-time {
     font-size: 17px;
     margin: 0;
-    margin-left: 7px;
     margin-top: 7px;
 }
 
@@ -445,17 +448,30 @@ pre, input, button
 }
 
 /* credits */
-#credits-container {
-    position: absolute; top: 20px; left: 20px;
+#credits {
+    position: absolute; bottom: -33px; right: 30px;
+    width: 120px; height: 100px;
+    text-decoration: none;
+    z-index: unset;
+    /* animation: peek 2s linear infinite; */
+}
+#credits:hover {
+    margin-bottom: 15px;
 }
 
-/* mobile / portrait display */
+/* @keyframes peek {
+    from { margin-bottom: 0; }
+    to { margin-bottom: 10px;}
+} */
 
-@media (max-aspect-ratio: 4/3) 
+/* mobile */
+
+@media screen and (max-width: 500px)
 {
-    /* .bg-ascii {
-
-    } */
+    #credits {
+        top: 20px; left: 0px;
+    }
+    
 	#icon-tray {
         bottom: 80px;
     }
