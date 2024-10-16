@@ -502,6 +502,10 @@ function processInput(e)
             if (e.key == "Backspace") {
                 offset = inputEl.value.length - 1 < 0 ? 0 : - 1
             }
+            // else if (e.key == "ArrowLeft") {
+            // }
+            // else if (e.key == "ArrowRight") {
+            // }
             else if (e.keyCode < 48 || e.key == "Meta") { // there's prob a better way 
                 offset = 0
             }
@@ -592,6 +596,8 @@ function clearInput() {
     inputEl.value = ""
     updateCaretPos(0)
 }
+
+
 function initChatEmbedV2()
 {
 	let chatScript = document.createElement("script")
@@ -651,20 +657,22 @@ window.onload = ()=>
     // chat
     initChatEmbedV2()
 
-
     // get browser and system info 
+    try {
+        let parser = new UAParser(window.navigator.userAgent);
+        // console.log(window.navigator)
 
-    let parser = new UAParser(window.navigator.userAgent);
-    // console.log(window.navigator)
-
-    if (parser) {
-        sysInfo.browserName = parser.getBrowser().name.toLowerCase() || ''
-        sysInfo.browserVersion = parser.getBrowser().version.toLowerCase() || ''
-        // sysInfo.osName = parser.getOS().name.toLowerCase() || ''
-        // sysInfo.osVersion = parser.getOS().version.toLowerCase()  || ''
-        // sysInfo.cpu = parser.getCPU().architecture.toLowerCase() || ''
-        sysInfo.deviceVendor = parser.getDevice().vendor.toLowerCase() || ''
-        sysInfo.deviceModel = parser.getDevice().model.toLowerCase() || ''
+        if (parser) {
+            sysInfo.browserName = parser.getBrowser().name.toLowerCase() || ''
+            sysInfo.browserVersion = parser.getBrowser().version.toLowerCase() || ''
+            // sysInfo.osName = parser.getOS().name.toLowerCase() || ''
+            // sysInfo.osVersion = parser.getOS().version.toLowerCase()  || ''
+            // sysInfo.cpu = parser.getCPU().architecture.toLowerCase() || ''
+            sysInfo.deviceVendor = parser.getDevice().vendor.toLowerCase() || ''
+            sysInfo.deviceModel = parser.getDevice().model.toLowerCase() || ''
+        }
+    } catch (error) {
+        console.log("error parsing ua", error);
     }
 
     // // 2d sprite walking animation

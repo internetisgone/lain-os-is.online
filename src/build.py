@@ -21,7 +21,7 @@ VERSION_HISTORY_ENTRIES = [
     {
         "version": "1.1.0",
         "date": "01 july 2024 ",
-        "description": """a selection of vol. 2 tracks premiered on <a href="https://www.nts.live/shows/bloodz-boi/episodes/bloodz-boi-1st-july-2024" target="_blank">NTS</a>"""
+        "description": """a selection of vol. 2 tracks premiered on <a href="https://www.nts.live/shows/bloodz-boi/episodes/bloodz-boi-1st-july-2024" target="_blank">NTS</a><br> added /v2 placeholder"""
     },
     {
         "version": "1.0.0",

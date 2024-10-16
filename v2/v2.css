@@ -5,13 +5,14 @@ body
 
     --accent-color: red;
     --secondary-color: rgb(255, 177, 177);
+    --bg-color: white;
 
     --drag-area-height: 30px;
     --window-border: 1px solid var(--accent-color);
     --font-width: 9px;
     --music-player-inner-border-width: 1.5px;
 
-    background-color: white;
+    background-color: var(--bg-color);
     color: var(--accent-color);
 
     display: flex;
@@ -60,7 +61,7 @@ pre, input, button
     width: 100vw;
     height: 100vh;
     margin: 0;
-    background-color: white;
+    background-color: var(--bg-color);
     z-index: 777;
 }
 #splash-screen pre {
@@ -75,7 +76,7 @@ pre, input, button
 .mini-window
 {
 	position: absolute;
-	background-color: white;
+	background-color: var(--bg-color);
     width: 443px; height: 333px;
     border: var(--window-border);
 }
@@ -131,7 +132,7 @@ pre, input, button
     visibility: hidden;
 	cursor: pointer;
     margin: 3px;
-    background-color: white;
+    background-color: var(--bg-color);
 }
 #icons-top-corner { margin-top: 0; }
 #icons-bottom-corner { margin-bottom: 0;}
@@ -273,7 +274,7 @@ pre, input, button
 #progress-bar-playhead {
     position: absolute;
     left: calc(2 * var(--font-width));
-    background-color: white;
+    background-color: var(--bg-color);
 }
 
 #playback-controls {
@@ -324,7 +325,7 @@ pre, input, button
     padding-left: 0;
 }
 #tracklist li:hover, .highlighted-track {
-    color: white;
+    color: var(--bg-color);
     background-color: var(--accent-color);
     cursor: pointer;
 }
@@ -387,7 +388,7 @@ pre, input, button
 }
 #terminal-input {
     color: var(--accent-color);
-    background-color: white;
+    background-color: var(--bg-color);
     border-width: 0px;
     padding-top: 0;
     font-size: 15px;
