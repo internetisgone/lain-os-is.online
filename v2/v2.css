@@ -44,6 +44,7 @@ pre, input, button
 .bg-ascii {
     position: absolute;
     font-size: 10px;
+    font-weight: bold;
     margin: 0;
     user-select: none;
     pointer-events: none;

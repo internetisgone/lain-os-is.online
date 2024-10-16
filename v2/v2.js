@@ -431,8 +431,6 @@ function getHiddenCommandsCount() {
 
 function processInput(e)
 {	
-    updateCaretPos()
-    // console.log(inputEl.value.length)
     switch(e.key) {
         case "Enter":
             e.preventDefault()
@@ -457,7 +455,7 @@ function processInput(e)
                 }
             }
 
-            if (!responded) {
+            if (!responded && usrInput.length > 0) {
                 appendTerminalOutput(DEFAULT_RESPONSES[getRandomInt(0, DEFAULT_RESPONSES.length)], true)
             }
 
@@ -488,7 +486,7 @@ function processInput(e)
             if (matches.length == 1) {
                 // auto complete
                 inputEl.value = matches[0]
-                updateCaretPos()
+                updateCaretPos(0)
             }
             if (matches.length > 1) {      
                 // show all matches      
@@ -497,6 +495,18 @@ function processInput(e)
                 // press tab again to go to next match
             }
             break
+        default:
+            // chech whether the key will change input value 
+            // update caret position accordingly
+            var offset = 1
+            if (e.key == "Backspace") {
+                offset = inputEl.value.length - 1 < 0 ? 0 : - 1
+            }
+            else if (e.keyCode < 48 || e.key == "Meta") { // there's prob a better way 
+                offset = 0
+            }
+            updateCaretPos(offset)
+            break;
 	}
 }
 
@@ -574,13 +584,13 @@ function scrollTerminal() {
 	terminalContentEl.scrollTop = terminalContentEl.scrollHeight; 
 }
 
-function updateCaretPos() {
-    caret.style.marginLeft = fontWidth + 1 + inputEl.value.length * fontWidth + "px"
+function updateCaretPos(offset) {
+    caret.style.marginLeft = (inputEl.value.length + offset) * fontWidth + "px"
 }
 
 function clearInput() {
     inputEl.value = ""
-    caret.style.marginLeft = "0"
+    updateCaretPos(0)
 }
 function initChatEmbedV2()
 {
@@ -656,7 +666,7 @@ window.onload = ()=>
         sysInfo.deviceVendor = parser.getDevice().vendor.toLowerCase() || ''
         sysInfo.deviceModel = parser.getDevice().model.toLowerCase() || ''
     }
-    
+
     // // 2d sprite walking animation
 
     // let sprites = document.getElementById("lain-ascii").getElementsByTagName("pre")
