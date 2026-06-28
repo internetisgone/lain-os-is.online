@@ -453,6 +453,29 @@ pre, input, button
     width: 100%; height: calc(100% - var(--drag-area-height))
 }
 
+/*+------- interview window -------+*/
+
+#interview-vids {
+    position: absolute;
+    top: 12%;
+    left: 33%;
+}
+
+#interviews-container {
+    margin-top: var(--drag-area-height); 
+    width: 100%; height: calc(100% - var(--drag-area-height));
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+	align-items: center;
+    overflow-y: scroll;
+}
+
+.yt-embed {
+    width: 420px; height: 315px;
+    flex: 0 0 315px;
+}
+
 /* mascot */
 
 #mascot-container {

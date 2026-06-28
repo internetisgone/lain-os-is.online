@@ -1,8 +1,13 @@
 from staticjinja import Site
-import eyed3
+# import eyed3
 import os
 
 VERSION_HISTORY_ENTRIES = [
+    {
+        "version": "2.0.1",
+        "date": "30 june 2026 ",
+        "description": "added interview videos"
+    },
     {
         "version": "2.0.0",
         "date": "15 oct 2024 ",
