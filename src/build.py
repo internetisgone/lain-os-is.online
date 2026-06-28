@@ -4,8 +4,8 @@ import os
 
 VERSION_HISTORY_ENTRIES = [
     {
-        "version": "2.0.1",
-        "date": "30 june 2026 ",
+        "version": "2.1.0",
+        "date": "29 june 2026 ",
         "description": "added interview videos"
     },
     {
